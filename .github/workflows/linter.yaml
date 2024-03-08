@@ -1,7 +1,8 @@
 ---
 name: Lint
 
-on:  
+on:
+  push: null
   pull_request: [dev, main]
 
 permissions: read-all
