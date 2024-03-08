@@ -28,6 +28,6 @@ jobs:
         env:
           VALIDATE_PYTHON_PYLINT: true
           VALIDATE_JAVA: true
-          DEFAULT_BRANCH: ${{ github.event.pull_request.base.ref }}
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
