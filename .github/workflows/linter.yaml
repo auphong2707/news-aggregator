@@ -2,8 +2,8 @@
 name: Lint
 
 on:
-  push: null
-  pull_request: [dev, main]
+  pull_request: 
+    branches: [dev, main]
 
 permissions: read-all
 
