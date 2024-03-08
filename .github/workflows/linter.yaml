@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   build:
     name: Lint Code Base
-    runs-on: unbutu-latest
+    runs-on: ubuntu-latest
     
     permissions:
       contents: read
