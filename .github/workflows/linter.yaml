@@ -26,7 +26,7 @@ jobs:
       - name: Super-Linter
         uses: super-linter/super-linter@v6.3.0
         env:
-          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_PYLINT: true
           VALIDATE_JAVA: true
           DEFAULT_BRANCH: ${{ github.event.pull_request.base.ref }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
