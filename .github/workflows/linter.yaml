@@ -1,8 +1,8 @@
 name: Lint Code Base
 
-on:  # yamllint disable-line rule:truthy
-  push: null
-  pull_request: null
+on: 
+  pull_request:
+    branches: [main, dev]
 
 permissions: read-all
 
@@ -26,6 +26,7 @@ jobs:
       - name: Super-Linter
         uses: super-linter/super-linter@v6.3.0
         env:
-          # To report GitHub Actions status checks
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
