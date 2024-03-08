@@ -1,8 +1,8 @@
 name: Lint Code Base
 
-on: 
-  pull_request:
-    branches: [main, dev]
+on:  # yamllint disable-line rule:truthy
+  push: null
+  pull_request: null
 
 permissions: read-all
 
