@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class WebScraper {
     private final String articleLink = "https://www.ft.com/blockchain";
+    private List<ArticleData> listOfData = new ArrayList<>();
     
     private final String[] userAgent = {
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36",
@@ -30,7 +31,7 @@ public class WebScraper {
                 .get();
     }
     
-    private void getTitle(Document document, List<String> articleTitles) {
+    private void getTitle(Document document, List<DataType> articleTitles) {
         Elements contents = document.select(".o-teaser__heading");
         for (Element content : contents) {
             String titleArticle = content.select("a[href]").text();
@@ -38,7 +39,7 @@ public class WebScraper {
         }
     }
     
-    private void getLink(Document document, List<String> articleLinks) {
+    private void getLink(Document document, List<DataType> articleLinks) {
     	Elements contents = document.select(".o-teaser__heading");
         for (Element content : contents) {
             Element linkArticle = content.selectFirst("a.js-teaser-heading-link");
@@ -47,7 +48,7 @@ public class WebScraper {
         }
     }
     
-    private void getIntro(Document document, List<String> articleIntros) {
+    private void getIntro(Document document, List<DataType> articleIntros) {
     	Elements contents = document.select(".o-teaser__standfirst");
         for (Element content : contents) {
             String introArticle = content.select("a[href]").text();
@@ -57,10 +58,6 @@ public class WebScraper {
     
     public void scrapeArticles() {
         try {
-            List<String> articleLinks = new ArrayList<>();
-            List<String> articleTitles = new ArrayList<>();
-            List<String> articleIntros = new ArrayList<>();
-            
             Random r = new Random();
             Document document = connectWeb(articleLink, userAgent[r.nextInt(userAgent.length)]);
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
@@ -72,14 +69,17 @@ public class WebScraper {
                 String completeLink = articleLink + relativeLink;
 
                 document = connectWeb(completeLink, userAgent[r.nextInt(userAgent.length)]);
-                getTitle(document, articleTitles);
-                getLink(document, articleLinks);
-                getIntro(document, articleIntros);
+                getTitle(document, listOfData);
+                getLink(document, listOfData);
+                getIntro(document, listOfData);
 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
             }
             
-            convertToCSV(articleTitles, articleLinks, articleIntros);
+            // convertToCSV(articleTitles, articleLinks, articleIntros);
+            System.out.println(articleTitles);
+            System.out.println(articleLinks);
+            System.out.println(articleIntros);
             
         } catch (IOException e) {
             e.printStackTrace();

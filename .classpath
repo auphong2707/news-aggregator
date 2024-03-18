@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Git/news-aggregator/external-package/jsoup-1.17.2.jar"/>
+	<classpathentry kind="lib" path="external-package/jsoup-1.17.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
