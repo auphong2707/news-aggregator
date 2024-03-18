@@ -22,7 +22,7 @@ public class WebScraper {
             "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16.2"
     };
     
-    private Document webConnector(String url, String userAgent) throws IOException {
+    private Document connectWeb(String url, String userAgent) throws IOException {
         return Jsoup.connect(url)
                 .userAgent(userAgent)
                 .referrer("http://www.google.com")
@@ -62,7 +62,7 @@ public class WebScraper {
             List<String> articleIntros = new ArrayList<>();
             
             Random r = new Random();
-            Document document = webConnector(articleLink, userAgent[r.nextInt(userAgent.length)]);
+            Document document = connectWeb(articleLink, userAgent[r.nextInt(userAgent.length)]);
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
             while (!nextElements.isEmpty()) {
@@ -71,7 +71,7 @@ public class WebScraper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = articleLink + relativeLink;
 
-                document = webConnector(completeLink, userAgent[r.nextInt(userAgent.length)]);
+                document = connectWeb(completeLink, userAgent[r.nextInt(userAgent.length)]);
                 getTitle(document, articleTitles);
                 getLink(document, articleLinks);
                 getIntro(document, articleIntros);
@@ -79,14 +79,14 @@ public class WebScraper {
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
             }
             
-            toCSV(articleTitles, articleLinks, articleIntros);
+            convertToCSV(articleTitles, articleLinks, articleIntros);
             
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
-    private void toCSV(List<String> articleTitles, List<String> articleLinks, List<String> articleIntros) {
+    private void convertToCSV(List<String> articleTitles, List<String> articleLinks, List<String> articleIntros) {
     	String csv = "articles.csv";
     	try (FileWriter writer = new FileWriter(csv)){
     		writer.append("Title,Link,Intro\n");
