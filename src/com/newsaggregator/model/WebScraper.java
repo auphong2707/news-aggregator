@@ -6,12 +6,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class WebScraper {
     private final String articleLink = "https://www.ft.com/blockchain";
+    
     private final String[] userAgent = {
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582",
@@ -52,6 +54,7 @@ public class WebScraper {
             articleIntros.add(introArticle);
         }
     }
+    
     public void scrapeArticles() {
         try {
             List<String> articleLinks = new ArrayList<>();
@@ -75,12 +78,24 @@ public class WebScraper {
 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
             }
-
-            System.out.println(articleTitles);
-            System.out.println(articleLinks);
-            System.out.println(articleIntros);
+            
+            toCSV(articleTitles, articleLinks, articleIntros);
             
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void toCSV(List<String> articleTitles, List<String> articleLinks, List<String> articleIntros) {
+    	String csv = "articles.csv";
+    	try (FileWriter writer = new FileWriter(csv)){
+    		writer.append("Title,Link,Intro\n");
+    		for (int i = 0; i < articleTitles.size(); i++) {
+                writer.append(articleTitles.get(i)).append(",");
+                writer.append(articleLinks.get(i)).append(",");
+                writer.append(articleIntros.get(i)).append("\n");
+    		}
+    	} catch (IOException e) {
             e.printStackTrace();
         }
     }
