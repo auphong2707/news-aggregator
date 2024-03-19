@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Random;
 
 public class WebScraper {
-    private final String articleLink = "https://www.ft.com/blockchain";
+    private final String webSource = "https://www.ft.com/blockchain";
     private List<ArticleData> listOfData = new ArrayList<>();
-    
+    private final String type = "News Article";
     private final String[] userAgent = {
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582",
@@ -31,72 +31,107 @@ public class WebScraper {
                 .get();
     }
     
-    private void getTitle(Document document, List<DataType> articleTitles) {
-        Elements contents = document.select(".o-teaser__heading");
-        for (Element content : contents) {
-            String titleArticle = content.select("a[href]").text();
-            articleTitles.add(titleArticle);
+    private String getTitle(Document document) {
+        Elements contents = document.select(".article-classifier__gap");
+        for (Element content: contents) {
+        	String articleTitle = content.text();
+        	return articleTitle;
         }
+        return "";
     }
     
-    private void getLink(Document document, List<DataType> articleLinks) {
+    private String getAuthor(Document document) {
+    	Elements contents = document.select(".article-info__time-byline");
+        for (Element content : contents) {
+            String authorArticle = content.select("a[href]").text();
+            return authorArticle;
+        }
+        return "";
+    }
+    
+    private String getDetailedContent(Document document) {
+    	Elements contents = document.select(".n-content-body.js-article__content-body");
+    	String text = new String();
+    	for (Element content : contents) {
+    		String paragraph = content.select("p").text();
+    		text += paragraph;
+    	}
+    	return text;
+    }
+    
+    private String getCreationDate(Document document) {
+    	Elements contents = document.select(".article-info__timestamp.o-date");
+    	for (Element content : contents) {
+    		String creationDate = content.attr("datetime");
+    		return creationDate;
+    	}
+    	return "";
+    }
+    
+    private List<String> getLinkInPage(Document document) {
+    	List<String> articleLinks = new ArrayList<String>();
+    	
     	Elements contents = document.select(".o-teaser__heading");
         for (Element content : contents) {
             Element linkArticle = content.selectFirst("a.js-teaser-heading-link");
             String linkHref = "https://www.ft.com" + linkArticle.attr("href");
             articleLinks.add(linkHref);
         }
+        return articleLinks;
     }
     
-    private void getIntro(Document document, List<DataType> articleIntros) {
-    	Elements contents = document.select(".o-teaser__standfirst");
+    private String getIntro(Document document) {
+    	Elements contents = document.select(".o-topper__standfirst");
         for (Element content : contents) {
-            String introArticle = content.select("a[href]").text();
-            articleIntros.add(introArticle);
+            String introArticle = content.text();
+            return introArticle;
         }
+        return "";
     }
     
-    public void scrapeArticles() {
-        try {
+    private List<String> getAllLinks(){
+    	List<String> allLinks = new ArrayList<String>();
+    	try {	
             Random r = new Random();
-            Document document = connectWeb(articleLink, userAgent[r.nextInt(userAgent.length)]);
+            Document document = connectWeb(webSource, userAgent[r.nextInt(userAgent.length)]);
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
             while (!nextElements.isEmpty()) {
                 Element nextPageLink = document.selectFirst("a.o-buttons.o-buttons--secondary.o-buttons-icon.o-buttons-icon--arrow-right.o-buttons-icon--icon-only");
                 String relativeLink = nextPageLink.attr("href");
                 if (relativeLink == null || relativeLink.isEmpty()) break;
-                String completeLink = articleLink + relativeLink;
+                String completeLink = webSource + relativeLink;
 
                 document = connectWeb(completeLink, userAgent[r.nextInt(userAgent.length)]);
-                getTitle(document, listOfData);
-                getLink(document, listOfData);
-                getIntro(document, listOfData);
-
+                allLinks.addAll(getLinkInPage(document));
+                
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
-            }
-            
-            // convertToCSV(articleTitles, articleLinks, articleIntros);
-            System.out.println(articleTitles);
-            System.out.println(articleLinks);
-            System.out.println(articleIntros);
-            
+            }   
         } catch (IOException e) {
             e.printStackTrace();
         }
+    	
+    	return allLinks;
     }
     
-    private void convertToCSV(List<String> articleTitles, List<String> articleLinks, List<String> articleIntros) {
-    	String csv = "articles.csv";
-    	try (FileWriter writer = new FileWriter(csv)){
-    		writer.append("Title,Link,Intro\n");
-    		for (int i = 0; i < articleTitles.size(); i++) {
-                writer.append(articleTitles.get(i)).append(",");
-                writer.append(articleLinks.get(i)).append(",");
-                writer.append(articleIntros.get(i)).append("\n");
-    		}
+
+    
+    public ArticleData scrapeArticle(String articleLink) {
+    	String title="", author="", date="", detailContent="", intro="";
+    	try {
+    		Random r = new Random();
+        	Document document = connectWeb(articleLink, userAgent[r.nextInt(userAgent.length)]);
+            title = getTitle(document);
+            author = getAuthor(document);
+            date = getCreationDate(document);
+            detailContent = getDetailedContent(document);
+            intro = getIntro(document);
     	} catch (IOException e) {
-            e.printStackTrace();
-        }
+    		e.printStackTrace();
+    	}
+    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, type, "",
+    			title, intro, detailContent, "", author, "", date);
+    	
+    	return articleFeatures;
     }
 }
