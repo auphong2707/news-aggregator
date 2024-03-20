@@ -16,7 +16,7 @@ public class WebScrapperFT extends WebScrapper {
     {
     	webSource = "https://www.ft.com/blockchain";
     	type = "News Article";
-    	fileName += "newsFT.csv";
+    	fileName += "newsFT.json";
     }
     
     @Override

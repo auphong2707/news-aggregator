@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import com.google.gson.Gson;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -128,18 +129,13 @@ public abstract class WebScrapper {
         try {
             fileWriter = new FileWriter(fileName);
  
-            // Write the CSV file header
-            fileWriter.append(ArticleData.HEADER);
+            Gson gson = new Gson();
+            gson.toJson(listOfData, fileWriter);
  
-            // Write a new ArticleData object list to the CSV file
-            for (ArticleData unit : listOfData) {
-            	fileWriter.append(unit.toRowCSV());
-            }
- 
-            System.out.println("CSV file was created successfully !!!");
+            System.out.println("JSON file was created successfully !!!");
  
         } catch (Exception e) {
-            System.out.println("Error in CsvFileWriter !!!");
+            System.out.println("Error in JSON File Writer !!!");
             e.printStackTrace();
         } finally {
             try {

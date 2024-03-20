@@ -1,20 +1,6 @@
 package com.newsaggregator.model;
 
 public class ArticleData {
-	public static final String HEADER;
-	
-	static
-	{
-		String temp = "";
-		for (DataType type : DataType.values()) {
-			temp += type.toString() + ",";
-		}
-		temp = temp.substring(0, temp.length() - 1);
-		temp += '\n';
-		
-		HEADER = temp;
-	}
-	
 	private final String LINK;
 	private final String WEBSITE_SOURCE;
 	private final String TYPE;
@@ -72,18 +58,5 @@ public class ArticleData {
 		default:
 			return "";
 		}
-	}
-	
-	protected String toRowCSV()
-	{
-		String result = "";
-		for (DataType type : DataType.values()) {
-			result += getDataByType(type) + ",";
-		}
-		
-		result = result.substring(0, result.length() - 1);
-		result += '\n';
-		
-		return result;
 	}
 }
