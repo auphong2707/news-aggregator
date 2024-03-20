@@ -16,6 +16,7 @@ public class WebScrapperFT extends WebScrapper {
     {
     	webSource = "https://www.ft.com/blockchain";
     	type = "News Article";
+    	fileName += "newsFT.csv";
     }
     
     @Override
@@ -23,7 +24,7 @@ public class WebScrapperFT extends WebScrapper {
     	List<String> allLinks = new ArrayList<String>();
     	try {	
             Random r = new Random();
-            Document document = connectWeb(webSource, userAgent[r.nextInt(userAgent.length)]);
+            Document document = connectWeb(webSource, userAgent.get(r.nextInt(userAgent.size())));
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
             while (!nextElements.isEmpty()) {
@@ -32,7 +33,7 @@ public class WebScrapperFT extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = webSource + relativeLink;
 
-                document = connectWeb(completeLink, userAgent[r.nextInt(userAgent.length)]);
+                document = connectWeb(completeLink, userAgent.get(r.nextInt(userAgent.size())));
                 allLinks.addAll(getLinkInPage(document));
                 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
@@ -54,7 +55,7 @@ public class WebScrapperFT extends WebScrapper {
             String linkHref = "https://www.ft.com" + linkArticle.attr("href");
             articleLinks.add(linkHref);
         }
-        System.out.println("BRUH");
+        System.out.println("Collect links in page successfully");
         return articleLinks;
     }
     
