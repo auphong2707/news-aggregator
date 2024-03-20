@@ -1,9 +1,13 @@
 package com.newsaggregator.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,16 +15,29 @@ import org.jsoup.nodes.Document;
 public abstract class WebScrapper {
 	protected String webSource;
     protected String type;
+    protected String fileName = "data/";
     
-    protected final String[] userAgent = {
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.79 Safari/537.36",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:101.0) Gecko/20100101 Firefox/101.0",
-            "Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201",
-            "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16.2"
-    };
+    protected static final List<String> userAgent;
     
-    private List<ArticleData> listOfData = new ArrayList<>();
+    static
+    {
+    	List<String> tmpList = new ArrayList<String>();
+    	try {
+			Scanner scanner = new Scanner(new File("user-agents.txt"));
+			while (scanner.hasNext()){
+			    tmpList.add(scanner.next());
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	finally {
+    		userAgent = tmpList;
+    	}
+    }
+    
+    private List<ArticleData> listOfData = new ArrayList<ArticleData>();
     
     protected Document connectWeb(String url, String userAgent) throws IOException {
         return Jsoup.connect(url)
@@ -67,12 +84,12 @@ public abstract class WebScrapper {
     }
 
  
-    public ArticleData scrapeArticle(String articleLink) {
+    private ArticleData scrapeArticle(String articleLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
     			author="", category="", creationDate="";
     	try {
     		Random r = new Random();
-        	Document document = connectWeb(articleLink, userAgent[r.nextInt(userAgent.length)]);
+        	Document document = connectWeb(articleLink, userAgent.get(r.nextInt(userAgent.size())));
         	summary = getSummary(document);
             title = getTitle(document);
             intro = getIntro(document);
@@ -87,6 +104,51 @@ public abstract class WebScrapper {
     	ArticleData articleFeatures = new ArticleData(articleLink, webSource, type, summary,
     			title, intro, detailedContent, tags, author, category, creationDate);
     	
+    	System.out.println("Collect data in link successfully");
     	return articleFeatures;
+    }
+    
+    protected void scrapeAllData()
+    {
+    	List<String> allLinks = getAllLinks();
+    
+    	for (String link : allLinks) {
+    		ArticleData unit = scrapeArticle(link);
+    		
+    		listOfData.add(unit);
+    	}
+    	
+    	convertToCSV(listOfData);
+    }
+    
+    
+    private void convertToCSV(List<ArticleData> listOfData) {
+    	FileWriter fileWriter = null;
+    	 
+        try {
+            fileWriter = new FileWriter(fileName);
+ 
+            // Write the CSV file header
+            fileWriter.append(ArticleData.HEADER);
+ 
+            // Write a new ArticleData object list to the CSV file
+            for (ArticleData unit : listOfData) {
+            	fileWriter.append(unit.toRowCSV());
+            }
+ 
+            System.out.println("CSV file was created successfully !!!");
+ 
+        } catch (Exception e) {
+            System.out.println("Error in CsvFileWriter !!!");
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("Error while flushing/closing fileWriter !!!");
+                e.printStackTrace();
+            }
+        }
     }
 }
