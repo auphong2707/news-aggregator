@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="external-package/jsoup-1.17.2.jar"/>
 	<classpathentry kind="lib" path="D:/Git/news-aggregator/external-package/gson-2.10.1.jar"/>
+	<classpathentry kind="lib" path="external-package/gson-2.10.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

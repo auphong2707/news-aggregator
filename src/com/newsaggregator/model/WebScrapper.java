@@ -119,11 +119,11 @@ public abstract class WebScrapper {
     		listOfData.add(unit);
     	}
     	
-    	convertToCSV(listOfData);
+    	convertToJSON(listOfData);
     }
     
     
-    private void convertToCSV(List<ArticleData> listOfData) {
+    private void convertToJSON(List<ArticleData> listOfData) {
     	FileWriter fileWriter = null;
     	 
         try {
