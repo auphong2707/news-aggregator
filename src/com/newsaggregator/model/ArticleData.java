@@ -1,13 +1,20 @@
 package com.newsaggregator.model;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-
 public class ArticleData {
+	public static final String HEADER;
+	
+	static
+	{
+		String temp = "";
+		for (DataType type : DataType.values()) {
+			temp += type.toString() + ",";
+		}
+		temp = temp.substring(0, temp.length() - 1);
+		temp += '\n';
+		
+		HEADER = temp;
+	}
+	
 	private final String LINK;
 	private final String WEBSITE_SOURCE;
 	private final String TYPE;
@@ -20,7 +27,7 @@ public class ArticleData {
 	private final String CATEGORY;
 	private final String CREATION_DATE;
 	
-	public ArticleData(String link, String websiteSource,
+	protected ArticleData(String link, String websiteSource,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
 			String authorName, String category, String creationDate) {
@@ -67,4 +74,16 @@ public class ArticleData {
 		}
 	}
 	
+	protected String toRowCSV()
+	{
+		String result = "";
+		for (DataType type : DataType.values()) {
+			result += getDataByType(type) + ",";
+		}
+		
+		result = result.substring(0, result.length() - 1);
+		result += '\n';
+		
+		return result;
+	}
 }
