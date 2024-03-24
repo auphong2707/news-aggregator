@@ -14,7 +14,7 @@ import java.util.Random;
 public class WebScrapperCONV extends WebScrapper {
 	public WebScrapperCONV()
 	{
-		webSource = "https://theconversation.com/us/topics/blockchain-11427";
+		webSource = "https://theconversation.com/us/topics/blockchain-11427/";
     	type = "News Article";
     	fileName += "newsCONV.json";
 	}
@@ -71,9 +71,9 @@ public class WebScrapperCONV extends WebScrapper {
     
     @Override
     protected String getAuthor(Document document) {
-    	Elements contents = document.select(".fn.author-name");
+    	Elements contents = document.select("fn.author-name");
         for (Element content : contents) {
-            String authorArticle = content.select("a").text();
+            String authorArticle = content.text();
             return authorArticle;
         }
         return "";
