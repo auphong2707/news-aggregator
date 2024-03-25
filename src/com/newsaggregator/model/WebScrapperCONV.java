@@ -71,12 +71,14 @@ public class WebScrapperCONV extends WebScrapper {
     
     @Override
     protected String getAuthor(Document document) {
-    	Elements contents = document.select("fn.author-name");
+    	Elements contents = document.select(".fn.author-name");
+    	String allAuthor = "";
         for (Element content : contents) {
-            String authorArticle = content.text();
-            return authorArticle;
+            String authorArticle = content.select("span").text();
+            allAuthor += authorArticle + " ";
+            // return authorArticle;
         }
-        return "";
+        return allAuthor;
     }
     
     @Override
