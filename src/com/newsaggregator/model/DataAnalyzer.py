@@ -8,7 +8,7 @@ import os
 import pandas as pd
 from unidecode import unidecode 
 
-current_working_directory = __file__.replace('\\', '/').replace('news-aggregator/src/')
+current_working_directory = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/DataAnalyzer.py', '')
 
 def preprocessing(str_input):
     str_ascii = unidecode(str_input)
@@ -115,14 +115,13 @@ class SearchEngine:
             results[i] = {"score": query_score[i][1], "title": self.data[index]['TITLE'], "content": self.data[index]['DETAILED_CONTENT']}
         return results
 
-
-f = open(current_working_directory + 'newsFT.json', encoding = "utf8")
+print(current_working_directory)
+f = open(current_working_directory + 'data/newsFT.json', encoding = "utf8")
 print(current_working_directory)
 data = json.load(f)
 search_engine = SearchEngine()
 search_engine.fit(data)
 #print(search_engine.data[0]['DETAILED_CONTENT'])
 result = search_engine.search("Facebook Libra: the", 10)
+print(result[0])
 
-with open(current_working_directory + "search_result.json", "w") as f:
-    json.dump(result, f, indent = 2)
