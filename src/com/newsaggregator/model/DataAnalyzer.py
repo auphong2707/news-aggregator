@@ -5,7 +5,6 @@ import math
 import string
 import json 
 import os
-import pandas as pd
 from unidecode import unidecode 
 
 CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/DataAnalyzer.py', '')
@@ -45,22 +44,22 @@ class SearchEngine:
         The data is fed  into the class
         '''
         for i in range(len(data)):
-            data[i]['DETAILED_CONTENT'] = preprocessing(data[i]['DETAILED_CONTENT'])
+            data[i]['DETAILED_CONTENT_PROCESSED'] = preprocessing(data[i]['DETAILED_CONTENT'])
             #data[i]['TITLE'] = preprocessing(data[i]['TITLE'])
         self.data = data
-        self.average_document_length = sum([len(article['DETAILED_CONTENT'].split()) for article in self.data]) / len(self.data)
+        self.average_document_length = sum([len(article['DETAILED_CONTENT_PROCESSED'].split()) for article in self.data]) / len(self.data)
     
     def get_word_occurences(self, word, data_index):
         '''
         Return word occurences in a document given index
         '''
-        return self.data[data_index]['DETAILED_CONTENT'].count(word)
+        return self.data[data_index]['DETAILED_CONTENT_PROCESSED'].count(word)
 
     def get_word_occurences_global(self, word):
         '''
         Return total number of documents in data that has the word
         '''        
-        return sum([word in article['DETAILED_CONTENT'] for article in self.data])
+        return sum([word in article['DETAILED_CONTENT_PROCESSED'] for article in self.data])
 
     def idf(self, word):
         '''
@@ -112,8 +111,11 @@ class SearchEngine:
 
         for i in range(num_relevant_results):
             index = query_score[i][0]
-            results[i] = {"score": query_score[i][1], "title": self.data[index]['TITLE'], "content": self.data[index]['DETAILED_CONTENT']}
-        return results
+            results[i] = self.data[index]
+        
+        return_json_string = json.dumps(results)
+        
+        return return_json_string
 
 print(CURRENT_WORKING_DIRECTORY)
 
@@ -126,10 +128,9 @@ search_engine = SearchEngine()
 search_engine.fit(data)
 
 '''
-Show all relevant results
-result[i] = {"score": , "title": , "detailed_content"}
+Show all relevant articles given the query string
+return variable is a json string
 '''
 #print(search_engine.data[0]['DETAILED_CONTENT'])
 result = search_engine.search("Facebook Libra: the", 10)
-print(result[0])
 
