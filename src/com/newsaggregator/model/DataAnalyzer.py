@@ -8,7 +8,7 @@ import os
 import pandas as pd
 from unidecode import unidecode 
 
-current_working_directory = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/DataAnalyzer.py', '')
+CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/DataAnalyzer.py', '')
 
 def preprocessing(str_input):
     str_ascii = unidecode(str_input)
@@ -95,7 +95,7 @@ class SearchEngine:
     def search(self, query, num_relevant_results):
         '''
         query: a string of words
-        return: top 10 most relevant results
+        return: top 10 most relevant results, in form of dictionary
         '''
         query_tokens = preprocessing(query).split()
         query_score = [0] * len(self.data) 
@@ -115,12 +115,20 @@ class SearchEngine:
             results[i] = {"score": query_score[i][1], "title": self.data[index]['TITLE'], "content": self.data[index]['DETAILED_CONTENT']}
         return results
 
-print(current_working_directory)
-f = open(current_working_directory + 'data/newsFT.json', encoding = "utf8")
-print(current_working_directory)
+print(CURRENT_WORKING_DIRECTORY)
+
+'''
+Loading data into the search engine
+'''
+f = open(CURRENT_WORKING_DIRECTORY + 'data/newsFT.json', encoding = "utf8")
 data = json.load(f)
 search_engine = SearchEngine()
 search_engine.fit(data)
+
+'''
+Show all relevant results
+result[i] = {"score": , "title": , "detailed_content"}
+'''
 #print(search_engine.data[0]['DETAILED_CONTENT'])
 result = search_engine.search("Facebook Libra: the", 10)
 print(result[0])
