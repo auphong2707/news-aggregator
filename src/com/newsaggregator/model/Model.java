@@ -19,7 +19,8 @@ public class Model {
 	static
 	{
 		scrapers = new WebScrapper[] {
-			new WebScrapperFT()
+			new WebScrapperFT(),
+			new WebScrapperCONV()
 		};
 	}
 	
@@ -105,7 +106,7 @@ public class Model {
 		return null;
 	}
 	
-	public void combineData() {
+	private void combineData() {
 		String directory = "data/";
 		String resultFileName = "newsAll.json";
 		String[] arrayOfFileNames = new String[] {
