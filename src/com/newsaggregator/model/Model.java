@@ -7,16 +7,42 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 
 public class Model {
-	private static WebScrapper[] scrapers;
+	private static final WebScrapper[] scrapers;
+	private long processPid = -1;
+	
 	static
 	{
 		scrapers = new WebScrapper[] {
 			new WebScrapperFT()
 		};
+	}
+	
+	public void runLocalServer() throws IOException, InterruptedException
+	{
+		if (processPid == -1)
+		{
+			String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\DataAnalyzer.py";
+			String command = "python " + directory;
+			
+			Process server = Runtime.getRuntime().exec(command);
+			server.waitFor(2000, TimeUnit.MILLISECONDS);
+			
+			processPid = server.pid();
+		}
+	}
+	
+	public void terminateLocalServer() throws IOException
+	{
+		if (processPid != -1)
+		{
+			String command = "taskkill /F /T /PID " + processPid;
+			Runtime.getRuntime().exec(command);
+		}
 	}
 	
 	public void scrapeNewData()
