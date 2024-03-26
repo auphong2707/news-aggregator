@@ -8,7 +8,7 @@ CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/')\
                                     .replace('src/com/newsaggregator/model/DataAnalyzer.py', '')
 
 # Get the data
-data_file = open(CURRENT_WORKING_DIRECTORY + 'data/newsFT.json', encoding = "utf8")
+data_file = open(CURRENT_WORKING_DIRECTORY + 'data/newsAll.json', encoding = "utf8")
 data = json.load(data_file)
 
 # Loading data into the engine
