@@ -75,7 +75,7 @@ public class WebScrapperCONV extends WebScrapper {
     	String allAuthor = "";
         for (Element content : contents) {
             String authorArticle = content.select("span").text();
-            allAuthor += authorArticle + " ";
+            allAuthor += authorArticle + ", ";
             // return authorArticle;
         }
         return allAuthor;
@@ -94,11 +94,23 @@ public class WebScrapperCONV extends WebScrapper {
     
     @Override
     protected String getCreationDate(Document document) {
-    	Elements contents = document.select(".timestamps");
+    	Elements contents = document.select(".timestamps time[datetime]");
     	for (Element content : contents) {
     		String creationDate = content.attr("datetime");
     		return creationDate;
     	}
     	return "";
+    }
+    
+    @Override
+    protected String getTags(Document document) {
+    	Elements contents = document.select(".topic-list-item");
+    	String allTags = "";
+        for (Element content : contents) {
+            String tagArticle = content.select("a[href]").text();
+            allTags += tagArticle + ", ";
+            // return authorArticle;
+        }
+        return allTags;
     }
 }
