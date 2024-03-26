@@ -2,14 +2,11 @@ package com.newsaggregator.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import com.google.gson.Gson;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -25,8 +22,8 @@ public abstract class WebScrapper {
     	List<String> tmpList = new ArrayList<String>();
     	try {
 			Scanner scanner = new Scanner(new File("user-agents.txt"));
-			while (scanner.hasNextLine()){
-			    tmpList.add(scanner.nextLine());
+			while (scanner.hasNext()){
+			    tmpList.add(scanner.next());
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -119,32 +116,6 @@ public abstract class WebScrapper {
     		listOfData.add(unit);
     	}
     	
-    	convertToJSON(listOfData);
-    }
-    
-    
-    private void convertToJSON(List<ArticleData> listOfData) {
-    	FileWriter fileWriter = null;
-    	 
-        try {
-            fileWriter = new FileWriter(fileName);
- 
-            Gson gson = new Gson();
-            gson.toJson(listOfData, fileWriter);
- 
-            System.out.println("JSON file was created successfully !!!");
- 
-        } catch (Exception e) {
-            System.out.println("Error in JSON File Writer !!!");
-            e.printStackTrace();
-        } finally {
-            try {
-                fileWriter.flush();
-                fileWriter.close();
-            } catch (IOException e) {
-                System.out.println("Error while flushing/closing fileWriter !!!");
-                e.printStackTrace();
-            }
-        }
+    	ModelTools.convertDataToJson(listOfData, fileName);
     }
 }
