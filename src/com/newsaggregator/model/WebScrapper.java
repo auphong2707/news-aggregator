@@ -25,8 +25,8 @@ public abstract class WebScrapper {
     	List<String> tmpList = new ArrayList<String>();
     	try {
 			Scanner scanner = new Scanner(new File("user-agents.txt"));
-			while (scanner.hasNext()){
-			    tmpList.add(scanner.next());
+			while (scanner.hasNextLine()){
+			    tmpList.add(scanner.nextLine());
 			}
 			
 		} catch (FileNotFoundException e) {
