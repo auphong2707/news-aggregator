@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
@@ -51,7 +52,7 @@ public class Model {
 		{
 			scraper.scrapeAllData();
 		}
-		// Combine all JSON files into one: Incomplete
+		combineData();
 	}
 	
 	public List<ArticleData> search(String inputContent)
@@ -86,11 +87,7 @@ public class Model {
 
             conn.disconnect();
             
-            Gson gson = new Gson();
-            ArticleData[] arrayOfResult = gson.fromJson(output, ArticleData[].class);
-            List<ArticleData> listOfResult = new ArrayList<>(Arrays.asList(arrayOfResult));
-            
-            return listOfResult;
+            return ModelTools.convertJsonToData(output);
             
 	    } 
         catch (MalformedURLException e) {
@@ -106,5 +103,28 @@ public class Model {
             }
         }
 		return null;
+	}
+	
+	public void combineData() {
+		String directory = "data/";
+		String resultFileName = "newsAll.json";
+		String[] arrayOfFileNames = new String[] {
+			"newsFT.json", "newsCONV.json"	
+		};
+		
+		try {
+			List<ArticleData> listOfData = new ArrayList<ArticleData>();
+			for(String fileName : arrayOfFileNames)
+			{
+				Scanner scanner = new Scanner(new File(directory + fileName));
+				List<ArticleData> unitData = ModelTools.convertJsonToData(scanner.nextLine());
+				
+				listOfData.addAll(unitData);
+			}
+			ModelTools.convertDataToJson(listOfData, directory + resultFileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
