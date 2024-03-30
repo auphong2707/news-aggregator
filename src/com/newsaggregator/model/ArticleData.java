@@ -31,7 +31,7 @@ public class ArticleData {
 		CREATION_DATE = creationDate;
 	}
 	
-	protected String getDataByType(DataType type) {
+	public String getDataByType(DataType type) {
 		switch(type) {
 		case LINK:
 			return LINK;
