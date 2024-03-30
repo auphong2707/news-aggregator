@@ -51,7 +51,7 @@
                   <Line endX="1130.0" layoutY="229.0" startX="70.0" />
                   <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
                      <children>
-                        <Label text="Category 1">
+                        <Label fx:id="category1" text="Category 1">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -153,7 +153,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/search.jpg" />
+                              <Image url="@../../../../images/search.jpg" />
                            </image>
                         </ImageView>
                      </graphic>

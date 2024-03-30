@@ -220,7 +220,7 @@
                   </Label>
                   <ImageView fitHeight="118.0" fitWidth="121.0" layoutX="298.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../image/alligator.png" />
+                        <Image url="@../../../../images/alligator.png" />
                      </image>
                   </ImageView>
                   <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
@@ -610,7 +610,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../image/search.jpg" />
+                              <Image url="@../../../../images/search.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
