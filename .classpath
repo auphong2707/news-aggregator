@@ -13,7 +13,6 @@
 	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx.fxml.jar"/>
 	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx.graphics.jar"/>
 	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx.properties"/>
 	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="external-package/javafx-sdk-22/lib/javafx-swt.jar"/>
