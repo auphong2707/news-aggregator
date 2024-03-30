@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
@@ -51,7 +51,7 @@
                   <Line endX="1130.0" layoutY="229.0" startX="70.0" />
                   <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
                      <children>
-                        <Label fx:id="category1" text="Category 1">
+                        <Label text="Category 1">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -149,7 +149,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="button" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchBar" prefHeight="23.0" prefWidth="30.0">
+                  <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="30.0">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -158,7 +158,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="searchbar" layoutX="26.0" layoutY="27.0" prefHeight="30.0" prefWidth="382.0" promptText="Type article here" visible="false" />
+                  <TextField layoutX="26.0" layoutY="27.0" prefHeight="30.0" prefWidth="382.0" promptText="Type article here" visible="false" />
                   <Line endX="1130.0" layoutY="278.0" startX="70.0" />
                   <TextField layoutX="80.0" layoutY="300.0" prefHeight="37.0" prefWidth="630.0" />
                   <Label layoutX="90.0" layoutY="350.0" prefHeight="30.0" prefWidth="54.0" text="Time" textFill="#876ef7">
