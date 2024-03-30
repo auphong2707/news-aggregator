@@ -16,13 +16,12 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.HomepagePresenter">
    <center>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
+      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1200.0">
                <children>
@@ -30,7 +29,6 @@
                      <children>
                         <Group>
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="120.0" layoutX="5.0" layoutY="105.0" stroke="BLACK" strokeType="INSIDE" width="180.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
@@ -46,11 +44,31 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
                               <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" prefHeight="66.0" prefWidth="170.0" text="Category" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                               <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
                                  <stroke>
                                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
@@ -69,29 +87,11 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
-                              <Line endX="135.0" endY="66.0" layoutX="50.0" layoutY="159.0" startX="-45.0" startY="-54.0" />
-                              <Line endX="75.0" endY="-60.0" layoutX="110.0" layoutY="165.0" startX="-105.0" startY="59.9998779296875" />
-                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
                               <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
-                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </Group>
                         <Group layoutX="19.0" layoutY="2.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="120.0" layoutX="5.0" layoutY="105.0" stroke="BLACK" strokeType="INSIDE" width="180.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
@@ -112,6 +112,26 @@
                                     <Font name="System Bold" size="36.0" />
                                  </font>
                               </Label>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                               <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
                                  <stroke>
                                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
@@ -130,29 +150,11 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
-                              <Line endX="135.0" endY="66.0" layoutX="50.0" layoutY="159.0" startX="-45.0" startY="-54.0" />
-                              <Line endX="75.0" endY="-60.0" layoutX="110.0" layoutY="165.0" startX="-105.0" startY="59.9998779296875" />
-                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
                               <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
-                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </Group>
-                        <Group layoutX="19.0" layoutY="316.0">
+                        <Group layoutX="19.0" layoutY="352.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="120.0" layoutX="5.0" layoutY="105.0" stroke="BLACK" strokeType="INSIDE" width="180.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
@@ -168,11 +170,31 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" prefHeight="66.0" prefWidth="170.0" text="Category" textFill="#5609f2">
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" prefHeight="66.0" prefWidth="170.0" text="Category" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
                               </Label>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                               <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
                                  <stroke>
                                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
@@ -191,24 +213,7 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
-                              <Line endX="135.0" endY="66.0" layoutX="50.0" layoutY="159.0" startX="-45.0" startY="-54.0" />
-                              <Line endX="75.0" endY="-60.0" layoutX="110.0" layoutY="165.0" startX="-105.0" startY="59.9998779296875" />
-                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
                               <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
-                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </Group>
                      </children>
@@ -296,11 +301,8 @@
                   <Line endX="585.0" layoutX="85.0" layoutY="526.5" stroke="#a19797" />
                   <VBox layoutX="102.0" layoutY="824.0" prefHeight="1031.0" prefWidth="432.0" spacing="30.0">
                      <children>
-                        <Group>
+                        <Group layoutX="17.0" layoutY="10.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="185.0" layoutY="104.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -317,13 +319,15 @@
                                  </font>
                               </Label>
                               <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
                         <Group layoutX="17.0" layoutY="10.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="185.0" layoutY="104.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -340,13 +344,15 @@
                                  </font>
                               </Label>
                               <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
-                        <Group layoutX="17.0" layoutY="196.0">
+                        <Group layoutX="17.0" layoutY="186.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="185.0" layoutY="104.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -363,13 +369,15 @@
                                  </font>
                               </Label>
                               <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
-                        <Group layoutX="17.0" layoutY="381.0">
+                        <Group layoutX="17.0" layoutY="362.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="185.0" layoutY="104.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -386,13 +394,15 @@
                                  </font>
                               </Label>
                               <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
-                        <Group layoutX="17.0" layoutY="567.0">
+                        <Group layoutX="17.0" layoutY="538.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="185.0" layoutY="104.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -409,13 +419,15 @@
                                  </font>
                               </Label>
                               <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
-                        <Group layoutX="17.0" layoutY="752.0">
+                        <Group layoutX="17.0" layoutY="714.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="185.0" layoutY="104.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -432,15 +444,17 @@
                                  </font>
                               </Label>
                               <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <ImageView fitHeight="108.0" fitWidth="113.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Group>
                      </children>
                   </VBox>
                   <Group layoutX="85.0" layoutY="300.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="-5.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
-                        <Line endX="260.0" endY="191.00003051757812" startX="-0.7070999145507812" startY="16.000030517578125" />
-                        <Line endX="-4.9999847412109375" endY="191.00003051757812" startX="260.0" startY="16.000030517578125" />
                         <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="311.0" layoutY="10.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
@@ -456,13 +470,15 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
+                        <Label layoutX="325.0" layoutY="170.0" text="Author">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Group>
                   <Group layoutX="85.0" layoutY="550.0">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="175.0" layoutX="-5.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="265.0" />
-                        <Line endX="260.0" endY="191.00003051757812" startX="-0.7070999145507812" startY="16.000030517578125" />
-                        <Line endX="-4.9999847412109375" endY="191.00003051757812" startX="260.0" startY="16.000030517578125" />
                         <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="311.0" layoutY="10.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
@@ -474,6 +490,11 @@
                            </font>
                         </Label>
                         <Label alignment="CENTER" layoutX="311.0" layoutY="63.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="325.0" layoutY="171.0" text="Author">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -484,9 +505,6 @@
                      <children>
                         <Group>
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="170.0" layoutY="39.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -497,14 +515,16 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="128.0" fitWidth="184.0" layoutX="-46.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                               <Line endX="335.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
                            </children>
                         </Group>
-                        <Group layoutX="17.0" layoutY="-25.0">
+                        <Group layoutX="56.0" layoutY="6.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="170.0" layoutY="39.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -515,14 +535,16 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="128.0" fitWidth="184.0" layoutX="-46.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                               <Line endX="335.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
                            </children>
                         </Group>
-                        <Group layoutX="17.0" layoutY="100.0">
+                        <Group layoutX="56.0" layoutY="163.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
                               <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="170.0" layoutY="39.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -533,24 +555,12 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="128.0" fitWidth="184.0" layoutX="-46.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
                               <Line endX="335.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
-                           </children>
-                        </Group>
-                        <Group layoutX="17.0" layoutY="226.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="-5.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
-                              <Line endX="159.0" endY="89.0" layoutX="-29.0" layoutY="37.0" startX="23.99999237060547" startY="-1.0" />
-                              <Line endX="-4.9999847412109375" endY="126.0" startX="130.0" startY="36.0" />
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="170.0" layoutY="39.0" prefHeight="13.0" prefWidth="63.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="170.0" layoutY="64.0" prefHeight="30.0" prefWidth="134.0" text="Article title">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </Group>
                      </children>
@@ -618,6 +628,16 @@
                   <TextField layoutX="26.0" layoutY="27.0" prefHeight="30.0" prefWidth="382.0" promptText="Type article here" visible="false" />
                   <Button layoutX="985.0" layoutY="1855.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0" />
                   <Button layoutX="1031.0" layoutY="1855.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" />
+                  <ImageView fitHeight="161.0" fitWidth="186.0" layoutX="122.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/alligator.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="164.0" fitWidth="166.0" layoutX="128.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/alligator.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </content>
