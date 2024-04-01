@@ -32,7 +32,7 @@
                         <Image url="@../../../../images/alligator.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" onAction="#search" text="Sign up">
+                  <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -176,22 +176,22 @@
                      <children>
                         <Group fx:id="article1">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="351.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="352.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="351.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="364.0" layoutY="187.0" text="Author name">
+                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -206,22 +206,22 @@
                         </Group>
                         <Group fx:id="article2" layoutX="18.0" layoutY="-4.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="351.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="352.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="351.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="364.0" layoutY="187.0" text="Author name">
+                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -236,22 +236,22 @@
                         </Group>
                         <Group fx:id="article3" layoutX="18.0" layoutY="255.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="351.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="352.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="351.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="364.0" layoutY="187.0" text="Author name">
+                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -266,22 +266,22 @@
                         </Group>
                         <Group fx:id="article4" layoutX="18.0" layoutY="514.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="351.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="352.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="351.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="364.0" layoutY="187.0" text="Author name">
+                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -296,22 +296,22 @@
                         </Group>
                         <Group fx:id="article5" layoutX="18.0" layoutY="774.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="351.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="352.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="351.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="364.0" layoutY="187.0" text="Author name">
+                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -327,8 +327,13 @@
                      </children>
                   </VBox>
                   <Line endX="1130.0" endY="1750.0" startX="70.0" startY="1750.0" stroke="#a19797" />
-                  <Button layoutX="622.0" layoutY="1770.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" />
-                  <Button layoutX="666.0" layoutY="1770.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" />
+                  <Button fx:id="previousPage" layoutX="82.0" layoutY="1770.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="27.0" text="&lt;" />
+                  <Button fx:id="nextPage" layoutX="690.0" layoutY="1770.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="26.0" text="&gt;" />
+                  <Label fx:id="pageLabel" alignment="CENTER" layoutX="376.0" layoutY="1774.0" prefHeight="20.0" prefWidth="46.0" text="Page 1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>
