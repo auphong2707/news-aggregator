@@ -35,12 +35,13 @@ public class SearchTabPresenter {
 	@FXML private Group article5;
 	private List<ArticleData> searchData;
 	private int page = 1;
-	private List<Group> article = Arrays.asList(article1, article2, article3, article4, article5);
+	private Group[] articles;
 
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
 		model.runLocalServer();
+		articles = new Group[] {article1, article2, article3, article4, article5}; 
 	}
 	
 	private void setDate() {
@@ -70,7 +71,7 @@ public class SearchTabPresenter {
 	private void switchArticle() {
 		for (int i=0; i < 5; i++)
 		{
-			PresenterTools.setArticleView(article.get(i), searchData.get(i+(page-1)*5), ArticleSize.BIG);
+			PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
 		}
 	}
 	public void search(KeyEvent key) {
@@ -80,7 +81,7 @@ public class SearchTabPresenter {
 			pageLabel.setText("Page " + page);
 			for (int i=0; i < 5; i++)
 			{
-				PresenterTools.setArticleView(article.get(i), searchData.get(i+(page-1)*5), ArticleSize.BIG);
+				PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
 			}
 		} 
 	}
