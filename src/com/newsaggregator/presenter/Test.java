@@ -21,7 +21,7 @@ public class Test extends Application {
 
 
     try {
-        Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("searchtab.fxml"));
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
