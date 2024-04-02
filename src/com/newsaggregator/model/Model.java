@@ -115,6 +115,10 @@ public class Model {
 		return null;
 	}
 	
+	public List<ArticleData> getLatestArticleData(int count) {
+		return modelData.subList(0, count);
+	}
+	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
 			"newsFT.json", "newsCONV.json"	
