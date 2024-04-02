@@ -635,16 +635,16 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </Text>
-                  <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="30.0">
+                  <TextField fx:id="searchBar" layoutX="26.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="382.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="406.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
                               <Image url="@../../../../images/search.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField layoutX="26.0" layoutY="27.0" prefHeight="30.0" prefWidth="382.0" promptText="Type article here" visible="false" />
                   <Button layoutX="985.0" layoutY="1855.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0" />
                   <Button layoutX="1031.0" layoutY="1855.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" />
                   <ImageView fitHeight="150.0" fitWidth="225.0" layoutX="77.0" layoutY="317.0" pickOnBounds="true">
