@@ -88,7 +88,7 @@ public class Model {
 
             conn.disconnect();
             
-            return ModelTools.convertJsonToData(output);
+            return ModelTools.convertJsonStringToData(output);
             
 	    } 
         catch (MalformedURLException e) {
@@ -119,6 +119,7 @@ public class Model {
 			{
 				Scanner scanner = new Scanner(new File(directory + fileName));
 				List<ArticleData> unitData = ModelTools.convertJsonToData(scanner.nextLine());
+				List<ArticleData> unitData = ModelTools.convertJsonStringToData(scanner.nextLine());
 				
 				listOfData.addAll(unitData);
 			}
