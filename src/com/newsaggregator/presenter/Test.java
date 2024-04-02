@@ -24,23 +24,12 @@ public class Test extends Application {
 
 
     try {
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
     	window = primaryStage; 
         Parent root1 = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         Parent root2 = FXMLLoader.load(getClass().getResource("searchtab.fxml"));
         homepage = new Scene(root1); 
         searchtab = new Scene(root2);
         primaryStage.setScene(homepage);
-=======
->>>>>>> Stashed changes
-        Parent root = FXMLLoader.load(getClass().getResource("searchtab.fxml"));
-        Scene scene = new Scene(root);
-
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        primaryStage.setScene(scene);
->>>>>>> 18bbfbc421abf60c38e93e919369d667826ba488
         primaryStage.setMaximized(true);
         primaryStage.show();
     } catch (Exception e) {
