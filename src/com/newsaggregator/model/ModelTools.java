@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -68,5 +69,11 @@ public class ModelTools {
                 e.printStackTrace();
             }
         }
+	}
+	
+	protected static <T> List<T> randomSubList(List<T> list, int newSize) {
+	    list = new ArrayList<>(list);
+	    Collections.shuffle(list);
+	    return list.subList(0, newSize);
 	}
 }
