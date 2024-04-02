@@ -42,6 +42,13 @@ public class SearchTabPresenter {
 		setDate();
 		model.runLocalServer();
 		articles = new Group[] {article1, article2, article3, article4, article5}; 
+		searchData = model.search(HomepagePresenter.topic);
+		page = 1;
+		pageLabel.setText("Page " + page);
+		for (int i=0; i < 5; i++)
+		{
+			PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
+		}
 	}
 	
 	private void setDate() {
@@ -84,6 +91,7 @@ public class SearchTabPresenter {
 				PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
 			}
 		} 
+		
 	}
 	
 }

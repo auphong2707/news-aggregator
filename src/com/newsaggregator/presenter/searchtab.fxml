@@ -97,7 +97,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Line endX="750.0" endY="1740.0" startX="750.0" startY="290.0" stroke="#a19797" />
+                  <Line endX="750.0" endY="1697.5999755859375" startX="750.0" startY="290.0" stroke="#a19797" />
                   <Line endX="1130.0" endY="1890.39990234375" startX="70.0" startY="1892.0" />
                   <HBox alignment="CENTER" layoutX="86.0" layoutY="1899.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
                      <children>
@@ -148,15 +148,6 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="30.0">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../images/search.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Line endX="1130.0" layoutY="278.0" startX="70.0" />
                   <TextField fx:id="searchBar" layoutX="80.0" layoutY="300.0" onKeyPressed="#search" prefHeight="37.0" prefWidth="630.0" />
                   <Label layoutX="90.0" layoutY="350.0" prefHeight="30.0" prefWidth="54.0" text="Time" textFill="#876ef7">
@@ -172,164 +163,173 @@
                   <TextField layoutX="80.0" layoutY="383.0" prefHeight="38.0" prefWidth="230.0" />
                   <TextField layoutX="364.0" layoutY="385.0" prefHeight="38.0" prefWidth="345.0" />
                   <Line endX="715.0" endY="445.0" startX="70.0" startY="445.0" />
-                  <VBox layoutX="79.0" layoutY="470.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                  <VBox layoutX="79.0" layoutY="470.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
                         <Group fx:id="article1">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="207.0" fitWidth="300.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/alligator.png" />
+                                    <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
                            </children>
                         </Group>
-                        <Group fx:id="article2" layoutX="18.0" layoutY="-4.0">
+                        <Group fx:id="article2" layoutX="18.0">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="207.0" fitWidth="300.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/alligator.png" />
+                                    <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
                            </children>
                         </Group>
-                        <Group fx:id="article3" layoutX="18.0" layoutY="255.0">
+                        <Group fx:id="article3" layoutX="18.0" layoutY="263.0">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="207.0" fitWidth="300.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/alligator.png" />
+                                    <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
                            </children>
                         </Group>
-                        <Group fx:id="article4" layoutX="18.0" layoutY="514.0">
+                        <Group fx:id="article4" layoutX="18.0" layoutY="526.0">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="207.0" fitWidth="300.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/alligator.png" />
+                                    <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
                            </children>
                         </Group>
-                        <Group fx:id="article5" layoutX="18.0" layoutY="774.0">
+                        <Group fx:id="article5" layoutX="18.0" layoutY="790.0">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="244.0" layoutY="14.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="245.0" layoutY="32.0" prefHeight="44.0" prefWidth="296.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="67.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="244.0" layoutY="186.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="207.0" fitWidth="300.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/alligator.png" />
+                                    <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
                            </children>
                         </Group>
                      </children>
                   </VBox>
+<<<<<<< HEAD
+                  <Line endX="1130.0" endY="1750.0" layoutY="-20.0" startX="70.0" startY="1750.0" stroke="#a19797" />
+                  <Button fx:id="previousPage" layoutX="82.0" layoutY="1750.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="27.0" text="&lt;" />
+                  <Button fx:id="nextPage" layoutX="690.0" layoutY="1750.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="26.0" text="&gt;" />
+                  <Label fx:id="pageLabel" alignment="CENTER" layoutX="376.0" layoutY="1754.0" prefHeight="20.0" prefWidth="46.0" text="Page 1">
+=======
                   <Line endX="1130.0" endY="1750.0" startX="70.0" startY="1750.0" stroke="#a19797" />
                   <Button fx:id="previousPage" layoutX="82.0" layoutY="1770.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="27.0" text="&lt;" />
                   <Button fx:id="nextPage" layoutX="690.0" layoutY="1770.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="26.0" text="&gt;" />
                   <Label fx:id="pageLabel" alignment="CENTER" layoutX="376.0" layoutY="1774.0" prefHeight="20.0" prefWidth="58.0" text="Page 1">
+<<<<<<< Updated upstream
+=======
+>>>>>>> 18bbfbc421abf60c38e93e919369d667826ba488
+>>>>>>> Stashed changes
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
