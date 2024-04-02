@@ -48,12 +48,7 @@ public class HomepagePresenter {
 		setDate();
 		model.runLocalServer();
 		setLatestArticle();
-		List<ArticleData> random = model.search("");
-		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
-											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
-		for (int i = 0; i < randomArticle.length; i++) {
-			PresenterTools.setArticleView(randomArticle[i], random.get(i), ArticleSize.NOT_SO_BIG);
-		}
+		setRandomArticle();
 	}
 	
 	private void setDate() {
@@ -66,9 +61,11 @@ public class HomepagePresenter {
 	}
 	
 	private void setLatestArticle() {
-		List<ArticleData> latest = model.search("");
 		Group[] latestArticle = new Group[] {bigArticle1, bigArticle2, smallArticle1, 
 											 smallArticle2, smallArticle3, smallArticle4};
+		
+		List<ArticleData> latest = model.getLatestArticleData(latestArticle.length);
+		
 		for (int i = 0; i < latestArticle.length; i++) {
 			if (i < 2) {
 				PresenterTools.setArticleView(latestArticle[i], latest.get(i), ArticleSize.BIG);
@@ -77,6 +74,18 @@ public class HomepagePresenter {
 			}
 		}
 	} 
+	
+	private void setRandomArticle() {
+		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
+											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
+		
+		List<ArticleData> random = model.getRandomArticleData(randomArticle.length);
+		
+		for (int i = 0; i < randomArticle.length; i++) {
+			PresenterTools.setArticleView(randomArticle[i], random.get(i), ArticleSize.NOT_SO_BIG);
+		}
+	}
+	
 	public void finalize() throws IOException {
 		model.terminateLocalServer();
 	}
