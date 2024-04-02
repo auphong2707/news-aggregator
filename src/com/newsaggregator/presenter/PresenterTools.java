@@ -41,7 +41,7 @@ public class PresenterTools {
 		title.setText(data.getDataByType(DataType.TITLE));
 	}
 
-	private static void setMediumArticleView(Group view, ArticleData data) {
+	private static void setNotBigArticleView(Group view, ArticleData data) {
 		// TODO Auto-generated method stub
 		List<Node> elements = view.getChildren();
 		
@@ -54,7 +54,7 @@ public class PresenterTools {
 		summary.setText(data.getDataByType(DataType.SUMMARY));
 	}
 
-	private static void setNotBigArticleView(Group view, ArticleData data) {
+	private static void setMediumArticleView(Group view, ArticleData data) {
 		// TODO Auto-generated method stub
 		List<Node> elements = view.getChildren();
 		
