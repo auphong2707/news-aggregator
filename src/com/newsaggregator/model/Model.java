@@ -5,12 +5,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
-import com.google.gson.Gson;
 
 public class Model {
 	private final static String DIRECTORY = "data/";
@@ -117,6 +114,10 @@ public class Model {
 	
 	public List<ArticleData> getLatestArticleData(int count) {
 		return modelData.subList(0, count);
+	}
+	
+	public List<ArticleData> getRandomArticleData(int count) {
+		return ModelTools.randomSubList(modelData, count);
 	}
 	
 	private void combineData() {
