@@ -22,7 +22,7 @@ def search():
         decoded_request = request.data.decode('utf-8')
         print(decoded_request)
         params = json.loads(decoded_request)
-        return search_engine.search(params['content'], 10)
+        return search_engine.search(params['content'], 50)
 
 if __name__ == '__main__':
     engine.run(debug=True)

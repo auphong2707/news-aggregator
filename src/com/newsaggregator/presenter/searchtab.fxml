@@ -329,7 +329,7 @@
                   <Line endX="1130.0" endY="1750.0" startX="70.0" startY="1750.0" stroke="#a19797" />
                   <Button fx:id="previousPage" layoutX="82.0" layoutY="1770.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="27.0" text="&lt;" />
                   <Button fx:id="nextPage" layoutX="690.0" layoutY="1770.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="26.0" text="&gt;" />
-                  <Label fx:id="pageLabel" alignment="CENTER" layoutX="376.0" layoutY="1774.0" prefHeight="20.0" prefWidth="46.0" text="Page 1">
+                  <Label fx:id="pageLabel" alignment="CENTER" layoutX="376.0" layoutY="1774.0" prefHeight="20.0" prefWidth="58.0" text="Page 1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
