@@ -13,11 +13,20 @@ import java.util.concurrent.TimeUnit;
 import com.google.gson.Gson;
 
 public class Model {
-	private static final WebScrapper[] scrapers;
+	private final static String DIRECTORY = "data/";
+	private final static String RESULT_FILE_NAME = "newsAll.json";
+	private final static WebScrapper[] scrapers;
+	
 	private long processPid = -1;
+	private static List<ArticleData> modelData;
 	
 	static
 	{
+		modelData = ModelTools.convertJsonToData(DIRECTORY + RESULT_FILE_NAME);
+		modelData.sort(
+			(ArticleData a1, ArticleData a2)
+			-> a2.getDataByType(DataType.CREATION_DATE).compareTo(a1.getDataByType(DataType.CREATION_DATE))
+		);
 		scrapers = new WebScrapper[] {
 			new WebScrapperFT(),
 			new WebScrapperCONV()
@@ -107,8 +116,6 @@ public class Model {
 	}
 	
 	private void combineData() {
-		String directory = "data/";
-		String resultFileName = "newsAll.json";
 		String[] arrayOfFileNames = new String[] {
 			"newsFT.json", "newsCONV.json"	
 		};
@@ -117,13 +124,12 @@ public class Model {
 			List<ArticleData> listOfData = new ArrayList<ArticleData>();
 			for(String fileName : arrayOfFileNames)
 			{
-				Scanner scanner = new Scanner(new File(directory + fileName));
-				List<ArticleData> unitData = ModelTools.convertJsonToData(scanner.nextLine());
+				Scanner scanner = new Scanner(new File(DIRECTORY + fileName));
 				List<ArticleData> unitData = ModelTools.convertJsonStringToData(scanner.nextLine());
 				
 				listOfData.addAll(unitData);
 			}
-			ModelTools.convertDataToJson(listOfData, directory + resultFileName);
+			ModelTools.convertDataToJson(listOfData, DIRECTORY + RESULT_FILE_NAME);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
