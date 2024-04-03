@@ -19,28 +19,32 @@ import javafx.scene.Group;
 
 public class HomepagePresenter {
 	@FXML private Label dateLabel;
-	@FXML private Group bigArticle1;
-	@FXML private Group bigArticle2;
+	
 	@FXML private Group smallArticle1;
 	@FXML private Group smallArticle2;
 	@FXML private Group smallArticle3;
 	@FXML private Group smallArticle4;
+	
 	@FXML private Group notSoBigArticle1;
 	@FXML private Group notSoBigArticle2;
 	@FXML private Group notSoBigArticle3;
 	@FXML private Group notSoBigArticle4;
 	@FXML private Group notSoBigArticle5;
 	@FXML private Group notSoBigArticle6;
+	
 	@FXML private Group mediumArticle1;
-	@FXML public TextField searchBar;
+	
+	@FXML private Group bigArticle1;
+	@FXML private Group bigArticle2;
+	
+	@FXML private TextField searchBar;
 	@FXML private Button searchButton;
-	public static String searchContent;
+	
 	private Model model = new Model();
 	
 	@FXML
 	public void initialize() throws IOException, InterruptedException {
 		setDate();
-		model.runLocalServer();
 		setLatestArticle();
 		setRandomArticle();
 	}
@@ -80,18 +84,16 @@ public class HomepagePresenter {
 		}
 	}
 	
-	public void finalize() throws IOException {
-		model.terminateLocalServer();
-	}
-	
-	public void searchByKey(KeyEvent key) throws IOException {
+	@FXML
+	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
 			SceneVariables.getInstance().searchContent = searchBar.getText();
 			switchToSearchtab();
 		}
 	}
 	
-	public void searchByButton() throws IOException {
+	@FXML
+	private void searchByButton() throws IOException {
 		SceneVariables.getInstance().searchContent = searchBar.getText();
 		switchToSearchtab();
 	}
@@ -101,5 +103,4 @@ public class HomepagePresenter {
         Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 	}
-	
 }

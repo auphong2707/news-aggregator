@@ -9,9 +9,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
-public class PresenterTools {
-	
-	protected static void setArticleView(Group view, ArticleData data, ArticleSize size) {
+class PresenterTools {	
+	static void setArticleView(Group view, ArticleData data, ArticleSize size) {
 		switch(size) {
 		case BIG:
 			setBigArticleView(view, data);

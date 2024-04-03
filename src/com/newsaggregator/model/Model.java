@@ -14,7 +14,7 @@ public class Model {
 	private final static String RESULT_FILE_NAME = "newsAll.json";
 	private final static WebScrapper[] scrapers;
 	
-	private long processPid = -1;
+	private static long processPid = -1;
 	private static List<ArticleData> modelData;
 	
 	static
@@ -30,7 +30,7 @@ public class Model {
 		};
 	}
 	
-	public void runLocalServer() throws IOException, InterruptedException
+	public static void runLocalServer() throws IOException, InterruptedException
 	{
 		if (processPid == -1)
 		{
@@ -44,7 +44,7 @@ public class Model {
 		}
 	}
 	
-	public void terminateLocalServer() throws IOException
+	public static void terminateLocalServer() throws IOException
 	{
 		if (processPid != -1)
 		{

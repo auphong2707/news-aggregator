@@ -1,9 +1,8 @@
 package com.newsaggregator.presenter;
 
-public class SceneVariables {
+class SceneVariables {
 	private static SceneVariables instance;
-    private SceneVariables() {
-    }
+    private SceneVariables() { }
 
     public static SceneVariables getInstance() {
         if(instance == null) {
@@ -11,5 +10,6 @@ public class SceneVariables {
         }
         return instance;
     }
-    public String searchContent;
+    
+    String searchContent;
 }

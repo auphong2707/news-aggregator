@@ -29,17 +29,21 @@ public class SearchTabPresenter {
 	private Model model = new Model();
 	
 	@FXML private ImageView logo;
-	@FXML private Label newsAlligator;
+	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
+	
 	@FXML private Label pageLabel;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
+	
 	@FXML private TextField searchBar;
+	
 	@FXML private Group article1;
 	@FXML private Group article2;
 	@FXML private Group article3;
 	@FXML private Group article4;
 	@FXML private Group article5;
+	
 	private List<ArticleData> searchData;
 	private int page;
 	private Group[] articles;
@@ -47,19 +51,7 @@ public class SearchTabPresenter {
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
-		model.runLocalServer();
-	}
-	
-	public void sceneSwitchInitialize() {
-		searchBar.setText(SceneVariables.getInstance().searchContent);
-		//System.out.println(SceneVariables.getInstance().searchContent);
 		articles = new Group[] {article1, article2, article3, article4, article5}; 
-		searchData = model.search(SceneVariables.getInstance().searchContent);
-		page = 1;
-		for (int i=0; i < 5; i++)
-		{
-			PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
-		}
 	}
 	
 	private void setDate() {
@@ -71,47 +63,61 @@ public class SearchTabPresenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
-	public void finalize() throws IOException {
-		model.terminateLocalServer();
+	public void sceneSwitchInitialize() {
+		searchBar.setText(SceneVariables.getInstance().searchContent);
+		//System.out.println(SceneVariables.getInstance().searchContent);
+		
+		searchData = model.search(SceneVariables.getInstance().searchContent);
+		page = 1;
+		for (int i = 0; i < articles.length; i++)
+		{
+			int index = i + (page - 1) * 5;
+			PresenterTools.setArticleView(articles[i], searchData.get(index), ArticleSize.BIG);
+		}
 	}
 	
-	public void switchPage(ActionEvent event){
-		if (event.getSource() == nextPage && page <= 9 && page >= 1) {
+	@FXML
+	private void switchPage(ActionEvent event){
+		if (event.getSource() == nextPage && page < 10) {
 			page++;
 			pageLabel.setText("Page " + page);
 			switchArticle();
-		}else if (event.getSource() == previousPage && page >= 2 && page <= 10) {
+		}
+		else if (event.getSource() == previousPage && page > 1) {
 			page--;
 			pageLabel.setText("Page " + page);
 			switchArticle();
 		}
 	} 
+	
 	private void switchArticle() {
-		for (int i=0; i < 5; i++)
+		for (int i = 0; i < articles.length; i++)
 		{
 			PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
 		}
 	}
-	public void search(KeyEvent key) {
+	
+	@FXML
+	private void search(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
 			searchData = model.search(searchBar.getText());
+			
 			page = 1;
 			pageLabel.setText("Page " + page);
-			for (int i=0; i < 5; i++)
+			
+			for (int i = 0; i < articles.length; i++)
 			{
-				PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
+				int index = i + (page - 1) * 5;
+				PresenterTools.setArticleView(articles[i], searchData.get(index), ArticleSize.BIG);
 			}
 		} 	
 	}
 	
-	public void switchToHomepage(MouseEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+	@FXML
+	private void switchToHomepage(MouseEvent event) throws IOException {
+		Test.window.setScene(Test.homepage);
+        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 	}
 	
 }

@@ -1,10 +1,16 @@
 package com.newsaggregator.presenter;
 
+import java.io.IOException;
+
+import com.newsaggregator.model.Model;
+
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.*;
+import javafx.event.EventHandler;
+import javafx.stage.WindowEvent;
 
 public class Test extends Application {
 	static Stage window;
@@ -17,26 +23,47 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // TODO  Auto-generated method stub
+    
+    	Model.runLocalServer();
 
-
-    try {
-    	window = primaryStage; 
-    	FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
-        Parent root1 = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-        Parent root2 = searchtabLoader.load();
-        homepage = new Scene(root1); 
-        searchtab = new Scene(root2);
-        primaryStage.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene == searchtab) {
-                // Scene has changed, do something
-                searchtabLoader.<SearchTabPresenter>getController().sceneSwitchInitialize();
-            }
-        });
-        primaryStage.setScene(homepage);
-        primaryStage.setMaximized(true);
-        primaryStage.show();
-    } catch (Exception e) {
-        e.printStackTrace();
+	    try {
+	    	window = primaryStage;
+	    	
+	    	FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
+	    	FXMLLoader homepageLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
+	    	
+	        Parent root1 = homepageLoader.load();
+	        Parent root2 = searchtabLoader.load();
+	        
+	        homepage = new Scene(root1); 
+	        searchtab = new Scene(root2);
+	        
+	        primaryStage.sceneProperty().addListener((obs, oldScene, newScene) -> {
+	            if (newScene == searchtab) {
+	                // Scene has changed, do something
+	                searchtabLoader.<SearchTabPresenter>getController().sceneSwitchInitialize();
+	            }
+	        });
+	        
+	        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+	            @Override
+	            public void handle(WindowEvent event) {
+	            	System.out.println("Server's terminated");
+	        		try {
+						Model.terminateLocalServer();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	                System.out.println("Closing application...");
+	            }
+	        });
+	        
+	        primaryStage.setScene(homepage);
+	        primaryStage.setMaximized(true);
+	        primaryStage.show();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
     }
-}
 }
