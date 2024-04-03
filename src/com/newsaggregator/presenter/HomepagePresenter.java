@@ -6,10 +6,7 @@ import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
-import com.sun.glass.ui.Window;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,11 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 
 public class HomepagePresenter {
 	@FXML private Label dateLabel;
@@ -40,7 +34,7 @@ public class HomepagePresenter {
 	@FXML private Group mediumArticle1;
 	@FXML public TextField searchBar;
 	@FXML private Button searchButton;
-	public static String topic;
+	public static String searchContent;
 	private Model model = new Model();
 	
 	@FXML
@@ -92,13 +86,13 @@ public class HomepagePresenter {
 	
 	public void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			topic = searchBar.getText();
+			SceneVariables.getInstance().searchContent = searchBar.getText();
 			switchToSearchtab();
 		}
 	}
 	
 	public void searchByButton() throws IOException {
-		topic = searchBar.getText();
+		SceneVariables.getInstance().searchContent = searchBar.getText();
 		switchToSearchtab();
 	}
 	
