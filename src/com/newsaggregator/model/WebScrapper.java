@@ -83,11 +83,15 @@ public abstract class WebScrapper {
     protected String getCreationDate(Document document) {
     	return "";
     }
+    
+    protected String getImage(Document document) {
+    	return "";
+    }
 
  
     private ArticleData scrapeArticle(String articleLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
-    			author="", category="", creationDate="";
+    			author="", category="", creationDate="", image="";
     	try {
     		Random r = new Random();
         	Document document = connectWeb(articleLink, userAgent.get(r.nextInt(userAgent.size())));
@@ -99,10 +103,11 @@ public abstract class WebScrapper {
             author = getAuthor(document);
             category = getCategory(document);
             creationDate = getCreationDate(document);
+            image = getImage(document);
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
-    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, type, summary,
+    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, image, type, summary,
     			title, intro, detailedContent, tags, author, category, creationDate);
     	
     	System.out.println("Collect data in link successfully");
