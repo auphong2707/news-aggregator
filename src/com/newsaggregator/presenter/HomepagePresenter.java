@@ -7,6 +7,7 @@ import java.util.List;
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,11 +66,21 @@ public class HomepagePresenter {
 		List<ArticleData> latest = model.getLatestArticleData(latestArticle.length);
 		
 		for (int i = 0; i < latestArticle.length; i++) {
-			if (i < 2) {
-				PresenterTools.setArticleView(latestArticle[i], latest.get(i), ArticleSize.BIG);
-			} else {
-				PresenterTools.setArticleView(latestArticle[i], latest.get(i), ArticleSize.SMALL);
-			}
+			int index = i;
+			
+			ArticleSize size = index < 2 ? ArticleSize.BIG : ArticleSize.SMALL;
+			Thread thread = new Thread(() -> {
+				try {
+					Thread.sleep(0);
+						Platform.runLater(() -> {
+							PresenterTools.setArticleView(latestArticle[index], latest.get(index), size);
+						});
+				} catch (InterruptedException ex) {
+	                ex.printStackTrace();
+	            }
+			});
+			
+			thread.start();
 		}
 	} 
 	
@@ -80,7 +91,19 @@ public class HomepagePresenter {
 		List<ArticleData> random = model.getRandomArticleData(randomArticle.length);
 		
 		for (int i = 0; i < randomArticle.length; i++) {
-			PresenterTools.setArticleView(randomArticle[i], random.get(i), ArticleSize.NOT_SO_BIG);
+			int index = i;
+			Thread thread = new Thread(() -> {
+				try {
+					Thread.sleep(0);
+						Platform.runLater(() -> {
+							PresenterTools.setArticleView(randomArticle[index], random.get(index), ArticleSize.NOT_SO_BIG);
+						});
+				} catch (InterruptedException ex) {
+	                ex.printStackTrace();
+	            }
+			});
+			
+			thread.start();
 		}
 	}
 	
