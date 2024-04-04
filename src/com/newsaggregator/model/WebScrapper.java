@@ -2,11 +2,14 @@ package com.newsaggregator.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import com.google.gson.Gson;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -80,11 +83,15 @@ public abstract class WebScrapper {
     protected String getCreationDate(Document document) {
     	return "";
     }
+    
+    protected String getImage(Document document) {
+    	return "";
+    }
 
  
     private ArticleData scrapeArticle(String articleLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
-    			author="", category="", creationDate="";
+    			author="", category="", creationDate="", image="";
     	try {
     		Random r = new Random();
         	Document document = connectWeb(articleLink, userAgent.get(r.nextInt(userAgent.size())));
@@ -96,10 +103,11 @@ public abstract class WebScrapper {
             author = getAuthor(document);
             category = getCategory(document);
             creationDate = getCreationDate(document);
+            image = getImage(document);
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
-    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, type, summary,
+    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, image, type, summary,
     			title, intro, detailedContent, tags, author, category, creationDate);
     	
     	System.out.println("Collect data in link successfully");
@@ -116,6 +124,32 @@ public abstract class WebScrapper {
     		listOfData.add(unit);
     	}
     	
-    	ModelTools.convertDataToJson(listOfData, fileName);
+    	convertToJSON(listOfData);
+    }
+    
+    
+    private void convertToJSON(List<ArticleData> listOfData) {
+    	FileWriter fileWriter = null;
+    	 
+        try {
+            fileWriter = new FileWriter(fileName);
+ 
+            Gson gson = new Gson();
+            gson.toJson(listOfData, fileWriter);
+ 
+            System.out.println("JSON file was created successfully !!!");
+ 
+        } catch (Exception e) {
+            System.out.println("Error in JSON File Writer !!!");
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("Error while flushing/closing fileWriter !!!");
+                e.printStackTrace();
+            }
+        }
     }
 }

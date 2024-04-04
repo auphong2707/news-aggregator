@@ -3,6 +3,7 @@ package com.newsaggregator.model;
 public enum DataType {
 	LINK,
 	WEBSITE_SOURCE,
+	IMAGE,
 	TYPE,
 	SUMMARY,
 	TITLE,
