@@ -4,9 +4,6 @@ package com.newsaggregator.presenter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import com.newsaggregator.model.Model;
 
 import com.newsaggregator.model.ArticleData;
@@ -14,11 +11,7 @@ import com.newsaggregator.model.ArticleData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -27,8 +20,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.concurrent.Task;
 
 public class SearchTabPresenter {
 	private Model model = new Model();
