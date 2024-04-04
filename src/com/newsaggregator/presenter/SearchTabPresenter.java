@@ -4,10 +4,14 @@ package com.newsaggregator.presenter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import com.newsaggregator.model.Model;
 
 import com.newsaggregator.model.ArticleData;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +28,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.concurrent.Task;
 
 public class SearchTabPresenter {
 	private Model model = new Model();
@@ -51,7 +56,7 @@ public class SearchTabPresenter {
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
-		articles = new Group[] {article1, article2, article3, article4, article5}; 
+		articles = new Group[] {article1, article2, article3, article4, article5};
 	}
 	
 	private void setDate() {
@@ -68,48 +73,31 @@ public class SearchTabPresenter {
 		//System.out.println(SceneVariables.getInstance().searchContent);
 		
 		searchData = model.search(SceneVariables.getInstance().searchContent);
-		page = 1;
-		for (int i = 0; i < articles.length; i++)
-		{
-			int index = i + (page - 1) * 5;
-			PresenterTools.setArticleView(articles[i], searchData.get(index), ArticleSize.BIG);
-		}
+		setPage(1);
+
+		updateArticles();
 	}
 	
 	@FXML
 	private void switchPage(ActionEvent event){
 		if (event.getSource() == nextPage && page < 10) {
-			page++;
-			pageLabel.setText("Page " + page);
-			switchArticle();
+			setPage(page + 1);
 		}
 		else if (event.getSource() == previousPage && page > 1) {
-			page--;
-			pageLabel.setText("Page " + page);
-			switchArticle();
+			setPage(page - 1);
 		}
+		
+		updateArticles();
 	} 
-	
-	private void switchArticle() {
-		for (int i = 0; i < articles.length; i++)
-		{
-			PresenterTools.setArticleView(articles[i], searchData.get(i+(page-1)*5), ArticleSize.BIG);
-		}
-	}
 	
 	@FXML
 	private void search(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
 			searchData = model.search(searchBar.getText());
 			
-			page = 1;
-			pageLabel.setText("Page " + page);
+			setPage(1);
 			
-			for (int i = 0; i < articles.length; i++)
-			{
-				int index = i + (page - 1) * 5;
-				PresenterTools.setArticleView(articles[i], searchData.get(index), ArticleSize.BIG);
-			}
+			updateArticles();
 		} 	
 	}
 	
@@ -120,4 +108,27 @@ public class SearchTabPresenter {
         Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 	}
 	
+	private void updateArticles() {
+		for (int i = 0; i < articles.length; i++) {
+			int index = i + (page - 1) * 5;
+			int article_index = i;
+			Thread thread = new Thread(() -> {
+				try {
+					Thread.sleep(100);
+						Platform.runLater(() -> {
+							PresenterTools.setArticleView(articles[article_index], searchData.get(index), ArticleSize.BIG);
+						});
+				} catch (InterruptedException ex) {
+	                ex.printStackTrace();
+	            }
+			});
+			
+			thread.start();
+		}
+	}
+	
+	private void setPage(int newPage) {
+		page = newPage;
+		pageLabel.setText("Page " + page);
+	}
 }
