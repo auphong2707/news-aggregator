@@ -38,7 +38,7 @@ public class Model {
 			String command = "python " + directory;
 			
 			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(2000, TimeUnit.MILLISECONDS);
+			server.waitFor(1000, TimeUnit.MILLISECONDS);
 			
 			processPid = server.pid();
 		}
