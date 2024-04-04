@@ -1,10 +1,12 @@
 package com.newsaggregator.model;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +14,7 @@ import java.util.Random;
 public class WebScrapperFT extends WebScrapper {
     public WebScrapperFT()
     {
-    	webSource = "https://www.ft.com/blockchain";
+    	webSource = "Financial Times";
     	type = "News Article";
     	fileName += "newsFT.json";
     }
@@ -22,14 +24,14 @@ public class WebScrapperFT extends WebScrapper {
     	List<String> allLinks = new ArrayList<String>();
     	try {	
             Random r = new Random();
-            Document document = connectWeb(webSource, userAgent.get(r.nextInt(userAgent.size())));
+            Document document = connectWeb("https://www.ft.com/blockchain", userAgent.get(r.nextInt(userAgent.size())));
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
             while (!nextElements.isEmpty()) {
                 Element nextPageLink = document.selectFirst("a.o-buttons.o-buttons--secondary.o-buttons-icon.o-buttons-icon--arrow-right.o-buttons-icon--icon-only");
                 String relativeLink = nextPageLink.attr("href");
                 if (relativeLink == null || relativeLink.isEmpty()) break;
-                String completeLink = webSource + relativeLink;
+                String completeLink = "https://www.ft.com/blockchain" + relativeLink;
 
                 document = connectWeb(completeLink, userAgent.get(r.nextInt(userAgent.size())));
                 allLinks.addAll(getLinkInPage(document));
@@ -105,6 +107,16 @@ public class WebScrapperFT extends WebScrapper {
         for (Element content : contents) {
             String introArticle = content.text();
             return introArticle;
+        }
+        return "";
+    }
+    
+    @Override
+    protected String getImage(Document document) {
+    	Elements contents = document.select("figure.n-content-image.n-content-image--full");
+        for (Element content : contents) {
+        	String imageLink = content.select("img").first().attr("src");
+            return imageLink;
         }
         return "";
     }

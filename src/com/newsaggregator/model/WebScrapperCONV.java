@@ -14,7 +14,7 @@ import java.util.Random;
 public class WebScrapperCONV extends WebScrapper {
 	public WebScrapperCONV()
 	{
-		webSource = "https://theconversation.com/us/topics/blockchain-11427/";
+		webSource = "The Conversation";
     	type = "News Article";
     	fileName += "newsCONV.json";
 	}
@@ -24,7 +24,7 @@ public class WebScrapperCONV extends WebScrapper {
     	List<String> allLinks = new ArrayList<String>();
     	try {	
             Random r = new Random();
-            Document document = connectWeb(webSource, userAgent.get(r.nextInt(userAgent.size())));
+            Document document = connectWeb("https://theconversation.com/us/topics/blockchain-11427/", userAgent.get(r.nextInt(userAgent.size())));
             Elements nextElements = document.select(".next");
 
             while (!nextElements.isEmpty()) {
@@ -112,5 +112,15 @@ public class WebScrapperCONV extends WebScrapper {
             // return authorArticle;
         }
         return allTags;
+    }
+    
+    @Override
+    protected String getImage(Document document) {
+    	Elements contents = document.select(".placeholder-container");
+        for (Element content : contents) {
+        	String imageLink = content.select("img").first().attr("src");
+            return imageLink;
+        }
+        return "";
     }
 }
