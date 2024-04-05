@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2200.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2200.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2200.0" prefWidth="1200.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="434.0" layoutY="71.0" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
+                     <font>
+                        <Font name="Lucida Sans Demibold Italic" size="68.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="118.0" fitWidth="121.0" layoutX="298.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/alligator.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1088.0" layoutY="17.0" mnemonicParsing="false" text="Log in">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="26.0" layoutY="19.0" prefHeight="46.0" prefWidth="142.0" text="day, dd/mm/yyyy">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="1130.0" layoutY="229.0" startX="70.0" />
+                  <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
+                     <children>
+                        <Label onMouseClicked="#category" text="Category 1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Category 2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Category 3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Category 4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="274.0" layoutY="10.0" text="Category 5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="292.0" layoutY="10.0" text="Category 6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="304.0" layoutY="10.0" text="Category 7">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="312.0" layoutY="10.0" text="Category 8">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Line endX="1130.0" endY="1890.39990234375" layoutY="158.0" startX="70.0" startY="1892.0" />
+                  <HBox alignment="CENTER" layoutX="86.0" layoutY="2057.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
+                     <children>
+                        <Label text="Newspaper 1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Newspaper 2">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Newspaper 3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Newspaper 4">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="274.0" layoutY="10.0" text="Newspaper 5">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="292.0" layoutY="10.0" text="Newspaper 6">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="304.0" layoutY="10.0" text="Newspaper 7">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="312.0" layoutY="10.0" text="Newspaper 8">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Text layoutX="424.0" layoutY="2105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@copyright app thuộc về fong gay và những người bạn">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="109.0" layoutY="244.0" prefHeight="106.0" prefWidth="650.0" text="Article Title" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="109.0" layoutY="367.0" prefHeight="106.0" prefWidth="650.0" text="Brief summary" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Line endX="650.0" layoutX="110.0" layoutY="492.0" stroke="#999090" />
+                  <Label layoutX="581.0" layoutY="1307.0" prefHeight="20.0" prefWidth="170.0" text="Author">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="581.0" layoutY="1327.0" prefHeight="20.0" prefWidth="170.0" text="Publish Date">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="581.0" layoutY="1350.0" prefHeight="18.0" prefWidth="170.0" text="Website" />
+                  <Line endX="650.0" layoutX="110.0" layoutY="1400.0" stroke="#999090" />
+                  <Label layoutX="117.0" layoutY="1409.0" prefHeight="35.0" prefWidth="119.0" text="Read next" textFill="#4b54fa">
+                     <font>
+                        <Font name="Berlin Sans FB" size="24.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="109.0" layoutY="1458.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="231.0" layoutY="8.0" prefHeight="47.0" prefWidth="406.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="231.0" layoutY="55.0" prefHeight="77.0" prefWidth="406.0" text="Brief summary" wrapText="true" />
+                              <Line endX="650.0" layoutY="165.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="10.0">
+                           <children>
+                              <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="231.0" layoutY="8.0" prefHeight="47.0" prefWidth="406.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="231.0" layoutY="55.0" prefHeight="77.0" prefWidth="406.0" text="Brief summary" wrapText="true" />
+                              <Line endX="650.0" layoutY="165.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="176.0">
+                           <children>
+                              <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="231.0" layoutY="8.0" prefHeight="47.0" prefWidth="406.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="231.0" layoutY="55.0" prefHeight="77.0" prefWidth="406.0" text="Brief summary" wrapText="true" />
+                              <Line endX="650.0" layoutY="165.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="810.0" layoutY="557.0" prefHeight="200.0" prefWidth="354.0" spacing="25.0" AnchorPane.rightAnchor="35.59999999999991">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="190.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="191.0" text="Website" wrapText="true" />
+                              <Line endX="335.0" layoutY="95.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="18.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="190.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="191.0" text="Website" wrapText="true" />
+                              <Line endX="335.0" layoutY="95.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="18.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="190.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="191.0" text="Website" wrapText="true" />
+                              <Line endX="335.0" layoutY="95.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="276.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="190.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="191.0" text="Website" wrapText="true" />
+                              <Line endX="335.0" layoutY="95.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="404.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="190.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="191.0" text="Website" wrapText="true" />
+                              <Line endX="335.0" layoutY="95.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                        <Group layoutX="11.0" layoutY="533.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="190.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="191.0" text="Website" wrapText="true" />
+                              <Line endX="335.0" layoutY="95.0" stroke="#999090" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <Label layoutX="836.0" layoutY="497.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
+                     <font>
+                        <Font name="Berlin Sans FB" size="24.0" />
+                     </font>
+                  </Label>
+                  <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="960.0" layoutY="532.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
+                  <StackPane layoutX="109.0" layoutY="505.0" prefHeight="780.0" prefWidth="650.0">
+                     <children>
+                        <ScrollPane prefHeight="780.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0">
+                                 <children>
+                                    <WebView prefHeight="2000.0" prefWidth="-1.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </center>
+   <left>
+      <Pane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
