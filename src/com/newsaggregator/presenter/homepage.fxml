@@ -645,8 +645,8 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="searchBar" layoutX="26.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="382.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="406.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <TextField fx:id="searchBar" layoutX="26.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="237.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
