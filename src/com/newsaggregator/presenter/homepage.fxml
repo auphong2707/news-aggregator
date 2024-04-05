@@ -465,7 +465,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="311.0" layoutY="100.0" prefHeight="24.0" prefWidth="347.0" text="Brief summary">
+                        <Label alignment="TOP_LEFT" layoutX="311.0" layoutY="100.0" prefHeight="62.0" prefWidth="347.0" text="Brief summary" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -494,7 +494,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="311.0" layoutY="101.0" prefHeight="74.0" prefWidth="349.0" text="Brief summary">
+                        <Label alignment="TOP_LEFT" layoutX="311.0" layoutY="100.0" prefHeight="62.0" prefWidth="347.0" text="Brief summary" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -520,9 +520,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="63.0" prefWidth="217.0" text="Article title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
                                  <font>
-                                    <Font name="System Bold" size="20.0" />
+                                    <Font name="System Bold" size="15.5" />
                                  </font>
                               </Label>
                               <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
@@ -540,9 +540,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="63.0" prefWidth="217.0" text="Article title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
                                  <font>
-                                    <Font name="System Bold" size="20.0" />
+                                    <Font name="System Bold" size="15.5" />
                                  </font>
                               </Label>
                               <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
@@ -560,9 +560,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="63.0" prefWidth="217.0" text="Article title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
                                  <font>
-                                    <Font name="System Bold" size="20.0" />
+                                    <Font name="System Bold" size="15.5" />
                                  </font>
                               </Label>
                               <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
@@ -580,9 +580,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="63.0" prefWidth="217.0" text="Article title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
                                  <font>
-                                    <Font name="System Bold" size="20.0" />
+                                    <Font name="System Bold" size="15.5" />
                                  </font>
                               </Label>
                               <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
