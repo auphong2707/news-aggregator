@@ -7,6 +7,7 @@ import com.newsaggregator.model.Model;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.*;
 import javafx.event.EventHandler;
@@ -59,6 +60,8 @@ public class Test extends Application {
 	            }
 	        });
 	        
+	        primaryStage.setTitle("News Alligator");
+	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/images/alligator.png"));
 	        primaryStage.setScene(homepage);
 	        primaryStage.setMaximized(true);
 	        primaryStage.show();
