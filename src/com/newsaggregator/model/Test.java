@@ -6,12 +6,12 @@ import java.util.List;
 public class Test {
 	public static void main(String[] args) throws IOException, InterruptedException{
 		Model model = new Model();
-		model.runLocalServer();
-		List<ArticleData> result = model.getRandomArticleData(5);
+		//model.runLocalServer();
+		List<ArticleData> result = model.getTrending();
 		for(ArticleData data : result) {
 			System.out.println(data.getDataByType(DataType.TITLE));
 		}
 		
-		model.terminateLocalServer();
+		//model.terminateLocalServer();
 	}
 }
