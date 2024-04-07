@@ -120,4 +120,13 @@ public class WebScrapperFT extends WebScrapper {
         }
         return "";
     }
+    
+    @Override
+    protected String getHtmlContent(Document document) {
+    	Element contents = document.getElementById("article-body");
+    	if (contents != null) {
+    		return contents.html();
+    	}
+	    return "";
+    }
 }

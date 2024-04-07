@@ -123,4 +123,14 @@ public class WebScrapperCONV extends WebScrapper {
         }
         return "";
     }
+    
+    @Override
+    protected String getHtmlContent(Document document) {
+    	Elements contents = document.select(".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body");
+    	if (contents != null) {
+    		return contents.html();
+    	}
+	    return "";
+    }
+    
 }

@@ -13,11 +13,12 @@ public class ArticleData {
 	private final String AUTHOR_NAME;
 	private final String CATEGORY;
 	private final String CREATION_DATE;
+	private final String HTML_CONTENT;
 	
 	protected ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
-			String authorName, String category, String creationDate) {
+			String authorName, String category, String creationDate, String htmlContent) {
 		super();
 		LINK = link;
 		WEBSITE_SOURCE = websiteSource;
@@ -31,6 +32,7 @@ public class ArticleData {
 		AUTHOR_NAME = authorName;
 		CATEGORY = category;
 		CREATION_DATE = creationDate;
+		HTML_CONTENT = htmlContent;
 	}
 	
 	public String getDataByType(DataType type) {
@@ -59,6 +61,8 @@ public class ArticleData {
 			return CATEGORY;
 		case CREATION_DATE:
 			return CREATION_DATE;
+		case HTML_CONTENT:
+			return HTML_CONTENT;
 		default:
 			return "";
 		}

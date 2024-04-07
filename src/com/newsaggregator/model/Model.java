@@ -26,7 +26,8 @@ public class Model {
 		);
 		scrapers = new WebScrapper[] {
 			new WebScrapperFT(),
-			new WebScrapperCONV()
+			new WebScrapperCONV(),
+			new WebScrapperAcademy()
 		};
 	}
 	
@@ -122,7 +123,7 @@ public class Model {
 	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
-			"newsFT.json", "newsCONV.json"	
+			"newsFT.json", "newsCONV.json", "newsAcademy"	
 		};
 		
 		try {
