@@ -143,17 +143,17 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Label layoutX="72.0" layoutY="246.0" prefHeight="106.0" prefWidth="900.0" text="Article Title" wrapText="true">
+                  <Label alignment="TOP_LEFT" layoutX="72.0" layoutY="246.0" prefHeight="106.0" prefWidth="1055.0" text="Article Title" wrapText="true">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Label layoutX="72.0" layoutY="369.0" prefHeight="106.0" prefWidth="900.0" text="Brief summary" wrapText="true">
+                  <Label alignment="TOP_LEFT" layoutX="72.0" layoutY="369.0" prefHeight="106.0" prefWidth="1055.0" text="Brief summary" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="722.0" layoutX="70.0" layoutY="492.0" stroke="#999090" />
+                  <Line endX="775.0" layoutX="55.0" layoutY="492.0" stroke="#999090" />
                   <Label layoutX="634.0" layoutY="1307.0" prefHeight="20.0" prefWidth="170.0" text="Author">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -165,7 +165,7 @@
                      </font>
                   </Label>
                   <Label layoutX="634.0" layoutY="1350.0" prefHeight="18.0" prefWidth="170.0" text="Website" />
-                  <Line endX="722.0" layoutX="70.0" layoutY="1400.0" stroke="#999090" />
+                  <Line endX="775.0" layoutX="55.0" layoutY="1400.0" stroke="#999090" />
                   <Label layoutX="117.0" layoutY="1409.0" prefHeight="35.0" prefWidth="119.0" text="Read next" textFill="#4b54fa">
                      <font>
                         <Font name="Berlin Sans FB" size="24.0" />
@@ -329,7 +329,7 @@
                      </font>
                   </Label>
                   <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="1002.0" layoutY="521.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
-                  <StackPane layoutX="54.0" layoutY="505.0" prefHeight="780.0" prefWidth="775.0">
+                  <StackPane layoutX="55.0" layoutY="505.0" prefHeight="780.0" prefWidth="775.0">
                      <children>
                         <ScrollPane prefHeight="780.0" prefWidth="770.0">
                           <content>
