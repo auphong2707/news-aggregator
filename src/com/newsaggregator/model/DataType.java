@@ -12,5 +12,6 @@ public enum DataType {
 	TAGS,
 	AUTHOR_NAME,
 	CREATION_DATE,
-	CATEGORY
+	CATEGORY,
+	HTML_CONTENT
 }
