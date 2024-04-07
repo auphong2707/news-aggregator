@@ -14,7 +14,7 @@ public class Model {
 	private final static String RESULT_FILE_NAME = "newsAll.json";
 	private final static WebScrapper[] scrapers;
 	
-	private long processPid = -1;
+	private static long processPid = -1;
 	private static List<ArticleData> modelData;
 	
 	static
@@ -26,12 +26,11 @@ public class Model {
 		);
 		scrapers = new WebScrapper[] {
 			new WebScrapperFT(),
-			new WebScrapperCONV(),
-			new WebScrapperAcademy()
+			new WebScrapperCONV()
 		};
 	}
 	
-	public void runLocalServer() throws IOException, InterruptedException
+	public static void runLocalServer() throws IOException, InterruptedException
 	{
 		if (processPid == -1)
 		{
@@ -39,13 +38,13 @@ public class Model {
 			String command = "python " + directory;
 			
 			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(2000, TimeUnit.MILLISECONDS);
+			server.waitFor(1000, TimeUnit.MILLISECONDS);
 			
 			processPid = server.pid();
 		}
 	}
 	
-	public void terminateLocalServer() throws IOException
+	public static void terminateLocalServer() throws IOException
 	{
 		if (processPid != -1)
 		{
@@ -123,7 +122,7 @@ public class Model {
 	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
-			"newsFT.json", "newsCONV.json", "newsAcademy"	
+			"newsFT.json", "newsCONV.json"	
 		};
 		
 		try {
