@@ -20,6 +20,9 @@ CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsagg
 
 
 def remove_stop_words(text: str) -> str:
+    '''
+    Remove unnecessary stopwords
+    '''
     return ' '.join(word for word in text.split() if word not in STOPWORDS)
 
 def preprocessing(str_input) -> str:
@@ -30,6 +33,10 @@ def preprocessing(str_input) -> str:
     return remove_stop_words(preprocesed_str.lower())
 
 def preprocess_corpus(data):
+    '''
+    Preprocess the detailed content of the articles
+    And split them into specific tokens
+    '''
     corpus = []
     for content in data:
         detailed_content = content['DETAILED_CONTENT']
@@ -42,7 +49,7 @@ def preprocess_corpus(data):
 
 def vectorize(document, model):
     '''
-    
+    Vectorize the tokens into densed vectors using word2vec
     '''
     vectorized_article = []
     for content in document:
@@ -99,6 +106,9 @@ class TrendDetectionModel:
         self.kmean_model.fit(self.vectorized_document)
     
     def visualize(self):
+        '''
+        Using PCA to visualize the clustering
+        '''
         pca_model = PCA(n_components=2)
         y_kmean = self.kmean_model.predict(self.vectorized_document)
         
@@ -115,6 +125,10 @@ class TrendDetectionModel:
         plt.show()
 
     def get_trending(self):
+        '''
+        Trending is the articles that are in the cluster with most points
+        Return a json file of "trending" articles
+        '''
         y_kmean = self.kmean_model.predict(self.vectorized_document).tolist()
         trending_articles = []
         most_frequent_cluster = max(set(y_kmean), key = y_kmean.count)
@@ -127,7 +141,7 @@ class TrendDetectionModel:
 
 def load_model():
     '''
-    Load saved word2vec model from news-aggregator/data
+    Load saved word2vec model from news-aggregator/data/model/
     '''
     model = Word2Vec.load(CURRENT_WORKING_DIRECTORY + "data/model/" + "word2vec.model")
     #sims = model.wv.most_similar('bitcoin', topn = 10)
@@ -138,7 +152,7 @@ def load_model():
 
 def train(data):
     '''
-    Train word2vec models and save it into news-aggregator/data
+    Train word2vec models and save it into news-aggregator/data/model/
     '''
     w2v = Word2Vec(vector_size = 200, window = 3, min_count = 1)
     w2v.build_vocab(data)
