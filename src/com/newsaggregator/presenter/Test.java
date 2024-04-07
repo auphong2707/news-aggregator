@@ -20,7 +20,32 @@ public class Test extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		
+	    try {
+	    	window = primaryStage;
+	    	
+	    	FXMLLoader articleviewLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
 
+	    	Parent root = articleviewLoader.load();
+	        
+	        Scene articleview = new Scene(root);
+	        
+	        
+	        primaryStage.setTitle("News Alligator");
+	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/images/alligator.png"));
+	        primaryStage.setScene(articleview);
+	        primaryStage.setMaximized(true);
+	        primaryStage.show();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+    
+    /*
     @Override
     public void start(Stage primaryStage) throws Exception {
         // TODO  Auto-generated method stub
@@ -69,4 +94,5 @@ public class Test extends Application {
 	        e.printStackTrace();
 	    }
     }
+    */
 }

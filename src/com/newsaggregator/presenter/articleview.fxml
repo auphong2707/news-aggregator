@@ -10,14 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2200.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2200.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.ArticleViewPresenter">
    <center>
       <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
@@ -51,7 +50,7 @@
                   <Line endX="1130.0" layoutY="229.0" startX="70.0" />
                   <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
                      <children>
-                        <Label onMouseClicked="#category" text="Category 1">
+                        <Label text="Category 1">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -154,24 +153,24 @@
                      </font>
                   </Label>
                   <Line endX="775.0" layoutX="55.0" layoutY="492.0" stroke="#999090" />
-                  <Label layoutX="634.0" layoutY="1307.0" prefHeight="20.0" prefWidth="170.0" text="Author">
+                  <Label layoutX="625.0" layoutY="1180.0" prefHeight="20.0" prefWidth="170.0" text="Author">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="634.0" layoutY="1327.0" prefHeight="20.0" prefWidth="170.0" text="Publish Date">
+                  <Label layoutX="625.0" layoutY="1200.0" prefHeight="20.0" prefWidth="170.0" text="Publish Date">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="634.0" layoutY="1350.0" prefHeight="18.0" prefWidth="170.0" text="Website" />
-                  <Line endX="775.0" layoutX="55.0" layoutY="1400.0" stroke="#999090" />
-                  <Label layoutX="117.0" layoutY="1409.0" prefHeight="35.0" prefWidth="119.0" text="Read next" textFill="#4b54fa">
+                  <Label layoutX="625.0" layoutY="1223.0" prefHeight="18.0" prefWidth="170.0" text="Website" />
+                  <Line endX="775.0" layoutX="46.0" layoutY="1273.0" stroke="#999090" />
+                  <Label layoutX="108.0" layoutY="1282.0" prefHeight="35.0" prefWidth="119.0" text="Read next" textFill="#4b54fa">
                      <font>
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <VBox layoutX="109.0" layoutY="1458.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+                  <VBox layoutX="100.0" layoutY="1331.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
                      <children>
                         <Group>
                            <children>
@@ -223,7 +222,7 @@
                         </Group>
                      </children>
                   </VBox>
-                  <VBox layoutX="810.0" layoutY="557.0" prefHeight="748.0" prefWidth="278.0" spacing="25.0" AnchorPane.rightAnchor="35.0">
+                  <VBox layoutX="866.0" layoutY="549.0" prefHeight="607.0" prefWidth="301.0" spacing="25.0" AnchorPane.rightAnchor="33.0">
                      <children>
                         <Group>
                            <children>
@@ -302,46 +301,17 @@
                                  </font>
                               </Label>
                               <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Line endX="300.0" layoutY="95.0" stroke="#999090" />
-                           </children>
-                        </Group>
-                        <Group layoutX="11.0" layoutY="533.0">
-                           <children>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Line endX="300.0" layoutY="95.0" stroke="#999090" />
                            </children>
                         </Group>
                      </children>
                   </VBox>
-                  <Label layoutX="878.0" layoutY="486.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
+                  <Label layoutX="867.0" layoutY="486.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
                      <font>
                         <Font name="Berlin Sans FB" size="24.0" />
                      </font>
                   </Label>
-                  <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="1002.0" layoutY="521.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
-                  <StackPane layoutX="55.0" layoutY="505.0" prefHeight="780.0" prefWidth="775.0">
-                     <children>
-                        <ScrollPane prefHeight="780.0" prefWidth="770.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0">
-                                 <children>
-                                    <WebView prefHeight="2000.0" prefWidth="-1.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </StackPane>
+                  <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="991.0" layoutY="521.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
+                  <WebView fx:id="webView" layoutX="55.0" layoutY="504.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="775.0" />
                </children>
             </AnchorPane>
         </content>
