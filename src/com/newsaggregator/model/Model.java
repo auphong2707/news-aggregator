@@ -120,6 +120,44 @@ public class Model {
 		return ModelTools.randomSubList(modelData, count);
 	}
 	
+	public List<ArticleData> getTrending() {
+		HttpURLConnection conn = null;
+        DataOutputStream os = null;
+        
+        try{
+            URL url = new URL("http://127.0.0.1:5000/trending"); //important to add the trailing slash after add
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("GET");
+            
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    (conn.getInputStream())));
+            String output = br.readLine();
+
+            conn.disconnect();
+            System.out.println(output);
+            return ModelTools.convertJsonStringToData(output);
+	    } 
+        catch (MalformedURLException e) {
+	        e.printStackTrace();
+	    } 
+        catch (IOException e){
+	        e.printStackTrace();
+	    } 
+        finally {
+            if(conn != null)
+            {
+                conn.disconnect();
+            }
+        }
+		return null;
+	}
+	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
 			"newsFT.json", "newsCONV.json"	
