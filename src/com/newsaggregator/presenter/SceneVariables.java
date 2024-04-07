@@ -1,5 +1,7 @@
 package com.newsaggregator.presenter;
 
+import com.newsaggregator.model.ArticleData;
+
 class SceneVariables {
 	private static SceneVariables instance;
     private SceneVariables() { }
@@ -12,4 +14,6 @@ class SceneVariables {
     }
     
     String searchContent;
+    
+    ArticleData selectedArticleData;
 }
