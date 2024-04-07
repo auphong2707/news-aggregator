@@ -12,12 +12,6 @@ import org.jsoup.select.Elements;
 public class Test {
 	public static void main(String[] args) throws IOException, InterruptedException{
 		Model model = new Model();
-		model.runLocalServer();
-		WebScrapper scraper = new WebScrapperCONV();
-		scraper.scrapeAllData();
-		
-		model.terminateLocalServer();
-	
-
+		model.scrapeNewData();
 	}
 }
