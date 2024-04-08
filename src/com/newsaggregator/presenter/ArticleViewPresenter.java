@@ -11,9 +11,13 @@ import com.newsaggregator.model.Model;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Screen;
 
 public class ArticleViewPresenter {
 	@FXML private Label dateLabel;
@@ -36,13 +40,13 @@ public class ArticleViewPresenter {
 	@FXML private Group bigArticle3;
 	
 	private Model model = new Model();
+	private List<ArticleData> latestData;
+	private List<ArticleData> randomData;
 	
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
 		setLatestArticle();
-		setReedNextArticle();
-		sceneSwitchInitialize();
 	}
 	
 	private void setDate() {
@@ -71,13 +75,14 @@ public class ArticleViewPresenter {
 		publishDateLabel.setText(publishDate);
 		websiteLabel.setText(website);
 		
+		setReadNextArticle();
 	}
 	
 	private void setLatestArticle() {
 		Group[] latestArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3, 
 											 smallArticle4, smallArticle5};
 		
-		List<ArticleData> latest = model.getLatestArticleData(latestArticle.length);
+		latestData = model.getLatestArticleData(latestArticle.length);
 		for (int i = 0; i < latestArticle.length; i++) {
 			int index = i;
 			
@@ -85,7 +90,7 @@ public class ArticleViewPresenter {
 				try {
 					Thread.sleep(0);
 						Platform.runLater(() -> {
-							PresenterTools.setArticleView(latestArticle[index], latest.get(index), ArticleSize.SMALL);
+							PresenterTools.setArticleView(latestArticle[index], latestData.get(index), ArticleSize.SMALL);
 						});
 				} catch (InterruptedException ex) {
 	                ex.printStackTrace();
@@ -96,10 +101,10 @@ public class ArticleViewPresenter {
 		}
 	}
 	
-	private void setReedNextArticle() {
+	private void setReadNextArticle() {
 		Group[] reedNextArticle = new Group[] {bigArticle1, bigArticle2, bigArticle3};
 		
-		List<ArticleData> random = model.getRandomArticleData(reedNextArticle.length);
+		randomData = model.getRandomArticleData(reedNextArticle.length);
 		
 		for (int i = 0; i < reedNextArticle.length; i++) {
 			int index = i;
@@ -107,7 +112,7 @@ public class ArticleViewPresenter {
 				try {
 					Thread.sleep(0);
 						Platform.runLater(() -> {
-							PresenterTools.setArticleView(reedNextArticle[index], random.get(index), ArticleSize.BIG);
+							PresenterTools.setArticleView(reedNextArticle[index], randomData.get(index), ArticleSize.BIG);
 						});
 				} catch (InterruptedException ex) {
 	                ex.printStackTrace();
@@ -117,5 +122,21 @@ public class ArticleViewPresenter {
 			thread.start();
 		}
 	}
+	
+	@FXML
+	private void switchToArticle(MouseEvent event) throws IOException {
+		Node clickedObject = (Node) event.getSource();
+		Group selectedGroup;
+		if (clickedObject.getClass() == Group.class) {
+			selectedGroup = (Group) clickedObject;
+		}
+		else selectedGroup = (Group) clickedObject.getParent();
+		String indexCode = ((Text)(selectedGroup.getChildren().getLast())).getText();
+		
+		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
+		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
+		
+		sceneSwitchInitialize();
+    }
 	
 }
