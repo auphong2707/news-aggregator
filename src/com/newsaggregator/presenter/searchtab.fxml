@@ -169,14 +169,14 @@
                   <Line endX="715.0" endY="445.0" startX="70.0" startY="445.0" />
                   <VBox layoutX="79.0" layoutY="470.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
-                        <Group fx:id="article1">
+                        <Group fx:id="article1" onMouseClicked="#switchToArticle">
                            <children>
                               <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" onMouseClicked="#switchToArticle" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -196,10 +196,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                              <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="article2" layoutX="18.0">
+                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Group fx:id="article2" layoutX="18.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -226,10 +227,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                              <Text layoutX="-5.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="article3" layoutX="18.0" layoutY="263.0">
+                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Group fx:id="article3" layoutX="18.0" layoutY="263.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -256,10 +258,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                              <Text layoutX="7.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="article4" layoutX="18.0" layoutY="526.0">
+                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Group fx:id="article4" layoutX="18.0" layoutY="526.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -286,10 +289,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="330.0" endY="60.0" layoutX="293.0" layoutY="182.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                              <Text layoutX="6.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="article5" layoutX="18.0" layoutY="790.0">
+                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Group fx:id="article5" layoutX="18.0" layoutY="790.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -316,6 +320,7 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
+                              <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" visible="false" />
                            </children>
                         </Group>
                      </children>
