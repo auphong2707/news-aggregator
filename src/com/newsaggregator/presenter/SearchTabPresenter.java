@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
 public class SearchTabPresenter {
@@ -122,4 +124,20 @@ public class SearchTabPresenter {
 		page = newPage;
 		pageLabel.setText("Page " + page);
 	}
+	
+	@FXML
+	private void switchToArticle(MouseEvent event) throws IOException {
+		Node clickedObject = (Node) event.getSource();
+		Group selectedGroup;
+		if (clickedObject.getClass() == Group.class) {
+			selectedGroup = (Group) clickedObject;
+		}
+		else selectedGroup = (Group) clickedObject.getParent();
+		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
+		SceneVariables.getInstance().selectedArticleData = searchData.get(index);
+		
+		Test.window.setScene(Test.article);
+        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+    }
 }
