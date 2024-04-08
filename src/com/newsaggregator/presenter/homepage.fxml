@@ -305,7 +305,7 @@
                   <Line endX="585.0" layoutX="85.0" layoutY="526.5" stroke="#a19797" />
                   <VBox layoutX="102.0" layoutY="807.0" prefHeight="1031.0" prefWidth="432.0" spacing="19.0">
                      <children>
-                        <Group fx:id="notSoBigArticle1" layoutX="17.0" layoutY="10.0">
+                        <Group fx:id="notSoBigArticle1" layoutX="17.0" layoutY="10.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -327,10 +327,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="410.0" endY="145.0" layoutY="-19.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <Text layoutX="4.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R0" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle2" layoutX="17.0" layoutY="41.0">
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle2" layoutX="17.0" layoutY="41.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -352,10 +353,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="410.0" endY="145.0" layoutY="-19.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <Text layoutX="3.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R1" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle3" layoutX="17.0" layoutY="214.0">
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle3" layoutX="17.0" layoutY="214.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -377,10 +379,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="410.0" endY="145.0" layoutY="-19.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <Text layoutX="4.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R2" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle4" layoutX="17.0" layoutY="387.0">
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle4" layoutX="17.0" layoutY="387.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -402,10 +405,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="410.0" endY="145.0" layoutY="-19.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <Text layoutX="3.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R3" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle5" layoutX="17.0" layoutY="560.0">
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle5" layoutX="17.0" layoutY="560.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -427,10 +431,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="410.0" endY="145.0" layoutY="-19.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R4" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle6" layoutX="17.0" layoutY="733.0">
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle6" layoutX="17.0" layoutY="733.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -452,12 +457,12 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="410.0" endY="145.0" layoutY="-19.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                              <Text layoutX="7.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R5" visible="false" />
                            </children>
                         </Group>
                      </children>
                   </VBox>
-                  <Group fx:id="bigArticle1" layoutX="7.0" layoutY="300.0">
+                  <Group fx:id="bigArticle1" layoutX="7.0" layoutY="300.0" onMouseClicked="#switchToArticle">
                      <children>
                         <Label contentDisplay="RIGHT" layoutX="311.0" layoutY="10.0" prefHeight="33.0" prefWidth="290.0" text="Website" textAlignment="CENTER">
                            <font>
@@ -484,9 +489,10 @@
                               <Image url="@../../../../images/blank_rectangle.png" />
                            </image>
                         </ImageView>
+                        <Text layoutX="80.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L0" visible="false" />
                      </children>
                   </Group>
-                  <Group fx:id="bigArticle2" layoutX="7.0" layoutY="555.0">
+                  <Group fx:id="bigArticle2" layoutX="7.0" layoutY="555.0" onMouseClicked="#switchToArticle">
                      <children>
                         <Label contentDisplay="RIGHT" layoutX="311.0" layoutY="10.0" prefHeight="33.0" prefWidth="353.0" text="Website" textAlignment="CENTER">
                            <font>
@@ -513,11 +519,12 @@
                               <Image url="@../../../../images/blank_rectangle.png" />
                            </image>
                         </ImageView>
+                        <Text layoutX="78.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L1" visible="false" />
                      </children>
                   </Group>
-                  <VBox layoutX="735.0" layoutY="289.0" prefHeight="389.0" prefWidth="215.0" spacing="15.0">
+                  <VBox layoutX="740.0" layoutY="281.0" prefHeight="389.0" prefWidth="215.0" spacing="15.0">
                      <children>
-                        <Group fx:id="smallArticle1">
+                        <Group fx:id="smallArticle1" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -534,10 +541,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                              <Text layoutX="7.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L2" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="smallArticle2">
+                        <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                        <Group fx:id="smallArticle2" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -554,10 +562,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                              <Text layoutX="5.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L3" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="smallArticle3">
+                        <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                        <Group fx:id="smallArticle3" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -574,10 +583,11 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                              <Text layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L4" visible="false" />
                            </children>
                         </Group>
-                        <Group fx:id="smallArticle4">
+                        <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                        <Group fx:id="smallArticle4" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -594,6 +604,7 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
+                              <Text layoutX="-2.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L5" visible="false" />
                            </children>
                         </Group>
                      </children>
