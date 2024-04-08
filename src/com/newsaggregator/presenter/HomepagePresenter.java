@@ -14,8 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.scene.Group;
+import javafx.scene.Node;
 
 
 public class HomepagePresenter {
@@ -43,6 +46,9 @@ public class HomepagePresenter {
 	
 	private Model model = new Model();
 	
+	private List<ArticleData> latestData;
+	private List<ArticleData> randomData;
+	
 	@FXML
 	public void initialize() throws IOException, InterruptedException {
 		setDate();
@@ -63,7 +69,7 @@ public class HomepagePresenter {
 		Group[] latestArticle = new Group[] {bigArticle1, bigArticle2, smallArticle1, 
 											 smallArticle2, smallArticle3, smallArticle4};
 		
-		List<ArticleData> latest = model.getLatestArticleData(latestArticle.length);
+		latestData = model.getLatestArticleData(latestArticle.length);
 		
 		for (int i = 0; i < latestArticle.length; i++) {
 			int index = i;
@@ -73,7 +79,7 @@ public class HomepagePresenter {
 				try {
 					Thread.sleep(0);
 						Platform.runLater(() -> {
-							PresenterTools.setArticleView(latestArticle[index], latest.get(index), size);
+							PresenterTools.setArticleView(latestArticle[index], latestData.get(index), size);
 						});
 				} catch (InterruptedException ex) {
 	                ex.printStackTrace();
@@ -88,7 +94,7 @@ public class HomepagePresenter {
 		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
 											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
 		
-		List<ArticleData> random = model.getRandomArticleData(randomArticle.length);
+		randomData = model.getRandomArticleData(randomArticle.length);
 		
 		for (int i = 0; i < randomArticle.length; i++) {
 			int index = i;
@@ -96,7 +102,7 @@ public class HomepagePresenter {
 				try {
 					Thread.sleep(0);
 						Platform.runLater(() -> {
-							PresenterTools.setArticleView(randomArticle[index], random.get(index), ArticleSize.NOT_SO_BIG);
+							PresenterTools.setArticleView(randomArticle[index], randomData.get(index), ArticleSize.NOT_SO_BIG);
 						});
 				} catch (InterruptedException ex) {
 	                ex.printStackTrace();
@@ -126,4 +132,23 @@ public class HomepagePresenter {
         Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 	}
+	
+	@FXML
+	private void switchToArticle(MouseEvent event) throws IOException {
+		Node clickedObject = (Node) event.getSource();
+		Group selectedGroup;
+		if (clickedObject.getClass() == Group.class) {
+			selectedGroup = (Group) clickedObject;
+		}
+		else selectedGroup = (Group) clickedObject.getParent();
+		String indexCode = ((Text)(selectedGroup.getChildren().getLast())).getText();
+		
+		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
+		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
+		
+		
+		Test.window.setScene(Test.article);
+        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+    }
 }
