@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.HomepagePresenter">
+   <center>
+      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2100.0" prefWidth="1200.0">
+               <children>
+                  <VBox layoutX="565.0" layoutY="833.0" prefHeight="200.0" prefWidth="100.0" spacing="37.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="210.0" layoutY="95.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="210.0" layoutY="135.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" prefHeight="66.0" prefWidth="170.0" text="Category" textFill="#4b54fa">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
+                              <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
+                                 <stroke>
+                                    <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.8315789699554443" green="0.0646783635020256" blue="0.0646783635020256" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </stroke>
+                              </Line>
+                              <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
+                           </children>
+                        </Group>
+                        <Group layoutX="19.0" layoutY="2.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="210.0" layoutY="95.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="210.0" layoutY="135.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" prefHeight="66.0" prefWidth="170.0" text="Category" textFill="#4b54fa">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
+                              <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
+                                 <stroke>
+                                    <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.8315789699554443" green="0.0646783635020256" blue="0.0646783635020256" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </stroke>
+                              </Line>
+                              <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
+                           </children>
+                        </Group>
+                        <Group layoutX="19.0" layoutY="352.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="210.0" layoutY="95.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="210.0" layoutY="135.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" prefHeight="66.0" prefWidth="170.0" text="Category" textFill="#4b54fa">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../images/alligator.png" />
+                                 </image>
+                              </ImageView>
+                              <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
+                                 <stroke>
+                                    <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.8315789699554443" green="0.0646783635020256" blue="0.0646783635020256" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </stroke>
+                              </Line>
+                              <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <Group layoutX="298.0" layoutY="62.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="280.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="13.0" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
+                           <font>
+                              <Font name="Lucida Sans Demibold Italic" size="68.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/alligator.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
+                  <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1088.0" layoutY="17.0" mnemonicParsing="false" text="Log in">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="dateLabel" layoutX="26.0" layoutY="58.0" prefHeight="27.0" prefWidth="112.0" text="day, dd/mm/yyyy">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Line endX="1130.0" layoutY="229.0" startX="70.0" />
+                  <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
+                     <children>
+                        <Label text="Category 1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Category 2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Category 3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Category 4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="274.0" layoutY="10.0" text="Category 5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="292.0" layoutY="10.0" text="Category 6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="304.0" layoutY="10.0" text="Category 7">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="312.0" layoutY="10.0" text="Category 8">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label layoutX="87.0" layoutY="238.0" prefHeight="26.0" prefWidth="70.0" text="Latest &gt;" textFill="#4b54fa">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Line layoutX="1115.0" layoutY="273.0" startX="-375.0" stroke="#a19797" />
+                  <Line endX="585.0" layoutX="85.0" layoutY="273.0" stroke="#a19797" />
+                  <Line endY="493.0" layoutX="705.0" layoutY="280.0" stroke="#a19797" />
+                  <Line endX="585.0" layoutX="85.0" layoutY="780.0" />
+                  <Line layoutX="1115.0" layoutY="780.0" startX="-375.0" />
+                  <Line endX="585.0" layoutX="85.0" layoutY="526.5" stroke="#a19797" />
+                  <VBox layoutX="102.0" layoutY="807.0" prefHeight="1031.0" prefWidth="432.0" spacing="19.0">
+                     <children>
+                        <Group fx:id="notSoBigArticle1" layoutX="17.0" layoutY="10.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="4.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R0" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle2" layoutX="17.0" layoutY="41.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="3.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R1" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle3" layoutX="17.0" layoutY="214.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="4.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R2" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle4" layoutX="17.0" layoutY="387.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="3.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R3" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle5" layoutX="17.0" layoutY="560.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R4" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
+                        <Group fx:id="notSoBigArticle6" layoutX="17.0" layoutY="733.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="7.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R5" visible="false" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <Group fx:id="bigArticle1" layoutX="7.0" layoutY="300.0" onMouseClicked="#switchToArticle">
+                     <children>
+                        <Label contentDisplay="RIGHT" layoutX="311.0" layoutY="10.0" prefHeight="33.0" prefWidth="290.0" text="Website" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="311.0" layoutY="43.0" prefHeight="57.0" prefWidth="337.0" text="Article Title" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="311.0" layoutY="100.0" prefHeight="62.0" prefWidth="347.0" text="Brief summary" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="311.0" layoutY="166.0" prefHeight="20.0" prefWidth="327.0" text="Author">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="225.0" layoutX="72.0" layoutY="18.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/blank_rectangle.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="80.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L0" visible="false" />
+                     </children>
+                  </Group>
+                  <Group fx:id="bigArticle2" layoutX="7.0" layoutY="555.0" onMouseClicked="#switchToArticle">
+                     <children>
+                        <Label contentDisplay="RIGHT" layoutX="311.0" layoutY="10.0" prefHeight="33.0" prefWidth="353.0" text="Website" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="310.0" layoutY="43.0" prefHeight="59.0" prefWidth="351.0" text="Article Title" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="311.0" layoutY="100.0" prefHeight="62.0" prefWidth="347.0" text="Brief summary" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="311.0" layoutY="167.0" prefHeight="20.0" prefWidth="329.0" text="Author">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="225.0" layoutX="72.0" layoutY="18.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/blank_rectangle.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="78.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L1" visible="false" />
+                     </children>
+                  </Group>
+                  <VBox layoutX="740.0" layoutY="281.0" prefHeight="389.0" prefWidth="215.0" spacing="15.0">
+                     <children>
+                        <Group fx:id="smallArticle1" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.5" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="7.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L2" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                        <Group fx:id="smallArticle2" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.5" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="5.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L3" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                        <Group fx:id="smallArticle3" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.5" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L4" visible="false" />
+                           </children>
+                        </Group>
+                        <Line endX="378.0" endY="140.0" startY="140.0" stroke="#a19797" />
+                        <Group fx:id="smallArticle4" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="161.0" layoutY="37.0" prefHeight="20.0" prefWidth="231.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="157.0" layoutY="56.0" prefHeight="71.0" prefWidth="217.0" text="Article title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="15.5" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="100.0" fitWidth="150.0" layoutY="30.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="-2.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L5" visible="false" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <Line endX="130.0" endY="990.0" layoutX="410.0" layoutY="857.0" startX="130.0" startY="-48.0" />
+                  <Line endX="1130.0" endY="1890.39990234375" startX="70.0" startY="1892.0" />
+                  <HBox alignment="CENTER" layoutX="86.0" layoutY="1899.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
+                     <children>
+                        <Label text="Newspaper 1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Newspaper 2">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label text="Newspaper 3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Newspaper 4">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="274.0" layoutY="10.0" text="Newspaper 5">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="292.0" layoutY="10.0" text="Newspaper 6">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="304.0" layoutY="10.0" text="Newspaper 7">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="312.0" layoutY="10.0" text="Newspaper 8">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Text layoutX="424.0" layoutY="1947.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="searchBar" layoutX="26.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="237.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/search.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="985.0" layoutY="1855.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0" />
+                  <Button layoutX="1031.0" layoutY="1855.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </center>
+   <left>
+      <Pane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

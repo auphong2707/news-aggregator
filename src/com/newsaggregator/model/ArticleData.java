@@ -35,7 +35,7 @@ public class ArticleData {
 		HTML_CONTENT = htmlContent;
 	}
 	
-	protected String getDataByType(DataType type) {
+	public String getDataByType(DataType type) {
 		switch(type) {
 		case LINK:
 			return LINK;
