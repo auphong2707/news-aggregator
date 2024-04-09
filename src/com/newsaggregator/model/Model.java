@@ -25,8 +25,9 @@ public class Model {
 			-> a2.getDataByType(DataType.CREATION_DATE).compareTo(a1.getDataByType(DataType.CREATION_DATE))
 		);
 		scrapers = new WebScrapper[] {
-			new WebScrapperFT(),
-			new WebScrapperCONV()
+			// new WebScrapperFT(),
+			// new WebScrapperCONV(),
+			new WebScrapperAcademy()
 		};
 	}
 	

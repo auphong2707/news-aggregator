@@ -10,6 +10,8 @@ import java.util.Random;
 import java.util.Scanner;
 import com.google.gson.Gson;
 
+import javafx.util.Pair;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -44,13 +46,15 @@ public abstract class WebScrapper {
         return Jsoup.connect(url)
                 .userAgent(userAgent)
                 .referrer("http://www.google.com")
-                .timeout(12000)
                 .get();
     }
     
     protected abstract List<String> getLinkInPage(Document document);
     
-    protected abstract List<String> getAllLinks();
+    protected abstract List<String> getImageInPage(Document document);
+    
+    protected abstract List<Pair<String, String>> getAllLinksAndImages();
+    
     
     protected String getSummary(Document document) {
     	return "";
@@ -84,18 +88,14 @@ public abstract class WebScrapper {
     	return "";
     }
     
-    protected String getImage(Document document) {
-    	return "";
-    }
-    
     protected String getHtmlContent(Document document) {
     	return "";
     }
 
  
-    private ArticleData scrapeArticle(String articleLink) {
+    private ArticleData scrapeArticle(String articleLink, String imageLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
-    			author="", category="", creationDate="", image="", htmlContent="";
+    			author="", category="", creationDate="", htmlContent="";
     	try {
     		Random r = new Random();
         	Document document = connectWeb(articleLink, userAgent.get(r.nextInt(userAgent.size())));
@@ -107,12 +107,11 @@ public abstract class WebScrapper {
             author = getAuthor(document);
             category = getCategory(document);
             creationDate = getCreationDate(document);
-            image = getImage(document);
             htmlContent = getHtmlContent(document);
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
-    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, image, type, summary,
+    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
     			title, intro, detailedContent, tags, author, category, creationDate, htmlContent);
     	
     	System.out.println("Collect data in link successfully");
@@ -121,10 +120,13 @@ public abstract class WebScrapper {
     
     protected void scrapeAllData()
     {
-    	List<String> allLinks = getAllLinks();
+    	List<Pair<String, String>> allLinksImages = getAllLinksAndImages();
     
-    	for (String link : allLinks) {
-    		ArticleData unit = scrapeArticle(link);
+    	for (Pair<String, String> linkAndImage : allLinksImages) {
+    		String link = linkAndImage.getKey();
+    		String image = linkAndImage.getValue();
+    		
+    		ArticleData unit = scrapeArticle(link, image);
     		
     		listOfData.add(unit);
     	}
