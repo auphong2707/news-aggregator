@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
-import com.newsaggregator.model.DataType;
 import com.newsaggregator.model.Model;
 
 import javafx.application.Platform;

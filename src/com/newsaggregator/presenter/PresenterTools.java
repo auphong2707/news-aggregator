@@ -3,8 +3,6 @@ package com.newsaggregator.presenter;
 import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
-import com.newsaggregator.model.DataType;
-
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
