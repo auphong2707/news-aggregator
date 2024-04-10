@@ -3,6 +3,8 @@ package com.newsaggregator.presenter;
 import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
+
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -10,6 +12,26 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 class PresenterTools {	
+	static void setArrayArticleViews(Group[] views, List<ArticleData> data, ArticleSize size) {
+		for (int i = 0; i < views.length; i++) {
+			int index = i;
+			
+			Thread thread = new Thread(() -> {
+				try {
+					Thread.sleep(500);
+						Platform.runLater(() -> {
+							PresenterTools.setArticleView(views[index], data.get(index), size);
+						});
+				} catch (InterruptedException ex) {
+	                ex.printStackTrace();
+	            }
+			});
+			
+			thread.setDaemon(true);
+			thread.start();
+		}
+	}
+	
 	static void setArticleView(Group view, ArticleData data, ArticleSize size) {
 		switch(size) {
 		case BIG:
@@ -93,7 +115,7 @@ class PresenterTools {
 		
 		String imgURL = data.getIMAGE();
 		if (imgURL != null && !imgURL.equals("")) {
-			imageView.setImage(new Image(imgURL));
+			imageView.setImage(new Image(imgURL, 300, 200, false, false));
 		}
 		else {
 			String blankDirectory = "file:///" + System.getProperty("user.dir") + "/images/blank_rectangle.png";

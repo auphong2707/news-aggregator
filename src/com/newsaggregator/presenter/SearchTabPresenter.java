@@ -8,7 +8,6 @@ import com.newsaggregator.model.Model;
 
 import com.newsaggregator.model.ArticleData;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -102,22 +101,10 @@ public class SearchTabPresenter {
 	}
 	
 	private void updateArticles() {
-		for (int i = 0; i < articles.length; i++) {
-			int index = i + (page - 1) * 5;
-			int article_index = i;
-			Thread thread = new Thread(() -> {
-				try {
-					Thread.sleep(100);
-						Platform.runLater(() -> {
-							PresenterTools.setArticleView(articles[article_index], searchData.get(index), ArticleSize.BIG);
-						});
-				} catch (InterruptedException ex) {
-	                ex.printStackTrace();
-	            }
-			});
-			
-			thread.start();
-		}
+		int first = (page - 1) * 5;
+		int last = (page - 1) * 5 + 5;
+		
+		PresenterTools.setArrayArticleViews(articles, searchData.subList(first, last), ArticleSize.BIG);
 	}
 	
 	private void setPage(int newPage) {

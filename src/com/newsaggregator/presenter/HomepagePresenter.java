@@ -7,7 +7,6 @@ import java.util.List;
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,28 +65,13 @@ public class HomepagePresenter {
 	}
 	
 	private void setLatestArticle() {
-		Group[] latestArticle = new Group[] {bigArticle1, bigArticle2, smallArticle1, 
-											 smallArticle2, smallArticle3, smallArticle4};
+		latestData = model.getLatestArticleData(6);
 		
-		latestData = model.getLatestArticleData(latestArticle.length);
+		Group[] latestBigArticle = new Group[] {bigArticle1, bigArticle2};
+		Group[] latestSmallArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3, smallArticle4};
 		
-		for (int i = 0; i < latestArticle.length; i++) {
-			int index = i;
-			
-			ArticleSize size = index < 2 ? ArticleSize.BIG : ArticleSize.SMALL;
-			Thread thread = new Thread(() -> {
-				try {
-					Thread.sleep(0);
-						Platform.runLater(() -> {
-							PresenterTools.setArticleView(latestArticle[index], latestData.get(index), size);
-						});
-				} catch (InterruptedException ex) {
-	                ex.printStackTrace();
-	            }
-			});
-			
-			thread.start();
-		}
+		PresenterTools.setArrayArticleViews(latestBigArticle, latestData.subList(0, 2), ArticleSize.BIG);
+		PresenterTools.setArrayArticleViews(latestSmallArticle, latestData.subList(2, 6), ArticleSize.SMALL);
 	} 
 	
 	private void setRandomArticle() {
@@ -96,21 +80,7 @@ public class HomepagePresenter {
 		
 		randomData = model.getRandomArticleData(randomArticle.length);
 		
-		for (int i = 0; i < randomArticle.length; i++) {
-			int index = i;
-			Thread thread = new Thread(() -> {
-				try {
-					Thread.sleep(0);
-						Platform.runLater(() -> {
-							PresenterTools.setArticleView(randomArticle[index], randomData.get(index), ArticleSize.NOT_SO_BIG);
-						});
-				} catch (InterruptedException ex) {
-	                ex.printStackTrace();
-	            }
-			});
-			
-			thread.start();
-		}
+		PresenterTools.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
 	}
 	
 	@FXML

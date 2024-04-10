@@ -7,7 +7,6 @@ import java.util.List;
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -80,22 +79,8 @@ public class ArticleViewPresenter {
 											 smallArticle4, smallArticle5};
 		
 		latestData = model.getLatestArticleData(latestArticle.length);
-		for (int i = 0; i < latestArticle.length; i++) {
-			int index = i;
-			
-			Thread thread = new Thread(() -> {
-				try {
-					Thread.sleep(0);
-						Platform.runLater(() -> {
-							PresenterTools.setArticleView(latestArticle[index], latestData.get(index), ArticleSize.SMALL);
-						});
-				} catch (InterruptedException ex) {
-	                ex.printStackTrace();
-	            }
-			});
-			
-			thread.start();
-		}
+		
+		PresenterTools.setArrayArticleViews(latestArticle, latestData, ArticleSize.SMALL);
 	}
 	
 	private void setReadNextArticle() {
@@ -103,21 +88,7 @@ public class ArticleViewPresenter {
 		
 		randomData = model.getRandomArticleData(reedNextArticle.length);
 		
-		for (int i = 0; i < reedNextArticle.length; i++) {
-			int index = i;
-			Thread thread = new Thread(() -> {
-				try {
-					Thread.sleep(0);
-						Platform.runLater(() -> {
-							PresenterTools.setArticleView(reedNextArticle[index], randomData.get(index), ArticleSize.BIG);
-						});
-				} catch (InterruptedException ex) {
-	                ex.printStackTrace();
-	            }
-			});
-			
-			thread.start();
-		}
+		PresenterTools.setArrayArticleViews(reedNextArticle, randomData, ArticleSize.BIG);
 	}
 	
 	@FXML
