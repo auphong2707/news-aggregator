@@ -131,7 +131,9 @@ public class ArticleViewPresenter {
 			selectedGroup = (Group) clickedObject;
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
-		String indexCode = ((Text)(selectedGroup.getChildren().getLast())).getText();
+		
+		List<Node> groupChildren = selectedGroup.getChildren();
+		String indexCode = ((Text)(groupChildren.get(groupChildren.size() - 1))).getText();
 		
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
