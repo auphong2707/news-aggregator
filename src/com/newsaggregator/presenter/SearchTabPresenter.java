@@ -95,9 +95,7 @@ public class SearchTabPresenter {
 	
 	@FXML
 	private void switchToHomepage(MouseEvent event) throws IOException {
-		Test.window.setScene(Test.homepage);
-        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		SceneManager.switchScene(SceneType.HOMEPAGE);
 	}
 	
 	private void updateArticles() {
@@ -123,8 +121,6 @@ public class SearchTabPresenter {
 		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		SceneVariables.getInstance().selectedArticleData = searchData.get(index);
 		
-		Test.window.setScene(Test.article);
-        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		SceneManager.switchScene(SceneType.ARTICLE_VIEW);
     }
 }

@@ -98,9 +98,7 @@ public class HomepagePresenter {
 	}
 	
 	private void switchToSearchtab() throws IOException {
-		Test.window.setScene(Test.searchtab);
-        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		SceneManager.switchScene(SceneType.SEARCHTAB);
 	}
 	
 	@FXML
@@ -119,8 +117,6 @@ public class HomepagePresenter {
 		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
 		
 		
-		Test.window.setScene(Test.article);
-        Test.window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        Test.window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		SceneManager.switchScene(SceneType.ARTICLE_VIEW);
     }
 }
