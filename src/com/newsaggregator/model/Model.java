@@ -22,7 +22,7 @@ public class Model {
 		modelData = ModelTools.convertJsonToData(DIRECTORY + RESULT_FILE_NAME);
 		modelData.sort(
 			(ArticleData a1, ArticleData a2)
-			-> a2.getDataByType(DataType.CREATION_DATE).compareTo(a1.getDataByType(DataType.CREATION_DATE))
+			-> a2.getCREATION_DATE().compareTo(a1.getCREATION_DATE())
 		);
 		scrapers = new WebScrapper[] {
 			new WebScrapperFT(),

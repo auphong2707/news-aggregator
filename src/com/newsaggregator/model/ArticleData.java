@@ -15,7 +15,7 @@ public class ArticleData {
 	private final String CREATION_DATE;
 	private final String HTML_CONTENT;
 	
-	protected ArticleData(String link, String websiteSource, String image,
+	ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
 			String authorName, String category, String creationDate, String htmlContent) {
@@ -35,36 +35,55 @@ public class ArticleData {
 		HTML_CONTENT = htmlContent;
 	}
 	
-	public String getDataByType(DataType type) {
-		switch(type) {
-		case LINK:
-			return LINK;
-		case WEBSITE_SOURCE:
-			return WEBSITE_SOURCE;
-		case IMAGE:
-			return IMAGE;
-		case TYPE:
-			return TYPE;
-		case SUMMARY:
-			return SUMMARY;
-		case TITLE:
-			return TITLE;
-		case INTRO:
-			return INTRO;
-		case DETAILED_CONTENT:
-			return DETAILED_CONTENT;
-		case TAGS:
-			return TAGS;
-		case AUTHOR_NAME:
-			return AUTHOR_NAME;
-		case CATEGORY:
-			return CATEGORY;
-		case CREATION_DATE:
-			return CREATION_DATE;
-		case HTML_CONTENT:
-			return HTML_CONTENT;
-		default:
-			return "";
-		}
+	public String getLINK() {
+		return LINK;
+	}
+
+	public String getWEBSITE_SOURCE() {
+		return WEBSITE_SOURCE;
+	}
+
+	public String getIMAGE() {
+		return IMAGE;
+	}
+
+	public String getTYPE() {
+		return TYPE;
+	}
+
+	public String getSUMMARY() {
+		return SUMMARY;
+	}
+
+	public String getTITLE() {
+		return TITLE;
+	}
+
+	public String getINTRO() {
+		return INTRO;
+	}
+
+	public String getDETAILED_CONTENT() {
+		return DETAILED_CONTENT;
+	}
+
+	public String getTAGS() {
+		return TAGS;
+	}
+
+	public String getAUTHOR_NAME() {
+		return AUTHOR_NAME;
+	}
+
+	public String getCATEGORY() {
+		return CATEGORY;
+	}
+
+	public String getCREATION_DATE() {
+		return CREATION_DATE;
+	}
+
+	public String getHTML_CONTENT() {
+		return HTML_CONTENT;
 	}
 }

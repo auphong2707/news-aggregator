@@ -72,28 +72,28 @@ class PresenterTools {
 	
 	private static void setWebsite(List<Node> elements, ArticleData data, int index) {
 		Label website = (Label) elements.get(index);
-		website.setText(data.getDataByType(DataType.WEBSITE_SOURCE));
+		website.setText(data.getWEBSITE_SOURCE());
 	}
 	
 	private static void setTitle(List<Node> elements, ArticleData data, int index) {
 		Label title = (Label) elements.get(index);
-		title.setText(data.getDataByType(DataType.TITLE));
+		title.setText(data.getTITLE());
 	}
 	
 	private static void setIntro(List<Node> elements, ArticleData data, int index) {
 		Label intro = (Label) elements.get(index);
-		intro.setText(data.getDataByType(DataType.INTRO));
+		intro.setText(data.getINTRO());
 	}
 	
 	private static void setAuthor(List<Node> elements, ArticleData data, int index) {
 		Label author = (Label) elements.get(index);
-		author.setText(data.getDataByType(DataType.AUTHOR_NAME));
+		author.setText(data.getAUTHOR_NAME());
 	}
 	
 	private static void setImage(List<Node> elements, ArticleData data, int index) {
 		ImageView imageView = (ImageView) elements.get(index);
 		
-		String imgURL = data.getDataByType(DataType.IMAGE);
+		String imgURL = data.getIMAGE();
 		if (imgURL != null && !imgURL.equals("")) {
 			imageView.setImage(new Image(imgURL));
 		}

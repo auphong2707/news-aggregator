@@ -61,12 +61,12 @@ public class ArticleViewPresenter {
 	public void sceneSwitchInitialize() {
 		ArticleData selected = SceneVariables.getInstance().selectedArticleData;
 		
-		String title = selected.getDataByType(DataType.TITLE);
-		String intro = selected.getDataByType(DataType.INTRO);
-		String author = selected.getDataByType(DataType.AUTHOR_NAME);
-		String htmlContent = selected.getDataByType(DataType.HTML_CONTENT);
-		String publishDate = selected.getDataByType(DataType.CREATION_DATE);
-		String website = selected.getDataByType(DataType.WEBSITE_SOURCE);
+		String title = selected.getTITLE();
+		String intro = selected.getINTRO();
+		String author = selected.getAUTHOR_NAME();
+		String htmlContent = selected.getHTML_CONTENT();
+		String publishDate = selected.getCREATION_DATE();
+		String website = selected.getWEBSITE_SOURCE();
 		
 		titleLabel.setText(title);
 		introLabel.setText(intro);
