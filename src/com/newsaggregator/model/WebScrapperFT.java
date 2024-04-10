@@ -1,6 +1,5 @@
 package com.newsaggregator.model;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -8,25 +7,23 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class WebScrapperFT extends WebScrapper {
-    public WebScrapperFT()
+class WebScrapperFT extends WebScrapper {
+    WebScrapperFT()
     {
     	webSource = "Financial Times";
     	type = "News Article";
     	fileName += "newsFT.json";
     }
     
-    @Override
-    protected List<Pair<String, String>> getAllLinksAndImages(){
+    @Override 
+    List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
+    	
     	try {	
-            Random r = new Random();
-            Document document = connectWeb("https://www.ft.com/blockchain", userAgent.get(r.nextInt(userAgent.size())));
+            Document document = connectWeb("https://www.ft.com/blockchain");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
@@ -36,7 +33,7 @@ public class WebScrapperFT extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://www.ft.com/blockchain" + relativeLink;
 
-                document = connectWeb(completeLink, userAgent.get(r.nextInt(userAgent.size())));
+                document = connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
@@ -48,10 +45,8 @@ public class WebScrapperFT extends WebScrapper {
     	return linkAndImage;
     }
     
-    @Override
-    protected List<Pair<String, String>> getLinkAndImageInPage(Document document) {
-    	List<String> articleLinks = new ArrayList<String>();
-    	List<String> articleImages = new ArrayList<String>();
+    @Override 
+    List<Pair<String, String>> getLinkAndImageInPage(Document document) {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	Elements contents = document.getElementsByClass("o-teaser-collection__item o-grid-row");
@@ -71,8 +66,8 @@ public class WebScrapperFT extends WebScrapper {
     	return linkAndImage;
     }
     
-    @Override
-    protected String getTitle(Document document) {
+    @Override 
+    String getTitle(Document document) {
         Elements contents = document.select(".article-classifier__gap");
         for (Element content: contents) {
         	String articleTitle = content.text();
@@ -81,8 +76,8 @@ public class WebScrapperFT extends WebScrapper {
         return "";
     }
     
-    @Override
-    protected String getAuthor(Document document) {
+    @Override 
+    String getAuthor(Document document) {
     	Elements contents = document.select(".article-info__time-byline");
         for (Element content : contents) {
             String authorArticle = content.select("a[href]").text();
@@ -91,8 +86,8 @@ public class WebScrapperFT extends WebScrapper {
         return "";
     }
     
-    @Override
-    protected String getDetailedContent(Document document) {
+    @Override 
+    String getDetailedContent(Document document) {
     	Elements contents = document.select(".n-content-body.js-article__content-body");
     	String text = new String();
     	for (Element content : contents) {
@@ -102,8 +97,8 @@ public class WebScrapperFT extends WebScrapper {
     	return text;
     }
     
-    @Override
-    protected String getCreationDate(Document document) {
+    @Override 
+    String getCreationDate(Document document) {
     	Elements contents = document.select(".article-info__timestamp.o-date");
     	for (Element content : contents) {
     		String creationDate = content.attr("datetime");
@@ -112,8 +107,8 @@ public class WebScrapperFT extends WebScrapper {
     	return "";
     }
     
-    @Override
-    protected String getIntro(Document document) {
+    @Override 
+    String getIntro(Document document) {
     	Elements contents = document.select(".o-topper__standfirst");
         for (Element content : contents) {
             String introArticle = content.text();
@@ -123,8 +118,8 @@ public class WebScrapperFT extends WebScrapper {
     }
     
     
-    @Override
-    protected String getHtmlContent(Document document) {
+    @Override 
+    String getHtmlContent(Document document) {
     	Element contents = document.getElementById("article-body");
     	if (contents != null) {
     		return contents.html();

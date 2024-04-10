@@ -1,6 +1,5 @@
 package com.newsaggregator.model;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -8,25 +7,23 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class WebScrapperCONV extends WebScrapper {
-	public WebScrapperCONV()
+class WebScrapperCONV extends WebScrapper {
+	WebScrapperCONV()
 	{
 		webSource = "The Conversation";
     	type = "News Article";
     	fileName += "newsCONV.json";
 	}
 	
-	@Override
-    protected List<Pair<String, String>> getAllLinksAndImages(){
+	@Override 
+	List<Pair<String, String>> getAllLinksAndImages(){
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
+		
     	try {	
-            Random r = new Random();
-            Document document = connectWeb("https://theconversation.com/us/topics/blockchain-11427/", userAgent.get(r.nextInt(userAgent.size())));
+            Document document = connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".next");
 
@@ -36,7 +33,7 @@ public class WebScrapperCONV extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://theconversation.com" + relativeLink;
 
-                document = connectWeb(completeLink, userAgent.get(r.nextInt(userAgent.size())));
+                document = connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".next");
@@ -48,11 +45,9 @@ public class WebScrapperCONV extends WebScrapper {
     	return linkAndImage;
     }
     
-    @Override
-    protected List<Pair<String, String>> getLinkAndImageInPage(Document document) {
-		List<String> articleLinks = new ArrayList<String>();
-    	List<String> articleImages = new ArrayList<String>();
-    	List<Pair<String, String>> linkAndImage = new ArrayList<>();
+    @Override 
+    List<Pair<String, String>> getLinkAndImageInPage(Document document) {
+    	List<Pair<String, String>> linkAndImageList = new ArrayList<>();
     	
     	Elements contents = document.getElementsByClass("clearfix placed analysis published");
     	
@@ -62,15 +57,15 @@ public class WebScrapperCONV extends WebScrapper {
     			String link = "https://theconversation.com" + element.attr("href");
     			String imageLink = element.select("img").attr("data-src");
     			Pair<String, String> tmp = new Pair<String, String>(link, imageLink);
-        		linkAndImage.add(tmp);
+        		linkAndImageList.add(tmp);
     		}
 		}
     	System.out.println("Collect links and images in page successfully");
-    	return linkAndImage;
+    	return linkAndImageList;
     }
     
-    @Override
-    protected String getTitle(Document document) {
+    @Override 
+    String getTitle(Document document) {
         Elements contents = document.select(".legacy.entry-title.instapaper_title");
         for (Element content: contents) {
         	String articleTitle = content.text();
@@ -79,8 +74,8 @@ public class WebScrapperCONV extends WebScrapper {
         return "";
     }
     
-    @Override
-    protected String getAuthor(Document document) {
+    @Override 
+    String getAuthor(Document document) {
     	Elements contents = document.select(".fn.author-name");
     	String allAuthor = "";
         for (Element content : contents) {
@@ -91,8 +86,8 @@ public class WebScrapperCONV extends WebScrapper {
         return allAuthor;
     }
     
-    @Override
-    protected String getDetailedContent(Document document) {
+    @Override 
+    String getDetailedContent(Document document) {
     	Elements contents = document.select(".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body.inline-promos");
     	String text = new String();
     	for (Element content : contents) {
@@ -102,8 +97,8 @@ public class WebScrapperCONV extends WebScrapper {
     	return text;
     }
     
-    @Override
-    protected String getCreationDate(Document document) {
+    @Override 
+    String getCreationDate(Document document) {
     	Elements contents = document.select(".timestamps time[datetime]");
     	for (Element content : contents) {
     		String creationDate = content.attr("datetime");
@@ -112,15 +107,15 @@ public class WebScrapperCONV extends WebScrapper {
     	return "";
     }
     
-    @Override
-    protected String getIntro(Document document) {
+    @Override 
+    String getIntro(Document document) {
     	Elements contents = document.select(".styles_description__QQdxm.body-14-regular");
     	String intro = contents.select("p").text();
     	return intro;
     }
     
-    @Override
-    protected String getHtmlContent(Document document) {
+    @Override 
+    String getHtmlContent(Document document) {
     	Elements contents = document.select(".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body");
     	if (contents != null) {
     		return contents.html();

@@ -12,12 +12,12 @@ import javafx.util.Pair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-public abstract class WebScrapper {
-	protected String webSource;
-    protected String type;
-    protected String fileName = "data/";
+abstract class WebScrapper {
+	String webSource;
+	String type;
+	String fileName = "data/";
     
-    protected static final List<String> userAgent;
+    private static final List<String> userAgent;
     
     static
     {
@@ -27,7 +27,7 @@ public abstract class WebScrapper {
 			while (scanner.hasNext()){
 			    tmpList.add(scanner.next());
 			}
-			
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,51 +39,53 @@ public abstract class WebScrapper {
     
     private List<ArticleData> listOfData = new ArrayList<ArticleData>();
     
-    protected Document connectWeb(String url, String userAgent) throws IOException {
+    Document connectWeb(String url) throws IOException {
+    	Random random = new Random();
+    	String randomUA = userAgent.get(random.nextInt(userAgent.size()));
         return Jsoup.connect(url)
-                .userAgent(userAgent)
+                .userAgent(randomUA)
                 .referrer("http://www.google.com")
                 .get();
     }
     
-    protected abstract List<Pair<String, String>> getLinkAndImageInPage(Document document);
+    abstract List<Pair<String, String>> getLinkAndImageInPage(Document document);
     
-    protected abstract List<Pair<String, String>> getAllLinksAndImages();
+    abstract List<Pair<String, String>> getAllLinksAndImages();
     
     
-    protected String getSummary(Document document) {
+    String getSummary(Document document) {
     	return "";
     }
     
-    protected String getTitle(Document document) {
+    String getTitle(Document document) {
     	return "";
     }
     
-    protected String getIntro(Document document) {
+    String getIntro(Document document) {
     	return "";
     }
     
-    protected String getDetailedContent(Document document) {
+    String getDetailedContent(Document document) {
     	return "";
     }
     
-    protected String getTags(Document document) {
+    String getTags(Document document) {
     	return "";
     }
     
-    protected String getAuthor(Document document) {
+    String getAuthor(Document document) {
     	return "";
     }
     
-    protected String getCategory(Document document) {
+    String getCategory(Document document) {
     	return "";
     }
     
-    protected String getCreationDate(Document document) {
+    String getCreationDate(Document document) {
     	return "";
     }
     
-    protected String getHtmlContent(Document document) {
+    String getHtmlContent(Document document) {
     	return "";
     }
 
@@ -92,8 +94,7 @@ public abstract class WebScrapper {
     	String summary="", title="", intro="", detailedContent="", tags="",
     			author="", category="", creationDate="", htmlContent="";
     	try {
-    		Random r = new Random();
-        	Document document = connectWeb(articleLink, userAgent.get(r.nextInt(userAgent.size())));
+        	Document document = connectWeb(articleLink);
         	summary = getSummary(document);
             title = getTitle(document);
             intro = getIntro(document); 
@@ -114,7 +115,7 @@ public abstract class WebScrapper {
     	return articleFeatures;
     }
     
-    protected void scrapeAllData()
+    void scrapeAllData()
     {
     	List<Pair<String, String>> allLinksImages = getAllLinksAndImages();
     
