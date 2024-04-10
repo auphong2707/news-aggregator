@@ -25,8 +25,8 @@ public class Model {
 			-> a2.getDataByType(DataType.CREATION_DATE).compareTo(a1.getDataByType(DataType.CREATION_DATE))
 		);
 		scrapers = new WebScrapper[] {
-			// new WebScrapperFT(),
-			// new WebScrapperCONV(),
+			new WebScrapperFT(),
+			new WebScrapperCONV(),
 			new WebScrapperAcademy()
 		};
 	}
@@ -123,7 +123,7 @@ public class Model {
 	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
-			"newsFT.json", "newsCONV.json"	
+			"newsFT.json", "newsCONV.json", "newsAcademy.json"	
 		};
 		
 		try {

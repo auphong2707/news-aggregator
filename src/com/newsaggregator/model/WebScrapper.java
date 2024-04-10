@@ -49,9 +49,7 @@ public abstract class WebScrapper {
                 .get();
     }
     
-    protected abstract List<String> getLinkInPage(Document document);
-    
-    protected abstract List<String> getImageInPage(Document document);
+    protected abstract List<Pair<String, String>> getLinkAndImageInPage(Document document);
     
     protected abstract List<Pair<String, String>> getAllLinksAndImages();
     
@@ -101,7 +99,7 @@ public abstract class WebScrapper {
         	Document document = connectWeb(articleLink, userAgent.get(r.nextInt(userAgent.size())));
         	summary = getSummary(document);
             title = getTitle(document);
-            intro = getIntro(document);
+            intro = getIntro(document); 
             detailedContent = getDetailedContent(document);
             tags = getTags(document);
             author = getAuthor(document);
@@ -109,12 +107,13 @@ public abstract class WebScrapper {
             creationDate = getCreationDate(document);
             htmlContent = getHtmlContent(document);
     	} catch (IOException e) {
-    		e.printStackTrace();
+    		System.out.println("ERROR");
     	}
     	ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
     			title, intro, detailedContent, tags, author, category, creationDate, htmlContent);
-    	
+
     	System.out.println("Collect data in link successfully");
+
     	return articleFeatures;
     }
     
@@ -123,11 +122,11 @@ public abstract class WebScrapper {
     	List<Pair<String, String>> allLinksImages = getAllLinksAndImages();
     
     	for (Pair<String, String> linkAndImage : allLinksImages) {
+
     		String link = linkAndImage.getKey();
     		String image = linkAndImage.getValue();
-    		
     		ArticleData unit = scrapeArticle(link, image);
-    		
+
     		listOfData.add(unit);
     	}
     	

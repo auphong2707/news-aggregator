@@ -5,6 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javafx.util.Pair;
+
 import java.io.IOException;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -20,11 +22,12 @@ public class WebScrapperCONV extends WebScrapper {
 	}
 	
 	@Override
-    protected List<String> getAllLinks(){
-    	List<String> allLinks = new ArrayList<String>();
+    protected List<Pair<String, String>> getAllLinksAndImages(){
+		List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	try {	
             Random r = new Random();
             Document document = connectWeb("https://theconversation.com/us/topics/blockchain-11427/", userAgent.get(r.nextInt(userAgent.size())));
+            linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".next");
 
             while (!nextElements.isEmpty()) {
@@ -34,29 +37,36 @@ public class WebScrapperCONV extends WebScrapper {
                 String completeLink = "https://theconversation.com" + relativeLink;
 
                 document = connectWeb(completeLink, userAgent.get(r.nextInt(userAgent.size())));
-                allLinks.addAll(getLinkInPage(document));
+                linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".next");
             }   
         } catch (IOException e) {
             e.printStackTrace();
         }
-    	
-    	return allLinks;
+
+    	return linkAndImage;
     }
     
     @Override
-    protected List<String> getLinkInPage(Document document) {
-    	List<String> articleLinks = new ArrayList<String>();
+    protected List<Pair<String, String>> getLinkAndImageInPage(Document document) {
+		List<String> articleLinks = new ArrayList<String>();
+    	List<String> articleImages = new ArrayList<String>();
+    	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	Elements contents = document.select(".article--header");
-        for (Element content : contents) {
-            Element linkArticle = content.selectFirst("a");
-            String linkHref = "https://theconversation.com" + linkArticle.attr("href");
-            articleLinks.add(linkHref);
-        }
-        System.out.println("Collect links in page successfully");
-        return articleLinks;
+    	Elements contents = document.getElementsByClass("clearfix placed analysis published");
+    	
+    	for (Element content : contents) {
+    		Element element = content.selectFirst(".article-link");
+    		if (element != null) {
+    			String link = "https://theconversation.com" + element.attr("href");
+    			String imageLink = element.select("img").attr("data-src");
+    			Pair<String, String> tmp = new Pair<String, String>(link, imageLink);
+        		linkAndImage.add(tmp);
+    		}
+		}
+    	System.out.println("Collect links and images in page successfully");
+    	return linkAndImage;
     }
     
     @Override
@@ -103,25 +113,10 @@ public class WebScrapperCONV extends WebScrapper {
     }
     
     @Override
-    protected String getTags(Document document) {
-    	Elements contents = document.select(".topic-list-item");
-    	String allTags = "";
-        for (Element content : contents) {
-            String tagArticle = content.select("a[href]").text();
-            allTags += tagArticle + ", ";
-            // return authorArticle;
-        }
-        return allTags;
-    }
-    
-    @Override
-    protected String getImage(Document document) {
-    	Elements contents = document.select(".placeholder-container");
-        for (Element content : contents) {
-        	String imageLink = content.select("img").first().attr("src");
-            return imageLink;
-        }
-        return "";
+    protected String getIntro(Document document) {
+    	Elements contents = document.select(".styles_description__QQdxm.body-14-regular");
+    	String intro = contents.select("p").text();
+    	return intro;
     }
     
     @Override

@@ -22,14 +22,12 @@ public class WebScrapperAcademy extends WebScrapper {
 	
 	@Override
     protected List<Pair<String, String>> getAllLinksAndImages(){
-    	List<String> allLinks = new ArrayList<String>();
-    	List<String> allImages = new ArrayList<String>();
+		List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	try {	
             Random r = new Random();
             Document document = connectWeb("https://academy.moralis.io/blog/blockchain", userAgent.get(r.nextInt(userAgent.size())));
             Elements nextElements = document.select(".page-numbers.next");
-            allLinks.addAll(getLinkInPage(document));
-            allImages.addAll(getImageInPage(document));
+            linkAndImage.addAll(getLinkAndImageInPage(document));
             
             while (!nextElements.isEmpty()) {
                 Element nextPageLink = nextElements.first();
@@ -37,54 +35,47 @@ public class WebScrapperAcademy extends WebScrapper {
                 if (linkElement == null || linkElement == null) break;
                 String relativeLink = linkElement.attr("href");
                 document = connectWeb(relativeLink, userAgent.get(r.nextInt(userAgent.size())));
-                allLinks.addAll(getLinkInPage(document));
-                allImages.addAll(getImageInPage(document));
+                linkAndImage.addAll(getLinkAndImageInPage(document));;
                 nextElements = document.select(".page-numbers.next");
             }   
         } catch (IOException e) {
             e.printStackTrace();
         }
-    	List<Pair<String, String>> linkAndImage = new ArrayList<>();
-    	for (int i = 0; i < allLinks.size(); i++) {
-    		Pair<String, String> tmp = new Pair<String, String>(allImages.get(i), allLinks.get(i));
-    		linkAndImage.add(tmp);
-    	}
+    	
     	return linkAndImage;
     }
-	
-    
+
     @Override
-    protected List<String> getLinkInPage(Document document) {
+    protected List<Pair<String, String>> getLinkAndImageInPage(Document document) {
     	List<String> articleLinks = new ArrayList<String>();
+    	List<String> articleImages = new ArrayList<String>();
+    	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	Elements contents = document.select(".elementor-post__card");
-        for (Element content : contents) {
-            Element linkArticle = content.selectFirst("a.elementor-post__thumbnail__link");
-            if (linkArticle != null) {
-            	String linkHref = linkArticle.attr("href");
-                articleLinks.add(linkHref);
-            }
-        }
-        System.out.println("Collect links in page successfully");
-        return articleLinks;
-    }
-    
-    @Override
-    protected List<String> getImageInPage(Document document) {
-    	List<String> articleImage = new ArrayList<String>();
-    	
-    	Elements images = document.select(".elementor-post__thumbnail");
-		for (Element image : images) {
-			String imageLink = image.select("img").first().attr("src");
-			articleImage.add(imageLink);
+    	Elements postContainers = document.getElementsByClass("elementor-post");
+    	Elements contents = postContainers.select("article");
+
+    	for (Element content : postContainers) {
+    		Element linkElement = content.selectFirst(".elementor-post__thumbnail__link");
+    		Element imageElement = content.selectFirst(".elementor-post__thumbnail");
+    		if (linkElement != null && imageElement != null) {
+    			String link = content.select("a").attr("href");
+    			String imageLink = content.select("img").attr("src");
+    			Pair<String, String> tmp = new Pair<String, String>(link, imageLink);
+        		linkAndImage.add(tmp);
+    		}
 		}
-        return articleImage;
+    	System.out.println("Collect links and images in page successfully");
+    	return linkAndImage;
     }
 
     @Override
     protected String getTitle(Document document) {
-    	String title = document.select(".headline-h2").first().text();
-        return title;
+    	Element titleElement = document.select(".headline-h2").first();
+    	if (titleElement != null) {
+    		String title = titleElement.text();
+    		return title;
+    	}
+        return "";
     }
     
     @Override
@@ -120,5 +111,20 @@ public class WebScrapperAcademy extends WebScrapper {
 			return date;
 		}
     	return "";
+    }
+    
+    @Override
+    protected String getIntro(Document document) {
+    	String intro = document.select(".styles_description__QQdxm.body-14-regular").select("p").text();
+		return intro;
+    }
+    
+    @Override
+    protected String getHtmlContent(Document document) {
+    	Elements htmlContent = document.select(".styles_postInnerArticle__6XDZ9");
+		if (htmlContent != null) {
+			return htmlContent.html();
+		}
+		return "";
     }
 }

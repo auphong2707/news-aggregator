@@ -5,6 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javafx.util.Pair;
+
 import java.io.IOException;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -20,11 +22,12 @@ public class WebScrapperFT extends WebScrapper {
     }
     
     @Override
-    protected List<String> getAllLinks(){
-    	List<String> allLinks = new ArrayList<String>();
+    protected List<Pair<String, String>> getAllLinksAndImages(){
+    	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	try {	
             Random r = new Random();
             Document document = connectWeb("https://www.ft.com/blockchain", userAgent.get(r.nextInt(userAgent.size())));
+            linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
             while (!nextElements.isEmpty()) {
@@ -34,7 +37,7 @@ public class WebScrapperFT extends WebScrapper {
                 String completeLink = "https://www.ft.com/blockchain" + relativeLink;
 
                 document = connectWeb(completeLink, userAgent.get(r.nextInt(userAgent.size())));
-                allLinks.addAll(getLinkInPage(document));
+                linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
             }   
@@ -42,23 +45,31 @@ public class WebScrapperFT extends WebScrapper {
             e.printStackTrace();
         }
     	
-    	return allLinks;
+    	return linkAndImage;
     }
     
     @Override
-    protected List<String> getLinkInPage(Document document) {
+    protected List<Pair<String, String>> getLinkAndImageInPage(Document document) {
     	List<String> articleLinks = new ArrayList<String>();
+    	List<String> articleImages = new ArrayList<String>();
+    	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	Elements contents = document.select(".o-teaser__heading");
-        for (Element content : contents) {
-            Element linkArticle = content.selectFirst("a.js-teaser-heading-link");
-            String linkHref = "https://www.ft.com" + linkArticle.attr("href");
-            articleLinks.add(linkHref);
-        }
-        System.out.println("Collect links in page successfully");
-        return articleLinks;
+    	Elements contents = document.getElementsByClass("o-teaser-collection__item o-grid-row");
+    	
+    	for (Element content : contents) {
+    		Element linkElement = content.selectFirst(".o-teaser__heading");
+    		Element imageElement = content.selectFirst(".o-teaser__image-placeholder");
+    		
+    		if (linkElement != null && imageElement != null) {
+    			String link = "https://www.ft.com" + linkElement.select("a").attr("href");
+    			String imageLink = imageElement.select("img").attr("data-src");
+    			Pair<String, String> tmp = new Pair<String, String>(link, imageLink);
+        		linkAndImage.add(tmp);
+    		}
+		}
+    	System.out.println("Collect links and images in page successfully");
+    	return linkAndImage;
     }
-    
     
     @Override
     protected String getTitle(Document document) {
@@ -111,15 +122,6 @@ public class WebScrapperFT extends WebScrapper {
         return "";
     }
     
-    @Override
-    protected String getImage(Document document) {
-    	Elements contents = document.select("figure.n-content-image.n-content-image--full");
-        for (Element content : contents) {
-        	String imageLink = content.select("img").first().attr("src");
-            return imageLink;
-        }
-        return "";
-    }
     
     @Override
     protected String getHtmlContent(Document document) {
