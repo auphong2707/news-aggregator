@@ -134,6 +134,8 @@ public class Model {
 				List<ArticleData> unitData = ModelTools.convertJsonStringToData(scanner.nextLine());
 				
 				listOfData.addAll(unitData);
+				
+				scanner.close();
 			}
 			ModelTools.convertDataToJson(listOfData, DIRECTORY + RESULT_FILE_NAME);
 		} catch (FileNotFoundException e) {
