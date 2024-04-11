@@ -121,7 +121,7 @@ public class Model {
 		return ModelTools.randomSubList(modelData, count);
 	}
 	
-	public List<ArticleData> getTrending() {
+	public List<ArticleData> getTrending(int count) {
 		HttpURLConnection conn = null;
         DataOutputStream os = null;
         
@@ -141,8 +141,9 @@ public class Model {
             String output = br.readLine();
 
             conn.disconnect();
-            System.out.println(output);
-            return ModelTools.convertJsonStringToData(output);
+            
+            List<ArticleData> trendingData = ModelTools.convertJsonStringToData(output);
+            return ModelTools.randomSubList(trendingData, count);
 	    } 
         catch (MalformedURLException e) {
 	        e.printStackTrace();
