@@ -35,6 +35,7 @@ public class HomepagePresenter {
 	@FXML private Group notSoBigArticle4;
 	@FXML private Group notSoBigArticle5;
 	@FXML private Group notSoBigArticle6;
+	
 	@FXML private Group notSoBigArticle1t;
 	@FXML private Group notSoBigArticle2t;
 	@FXML private Group notSoBigArticle3t;
@@ -96,8 +97,8 @@ public class HomepagePresenter {
 		
 		trendingData = model.getTrending(6);
 		
-		PresenterTools.setArrayArticleViews(trendingBigArticle, latestData.subList(0, 2), ArticleSize.BIG);
-		PresenterTools.setArrayArticleViews(trendingNotSoBigArticle, latestData.subList(2, 6), ArticleSize.NOT_SO_BIG);
+		PresenterTools.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
+		PresenterTools.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
 	}
 	
 	@FXML
