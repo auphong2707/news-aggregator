@@ -26,6 +26,8 @@ public class HomepagePresenter {
 	@FXML private Group smallArticle2;
 	@FXML private Group smallArticle3;
 	@FXML private Group smallArticle4;
+	@FXML private Group smallArticle5;
+	@FXML private Group smallArticle6;
 	
 	@FXML private Group notSoBigArticle1;
 	@FXML private Group notSoBigArticle2;
@@ -33,6 +35,10 @@ public class HomepagePresenter {
 	@FXML private Group notSoBigArticle4;
 	@FXML private Group notSoBigArticle5;
 	@FXML private Group notSoBigArticle6;
+	@FXML private Group notSoBigArticle1t;
+	@FXML private Group notSoBigArticle2t;
+	@FXML private Group notSoBigArticle3t;
+	@FXML private Group notSoBigArticle4t;
 	
 	@FXML private Group mediumArticle1;
 	
@@ -46,12 +52,14 @@ public class HomepagePresenter {
 	
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
+	private List<ArticleData> trendingData;
 	
 	@FXML
 	public void initialize() throws IOException, InterruptedException {
 		setDate();
 		setLatestArticle();
 		setRandomArticle();
+		setTrendingArticle();
 	}
 	
 	private void setDate() {
@@ -66,11 +74,10 @@ public class HomepagePresenter {
 	private void setLatestArticle() {
 		latestData = model.getLatestArticleData(6);
 		
-		Group[] latestBigArticle = new Group[] {bigArticle1, bigArticle2};
-		Group[] latestSmallArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3, smallArticle4};
+		Group[] latestSmallArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3,
+				 								  smallArticle4, smallArticle5, smallArticle6};
 		
-		PresenterTools.setArrayArticleViews(latestBigArticle, latestData.subList(0, 2), ArticleSize.BIG);
-		PresenterTools.setArrayArticleViews(latestSmallArticle, latestData.subList(2, 6), ArticleSize.SMALL);
+		PresenterTools.setArrayArticleViews(latestSmallArticle, latestData, ArticleSize.SMALL);
 	} 
 	
 	private void setRandomArticle() {
@@ -80,6 +87,17 @@ public class HomepagePresenter {
 		randomData = model.getRandomArticleData(randomArticle.length);
 		
 		PresenterTools.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
+	}
+	
+	private void setTrendingArticle() {
+		Group[] trendingBigArticle = new Group[] {bigArticle1, bigArticle2};
+		Group[] trendingNotSoBigArticle = new Group[] {notSoBigArticle1t, notSoBigArticle2t,
+													   notSoBigArticle3t, notSoBigArticle4t};
+		
+		trendingData = model.getTrending(6);
+		
+		PresenterTools.setArrayArticleViews(trendingBigArticle, latestData.subList(0, 2), ArticleSize.BIG);
+		PresenterTools.setArrayArticleViews(trendingNotSoBigArticle, latestData.subList(2, 6), ArticleSize.NOT_SO_BIG);
 	}
 	
 	@FXML
@@ -112,7 +130,14 @@ public class HomepagePresenter {
 		List<Node> groupChildren = selectedGroup.getChildren();
 		String indexCode = ((Text)(groupChildren.get(groupChildren.size() - 1))).getText();
 		
-		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
+		List<ArticleData> selectedList = null;
+		if (indexCode.charAt(0) == 'L')
+			selectedList = latestData;
+		else if (indexCode.charAt(0) == 'R')
+			selectedList = randomData;
+		else if (indexCode.charAt(0) == 'T')
+			selectedList = trendingData;
+		
 		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
 		
 		
