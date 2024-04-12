@@ -96,6 +96,11 @@ public class ArticleViewPresenter {
 	}
 	
 	@FXML
+	private void switchToHomepage() throws IOException {
+		SceneManager.switchScene(SceneType.HOMEPAGE);
+	}
+	
+	@FXML
 	private void switchToArticle(MouseEvent event) throws IOException {
 		Node clickedObject = (Node) event.getSource();
 		Group selectedGroup;

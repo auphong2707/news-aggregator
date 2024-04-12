@@ -93,7 +93,7 @@ public class SearchTabPresenter {
 	}
 	
 	@FXML
-	private void switchToHomepage(MouseEvent event) throws IOException {
+	private void switchToHomepage() throws IOException {
 		SceneManager.switchScene(SceneType.HOMEPAGE);
 	}
 	

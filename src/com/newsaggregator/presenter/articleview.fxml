@@ -61,7 +61,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="dateLabel" layoutX="26.0" layoutY="19.0" prefHeight="46.0" prefWidth="142.0" text="day, dd/mm/yyyy">
+                  <Label fx:id="dateLabel" layoutX="19.0" layoutY="65.0" prefHeight="46.0" prefWidth="142.0" text="day, dd/mm/yyyy">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -445,6 +445,21 @@
                   </Label>
                   <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="991.0" layoutY="521.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
                   <WebView fx:id="webView" layoutX="55.0" layoutY="504.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="775.0" />
+                  <Button layoutX="19.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToHomepage">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/homepage_button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
