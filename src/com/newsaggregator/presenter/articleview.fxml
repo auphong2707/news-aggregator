@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -32,21 +33,33 @@
                      <font>
                         <Font name="Lucida Sans Demibold Italic" size="68.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <ImageView fitHeight="118.0" fitWidth="121.0" layoutX="298.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/alligator.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button layoutX="1088.0" layoutY="17.0" mnemonicParsing="false" text="Log in">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Label fx:id="dateLabel" layoutX="26.0" layoutY="19.0" prefHeight="46.0" prefWidth="142.0" text="day, dd/mm/yyyy">
                      <font>
@@ -60,41 +73,65 @@
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label text="Category 2">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label text="Category 3">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="10.0" layoutY="10.0" text="Category 4">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="274.0" layoutY="10.0" text="Category 5">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="292.0" layoutY="10.0" text="Category 6">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="304.0" layoutY="10.0" text="Category 7">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="312.0" layoutY="10.0" text="Category 8">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </children>
                   </HBox>
@@ -105,41 +142,65 @@
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label text="Newspaper 2">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label text="Newspaper 3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="10.0" layoutY="10.0" text="Newspaper 4">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="274.0" layoutY="10.0" text="Newspaper 5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="292.0" layoutY="10.0" text="Newspaper 6">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="304.0" layoutY="10.0" text="Newspaper 7">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                         <Label layoutX="312.0" layoutY="10.0" text="Newspaper 8">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </children>
                   </HBox>
@@ -206,6 +267,9 @@
                               </ImageView>
                               <Text layoutX="2.0" layoutY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R0" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="650.0" stroke="#999090" />
                         <Group fx:id="bigArticle2" layoutX="11.0" layoutY="26.0" onMouseClicked="#switchToArticle">
@@ -233,6 +297,9 @@
                               </ImageView>
                               <Text layoutX="11.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R1" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="650.0" stroke="#999090" />
                         <Group fx:id="bigArticle3" layoutX="11.0" layoutY="233.0" onMouseClicked="#switchToArticle">
@@ -260,6 +327,9 @@
                               </ImageView>
                               <Text layoutX="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R2" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="650.0" stroke="#999090" />
                      </children>
@@ -281,6 +351,9 @@
                               </ImageView>
                               <Text layoutX="2.0" layoutY="-3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L0" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="300.0" stroke="#999090" />
                         <Group fx:id="smallArticle2" layoutX="11.0" layoutY="18.0" onMouseClicked="#switchToArticle">
@@ -298,6 +371,9 @@
                               </ImageView>
                               <Text layoutX="5.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L1" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="300.0" stroke="#999090" />
                         <Group fx:id="smallArticle3" layoutX="11.0" layoutY="147.0" onMouseClicked="#switchToArticle">
@@ -315,6 +391,9 @@
                               </ImageView>
                               <Text layoutX="11.0" layoutY="8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L2" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="300.0" stroke="#999090" />
                         <Group fx:id="smallArticle4" layoutX="11.0" layoutY="276.0" onMouseClicked="#switchToArticle">
@@ -332,6 +411,9 @@
                               </ImageView>
                               <Text layoutX="11.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L3" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="300.0" stroke="#999090" />
                         <Group fx:id="smallArticle5" layoutX="11.0" layoutY="405.0" onMouseClicked="#switchToArticle">
@@ -349,6 +431,9 @@
                               </ImageView>
                               <Text layoutX="4.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L4" visible="false" />
                            </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Group>
                         <Line endX="300.0" stroke="#999090" />
                      </children>
