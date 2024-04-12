@@ -11,11 +11,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
 public class ArticleViewPresenter {
+	@FXML private ScrollPane scrollPane;
+	
 	@FXML private Label dateLabel;
 	
 	@FXML private Label titleLabel; 
@@ -70,6 +73,7 @@ public class ArticleViewPresenter {
 		authorLabel.setText(author);
 		publishDateLabel.setText(publishDate);
 		websiteLabel.setText(website);
+		scrollPane.setVvalue(0);
 		
 		setReadNextArticle();
 	}
