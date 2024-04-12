@@ -78,14 +78,28 @@ class TrendDetectionModel:
         self.vectorized_document = None
         self.number_clusters = number_clusters
     
-    def fit_data(self, data):
+    def fit_data(self, data, training = False):
         '''
         Fit all article data into the class, perform necessary transformation
-        '''
+        ''' 
         self.data = data 
-        self.document = preprocess_corpus(data)
-        self.vectorized_document = vectorize(self.document, self.word2vec_model)
+        if training == True:
+            self.document = preprocess_corpus(data)
+            self.vectorized_document = vectorize(self.document, self.word2vec_model)
     
+    def save_data(self, filepath):
+        '''
+        Save data to news-aggregator/data/model
+        '''
+        np.save(filepath + "data/model/vectorized_document.npy", self.vectorized_document)
+    
+    def load_data(self, filepath):
+        '''
+        Load data to self.vectorized_document
+        '''
+        vectorized_document = np.load(filepath + "data/model/vectorized_document.npy", mmap_mode = 'r')
+        self.vectorized_document = vectorized_document
+
     def load_model(self, filepath):
         with open(filepath + "data/model/" + "kmean_model.pkl", "rb") as f:
             self.kmean_model = pickle.load(f)
@@ -170,9 +184,23 @@ if __name__ == "__main__":
     data = json.load(f)
     model = load_model()
     TrendDetector = TrendDetectionModel(model, 11)
-    TrendDetector.fit_data(data)
+    # Fit the data in the model, let training = True if you want to revectorize everything
+    TrendDetector.fit_data(data, training = False) 
+    
+    # If you revectorize or vectorize document for the first time
+    # Then you should run TrendDetector.save_data()
+    #TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
+
+    # Load vectorized document into the model 
+    TrendDetector.load_data(CURRENT_WORKING_DIRECTORY)
+    
+    # Train k_mean model and save it to cluster documents
+    # And save the model
+
     #TrendDetector.train_kmean()
     #TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
+
+    #Load k-mean model and cluster it to find trendings articles
     TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
     trending_articles = TrendDetector.get_trending() #this is output
     #TrendDetector.visualize()
