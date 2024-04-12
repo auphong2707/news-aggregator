@@ -181,16 +181,16 @@ def train(data):
 
 if __name__ == "__main__":
     CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsFT.json', encoding = "utf8")
+    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAll.json', encoding = "utf8")
     data = json.load(f)
     model = load_model()
     TrendDetector = TrendDetectionModel(model, 11)
     # Fit the data in the model, let training = True if you want to revectorize everything
-    # TrendDetector.fit_data(data, training = False) 
+    # TrendDetector.fit_data(data, training = True)
     
     # If you revectorize or vectorize document for the first time
     # Then you should run TrendDetector.save_data()
-    #TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
+    # TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
 
     # Load vectorized document into the model 
     TrendDetector.load_data(data, CURRENT_WORKING_DIRECTORY)
@@ -204,7 +204,8 @@ if __name__ == "__main__":
     #Load k-mean model and cluster it to find trendings articles
     TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
     trending_articles = TrendDetector.get_trending() #this is output
-    #TrendDetector.visualize()
+    #print(trending_articles)
+    TrendDetector.visualize()
     #print(articles)
 
 
