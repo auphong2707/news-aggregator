@@ -39,7 +39,7 @@ public class Model {
 			String command = "python " + directory;
 			
 			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(15, TimeUnit.SECONDS);
+			server.waitFor(5, TimeUnit.SECONDS);
 			
 			processPid = server.pid();
 		}

@@ -24,7 +24,7 @@ def init_search():
 def init_trend():
     # Loading data into trend detection model
     trend_detector = TrendDetectionModel(load_model(), 11)
-    trend_detector.fit_data(data)
+    trend_detector.load_data(data, CURRENT_WORKING_DIRECTORY)
     trend_detector.load_model(CURRENT_WORKING_DIRECTORY)
 
     return trend_detector
@@ -49,4 +49,4 @@ if __name__ == '__main__':
 
         search_engine = task_1.result()
         trend_detector = task_2.result()
-    engine.run(debug=True)
+    engine.run()
