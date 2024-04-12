@@ -25,7 +25,7 @@
       <Pane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2200.0" prefWidth="1200.0">
                <children>
