@@ -93,10 +93,11 @@ class TrendDetectionModel:
         '''
         np.save(filepath + "data/model/vectorized_document.npy", self.vectorized_document)
     
-    def load_data(self, filepath):
+    def load_data(self, data, filepath):
         '''
         Load data to self.vectorized_document
         '''
+        self.data = data 
         vectorized_document = np.load(filepath + "data/model/vectorized_document.npy", mmap_mode = 'r')
         self.vectorized_document = vectorized_document
 
@@ -185,14 +186,14 @@ if __name__ == "__main__":
     model = load_model()
     TrendDetector = TrendDetectionModel(model, 11)
     # Fit the data in the model, let training = True if you want to revectorize everything
-    TrendDetector.fit_data(data, training = False) 
+    # TrendDetector.fit_data(data, training = False) 
     
     # If you revectorize or vectorize document for the first time
     # Then you should run TrendDetector.save_data()
     #TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
 
     # Load vectorized document into the model 
-    TrendDetector.load_data(CURRENT_WORKING_DIRECTORY)
+    TrendDetector.load_data(data, CURRENT_WORKING_DIRECTORY)
     
     # Train k_mean model and save it to cluster documents
     # And save the model
