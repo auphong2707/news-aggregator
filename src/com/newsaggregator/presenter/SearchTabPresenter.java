@@ -60,10 +60,10 @@ public class SearchTabPresenter {
 	}
 	
 	public void sceneSwitchInitialize() {
-		searchBar.setText(SceneVariables.getInstance().searchContent);
+		searchBar.setText(SceneManager.getInstance().searchContent);
 		//System.out.println(SceneVariables.getInstance().searchContent);
 		
-		searchData = model.search(SceneVariables.getInstance().searchContent);
+		searchData = model.search(SceneManager.getInstance().searchContent);
 		setPage(1);
 
 		updateArticles();
@@ -94,7 +94,7 @@ public class SearchTabPresenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.switchScene(SceneType.HOMEPAGE);
+		SceneManager.getInstance().switchScene(SceneType.HOMEPAGE);
 	}
 	
 	private void updateArticles() {
@@ -118,8 +118,8 @@ public class SearchTabPresenter {
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
 		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
-		SceneVariables.getInstance().selectedArticleData = searchData.get(index);
+		SceneManager.getInstance().selectedArticleData = searchData.get(index);
 		
-		SceneManager.switchScene(SceneType.ARTICLE_VIEW);
+		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
 }

@@ -23,7 +23,7 @@ public class Main extends Application {
     
     	Model.runLocalServer();
 	    try {
-	    	SceneManager.setWindow(primaryStage);
+	    	SceneManager.getInstance().setWindow(primaryStage);
 	    	
 	    	String directory = "/com/newsaggregator/presenter/";
 	    	
@@ -38,7 +38,11 @@ public class Main extends Application {
 	        Scene homepage = new Scene(root1); 
 	        Scene searchtab = new Scene(root2);
 	        Scene article = new Scene(root3);
-	        SceneManager.setScenes(new Scene[] {homepage, searchtab, article});
+	        SceneManager.getInstance().setScenes(new Scene[] {
+	        		homepage, 
+	        		searchtab, 
+	        		article
+	        		});
 	        
 	        primaryStage.sceneProperty().addListener((obs, oldScene, newScene) -> {
 	            if (newScene == searchtab) {

@@ -1,23 +1,39 @@
 package com.newsaggregator.presenter;
 
+import com.newsaggregator.model.ArticleData;
+
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SceneManager {
-	private static Stage window;
+	private static SceneManager instance;
+    private SceneManager() { }
+
+    public static SceneManager getInstance() {
+        if(instance == null) {
+            instance = new SceneManager();
+        }
+        return instance;
+    }
 	
-	private static Scene[] scenes;
+    String searchContent;
+    
+    ArticleData selectedArticleData;
+    
+	private Stage window;
 	
-	public static void setWindow(Stage window) {
-		SceneManager.window = window;
+	private Scene[] scenes;
+	
+	public void setWindow(Stage window) {
+		this.window = window;
 	}
 	
-	public static void setScenes(Scene[] scenes) {
-		SceneManager.scenes = scenes;
+	public void setScenes(Scene[] scenes) {
+		this.scenes = scenes;
 	}
 
-	static void switchScene(SceneType scene) {
+	void switchScene(SceneType scene) {
 		Scene nextScene = scenes[scene.ordinal()];
 		
 		window.setScene(nextScene);

@@ -104,19 +104,19 @@ public class HomepagePresenter {
 	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			SceneVariables.getInstance().searchContent = searchBar.getText();
+			SceneManager.getInstance().searchContent = searchBar.getText();
 			switchToSearchtab();
 		}
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		SceneVariables.getInstance().searchContent = searchBar.getText();
+		SceneManager.getInstance().searchContent = searchBar.getText();
 		switchToSearchtab();
 	}
 	
 	private void switchToSearchtab() throws IOException {
-		SceneManager.switchScene(SceneType.SEARCHTAB);
+		SceneManager.getInstance().switchScene(SceneType.SEARCHTAB);
 	}
 	
 	@FXML
@@ -139,9 +139,9 @@ public class HomepagePresenter {
 		else if (indexCode.charAt(0) == 'T')
 			selectedList = trendingData;
 		
-		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
+		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
 		
 		
-		SceneManager.switchScene(SceneType.ARTICLE_VIEW);
+		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
 }
