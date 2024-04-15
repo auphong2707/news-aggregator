@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
-public class ArticleViewPresenter {
+public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private Label dateLabel;
@@ -57,7 +57,8 @@ public class ArticleViewPresenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
-	public void sceneSwitchInitialize() {
+	@Override
+	void sceneSwitchInitialize() {
 		ArticleData selected = SceneManager.getInstance().selectedArticleData;
 		
 		String title = selected.getTITLE();

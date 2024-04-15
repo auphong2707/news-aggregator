@@ -19,7 +19,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 
 
-public class HomepagePresenter {
+public class HomepagePresenter extends Presenter {
 	@FXML private Label dateLabel;
 	
 	@FXML private Group smallArticle1;
@@ -144,4 +144,10 @@ public class HomepagePresenter {
 		
 		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
+
+	@Override
+	void sceneSwitchInitialize() {
+		// TODO Auto-generated method stub
+		
+	}
 }

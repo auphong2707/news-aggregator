@@ -21,7 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-public class SearchTabPresenter {
+public class SearchTabPresenter extends Presenter {
 	private Model model = new Model();
 	
 	@FXML private ImageView logo;
@@ -59,15 +59,6 @@ public class SearchTabPresenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
-	public void sceneSwitchInitialize() {
-		searchBar.setText(SceneManager.getInstance().searchContent);
-		//System.out.println(SceneVariables.getInstance().searchContent);
-		
-		searchData = model.search(SceneManager.getInstance().searchContent);
-		setPage(1);
-
-		updateArticles();
-	}
 	
 	@FXML
 	private void switchPage(ActionEvent event){
@@ -122,4 +113,15 @@ public class SearchTabPresenter {
 		
 		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
+
+	@Override
+	void sceneSwitchInitialize() {
+		// TODO Auto-generated method stub
+		searchBar.setText(SceneManager.getInstance().searchContent);
+		
+		searchData = model.search(SceneManager.getInstance().searchContent);
+		setPage(1);
+
+		updateArticles();
+	}
 }
