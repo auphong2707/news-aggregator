@@ -40,7 +40,7 @@ class WebScrapperFT extends WebScrapper {
             }   
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } 
     	
     	return linkAndImage;
     }
@@ -115,15 +115,5 @@ class WebScrapperFT extends WebScrapper {
             return introArticle;
         }
         return "";
-    }
-    
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Element contents = document.getElementById("article-body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
 }

@@ -113,14 +113,4 @@ class WebScrapperCONV extends WebScrapper {
     	String intro = contents.select("p").text();
     	return intro;
     }
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
-    }
-    
 }

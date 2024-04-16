@@ -111,13 +111,4 @@ class WebScrapperAcademy extends WebScrapper {
     	String intro = document.select(".styles_description__QQdxm.body-14-regular").select("p").text();
 		return intro;
     }
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Elements htmlContent = document.select(".styles_postInnerArticle__6XDZ9");
-		if (htmlContent != null) {
-			return htmlContent.html();
-		}
-		return "";
-    }
 }
