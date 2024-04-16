@@ -13,12 +13,11 @@ public class ArticleData {
 	private final String AUTHOR_NAME;
 	private final String CATEGORY;
 	private final String CREATION_DATE;
-	private final String HTML_CONTENT;
 	
 	ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
-			String authorName, String category, String creationDate, String htmlContent) {
+			String authorName, String category, String creationDate) {
 		super();
 		LINK = link;
 		WEBSITE_SOURCE = websiteSource;
@@ -32,7 +31,6 @@ public class ArticleData {
 		AUTHOR_NAME = authorName;
 		CATEGORY = category;
 		CREATION_DATE = creationDate;
-		HTML_CONTENT = htmlContent;
 	}
 	
 	public String getLINK() {
@@ -81,9 +79,5 @@ public class ArticleData {
 
 	public String getCREATION_DATE() {
 		return CREATION_DATE;
-	}
-
-	public String getHTML_CONTENT() {
-		return HTML_CONTENT;
 	}
 }

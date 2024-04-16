@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 import javafx.util.Pair;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -39,13 +40,22 @@ abstract class WebScrapper {
     
     private List<ArticleData> listOfData = new ArrayList<ArticleData>();
     
-    Document connectWeb(String url) throws IOException {
-    	Random random = new Random();
-    	String randomUA = userAgent.get(random.nextInt(userAgent.size()));
-        return Jsoup.connect(url)
-                .userAgent(randomUA)
-                .referrer("http://www.google.com")
-                .get();
+    Document connectWeb(String url) throws IOException, HttpStatusException {
+    	Document document = null;
+    	while (document == null) {
+    		try {	
+        		Random random = new Random();
+            	String randomUA = userAgent.get(random.nextInt(userAgent.size()));
+            	document = Jsoup.connect(url)
+                        .userAgent(randomUA)
+                        .referrer("http://www.google.com")
+                        .get();
+                
+        	} catch (HttpStatusException e) {
+        		System.out.println("Error connecting to URL: " + e.getMessage());
+        	}	
+    	}
+    	return document;
     }
     
     abstract List<Pair<String, String>> getLinkAndImageInPage(Document document);
@@ -85,14 +95,15 @@ abstract class WebScrapper {
     	return "";
     }
     
-    String getHtmlContent(Document document) {
+    String getHTML(Document document) {
     	return "";
     }
+    
 
  
     private ArticleData scrapeArticle(String articleLink, String imageLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
-    			author="", category="", creationDate="", htmlContent="";
+    			author="", category="", creationDate="";
     	try {
         	Document document = connectWeb(articleLink);
         	summary = getSummary(document);
@@ -103,12 +114,11 @@ abstract class WebScrapper {
             author = getAuthor(document);
             category = getCategory(document);
             creationDate = getCreationDate(document);
-            htmlContent = getHtmlContent(document);
     	} catch (IOException e) {
     		System.out.println("ERROR");
     	}
     	ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
-    			title, intro, detailedContent, tags, author, category, creationDate, htmlContent);
+    			title, intro, detailedContent, tags, author, category, creationDate);
 
     	System.out.println("Collect data in link successfully");
 
