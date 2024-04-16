@@ -2,35 +2,19 @@ import math
 import string
 import json 
 import os
-import nltk
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle 
-
-from nltk.corpus import stopwords
-nltk.download('stopwords')
+import time 
 
 from unidecode import unidecode
 from gensim.models import Word2Vec
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-STOPWORDS = stopwords.words('english')
 CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
 
 
-def remove_stop_words(text: str) -> str:
-    '''
-    Remove unnecessary stopwords
-    '''
-    return ' '.join(word for word in text.split() if word not in STOPWORDS)
-
-def preprocessing(str_input) -> str:
-    str_ascii = unidecode(str_input)
-    translation_table = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    str_input_no_punct = str_ascii.translate(translation_table)
-    preprocesed_str = ' '.join(str_input_no_punct.split())
-    return remove_stop_words(preprocesed_str.lower())
 
 def preprocess_corpus(data):
     '''
@@ -39,9 +23,7 @@ def preprocess_corpus(data):
     '''
     corpus = []
     for content in data:
-        detailed_content = content['DETAILED_CONTENT']
-        detailed_content = preprocessing(detailed_content)
-
+        detailed_content = content['DETAILED_CONTENT_PROCESSED']
         corpus.append(detailed_content)
     
     documents = [text.split() for text in corpus]
@@ -141,7 +123,7 @@ class TrendDetectionModel:
 
     def get_trending(self):
         '''
-        Trending is the articles that are in the cluster with most points
+        Trending is the articles that are in the cluster with most points \n
         Return a json file of "trending" articles
         '''
         y_kmean = self.kmean_model.predict(self.vectorized_document).tolist()
@@ -181,9 +163,12 @@ def train(data):
 
 if __name__ == "__main__":
     CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAll.json', encoding = "utf8")
+    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
+    
     data = json.load(f)
     model = load_model()
+    #model = None 
+    start_time = time.time()
     TrendDetector = TrendDetectionModel(model, 11)
     # Fit the data in the model, let training = True if you want to revectorize everything
     # TrendDetector.fit_data(data, training = True)
@@ -205,7 +190,10 @@ if __name__ == "__main__":
     TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
     trending_articles = TrendDetector.get_trending() #this is output
     #print(trending_articles)
+    end_time = time.time()
+    #print(f"Get trending articles takes {round(end_time - start_time, 2)} seconds")
     TrendDetector.visualize()
+    
     #print(articles)
 
 
