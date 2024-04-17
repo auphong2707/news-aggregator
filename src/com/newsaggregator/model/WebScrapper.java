@@ -95,7 +95,7 @@ abstract class WebScrapper {
     	return "";
     }
     
-    String getHTML(Document document) {
+    String getHtmlContent(Document document) {
     	return "";
     }
     

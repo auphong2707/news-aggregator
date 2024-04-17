@@ -118,4 +118,13 @@ class WebScrapperTheBlockchain extends WebScrapper {
         }
         return categories;
     }
+    
+    @Override
+    String getHtmlContent(Document document) {
+    	Elements contents = document.select(".td-pb-span8.td-main-content");
+    	if (contents != null) {
+    		return contents.html();
+    	}
+	    return "";
+    }
 }
