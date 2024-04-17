@@ -80,4 +80,7 @@ public class ArticleData {
 	public String getCREATION_DATE() {
 		return CREATION_DATE;
 	}
+	public String getHTML_CONTENT() {
+		return CREATION_DATE;
+	}
 }

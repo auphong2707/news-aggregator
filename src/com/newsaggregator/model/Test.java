@@ -16,10 +16,12 @@ import javafx.util.Pair;
 
 public class Test {
 	public static void main(String[] args) throws IOException, HttpStatusException{   	
-//		WebScrapper wp = new WebScrapperTheBlockchain();
-//		wp.scrapeAllData();
+		WebScrapper wp = new WebScrapperCoindesk();
+		wp.scrapeAllData();
+//		Document document = Jsoup.connect("https://www.coindesk.com/tech/2024/03/20/protocol-village/").get();
 
     }
 }
+
         
      
