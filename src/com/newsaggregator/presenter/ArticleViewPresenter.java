@@ -67,10 +67,19 @@ public class ArticleViewPresenter extends Presenter {
 		String htmlContent = selected.getHTML_CONTENT();
 		String publishDate = selected.getCREATION_DATE();
 		String website = selected.getWEBSITE_SOURCE();
+		String css = "<style>"
+				+ "img {max-width: 100%; height: auto; } "
+				+ "body {width: 97%; height: 100%; margin: 0; "
+				+ "		 font-family: verdana, arial, sans-serif; "
+				+ "		 align-items: center;"
+				+ "		 overflow-x: hidden; }"
+				+ "button { display: none !important; }"
+				+ "a { text-decoration: none; color: inherit; cursor: text; pointer-events: none;}"
+				+ "</style>";
 		
 		titleLabel.setText(title);
 		introLabel.setText(intro);
-		webView.getEngine().loadContent(htmlContent);
+		webView.getEngine().loadContent(css + htmlContent);
 		authorLabel.setText(author);
 		publishDateLabel.setText(publishDate);
 		websiteLabel.setText(website);
