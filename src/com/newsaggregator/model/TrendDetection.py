@@ -149,7 +149,7 @@ def load_model():
 
 def train(data):
     '''
-    Train word2vec models and save it into news-aggregator/data/model/
+    Train word2vec models and save it into news-aggregator/data/model/word2vec.model
     '''
     w2v = Word2Vec(vector_size = 200, window = 3, min_count = 1)
     w2v.build_vocab(data)
@@ -166,33 +166,39 @@ if __name__ == "__main__":
     f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
     
     data = json.load(f)
+    '''
+    If you want to retrain word2vec model, then do as follow
+    
+    # splited_data = preprocess_corpus(data)
+    # train(splited_data)
+    '''
     model = load_model()
-    #model = None 
-    start_time = time.time()
     TrendDetector = TrendDetectionModel(model, 11)
-    # Fit the data in the model, let training = True if you want to revectorize everything
+    '''
+    Fit the data in the model, let training = True if you want to revectorize everything
+    
     # TrendDetector.fit_data(data, training = True)
     
-    # If you revectorize or vectorize document for the first time
-    # Then you should run TrendDetector.save_data()
+    If you revectorize or vectorize document for the first time
+    Then you should run TrendDetector.save_data()
+    
     # TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
-
-    # Load vectorized document into the model 
+    '''
+    
+    # Load vectorized document into the model if it is already been done before
     TrendDetector.load_data(data, CURRENT_WORKING_DIRECTORY)
     
-    # Train k_mean model and save it to cluster documents
-    # And save the model
+    '''
+    Train k_mean model and save it to cluster documents
+    And save the model
 
-    #TrendDetector.train_kmean()
-    #TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
-
-    #Load k-mean model and cluster it to find trendings articles
+    # TrendDetector.train_kmean()
+    # TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
+    '''
+    # Load k-mean model and cluster it to find trendings articles
     TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
     trending_articles = TrendDetector.get_trending() #this is output
-    #print(trending_articles)
-    end_time = time.time()
-    #print(f"Get trending articles takes {round(end_time - start_time, 2)} seconds")
-    TrendDetector.visualize()
+    #TrendDetector.visualize()
     
     #print(articles)
 
