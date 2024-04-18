@@ -16,6 +16,10 @@ class Summarizer():
     
     
     def summarize_data(self):
+        '''
+        Using pretrained Sentence-Bert model to summarize detailed content
+        Of the article in 30% length of the originals.
+        '''
         for i in range(len(self.data)):
             body = self.data[i]['DETAILED_CONTENT']
             self.data[i]['SUMMARY'] = self.model(body, ratio = 0.3)
@@ -23,10 +27,16 @@ class Summarizer():
             if i % 20 == 0:
                 print(f"Article {i} summarized")
     def import_data(self, filepath):
+        '''
+        Import data into the Summarizer via json file.
+        '''
         f = open(filepath + 'data/newsAllProcessed.json', encoding = "utf8")
         self.data = json.load(f)       
 
     def export_data(self, filepath):
+        '''
+        Export data to destined file under json format
+        '''
         with open(filepath + 'data/newsAllProcessed.json', 'w') as f:
             json.dump(self.data, f)
 
