@@ -28,7 +28,9 @@ public class Model {
 			new WebScrapperFT(),
 			new WebScrapperCONV(),
 			new WebScrapperAcademy(),
-			new WebScrapperTheBlockchain()
+			new WebScrapperTheBlockchain(),
+			new WebScrapperCoindesk(),
+			new WebScrapperFreightWave()
 		};
 	}
 	
@@ -163,7 +165,7 @@ public class Model {
 	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
-			"newsFT.json", "newsCONV.json", "newsAcademy.json", "newsTheBlockchain.json"	
+			"newsFT.json", "newsCONV.json", "newsAcademy.json", "newsTheBlockchain.json", "newsCoindesk.json", "newsFreightWave.json"	
 		};
 		
 		try {
