@@ -81,7 +81,7 @@ class WebScrapperCONV extends WebScrapper {
         for (Element content : contents) {
             String authorArticle = content.select("span").text();
             allAuthor += authorArticle + ", ";
-            // return authorArticle;
+
         }
         return allAuthor;
     }
