@@ -1,11 +1,13 @@
 package com.newsaggregator.presenter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 import com.newsaggregator.model.ArticleData;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -29,6 +31,9 @@ public class SceneManager {
 	private Presenter[] presenters;
 	private Scene currentScene;
 	
+	List<SceneType> sceneHistory = new ArrayList<SceneType>();
+	List<ArticleData> dataHistory = new ArrayList<ArticleData>();
+	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
 		
@@ -49,6 +54,7 @@ public class SceneManager {
         };
         
         currentScene = homepage;
+        sceneHistory.add(SceneType.HOMEPAGE);
 	}
 	
 	public Scene getCurrentScene() {
@@ -61,9 +67,27 @@ public class SceneManager {
 		
 		nextPresenter.sceneSwitchInitialize();
 		currentScene = nextScene;
+		sceneHistory.add(scene);
+		System.out.println(sceneHistory);
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+	}
+		
+	
+	void switchLastScene() {
+		sceneHistory.removeLast();
+		SceneType scene = sceneHistory.getLast();
+		Scene nextScene = scenes[scene.ordinal()];
+		Presenter nextPresenter = presenters[scene.ordinal()];
+		
+		nextPresenter.sceneSwitchInitialize();
+		currentScene = nextScene;
+		
+		window.setScene(nextScene);
+        window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		System.out.println(sceneHistory);
 	}
 }

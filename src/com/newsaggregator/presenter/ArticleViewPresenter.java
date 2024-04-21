@@ -10,6 +10,7 @@ import com.newsaggregator.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,7 @@ import javafx.scene.web.WebView;
 public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
+	@FXML private Button returnButton;
 	@FXML private Label dateLabel;
 	
 	@FXML private Label titleLabel; 
@@ -60,7 +62,8 @@ public class ArticleViewPresenter extends Presenter {
 	@Override
 	void sceneSwitchInitialize() {
 		ArticleData selected = SceneManager.getInstance().selectedArticleData;
-		
+		SceneManager.getInstance().dataHistory.add(selected);
+		System.out.println(SceneManager.getInstance().dataHistory);
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();
 		String author = selected.getAUTHOR_NAME();
@@ -119,4 +122,8 @@ public class ArticleViewPresenter extends Presenter {
 		sceneSwitchInitialize();
     }
 	
+	@FXML
+	void switchLastScene() {
+		SceneManager.getInstance().switchLastScene();;
+	}
 }

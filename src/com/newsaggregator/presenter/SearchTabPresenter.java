@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,6 +30,7 @@ public class SearchTabPresenter extends Presenter {
 	@FXML private Label dateLabel;
 	
 	@FXML private Label pageLabel;
+	@FXML private Button returnButton;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
 	
@@ -123,5 +125,10 @@ public class SearchTabPresenter extends Presenter {
 		setPage(1);
 
 		updateArticles();
+	}
+	
+	@FXML
+	void switchLastScene() {
+		SceneManager.getInstance().switchLastScene();;
 	}
 }

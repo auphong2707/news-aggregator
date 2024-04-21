@@ -48,6 +48,7 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML private TextField searchBar;
 	@FXML private Button searchButton;
+	@FXML private Button returnButton;
 	
 	private Model model = new Model();
 	
@@ -117,6 +118,7 @@ public class HomepagePresenter extends Presenter {
 	
 	private void switchToSearchtab() throws IOException {
 		SceneManager.getInstance().switchScene(SceneType.SEARCHTAB);
+		
 	}
 	
 	@FXML
@@ -140,8 +142,7 @@ public class HomepagePresenter extends Presenter {
 			selectedList = trendingData;
 		
 		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
-		
-		
+
 		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
 
@@ -150,4 +151,10 @@ public class HomepagePresenter extends Presenter {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@FXML
+	void switchLastScene() {
+		SceneManager.getInstance().switchLastScene();;
+	}
+	
 }

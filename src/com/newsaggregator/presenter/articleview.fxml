@@ -460,6 +460,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="returnButton" layoutX="74.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchLastScene" prefHeight="38.0" prefWidth="42.0" text="&lt;" />
                </children>
             </AnchorPane>
         </content>
