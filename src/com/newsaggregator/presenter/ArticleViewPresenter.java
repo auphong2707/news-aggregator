@@ -63,7 +63,6 @@ public class ArticleViewPresenter extends Presenter {
 	void sceneSwitchInitialize() {
 		ArticleData selected = SceneManager.getInstance().selectedArticleData;
 		SceneManager.getInstance().dataHistory.add(selected);
-		System.out.println(SceneManager.getInstance().dataHistory);
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();
 		String author = selected.getAUTHOR_NAME();
@@ -118,12 +117,34 @@ public class ArticleViewPresenter extends Presenter {
 		
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
-		
+		SceneManager.getInstance().sceneHistory.add(SceneType.ARTICLE_VIEW);
 		sceneSwitchInitialize();
     }
 	
 	@FXML
 	void switchLastScene() {
-		SceneManager.getInstance().switchLastScene();;
+		SceneManager.getInstance().returnScene();;
+	}
+	
+	@Override
+	void sceneReturnInitialize() {
+		SceneManager.getInstance().dataHistory.removeLast();
+		ArticleData selected = SceneManager.getInstance().dataHistory.getLast();
+		String title = selected.getTITLE();
+		String intro = selected.getINTRO();
+		String author = selected.getAUTHOR_NAME();
+		String htmlContent = selected.getHTML_CONTENT();
+		String publishDate = selected.getCREATION_DATE();
+		String website = selected.getWEBSITE_SOURCE();
+		
+		titleLabel.setText(title);
+		introLabel.setText(intro);
+		webView.getEngine().loadContent(htmlContent);
+		authorLabel.setText(author);
+		publishDateLabel.setText(publishDate);
+		websiteLabel.setText(website);
+		scrollPane.setVvalue(0);
+		
+		setReadNextArticle();
 	}
 }

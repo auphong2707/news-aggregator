@@ -82,6 +82,9 @@ public class SearchTabPresenter extends Presenter {
 			setPage(1);
 			
 			updateArticles();
+			
+			SceneManager.getInstance().sceneHistory.add(SceneType.SEARCHTAB);
+			SceneManager.getInstance().searchHistory.add(searchBar.getText());
 		} 	
 	}
 	
@@ -115,7 +118,12 @@ public class SearchTabPresenter extends Presenter {
 		
 		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
-
+	
+	@FXML
+	void switchLastScene() {
+		SceneManager.getInstance().returnScene();;
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
 		// TODO Auto-generated method stub
@@ -125,10 +133,20 @@ public class SearchTabPresenter extends Presenter {
 		setPage(1);
 
 		updateArticles();
+		
+		SceneManager.getInstance().searchHistory.add(SceneManager.getInstance().searchContent);
 	}
 	
-	@FXML
-	void switchLastScene() {
-		SceneManager.getInstance().switchLastScene();;
+	@Override
+	void sceneReturnInitialize() {
+		// TODO Auto-generated method stub
+		SceneManager.getInstance().searchHistory.removeLast();
+		
+		searchBar.setText(SceneManager.getInstance().searchHistory.getLast());
+		
+		searchData = model.search(SceneManager.getInstance().searchHistory.getLast());
+		setPage(1);
+
+		updateArticles();
 	}
 }

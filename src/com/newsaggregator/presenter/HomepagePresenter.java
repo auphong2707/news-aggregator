@@ -145,16 +145,22 @@ public class HomepagePresenter extends Presenter {
 
 		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
     }
-
+	
+	@FXML
+	void switchLastScene() {
+		SceneManager.getInstance().returnScene();;
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	@FXML
-	void switchLastScene() {
-		SceneManager.getInstance().switchLastScene();;
+	@Override
+	void sceneReturnInitialize() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

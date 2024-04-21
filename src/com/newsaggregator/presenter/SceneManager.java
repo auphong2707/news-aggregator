@@ -33,6 +33,7 @@ public class SceneManager {
 	
 	List<SceneType> sceneHistory = new ArrayList<SceneType>();
 	List<ArticleData> dataHistory = new ArrayList<ArticleData>();
+	List<String> searchHistory = new ArrayList<String>();
 	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
@@ -68,26 +69,24 @@ public class SceneManager {
 		nextPresenter.sceneSwitchInitialize();
 		currentScene = nextScene;
 		sceneHistory.add(scene);
-		System.out.println(sceneHistory);
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 	}
 		
-	
-	void switchLastScene() {
+	void returnScene() {
 		sceneHistory.removeLast();
 		SceneType scene = sceneHistory.getLast();
 		Scene nextScene = scenes[scene.ordinal()];
 		Presenter nextPresenter = presenters[scene.ordinal()];
 		
-		nextPresenter.sceneSwitchInitialize();
+		nextPresenter.sceneReturnInitialize();
 		currentScene = nextScene;
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
-		System.out.println(sceneHistory);
 	}
+	
 }
