@@ -140,7 +140,8 @@ public class SearchTabPresenter extends Presenter {
 	@Override
 	void sceneReturnInitialize() {
 		// TODO Auto-generated method stub
-		SceneManager.getInstance().searchHistory.removeLast();
+		List<String> searchHistory = SceneManager.getInstance().searchHistory;
+		searchHistory.remove(searchHistory.size() - 1);
 		
 		searchBar.setText(SceneManager.getInstance().searchHistory.getLast());
 		
