@@ -16,7 +16,7 @@ import javafx.util.Pair;
 
 public class Test {
 	public static void main(String[] args) throws IOException, HttpStatusException{   	
-		WebScrapper wp = new WebScrapperTheFintech();
+		WebScrapper wp = new WebScrapperExpress();
 		wp.scrapeAllData();
 
 	}
