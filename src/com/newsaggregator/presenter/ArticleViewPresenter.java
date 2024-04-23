@@ -72,8 +72,11 @@ public class ArticleViewPresenter extends Presenter {
 				+ "body {width: 97%; height: 100%; margin: 0; "
 				+ "		 font-family: verdana, arial, sans-serif; "
 				+ "		 align-items: center;"
-				+ "		 overflow-x: hidden; }"
+				+ "		 overflow-x: hidden; "
+				+ "		 text-align: justify; }"
+				+ "aside { display: none !important; }"
 				+ "button { display: none !important; }"
+				+ "iframe { display: none !important; }"
 				+ "a { text-decoration: none; color: inherit; cursor: text; pointer-events: none;}"
 				+ "</style>";
 		
