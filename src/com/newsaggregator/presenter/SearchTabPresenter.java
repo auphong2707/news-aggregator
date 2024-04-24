@@ -120,7 +120,7 @@ public class SearchTabPresenter extends Presenter {
     }
 	
 	@FXML
-	void switchLastScene() {
+	void returnScene() {
 		SceneManager.getInstance().returnScene();;
 	}
 	
@@ -141,11 +141,11 @@ public class SearchTabPresenter extends Presenter {
 	void sceneReturnInitialize() {
 		// TODO Auto-generated method stub
 		List<String> searchHistory = SceneManager.getInstance().searchHistory;
-		searchHistory.remove(searchHistory.size() - 1);
+		SceneManager.getInstance().removeElement(searchHistory);
 		
-		searchBar.setText(SceneManager.getInstance().searchHistory.getLast());
+		searchBar.setText(searchHistory.get(searchHistory.size()-1));
 		
-		searchData = model.search(SceneManager.getInstance().searchHistory.getLast());
+		searchData = model.search(searchHistory.get(searchHistory.size()-1));
 		setPage(1);
 
 		updateArticles();

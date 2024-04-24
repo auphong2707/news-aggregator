@@ -69,6 +69,7 @@ public class SceneManager {
 		nextPresenter.sceneSwitchInitialize();
 		currentScene = nextScene;
 		sceneHistory.add(scene);
+		System.out.println(sceneHistory);
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
@@ -76,17 +77,25 @@ public class SceneManager {
 	}
 		
 	void returnScene() {
-		sceneHistory.removeLast();
-		SceneType scene = sceneHistory.getLast();
+		sceneHistory.remove(sceneHistory.size() - 1);
+		SceneType scene = sceneHistory.get(sceneHistory.size()-1);
 		Scene nextScene = scenes[scene.ordinal()];
 		Presenter nextPresenter = presenters[scene.ordinal()];
 		
 		nextPresenter.sceneReturnInitialize();
 		currentScene = nextScene;
+		System.out.println(sceneHistory);
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+	}
+	
+	@SuppressWarnings("rawtypes")
+	void removeElement(List list) {
+		if (list.size() > 1) {
+			list.remove(list.get(list.size()-1));
+		} 
 	}
 	
 }

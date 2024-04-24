@@ -427,7 +427,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="73.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchLastScene" prefHeight="34.0" prefWidth="36.0" text="&lt;" />
+                  <Button fx:id="returnButton" layoutX="73.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnScene" prefHeight="34.0" prefWidth="36.0" text="&lt;" />
                </children>
             </AnchorPane>
         </content>

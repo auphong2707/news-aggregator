@@ -122,14 +122,16 @@ public class ArticleViewPresenter extends Presenter {
     }
 	
 	@FXML
-	void switchLastScene() {
+	void returnScene() {
 		SceneManager.getInstance().returnScene();;
 	}
 	
 	@Override
 	void sceneReturnInitialize() {
-		SceneManager.getInstance().dataHistory.removeLast();
-		ArticleData selected = SceneManager.getInstance().dataHistory.getLast();
+		List<ArticleData> dataHistory = SceneManager.getInstance().dataHistory;
+		//dataHistory.remove(dataHistory.size()-1);
+		SceneManager.getInstance().removeElement(dataHistory);
+		ArticleData selected = dataHistory.get(dataHistory.size()-1);
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();
 		String author = selected.getAUTHOR_NAME();

@@ -147,7 +147,7 @@ public class HomepagePresenter extends Presenter {
     }
 	
 	@FXML
-	void switchLastScene() {
+	void returntScene() {
 		SceneManager.getInstance().returnScene();;
 	}
 	

@@ -960,7 +960,7 @@
                   </HBox>
                   <Line endX="280.0" layoutX="82.0" layoutY="970.0" stroke="#a19797" />
                   <Line endX="285.0" layoutX="392.0" layoutY="970.0" stroke="#a19797" />
-                  <Button fx:id="returnButton" layoutX="292.0" layoutY="31.0" mnemonicParsing="false" onAction="#switchLastScene" text="&lt;" />
+                  <Button fx:id="returnButton" layoutX="292.0" layoutY="31.0" mnemonicParsing="false" onAction="#returntScene" text="&lt;" />
                </children>
             </AnchorPane>
         </content>
