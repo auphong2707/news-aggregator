@@ -62,7 +62,7 @@ public class ArticleViewPresenter extends Presenter {
 	@Override
 	void sceneSwitchInitialize() {
 		ArticleData selected = SceneManager.getInstance().selectedArticleData;
-		SceneManager.getInstance().dataHistory.add(selected);
+		
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();
 		String author = selected.getAUTHOR_NAME();
@@ -100,7 +100,7 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().switchScene(SceneType.HOMEPAGE);
+		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
 	}
 	
 	@FXML
@@ -116,37 +116,13 @@ public class ArticleViewPresenter extends Presenter {
 		String indexCode = ((Text)(groupChildren.get(groupChildren.size() - 1))).getText();
 		
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
-		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
-		SceneManager.getInstance().sceneHistory.add(SceneType.ARTICLE_VIEW);
-		sceneSwitchInitialize();
+		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
+
+		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
 	
 	@FXML
 	void returnScene() {
-		SceneManager.getInstance().returnScene();;
-	}
-	
-	@Override
-	void sceneReturnInitialize() {
-		List<ArticleData> dataHistory = SceneManager.getInstance().dataHistory;
-		//dataHistory.remove(dataHistory.size()-1);
-		SceneManager.getInstance().removeElement(dataHistory);
-		ArticleData selected = dataHistory.get(dataHistory.size()-1);
-		String title = selected.getTITLE();
-		String intro = selected.getINTRO();
-		String author = selected.getAUTHOR_NAME();
-		String htmlContent = selected.getHTML_CONTENT();
-		String publishDate = selected.getCREATION_DATE();
-		String website = selected.getWEBSITE_SOURCE();
-		
-		titleLabel.setText(title);
-		introLabel.setText(intro);
-		webView.getEngine().loadContent(htmlContent);
-		authorLabel.setText(author);
-		publishDateLabel.setText(publishDate);
-		websiteLabel.setText(website);
-		scrollPane.setVvalue(0);
-		
-		setReadNextArticle();
+		SceneManager.getInstance().returnScene();
 	}
 }

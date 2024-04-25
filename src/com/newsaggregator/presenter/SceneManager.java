@@ -1,8 +1,6 @@
 package com.newsaggregator.presenter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 import com.newsaggregator.model.ArticleData;
@@ -11,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class SceneManager {
 	private static SceneManager instance;
@@ -29,11 +28,9 @@ public class SceneManager {
 	private Stage window;
 	private Scene[] scenes;
 	private Presenter[] presenters;
-	private Scene currentScene;
+	private SceneType currentSceneType;
 	
-	List<SceneType> sceneHistory = new ArrayList<SceneType>();
-	List<ArticleData> dataHistory = new ArrayList<ArticleData>();
-	List<String> searchHistory = new ArrayList<String>();
+	Stack<Pair<SceneType, Object>> history = new Stack<Pair<SceneType, Object>>();
 	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
@@ -54,50 +51,57 @@ public class SceneManager {
         	articleLoader.<Presenter>getController()
         };
         
-        currentScene = homepage;
-        sceneHistory.add(SceneType.HOMEPAGE);
+        currentSceneType = SceneType.HOMEPAGE;
 	}
 	
 	public Scene getCurrentScene() {
-		return currentScene;
+		return scenes[currentSceneType.ordinal()];
 	}
 
-	void switchScene(SceneType scene) {
-		Scene nextScene = scenes[scene.ordinal()];
-		Presenter nextPresenter = presenters[scene.ordinal()];
+	private void switchScene(SceneType nextSceneType) {
+		Scene nextScene = scenes[nextSceneType.ordinal()];
+		Presenter nextPresenter = presenters[nextSceneType.ordinal()];
 		
 		nextPresenter.sceneSwitchInitialize();
-		currentScene = nextScene;
-		sceneHistory.add(scene);
-		System.out.println(sceneHistory);
+		currentSceneType = nextSceneType;
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
 	}
+	
+	void moveScene(SceneType nextSceneType, Object object) {
+		history.push(new Pair<SceneType, Object>(
+		    currentSceneType,
+		    switch (currentSceneType) {
+		        case SEARCHTAB -> searchContent;
+		        case ARTICLE_VIEW -> selectedArticleData;
+		        default -> null; 
+		    }
+		));
+
+		currentSceneType = nextSceneType;
+		if (currentSceneType == SceneType.SEARCHTAB) {
+			searchContent = (String) object;
+		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+			selectedArticleData = (ArticleData) object;
+		}
+		
+		switchScene(currentSceneType);
+	}
 		
 	void returnScene() {
-		if (sceneHistory.size() > 1) {
-			sceneHistory.remove(sceneHistory.size() - 1);
-			SceneType scene = sceneHistory.get(sceneHistory.size()-1);
-			Scene nextScene = scenes[scene.ordinal()];
-			Presenter nextPresenter = presenters[scene.ordinal()];
+		if (history.size() > 0) {
+			Pair<SceneType, Object> lastPage = history.pop();
 			
-			nextPresenter.sceneReturnInitialize();
-			currentScene = nextScene;
-			System.out.println(sceneHistory);
+			currentSceneType = lastPage.getKey();
+			if (currentSceneType == SceneType.SEARCHTAB) {
+				searchContent = (String) lastPage.getValue();
+			} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+				selectedArticleData = (ArticleData) lastPage.getValue();
+			}
 			
-			window.setScene(nextScene);
-	        window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-	        window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+			switchScene(currentSceneType);
 		}
-	}
-	
-	@SuppressWarnings("rawtypes")
-	void removeElement(List list) {
-		if (list.size() > 1) {
-			list.remove(list.get(list.size()-1));
-		} 
-	}
-	
+	}	
 }

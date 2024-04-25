@@ -77,20 +77,13 @@ public class SearchTabPresenter extends Presenter {
 	@FXML
 	private void search(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
-			searchData = model.search(searchBar.getText());
-			
-			setPage(1);
-			
-			updateArticles();
-			
-			SceneManager.getInstance().sceneHistory.add(SceneType.SEARCHTAB);
-			SceneManager.getInstance().searchHistory.add(searchBar.getText());
+			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchBar.getText());
 		} 	
 	}
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().switchScene(SceneType.HOMEPAGE);
+		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
 	}
 	
 	private void updateArticles() {
@@ -114,14 +107,14 @@ public class SearchTabPresenter extends Presenter {
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
 		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
-		SceneManager.getInstance().selectedArticleData = searchData.get(index);
 		
-		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
+		ArticleData selectedData = searchData.get(index);
+		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
 	
 	@FXML
 	void returnScene() {
-		SceneManager.getInstance().returnScene();;
+		SceneManager.getInstance().returnScene();
 	}
 	
 	@Override
@@ -130,22 +123,6 @@ public class SearchTabPresenter extends Presenter {
 		searchBar.setText(SceneManager.getInstance().searchContent);
 		
 		searchData = model.search(SceneManager.getInstance().searchContent);
-		setPage(1);
-
-		updateArticles();
-		
-		SceneManager.getInstance().searchHistory.add(SceneManager.getInstance().searchContent);
-	}
-	
-	@Override
-	void sceneReturnInitialize() {
-		// TODO Auto-generated method stub
-		List<String> searchHistory = SceneManager.getInstance().searchHistory;
-		SceneManager.getInstance().removeElement(searchHistory);
-		
-		searchBar.setText(searchHistory.get(searchHistory.size()-1));
-		
-		searchData = model.search(searchHistory.get(searchHistory.size()-1));
 		setPage(1);
 
 		updateArticles();
