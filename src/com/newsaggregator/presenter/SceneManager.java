@@ -77,18 +77,20 @@ public class SceneManager {
 	}
 		
 	void returnScene() {
-		sceneHistory.remove(sceneHistory.size() - 1);
-		SceneType scene = sceneHistory.get(sceneHistory.size()-1);
-		Scene nextScene = scenes[scene.ordinal()];
-		Presenter nextPresenter = presenters[scene.ordinal()];
-		
-		nextPresenter.sceneReturnInitialize();
-		currentScene = nextScene;
-		System.out.println(sceneHistory);
-		
-		window.setScene(nextScene);
-        window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-        window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		if (sceneHistory.size() > 1) {
+			sceneHistory.remove(sceneHistory.size() - 1);
+			SceneType scene = sceneHistory.get(sceneHistory.size()-1);
+			Scene nextScene = scenes[scene.ordinal()];
+			Presenter nextPresenter = presenters[scene.ordinal()];
+			
+			nextPresenter.sceneReturnInitialize();
+			currentScene = nextScene;
+			System.out.println(sceneHistory);
+			
+			window.setScene(nextScene);
+	        window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+	        window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+		}
 	}
 	
 	@SuppressWarnings("rawtypes")
