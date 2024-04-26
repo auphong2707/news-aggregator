@@ -15,6 +15,7 @@ class WebScrapperFT extends WebScrapper {
     {
     	webSource = "Financial Times";
     	type = "News Article";
+    	htmlContentLocation = "article.n-content-body";
     	fileName += "newsFT.json";
     }
     
@@ -23,7 +24,7 @@ class WebScrapperFT extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-            Document document = connectWeb("https://www.ft.com/blockchain");
+            Document document = ModelTools.connectWeb("https://www.ft.com/blockchain");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
@@ -33,14 +34,14 @@ class WebScrapperFT extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://www.ft.com/blockchain" + relativeLink;
 
-                document = connectWeb(completeLink);
+                document = ModelTools.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");
             }   
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } 
     	
     	return linkAndImage;
     }
@@ -115,15 +116,5 @@ class WebScrapperFT extends WebScrapper {
             return introArticle;
         }
         return "";
-    }
-    
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Element contents = document.getElementById("article-body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
 }

@@ -15,6 +15,7 @@ class WebScrapperCONV extends WebScrapper {
 	{
 		webSource = "The Conversation";
     	type = "News Article";
+    	htmlContentLocation = ".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body";
     	fileName += "newsCONV.json";
 	}
 	
@@ -23,7 +24,7 @@ class WebScrapperCONV extends WebScrapper {
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
     	try {	
-            Document document = connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
+            Document document = ModelTools.connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".next");
 
@@ -33,7 +34,7 @@ class WebScrapperCONV extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://theconversation.com" + relativeLink;
 
-                document = connectWeb(completeLink);
+                document = ModelTools.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".next");
@@ -81,7 +82,7 @@ class WebScrapperCONV extends WebScrapper {
         for (Element content : contents) {
             String authorArticle = content.select("span").text();
             allAuthor += authorArticle + ", ";
-            // return authorArticle;
+
         }
         return allAuthor;
     }
@@ -113,14 +114,4 @@ class WebScrapperCONV extends WebScrapper {
     	String intro = contents.select("p").text();
     	return intro;
     }
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
-    }
-    
 }

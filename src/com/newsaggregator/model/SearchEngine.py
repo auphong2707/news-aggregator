@@ -41,9 +41,6 @@ class SearchEngine:
         '''
         The data is fed  into the class
         '''
-        for i in range(len(data)):
-            data[i]['DETAILED_CONTENT_PROCESSED'] = preprocessing(data[i]['DETAILED_CONTENT'])
-            #data[i]['TITLE'] = preprocessing(data[i]['TITLE'])
         self.data = data
         self.average_document_length = sum([len(article['DETAILED_CONTENT_PROCESSED'].split()) for article in self.data]) / len(self.data)
     
@@ -123,7 +120,7 @@ if __name__ == "__main__":
     '''
     Loading data into the search engine
     '''
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsFT.json', encoding = "utf8")
+    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
     data = json.load(f)
     search_engine = SearchEngine()
     search_engine.fit(data)
@@ -133,6 +130,6 @@ if __name__ == "__main__":
     return variable is a json string
     '''
     #print(search_engine.data[0]['DETAILED_CONTENT'])
-    result = search_engine.search("Facebook Libra: the", 10)
-    print(len(result))
+    #result = search_engine.search("Facebook Libra: the", 10)
+    #print(len(result))
 

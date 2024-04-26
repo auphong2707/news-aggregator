@@ -1,5 +1,11 @@
 package com.newsaggregator.model;
 
+import java.io.IOException;
+
+import org.jsoup.HttpStatusException;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 public class ArticleData {
 	private final String LINK;
 	private final String WEBSITE_SOURCE;
@@ -13,12 +19,12 @@ public class ArticleData {
 	private final String AUTHOR_NAME;
 	private final String CATEGORY;
 	private final String CREATION_DATE;
-	private final String HTML_CONTENT;
+	private final String HTML_CONTENT_LOCATION;
 	
 	ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
-			String authorName, String category, String creationDate, String htmlContent) {
+			String authorName, String category, String creationDate, String htmlContentLocation) {
 		super();
 		LINK = link;
 		WEBSITE_SOURCE = websiteSource;
@@ -32,7 +38,7 @@ public class ArticleData {
 		AUTHOR_NAME = authorName;
 		CATEGORY = category;
 		CREATION_DATE = creationDate;
-		HTML_CONTENT = htmlContent;
+		HTML_CONTENT_LOCATION = htmlContentLocation;
 	}
 	
 	public String getLINK() {
@@ -82,8 +88,19 @@ public class ArticleData {
 	public String getCREATION_DATE() {
 		return CREATION_DATE;
 	}
-
+	
 	public String getHTML_CONTENT() {
-		return HTML_CONTENT;
+		Document document = null;
+		try {
+			document = ModelTools.connectWeb(LINK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (document == null) return "";
+		
+		Elements contents = document.select(HTML_CONTENT_LOCATION);
+    	if (contents == null) return "";
+	    
+	    return contents.html();
 	}
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Model {
 	private final static String DIRECTORY = "data/";
-	private final static String RESULT_FILE_NAME = "newsAll.json";
+	private final static String RESULT_FILE_NAME = "newsAllProcessed.json";
 	private final static WebScrapper[] scrapers;
 	
 	private static long processPid = -1;
@@ -24,10 +24,17 @@ public class Model {
 			(ArticleData a1, ArticleData a2)
 			-> a2.getCREATION_DATE().compareTo(a1.getCREATION_DATE())
 		);
+		System.out.println("Size of Data: " + modelData.size());
+		
 		scrapers = new WebScrapper[] {
 			new WebScrapperFT(),
 			new WebScrapperCONV(),
-			new WebScrapperAcademy()
+			new WebScrapperAcademy(),
+			new WebScrapperTheBlockchain(),
+			new WebScrapperCoindesk(),
+			new WebScrapperFreightWave(),
+			new WebScrapperTheFintech(),
+			new WebScrapperExpress()
 		};
 	}
 	
@@ -39,7 +46,7 @@ public class Model {
 			String command = "python " + directory;
 			
 			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(5, TimeUnit.SECONDS);
+			server.waitFor(10, TimeUnit.SECONDS);
 			
 			processPid = server.pid();
 		}
@@ -59,6 +66,13 @@ public class Model {
 		for(WebScrapper scraper : scrapers)
 		{
 			scraper.scrapeAllData();
+		}
+		combineData();
+	}
+	
+	public void scrapeNewData(int startIndex) {
+		for(int i = startIndex;  i < scrapers.length; ++i) {
+			scrapers[i].scrapeAllData();
 		}
 		combineData();
 	}
@@ -123,8 +137,6 @@ public class Model {
 	
 	public List<ArticleData> getTrending(int count) {
 		HttpURLConnection conn = null;
-        DataOutputStream os = null;
-        
         try{
             URL url = new URL("http://127.0.0.1:5000/trending"); //important to add the trailing slash after add
             conn = (HttpURLConnection) url.openConnection();
@@ -162,7 +174,8 @@ public class Model {
 	
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
-			"newsFT.json", "newsCONV.json", "newsAcademy.json"	
+			"newsFT.json", "newsCONV.json", "newsAcademy.json", "newsTheBlockchain.json"
+			, "newsCoindesk.json", "newsFreightWave.json", "newsTheFintech.json", "newsExpress.json"	
 		};
 		
 		try {
