@@ -23,7 +23,7 @@ class WebScrapperExpress extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-    		Document document = connectWeb("https://www.financialexpress.com/about/blockchain/");
+    		Document document = ModelTools.connectWeb("https://www.financialexpress.com/about/blockchain/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".pagination");
             
@@ -31,7 +31,7 @@ class WebScrapperExpress extends WebScrapper {
             	Elements nextPageLink = document.select("a.next.page-numbers");
             	String completeLink = nextPageLink.attr("href");
                 if (completeLink == null || completeLink.isEmpty()) break;
-                document = connectWeb(completeLink);
+                document = ModelTools.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));   
                 nextElements = document.select(".pagination");
             }   

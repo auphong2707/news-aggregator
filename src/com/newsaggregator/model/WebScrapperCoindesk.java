@@ -23,7 +23,7 @@ class WebScrapperCoindesk extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-            Document document = connectWeb("https://www.coindesk.com/tag/blockchain-tech/");
+            Document document = ModelTools.connectWeb("https://www.coindesk.com/tag/blockchain-tech/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".page-link");
 
@@ -34,7 +34,7 @@ class WebScrapperCoindesk extends WebScrapper {
            
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://www.coindesk.com/" + relativeLink;
-                document = connectWeb(completeLink);
+                document = ModelTools.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".page-link");

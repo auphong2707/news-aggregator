@@ -22,7 +22,7 @@ class WebScrapperAcademy extends WebScrapper {
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
     	try {	
-            Document document = connectWeb("https://academy.moralis.io/blog/blockchain");
+            Document document = ModelTools.connectWeb("https://academy.moralis.io/blog/blockchain");
             Elements nextElements = document.select(".page-numbers.next");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             
@@ -31,7 +31,7 @@ class WebScrapperAcademy extends WebScrapper {
                 Element linkElement = nextPageLink.getElementsByTag("a").first();
                 if (linkElement == null || linkElement == null) break;
                 String relativeLink = linkElement.attr("href");
-                document = connectWeb(relativeLink);
+                document = ModelTools.connectWeb(relativeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));;
                 nextElements = document.select(".page-numbers.next");
             }   

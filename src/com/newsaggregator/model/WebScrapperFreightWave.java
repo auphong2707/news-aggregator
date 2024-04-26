@@ -23,7 +23,7 @@ class WebScrapperFreightWave extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-            Document document = connectWeb("https://www.freightwaves.com/blockchain");
+            Document document = ModelTools.connectWeb("https://www.freightwaves.com/blockchain");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".fw-pagination");
 
@@ -40,7 +40,7 @@ class WebScrapperFreightWave extends WebScrapper {
             	String link = nextPageLink.attr("href");
                 if (link == null || link.isEmpty()) break;
                 
-                document = connectWeb(link);
+                document = ModelTools.connectWeb(link);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".fw-pagination");

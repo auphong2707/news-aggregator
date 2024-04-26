@@ -23,7 +23,7 @@ class WebScrapperCONV extends WebScrapper {
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
     	try {	
-            Document document = connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
+            Document document = ModelTools.connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".next");
 
@@ -33,7 +33,7 @@ class WebScrapperCONV extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://theconversation.com" + relativeLink;
 
-                document = connectWeb(completeLink);
+                document = ModelTools.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".next");

@@ -23,7 +23,7 @@ class WebScrapperTheFintech extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-    		Document document = connectWeb("https://thefintechtimes.com/category/news/blockchain/");
+    		Document document = ModelTools.connectWeb("https://thefintechtimes.com/category/news/blockchain/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".nav-links");
 
@@ -33,7 +33,7 @@ class WebScrapperTheFintech extends WebScrapper {
                 	
                  String completeLink = nextPageLink.attr("href");
                 if (completeLink == null || completeLink.isEmpty()) break;
-                document = connectWeb(completeLink);
+                document = ModelTools.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));   
                 nextElements = document.select(".nav-links");
             }   
