@@ -15,7 +15,7 @@ class WebScrapperFT extends WebScrapper {
     {
     	webSource = "Financial Times";
     	type = "News Article";
-    	htmlContentLocation = "article-body";
+    	htmlContentLocation = ".article-body";
     	fileName += "newsFT.json";
     }
     
