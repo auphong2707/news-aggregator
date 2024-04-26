@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 import javafx.util.Pair;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -39,13 +40,35 @@ abstract class WebScrapper {
     
     private List<ArticleData> listOfData = new ArrayList<ArticleData>();
     
-    Document connectWeb(String url) throws IOException {
-    	Random random = new Random();
-    	String randomUA = userAgent.get(random.nextInt(userAgent.size()));
-        return Jsoup.connect(url)
-                .userAgent(randomUA)
-                .referrer("http://www.google.com")
-                .get();
+    Document connectWeb(String url) throws IOException, HttpStatusException {
+    	Document document = null;
+    	
+    	for(int tryTime = 1; tryTime <= 20; ++tryTime) {
+    		try {	
+        		Random random = new Random();
+            	String randomUA = userAgent.get(random.nextInt(userAgent.size()));
+
+            	Jsoup.newSession();
+    			
+            	document = Jsoup.connect(url)
+                        .userAgent(randomUA)
+                        .referrer("http://www.google.com")
+                        .timeout(120000)
+                        .get();
+        	} catch (Exception e) {
+        		System.out.println("Error connecting to URL: " + e.getMessage() + "(" + url + ")");
+        		System.out.println("Tried " + tryTime + " times. Attempting to try again.");
+        		
+        		try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+    		if(document != null) break;
+    	}
+    	return document;
     }
     
     abstract List<Pair<String, String>> getLinkAndImageInPage(Document document);
@@ -88,13 +111,17 @@ abstract class WebScrapper {
     String getHtmlContent(Document document) {
     	return "";
     }
+    
 
  
     private ArticleData scrapeArticle(String articleLink, String imageLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
-    			author="", category="", creationDate="", htmlContent="";
+    			author="", category="", creationDate="";
+    	
     	try {
         	Document document = connectWeb(articleLink);
+        	if (document == null) return null;
+        	
         	summary = getSummary(document);
             title = getTitle(document);
             intro = getIntro(document); 
@@ -103,16 +130,20 @@ abstract class WebScrapper {
             author = getAuthor(document);
             category = getCategory(document);
             creationDate = getCreationDate(document);
-            htmlContent = getHtmlContent(document);
-    	} catch (IOException e) {
-    		System.out.println("ERROR");
+            
+            ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
+        			title, intro, detailedContent, tags, author, category, creationDate);
+            
+            System.out.println("Collect data in link successfully");
+            
+            return articleFeatures;
+    	} catch (Exception e) {
+    		System.out.println("Scrape article error: " + e.getMessage());
     	}
-    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
-    			title, intro, detailedContent, tags, author, category, creationDate, htmlContent);
+    	
+    	System.out.println("Skip article!");
 
-    	System.out.println("Collect data in link successfully");
-
-    	return articleFeatures;
+    	return null;
     }
     
     void scrapeAllData()
@@ -125,7 +156,7 @@ abstract class WebScrapper {
     		String image = linkAndImage.getValue();
     		ArticleData unit = scrapeArticle(link, image);
 
-    		listOfData.add(unit);
+    		if (unit != null) listOfData.add(unit);
     	}
     	
     	ModelTools.convertDataToJson(listOfData, fileName);

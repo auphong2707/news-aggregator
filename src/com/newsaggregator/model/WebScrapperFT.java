@@ -40,7 +40,7 @@ class WebScrapperFT extends WebScrapper {
             }   
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } 
     	
     	return linkAndImage;
     }
@@ -116,7 +116,6 @@ class WebScrapperFT extends WebScrapper {
         }
         return "";
     }
-    
     
     @Override 
     String getHtmlContent(Document document) {
