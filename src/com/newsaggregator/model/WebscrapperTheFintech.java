@@ -29,7 +29,9 @@ class WebScrapperTheFintech extends WebScrapper {
 
             while (!nextElements.isEmpty()) {
                 Element nextPageLink = document.selectFirst("a.next.page-numbers");
-                String completeLink = nextPageLink.attr("href");
+                if(nextPageLink == null) break;
+                	
+                 String completeLink = nextPageLink.attr("href");
                 if (completeLink == null || completeLink.isEmpty()) break;
                 document = connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));   

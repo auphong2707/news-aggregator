@@ -37,7 +37,7 @@ class WebScrapperTheBlockchain extends WebScrapper {
                 
                 nextElements = document.select(".page-nav.td-pb-padding-side");
             }   
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } 
     	return linkAndImage;
