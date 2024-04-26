@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Model {
 	private final static String DIRECTORY = "data/";
-	private final static String RESULT_FILE_NAME = "newsAll.json";
+	private final static String RESULT_FILE_NAME = "newsAllProcessed.json";
 	private final static WebScrapper[] scrapers;
 	
 	private static long processPid = -1;
@@ -46,7 +46,7 @@ public class Model {
 			String command = "python " + directory;
 			
 			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(5, TimeUnit.SECONDS);
+			server.waitFor(10, TimeUnit.SECONDS);
 			
 			processPid = server.pid();
 		}
