@@ -59,15 +59,18 @@ public class SceneManager {
 	}
 
 	private void switchScene(SceneType nextSceneType) {
+		System.gc();
+		
 		Scene nextScene = scenes[nextSceneType.ordinal()];
 		Presenter nextPresenter = presenters[nextSceneType.ordinal()];
 		
-		nextPresenter.sceneSwitchInitialize();
 		currentSceneType = nextSceneType;
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        
+        nextPresenter.sceneSwitchInitialize();
 	}
 	
 	void moveScene(SceneType nextSceneType, Object object) {
