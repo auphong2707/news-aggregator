@@ -15,6 +15,7 @@ class WebScrapperCONV extends WebScrapper {
 	{
 		webSource = "The Conversation";
     	type = "News Article";
+    	htmlContentLocation = ".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body";
     	fileName += "newsCONV.json";
 	}
 	
@@ -112,14 +113,5 @@ class WebScrapperCONV extends WebScrapper {
     	Elements contents = document.select(".styles_description__QQdxm.body-14-regular");
     	String intro = contents.select("p").text();
     	return intro;
-    }
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".grid-ten.large-grid-nine.grid-last.content-body.content.entry-content.instapaper_body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
 }

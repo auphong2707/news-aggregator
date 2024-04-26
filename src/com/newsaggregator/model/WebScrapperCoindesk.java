@@ -15,6 +15,7 @@ class WebScrapperCoindesk extends WebScrapper {
     {
     	webSource = "Coindesk";
     	type = "News Article";
+    	htmlContentLocation = ".at-body";
     	fileName += "newsCoindesk.json";
     }
     
@@ -115,15 +116,6 @@ class WebScrapperCoindesk extends WebScrapper {
     	Elements content = document.select(".typography__StyledTypography-sc-owin6q-0.kRnPCl");
         String category = content.select("span").text();
         return category;
-    }
-    
-    @Override
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".at-body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
     
     @Override 

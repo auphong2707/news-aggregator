@@ -15,6 +15,7 @@ class WebScrapperFreightWave extends WebScrapper {
     {
     	webSource = "Freight Wave";
     	type = "News Article";
+    	htmlContentLocation = ".entry-content.mb-30";
     	fileName += "newsFreightWave.json";
     }
     
@@ -124,15 +125,6 @@ class WebScrapperFreightWave extends WebScrapper {
         	tags += content.text() + ", ";
         }
         return tags;
-    }
-    
-    @Override
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".entry-content.mb-30");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
     
     @Override 

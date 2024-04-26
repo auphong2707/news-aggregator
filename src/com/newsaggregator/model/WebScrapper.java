@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 abstract class WebScrapper {
 	String webSource;
 	String type;
+	String htmlContentLocation;
 	String fileName = "data/";
     
     private List<ArticleData> listOfData = new ArrayList<ArticleData>();
@@ -50,10 +51,6 @@ abstract class WebScrapper {
     	return "";
     }
     
-    String getHtmlContent(Document document) {
-    	return "";
-    }
-    
 
  
     private ArticleData scrapeArticle(String articleLink, String imageLink) {
@@ -74,7 +71,7 @@ abstract class WebScrapper {
             creationDate = getCreationDate(document);
             
             ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
-        			title, intro, detailedContent, tags, author, category, creationDate);
+        			title, intro, detailedContent, tags, author, category, creationDate, htmlContentLocation);
             
             System.out.println("Collect data in link successfully");
             

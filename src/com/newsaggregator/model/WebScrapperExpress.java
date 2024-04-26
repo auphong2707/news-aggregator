@@ -15,6 +15,7 @@ class WebScrapperExpress extends WebScrapper {
     {
     	webSource = "Financial Express";
     	type = "News Article";
+    	htmlContentLocation = ".pcl-container";
     	fileName += "newsExpress.json";
     }
     
@@ -107,15 +108,5 @@ class WebScrapperExpress extends WebScrapper {
         }
         return tags;
     }
-    
-    @Override
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".pcl-container");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
-    }
-
 }
 

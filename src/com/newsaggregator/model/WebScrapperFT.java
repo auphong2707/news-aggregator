@@ -15,6 +15,7 @@ class WebScrapperFT extends WebScrapper {
     {
     	webSource = "Financial Times";
     	type = "News Article";
+    	htmlContentLocation = "article-body";
     	fileName += "newsFT.json";
     }
     
@@ -115,14 +116,5 @@ class WebScrapperFT extends WebScrapper {
             return introArticle;
         }
         return "";
-    }
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Element contents = document.getElementById("article-body");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
 }

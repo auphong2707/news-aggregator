@@ -15,6 +15,7 @@ class WebScrapperTheBlockchain extends WebScrapper {
     {
     	webSource = "The Blockchain";
     	type = "News Article";
+    	htmlContentLocation = ".td-pb-span8.td-main-content";
     	fileName += "newsTheBlockchain.json";
     }
     
@@ -117,14 +118,5 @@ class WebScrapperTheBlockchain extends WebScrapper {
         	categories += content.text() + ", ";
         }
         return categories;
-    }
-    
-    @Override
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".td-pb-span8.td-main-content");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
 }

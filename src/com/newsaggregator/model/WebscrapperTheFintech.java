@@ -15,6 +15,7 @@ class WebScrapperTheFintech extends WebScrapper {
     {
     	webSource = "The Fintech Times";
     	type = "News Article";
+    	htmlContentLocation = ".penci-entry-content.entry-content";
     	fileName += "newsTheFintech.json";
     }
     
@@ -115,15 +116,6 @@ class WebScrapperTheFintech extends WebScrapper {
         	categories += content.text() + ", ";
         }
         return categories;
-    }
-    
-    @Override
-    String getHtmlContent(Document document) {
-    	Elements contents = document.select(".penci-entry-content.entry-content");
-    	if (contents != null) {
-    		return contents.html();
-    	}
-	    return "";
     }
     
     @Override 
