@@ -1,24 +1,66 @@
 package com.newsaggregator.presenter;
 
+import java.io.IOException;
+
+import com.newsaggregator.model.ArticleData;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SceneManager {
-	private static Stage window;
+	private static SceneManager instance;
+    private SceneManager() { }
+
+    public static SceneManager getInstance() {
+        if(instance == null) {
+            instance = new SceneManager();
+        }
+        return instance;
+    }
 	
-	private static Scene[] scenes;
+    String searchContent;
+    ArticleData selectedArticleData;
+    
+	private Stage window;
+	private Scene[] scenes;
+	private Presenter[] presenters;
+	private Scene currentScene;
 	
-	public static void setWindow(Stage window) {
-		SceneManager.window = window;
+	public void initialize(Stage window) throws IOException {
+		this.window = window;
+		
+		FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
+    	FXMLLoader homepageLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
+    	FXMLLoader articleLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
+        
+        Scene homepage = new Scene(homepageLoader.load()); 
+        Scene searchtab = new Scene(searchtabLoader.load());
+        Scene article = new Scene(articleLoader.load());
+        
+        
+        scenes = new Scene[] {homepage, searchtab, article};
+        presenters = new Presenter[] {
+        	homepageLoader.<Presenter>getController(),
+        	searchtabLoader.<Presenter>getController(),
+        	articleLoader.<Presenter>getController()
+        };
+        
+        currentScene = homepage;
 	}
 	
-	public static void setScenes(Scene[] scenes) {
-		SceneManager.scenes = scenes;
+	public Scene getCurrentScene() {
+		return currentScene;
 	}
 
-	static void switchScene(SceneType scene) {
+	void switchScene(SceneType scene) {
 		Scene nextScene = scenes[scene.ordinal()];
+		Presenter nextPresenter = presenters[scene.ordinal()];
+		
+		nextPresenter.sceneSwitchInitialize();
+		currentScene = nextScene;
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());

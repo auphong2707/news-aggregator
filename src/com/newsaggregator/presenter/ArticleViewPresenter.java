@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
-public class ArticleViewPresenter {
+public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private Label dateLabel;
@@ -57,8 +57,9 @@ public class ArticleViewPresenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
-	public void sceneSwitchInitialize() {
-		ArticleData selected = SceneVariables.getInstance().selectedArticleData;
+	@Override
+	void sceneSwitchInitialize() {
+		ArticleData selected = SceneManager.getInstance().selectedArticleData;
 		
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();
@@ -97,7 +98,7 @@ public class ArticleViewPresenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.switchScene(SceneType.HOMEPAGE);
+		SceneManager.getInstance().switchScene(SceneType.HOMEPAGE);
 	}
 	
 	@FXML
@@ -113,7 +114,7 @@ public class ArticleViewPresenter {
 		String indexCode = ((Text)(groupChildren.get(groupChildren.size() - 1))).getText();
 		
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
-		SceneVariables.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
+		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
 		
 		sceneSwitchInitialize();
     }
