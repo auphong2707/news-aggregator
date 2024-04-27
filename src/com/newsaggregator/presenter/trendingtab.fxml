@@ -427,21 +427,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="70.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnScene">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../../../../images/return.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <Button fx:id="returnButton" layoutX="73.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnScene" prefHeight="34.0" prefWidth="36.0" text="&lt;" />
                </children>
             </AnchorPane>
         </content>
