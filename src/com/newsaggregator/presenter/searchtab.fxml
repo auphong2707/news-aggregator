@@ -135,7 +135,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Line endX="750.0" endY="1697.5999755859375" startX="750.0" startY="290.0" stroke="#a19797" />
+                  <Line endX="850.0" endY="1697.5999755859375" startX="850.0" startY="290.0" stroke="#a19797" />
                   <Line endX="1130.0" endY="1890.39990234375" startX="70.0" startY="1892.0" />
                   <HBox alignment="CENTER" layoutX="86.0" layoutY="1899.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
                      <children>
@@ -229,17 +229,17 @@
                      <children>
                         <Group fx:id="article1" onMouseClicked="#switchToArticle">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="452.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" onMouseClicked="#switchToArticle" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" onMouseClicked="#switchToArticle" prefHeight="54.0" prefWidth="452.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="452.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -260,20 +260,20 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Line endX="450.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
                         <Group fx:id="article2" layoutX="18.0" onMouseClicked="#switchToArticle">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="452.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="452.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="452.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -294,20 +294,20 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Line endX="450.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
                         <Group fx:id="article3" layoutX="18.0" layoutY="263.0" onMouseClicked="#switchToArticle">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="452.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="452.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="452.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -328,20 +328,20 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Line endX="450.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
                         <Group fx:id="article4" layoutX="18.0" layoutY="526.0" onMouseClicked="#switchToArticle">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="452.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="452.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="452.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -362,7 +362,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Line endX="330.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Line endX="450.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
                         <Group fx:id="article5" layoutX="18.0" layoutY="790.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
@@ -370,17 +370,17 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="331.0" text="Article Title" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="452.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="326.0" text="Brief summary" wrapText="true">
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="452.0" text="Brief summary" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" prefHeight="20.0" prefWidth="83.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
