@@ -423,11 +423,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="nextPage" layoutX="690.0" layoutY="1742.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="26.0" text="&gt;">
+                  <Button fx:id="nextPage" layoutX="802.0" layoutY="1742.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="26.0" prefWidth="26.0" text="&gt;">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Label fx:id="pageLabel" alignment="CENTER" layoutX="376.0" layoutY="1746.0" prefHeight="20.0" prefWidth="58.0" text="Page 1">
+                  <Label fx:id="pageLabel" alignment="CENTER" layoutX="442.0" layoutY="1746.0" prefHeight="20.0" prefWidth="58.0" text="Page 1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

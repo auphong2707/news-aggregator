@@ -94,10 +94,10 @@ public class LatestTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
-		int first = (page - 1) * 5;
-		int last = (page - 1) * 5 + 5;
+		int first = (page - 1) * 6;
+		int last = (page - 1) * 6 + 6;
 		
-		PresenterTools.setArrayArticleViews(articles, trendingData.subList(first, last), ArticleSize.BIG);
+		PresenterTools.setArrayArticleViews(articles, latestData.subList(first, last), ArticleSize.BIG);
 	}
 	
 	private void setPage(int newPage) {
@@ -126,7 +126,7 @@ public class LatestTabPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
-		latestData = model.getTrending(60);
+		latestData = model.getLatestArticleData(60);
 		
 		setPage(1);
 

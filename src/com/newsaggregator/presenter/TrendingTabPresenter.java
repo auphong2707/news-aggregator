@@ -94,8 +94,8 @@ public class TrendingTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
-		int first = (page - 1) * 5;
-		int last = (page - 1) * 5 + 5;
+		int first = (page - 1) * 6;
+		int last = (page - 1) * 6 + 6;
 		
 		PresenterTools.setArrayArticleViews(articles, trendingData.subList(first, last), ArticleSize.BIG);
 	}
