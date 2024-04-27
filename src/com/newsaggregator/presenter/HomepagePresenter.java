@@ -21,6 +21,8 @@ import javafx.scene.Node;
 
 public class HomepagePresenter extends Presenter {
 	@FXML private Label dateLabel;
+	@FXML private Label trendingLabel;
+	@FXML private Label latestLabel;
 	
 	@FXML private Group smallArticle1;
 	@FXML private Group smallArticle2;
@@ -100,6 +102,16 @@ public class HomepagePresenter extends Presenter {
 		
 		PresenterTools.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
 		PresenterTools.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
+	}
+	
+	@FXML
+	private void switchToTrendingTab() {
+		SceneManager.getInstance().moveScene(SceneType.TRENDINGTAB, null);
+	}
+	
+	@FXML
+	private void switchToLatestTab() {
+		SceneManager.getInstance().moveScene(SceneType.LATESTTAB, null);
 	}
 	
 	@FXML

@@ -335,10 +335,13 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label layoutX="82.0" layoutY="238.0" prefHeight="26.0" text="Trending &gt;" textFill="#4b54fa">
+                  <Label layoutX="82.0" layoutY="238.0" onMouseClicked="#switchToTrendingTab" prefHeight="26.0" text="Trending &gt;" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <Line layoutX="1115.0" layoutY="273.0" startX="-375.0" stroke="#a19797" />
                   <Line endX="585.0" layoutX="85.0" layoutY="273.0" stroke="#a19797" />
@@ -832,10 +835,13 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Label layoutX="740.0" layoutY="238.0" prefHeight="26.0" text="Latest &gt;" textFill="#4b54fa">
+                  <Label layoutX="740.0" layoutY="238.0" onMouseClicked="#switchToLatestTab" prefHeight="26.0" text="Latest &gt;" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <HBox layoutX="75.0" layoutY="790.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                      <children>
