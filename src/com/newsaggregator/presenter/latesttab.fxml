@@ -462,7 +462,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="searchBar1" layoutX="109.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <TextField fx:id="searchBar" layoutX="109.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
                   <Button fx:id="searchButton" layoutX="317.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">

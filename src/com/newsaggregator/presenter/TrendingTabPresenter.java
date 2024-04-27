@@ -128,6 +128,8 @@ public class TrendingTabPresenter extends Presenter {
 	void sceneSwitchInitialize() {
 		trendingData = model.getTrending(60);
 		
+		searchBar.clear();
+		
 		setPage(1);
 
 		updateArticles();

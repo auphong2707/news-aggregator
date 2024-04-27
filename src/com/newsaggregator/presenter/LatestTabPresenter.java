@@ -128,6 +128,8 @@ public class LatestTabPresenter extends Presenter {
 	void sceneSwitchInitialize() {
 		latestData = model.getLatestArticleData(60);
 		
+		searchBar.clear();
+		
 		setPage(1);
 
 		updateArticles();
