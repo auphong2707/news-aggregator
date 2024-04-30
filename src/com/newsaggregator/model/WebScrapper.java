@@ -1,8 +1,11 @@
 package com.newsaggregator.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.util.Pair;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.jsoup.nodes.Document;
 
@@ -88,15 +91,27 @@ abstract class WebScrapper {
     void scrapeAllData()
     {
     	List<Pair<String, String>> allLinksImages = getAllLinksAndImages();
+    	List<ArticleData> listOfData = Collections.synchronizedList(new ArrayList<>());
+    	 
+    	ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     
     	for (Pair<String, String> linkAndImage : allLinksImages) {
 
     		String link = linkAndImage.getKey();
     		String image = linkAndImage.getValue();
-    		ArticleData unit = scrapeArticle(link, image);
-
-    		if (unit != null) listOfData.add(unit);
+    		
+    		executor.submit(() -> {
+                ArticleData unit = scrapeArticle(link, image);
+                if (unit != null) {
+                    listOfData.add(unit);
+                }
+            });
     	}
+    	
+    	executor.shutdown();
+    	while (!executor.isTerminated()) {
+            // Waiting...
+        }
     	
     	ModelTools.convertDataToJson(listOfData, fileName);
     }
