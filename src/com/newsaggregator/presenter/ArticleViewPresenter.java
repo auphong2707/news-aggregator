@@ -10,6 +10,7 @@ import com.newsaggregator.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,7 @@ import javafx.scene.web.WebView;
 public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
+	@FXML private Button returnButton;
 	@FXML private Label dateLabel;
 	
 	@FXML private Label titleLabel; 
@@ -114,7 +116,7 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().switchScene(SceneType.HOMEPAGE);
+		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
 	}
 	
 	@FXML
@@ -130,9 +132,13 @@ public class ArticleViewPresenter extends Presenter {
 		String indexCode = ((Text)(groupChildren.get(groupChildren.size() - 1))).getText();
 		
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
-		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
-		
-		sceneSwitchInitialize();
+		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
+
+		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
 	
+	@FXML
+	void returnScene() {
+		SceneManager.getInstance().returnScene();
+	}
 }

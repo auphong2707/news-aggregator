@@ -1,52 +1,21 @@
 package com.newsaggregator.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 import javafx.util.Pair;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 abstract class WebScrapper {
 	String webSource;
 	String type;
+	String htmlContentLocation;
 	String fileName = "data/";
     
-    private static final List<String> userAgent;
-    
-    static
-    {
-    	List<String> tmpList = new ArrayList<String>();
-    	try {
-			Scanner scanner = new Scanner(new File("user-agents.txt"));
-			while (scanner.hasNext()){
-			    tmpList.add(scanner.next());
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	finally {
-    		userAgent = tmpList;
-    	}
-    }
-    
     private List<ArticleData> listOfData = new ArrayList<ArticleData>();
-    
-    Document connectWeb(String url) throws IOException {
-    	Random random = new Random();
-    	String randomUA = userAgent.get(random.nextInt(userAgent.size()));
-        return Jsoup.connect(url)
-                .userAgent(randomUA)
-                .referrer("http://www.google.com")
-                .get();
-    }
     
     abstract List<Pair<String, String>> getLinkAndImageInPage(Document document);
     
@@ -85,16 +54,16 @@ abstract class WebScrapper {
     	return "";
     }
     
-    String getHtmlContent(Document document) {
-    	return "";
-    }
 
  
     private ArticleData scrapeArticle(String articleLink, String imageLink) {
     	String summary="", title="", intro="", detailedContent="", tags="",
-    			author="", category="", creationDate="", htmlContent="";
+    			author="", category="", creationDate="";
+    	
     	try {
-        	Document document = connectWeb(articleLink);
+        	Document document = ModelTools.connectWeb(articleLink);
+        	if (document == null) return null;
+        	
         	summary = getSummary(document);
             title = getTitle(document);
             intro = getIntro(document); 
@@ -103,30 +72,46 @@ abstract class WebScrapper {
             author = getAuthor(document);
             category = getCategory(document);
             creationDate = getCreationDate(document);
-            htmlContent = getHtmlContent(document);
-    	} catch (IOException e) {
-    		System.out.println("ERROR");
+            
+            ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
+        			title, intro, detailedContent, tags, author, category, creationDate, htmlContentLocation);
+            
+            System.out.println("Collect data in link successfully");
+            
+            return articleFeatures;
+    	} catch (Exception e) {
+    		System.out.println("Scrape article error: " + e.getMessage());
     	}
-    	ArticleData articleFeatures = new ArticleData(articleLink, webSource, imageLink, type, summary,
-    			title, intro, detailedContent, tags, author, category, creationDate, htmlContent);
+    	
+    	System.out.println("Skip article!");
 
-    	System.out.println("Collect data in link successfully");
-
-    	return articleFeatures;
+    	return null;
     }
     
     void scrapeAllData()
     {
     	List<Pair<String, String>> allLinksImages = getAllLinksAndImages();
+    	List<ArticleData> listOfData = Collections.synchronizedList(new ArrayList<>());
+    	 
+    	ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     
     	for (Pair<String, String> linkAndImage : allLinksImages) {
 
     		String link = linkAndImage.getKey();
     		String image = linkAndImage.getValue();
-    		ArticleData unit = scrapeArticle(link, image);
-
-    		listOfData.add(unit);
+    		
+    		executor.submit(() -> {
+                ArticleData unit = scrapeArticle(link, image);
+                if (unit != null) {
+                    listOfData.add(unit);
+                }
+            });
     	}
+    	
+    	executor.shutdown();
+    	while (!executor.isTerminated()) {
+            // Waiting...
+        }
     	
     	ModelTools.convertDataToJson(listOfData, fileName);
     }

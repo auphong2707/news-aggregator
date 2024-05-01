@@ -1,14 +1,15 @@
 package com.newsaggregator.presenter;
 
 import java.io.IOException;
+import java.util.Stack;
 
 import com.newsaggregator.model.ArticleData;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class SceneManager {
 	private static SceneManager instance;
@@ -27,7 +28,9 @@ public class SceneManager {
 	private Stage window;
 	private Scene[] scenes;
 	private Presenter[] presenters;
-	private Scene currentScene;
+	private SceneType currentSceneType;
+	
+	Stack<Pair<SceneType, Object>> history = new Stack<Pair<SceneType, Object>>();
 	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
@@ -35,35 +38,79 @@ public class SceneManager {
 		FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
     	FXMLLoader homepageLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
     	FXMLLoader articleLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
+    	FXMLLoader trendingLoader = new FXMLLoader(getClass().getResource("trendingtab.fxml"));
+    	FXMLLoader latestLoader = new FXMLLoader(getClass().getResource("latesttab.fxml"));
         
         Scene homepage = new Scene(homepageLoader.load()); 
         Scene searchtab = new Scene(searchtabLoader.load());
         Scene article = new Scene(articleLoader.load());
+        Scene trending = new Scene(trendingLoader.load());
+        Scene latest = new Scene(latestLoader.load());
         
         
-        scenes = new Scene[] {homepage, searchtab, article};
+        scenes = new Scene[] {homepage, searchtab, article, trending, latest};
         presenters = new Presenter[] {
         	homepageLoader.<Presenter>getController(),
         	searchtabLoader.<Presenter>getController(),
-        	articleLoader.<Presenter>getController()
+        	articleLoader.<Presenter>getController(),
+        	trendingLoader.<Presenter>getController(),
+        	latestLoader.<Presenter>getController()
         };
         
-        currentScene = homepage;
+        currentSceneType = SceneType.HOMEPAGE;
 	}
 	
 	public Scene getCurrentScene() {
-		return currentScene;
+		return scenes[currentSceneType.ordinal()];
 	}
 
-	void switchScene(SceneType scene) {
-		Scene nextScene = scenes[scene.ordinal()];
-		Presenter nextPresenter = presenters[scene.ordinal()];
+	private void switchScene(SceneType nextSceneType) {
+		System.gc();
 		
-		nextPresenter.sceneSwitchInitialize();
-		currentScene = nextScene;
+		Scene nextScene = scenes[nextSceneType.ordinal()];
+		Presenter nextPresenter = presenters[nextSceneType.ordinal()];
+		
+		currentSceneType = nextSceneType;
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        
+        nextPresenter.sceneSwitchInitialize();
 	}
+	
+	void moveScene(SceneType nextSceneType, Object object) {
+		history.push(new Pair<SceneType, Object>(
+		    currentSceneType,
+		    switch (currentSceneType) {
+		        case SEARCHTAB -> searchContent;
+		        case ARTICLE_VIEW -> selectedArticleData;
+		        default -> null; 
+		    }
+		));
+
+		currentSceneType = nextSceneType;
+		if (currentSceneType == SceneType.SEARCHTAB) {
+			searchContent = (String) object;
+		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+			selectedArticleData = (ArticleData) object;
+		}
+		
+		switchScene(currentSceneType);
+	}
+		
+	void returnScene() {
+		if (history.size() > 0) {
+			Pair<SceneType, Object> lastPage = history.pop();
+			
+			currentSceneType = lastPage.getKey();
+			if (currentSceneType == SceneType.SEARCHTAB) {
+				searchContent = (String) lastPage.getValue();
+			} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+				selectedArticleData = (ArticleData) lastPage.getValue();
+			}
+			
+			switchScene(currentSceneType);
+		}
+	}	
 }

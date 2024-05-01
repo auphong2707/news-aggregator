@@ -2,35 +2,19 @@ import math
 import string
 import json 
 import os
-import nltk
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle 
-
-from nltk.corpus import stopwords
-nltk.download('stopwords')
+import time 
 
 from unidecode import unidecode
 from gensim.models import Word2Vec
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-STOPWORDS = stopwords.words('english')
 CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
 
 
-def remove_stop_words(text: str) -> str:
-    '''
-    Remove unnecessary stopwords
-    '''
-    return ' '.join(word for word in text.split() if word not in STOPWORDS)
-
-def preprocessing(str_input) -> str:
-    str_ascii = unidecode(str_input)
-    translation_table = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    str_input_no_punct = str_ascii.translate(translation_table)
-    preprocesed_str = ' '.join(str_input_no_punct.split())
-    return remove_stop_words(preprocesed_str.lower())
 
 def preprocess_corpus(data):
     '''
@@ -39,9 +23,7 @@ def preprocess_corpus(data):
     '''
     corpus = []
     for content in data:
-        detailed_content = content['DETAILED_CONTENT']
-        detailed_content = preprocessing(detailed_content)
-
+        detailed_content = content['DETAILED_CONTENT_PROCESSED']
         corpus.append(detailed_content)
     
     documents = [text.split() for text in corpus]
@@ -141,7 +123,7 @@ class TrendDetectionModel:
 
     def get_trending(self):
         '''
-        Trending is the articles that are in the cluster with most points
+        Trending is the articles that are in the cluster with most points \n
         Return a json file of "trending" articles
         '''
         y_kmean = self.kmean_model.predict(self.vectorized_document).tolist()
@@ -167,7 +149,7 @@ def load_model():
 
 def train(data):
     '''
-    Train word2vec models and save it into news-aggregator/data/model/
+    Train word2vec models and save it into news-aggregator/data/model/word2vec.model
     '''
     w2v = Word2Vec(vector_size = 200, window = 3, min_count = 1)
     w2v.build_vocab(data)
@@ -181,31 +163,43 @@ def train(data):
 
 if __name__ == "__main__":
     CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAll.json', encoding = "utf8")
+    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
+    
     data = json.load(f)
+    '''
+    If you want to retrain word2vec model, then do as follow
+    
+    # splited_data = preprocess_corpus(data)
+    # train(splited_data)
+    '''
     model = load_model()
     TrendDetector = TrendDetectionModel(model, 11)
-    # Fit the data in the model, let training = True if you want to revectorize everything
+    '''
+    Fit the data in the model, let training = True if you want to revectorize everything
+    
     # TrendDetector.fit_data(data, training = True)
     
-    # If you revectorize or vectorize document for the first time
-    # Then you should run TrendDetector.save_data()
+    If you revectorize or vectorize document for the first time
+    Then you should run TrendDetector.save_data()
+    
     # TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
-
-    # Load vectorized document into the model 
+    '''
+    
+    # Load vectorized document into the model if it is already been done before
     TrendDetector.load_data(data, CURRENT_WORKING_DIRECTORY)
     
-    # Train k_mean model and save it to cluster documents
-    # And save the model
+    '''
+    Train k_mean model and save it to cluster documents
+    And save the model
 
-    #TrendDetector.train_kmean()
-    #TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
-
-    #Load k-mean model and cluster it to find trendings articles
+    # TrendDetector.train_kmean()
+    # TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
+    '''
+    # Load k-mean model and cluster it to find trendings articles
     TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
     trending_articles = TrendDetector.get_trending() #this is output
-    #print(trending_articles)
-    TrendDetector.visualize()
+    #TrendDetector.visualize()
+    
     #print(articles)
 
 

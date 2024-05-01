@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,6 +30,7 @@ public class SearchTabPresenter extends Presenter {
 	@FXML private Label dateLabel;
 	
 	@FXML private Label pageLabel;
+	@FXML private Button returnButton;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
 	
@@ -75,17 +77,13 @@ public class SearchTabPresenter extends Presenter {
 	@FXML
 	private void search(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
-			searchData = model.search(searchBar.getText());
-			
-			setPage(1);
-			
-			updateArticles();
+			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchBar.getText());
 		} 	
 	}
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().switchScene(SceneType.HOMEPAGE);
+		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
 	}
 	
 	private void updateArticles() {
@@ -109,11 +107,16 @@ public class SearchTabPresenter extends Presenter {
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
 		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
-		SceneManager.getInstance().selectedArticleData = searchData.get(index);
 		
-		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
+		ArticleData selectedData = searchData.get(index);
+		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
-
+	
+	@FXML
+	void returnScene() {
+		SceneManager.getInstance().returnScene();
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
 		// TODO Auto-generated method stub

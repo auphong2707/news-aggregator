@@ -21,6 +21,8 @@ import javafx.scene.Node;
 
 public class HomepagePresenter extends Presenter {
 	@FXML private Label dateLabel;
+	@FXML private Label trendingLabel;
+	@FXML private Label latestLabel;
 	
 	@FXML private Group smallArticle1;
 	@FXML private Group smallArticle2;
@@ -48,6 +50,7 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML private TextField searchBar;
 	@FXML private Button searchButton;
+	@FXML private Button returnButton;
 	
 	private Model model = new Model();
 	
@@ -102,21 +105,27 @@ public class HomepagePresenter extends Presenter {
 	}
 	
 	@FXML
+	private void switchToTrendingTab() {
+		SceneManager.getInstance().moveScene(SceneType.TRENDINGTAB, null);
+	}
+	
+	@FXML
+	private void switchToLatestTab() {
+		SceneManager.getInstance().moveScene(SceneType.LATESTTAB, null);
+	}
+	
+	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			SceneManager.getInstance().searchContent = searchBar.getText();
-			switchToSearchtab();
+			String searchContent = searchBar.getText();
+			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 		}
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		SceneManager.getInstance().searchContent = searchBar.getText();
-		switchToSearchtab();
-	}
-	
-	private void switchToSearchtab() throws IOException {
-		SceneManager.getInstance().switchScene(SceneType.SEARCHTAB);
+		String searchContent = searchBar.getText();
+		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 	}
 	
 	@FXML
@@ -139,15 +148,17 @@ public class HomepagePresenter extends Presenter {
 		else if (indexCode.charAt(0) == 'T')
 			selectedList = trendingData;
 		
-		SceneManager.getInstance().selectedArticleData = selectedList.get(indexCode.charAt(1) - '0');
-		
-		
-		SceneManager.getInstance().switchScene(SceneType.ARTICLE_VIEW);
+		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
+		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
-
+	
+	@FXML
+	void returntScene() {
+		SceneManager.getInstance().returnScene();
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
-		// TODO Auto-generated method stub
-		
+		searchBar.clear();
 	}
 }

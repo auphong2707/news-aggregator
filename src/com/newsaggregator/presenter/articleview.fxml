@@ -460,6 +460,21 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="returnButton" layoutX="69.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnScene">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/return.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
         </content>

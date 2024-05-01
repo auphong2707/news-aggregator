@@ -14,6 +14,7 @@ class WebScrapperAcademy extends WebScrapper {
 	{
 		webSource = "Academy Moralis";
     	type = "Blog";
+    	htmlContentLocation = ".styles_postInnerArticle__6XDZ9";
     	fileName += "newsAcademy.json";
 	}
 	
@@ -22,7 +23,7 @@ class WebScrapperAcademy extends WebScrapper {
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
     	try {	
-            Document document = connectWeb("https://academy.moralis.io/blog/blockchain");
+            Document document = ModelTools.connectWeb("https://academy.moralis.io/blog/blockchain");
             Elements nextElements = document.select(".page-numbers.next");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             
@@ -31,7 +32,7 @@ class WebScrapperAcademy extends WebScrapper {
                 Element linkElement = nextPageLink.getElementsByTag("a").first();
                 if (linkElement == null || linkElement == null) break;
                 String relativeLink = linkElement.attr("href");
-                document = connectWeb(relativeLink);
+                document = ModelTools.connectWeb(relativeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));;
                 nextElements = document.select(".page-numbers.next");
             }   
@@ -110,14 +111,5 @@ class WebScrapperAcademy extends WebScrapper {
     String getIntro(Document document) {
     	String intro = document.select(".styles_description__QQdxm.body-14-regular").select("p").text();
 		return intro;
-    }
-    
-    @Override 
-    String getHtmlContent(Document document) {
-    	Elements htmlContent = document.select(".styles_postInnerArticle__6XDZ9");
-		if (htmlContent != null) {
-			return htmlContent.html();
-		}
-		return "";
     }
 }
