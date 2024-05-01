@@ -101,6 +101,9 @@ public class ArticleData {
 		Elements contents = document.select(HTML_CONTENT_LOCATION);
     	if (contents == null) return "";
 	    
-	    return contents.html();
+    	String htmlContent = contents.html().replaceAll("<img ", 
+    			"<img onerror=\"this.style.display='none'\" ");
+    	
+	    return htmlContent;
 	}
 }
