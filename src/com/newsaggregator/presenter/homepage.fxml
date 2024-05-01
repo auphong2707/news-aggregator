@@ -261,7 +261,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="dateLabel" layoutX="26.0" layoutY="58.0" prefHeight="27.0" prefWidth="112.0" text="day, dd/mm/yyyy">
+                  <Label fx:id="dateLabel" layoutX="74.0" layoutY="58.0" prefHeight="27.0" prefWidth="112.0" text="day, dd/mm/yyyy">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -335,10 +335,13 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label layoutX="82.0" layoutY="238.0" prefHeight="26.0" text="Trending &gt;" textFill="#4b54fa">
+                  <Label layoutX="82.0" layoutY="238.0" onMouseClicked="#switchToTrendingTab" prefHeight="26.0" text="Trending &gt;" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <Line layoutX="1115.0" layoutY="273.0" startX="-375.0" stroke="#a19797" />
                   <Line endX="585.0" layoutX="85.0" layoutY="273.0" stroke="#a19797" />
@@ -811,8 +814,8 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="searchBar" layoutX="26.0" layoutY="28.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="237.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <TextField fx:id="searchBar" layoutX="72.0" layoutY="28.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="283.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
@@ -832,10 +835,13 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Label layoutX="740.0" layoutY="238.0" prefHeight="26.0" text="Latest &gt;" textFill="#4b54fa">
+                  <Label layoutX="740.0" layoutY="238.0" onMouseClicked="#switchToLatestTab" prefHeight="26.0" text="Latest &gt;" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <HBox layoutX="75.0" layoutY="790.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                      <children>
@@ -960,7 +966,17 @@
                   </HBox>
                   <Line endX="280.0" layoutX="82.0" layoutY="970.0" stroke="#a19797" />
                   <Line endX="285.0" layoutX="392.0" layoutY="970.0" stroke="#a19797" />
-                  <Button fx:id="returnButton" layoutX="292.0" layoutY="31.0" mnemonicParsing="false" onAction="#returntScene" text="&lt;" />
+                  <Button fx:id="returnButton" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#returntScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/return.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </AnchorPane>
         </content>

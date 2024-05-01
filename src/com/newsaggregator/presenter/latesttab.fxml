@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.SearchTabPresenter">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.LatestTabPresenter">
    <center>
       <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
@@ -130,7 +130,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label layoutX="87.0" layoutY="238.0" prefHeight="35.0" prefWidth="119.0" text="Searching" textFill="#4b54fa">
+                  <Label layoutX="87.0" layoutY="238.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -211,21 +211,7 @@
                      </font>
                   </Text>
                   <Line endX="1130.0" layoutY="278.0" startX="70.0" />
-                  <TextField fx:id="searchBar" layoutX="80.0" layoutY="300.0" onKeyPressed="#search" prefHeight="37.0" prefWidth="630.0" />
-                  <Label layoutX="90.0" layoutY="350.0" prefHeight="30.0" prefWidth="54.0" text="Time" textFill="#876ef7">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="375.0" layoutY="350.0" prefHeight="30.0" prefWidth="94.0" text="Category" textFill="#876ef7">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="80.0" layoutY="383.0" prefHeight="38.0" prefWidth="230.0" />
-                  <TextField layoutX="364.0" layoutY="385.0" prefHeight="38.0" prefWidth="345.0" />
-                  <Line endX="715.0" endY="445.0" startX="70.0" startY="445.0" />
-                  <VBox layoutX="79.0" layoutY="470.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                  <VBox layoutX="79.0" layoutY="300.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
                         <Group fx:id="article1" onMouseClicked="#switchToArticle">
                            <children>
@@ -365,7 +351,7 @@
                         <Line endX="450.0" endY="60.0" startX="-300.0" startY="60.0" stroke="#968686" />
                         <Group fx:id="article5" layoutX="18.0" layoutY="790.0" onMouseClicked="#switchToArticle">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="297.0" text="Website" textAlignment="CENTER">
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="452.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -380,7 +366,41 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="289.0" layoutY="182.0" prefHeight="20.0" prefWidth="83.0" text="Author name">
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" visible="false" />
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Group>
+                        <Line endX="450.0" endY="60.0" layoutX="311.0" layoutY="889.0" startX="-300.0" startY="60.0" stroke="#968686" />
+                        <Group fx:id="article6" layoutX="17.0" layoutY="960.0" onMouseClicked="#switchToArticle">
+                           <children>
+                              <Label contentDisplay="RIGHT" layoutX="289.0" layoutY="10.0" prefHeight="33.0" prefWidth="452.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="290.0" layoutY="37.0" prefHeight="54.0" prefWidth="452.0" text="Article Title" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="289.0" layoutY="96.0" prefHeight="60.0" prefWidth="452.0" text="Brief summary" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="289.0" layoutY="182.0" text="Author name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -412,7 +432,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="19.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToHomepage">
+                  <Button layoutX="19.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToHomepage" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -427,7 +447,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="70.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnScene">
+                  <Button fx:id="returnButton" layoutX="64.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -435,12 +455,25 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true">
+                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
                               <Image url="@../../../../images/return.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
+                  </Button>
+                  <TextField fx:id="searchBar" layoutX="109.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="317.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/search.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>

@@ -38,17 +38,23 @@ public class SceneManager {
 		FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
     	FXMLLoader homepageLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
     	FXMLLoader articleLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
+    	FXMLLoader trendingLoader = new FXMLLoader(getClass().getResource("trendingtab.fxml"));
+    	FXMLLoader latestLoader = new FXMLLoader(getClass().getResource("latesttab.fxml"));
         
         Scene homepage = new Scene(homepageLoader.load()); 
         Scene searchtab = new Scene(searchtabLoader.load());
         Scene article = new Scene(articleLoader.load());
+        Scene trending = new Scene(trendingLoader.load());
+        Scene latest = new Scene(latestLoader.load());
         
         
-        scenes = new Scene[] {homepage, searchtab, article};
+        scenes = new Scene[] {homepage, searchtab, article, trending, latest};
         presenters = new Presenter[] {
         	homepageLoader.<Presenter>getController(),
         	searchtabLoader.<Presenter>getController(),
-        	articleLoader.<Presenter>getController()
+        	articleLoader.<Presenter>getController(),
+        	trendingLoader.<Presenter>getController(),
+        	latestLoader.<Presenter>getController()
         };
         
         currentSceneType = SceneType.HOMEPAGE;
