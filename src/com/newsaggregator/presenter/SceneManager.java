@@ -80,15 +80,19 @@ public class SceneManager {
         nextPresenter.sceneSwitchInitialize();
 	}
 	
+	private void addHistory(Stack<Pair<SceneType, Object>> history) {
+		history.push(new Pair<SceneType, Object>(
+			    currentSceneType,
+			    switch (currentSceneType) {
+			        case SEARCHTAB -> searchContent;
+			        case ARTICLE_VIEW -> selectedArticleData;
+			        default -> null; 
+			    }
+			));
+	}
+	
 	void moveScene(SceneType nextSceneType, Object object) {
-		backHistory.push(new Pair<SceneType, Object>(
-		    currentSceneType,
-		    switch (currentSceneType) {
-		        case SEARCHTAB -> searchContent;
-		        case ARTICLE_VIEW -> selectedArticleData;
-		        default -> null; 
-		    }
-		));
+		addHistory(backHistory);
 		forwardHistory.clear();
 
 		currentSceneType = nextSceneType;
@@ -103,14 +107,7 @@ public class SceneManager {
 		
 	void returnScene() {
 		if (backHistory.size() > 0) {
-			forwardHistory.push(new Pair<SceneType, Object>(
-				    currentSceneType,
-				    switch (currentSceneType) {
-				        case SEARCHTAB -> searchContent;
-				        case ARTICLE_VIEW -> selectedArticleData;
-				        default -> null; 
-				    }
-				));
+			addHistory(forwardHistory);
 			Pair<SceneType, Object> lastPage = backHistory.pop();
 			
 			currentSceneType = lastPage.getKey();
@@ -127,14 +124,7 @@ public class SceneManager {
 	void forwardScene() {
 		if (forwardHistory.size() > 0) {
 			Pair<SceneType, Object> nextPage = forwardHistory.pop();
-			backHistory.push(new Pair<SceneType, Object>(
-				    currentSceneType,
-				    switch (currentSceneType) {
-				        case SEARCHTAB -> searchContent;
-				        case ARTICLE_VIEW -> selectedArticleData;
-				        default -> null; 
-				    }
-				));
+			addHistory(backHistory);
 			
 			currentSceneType = nextPage.getKey();
 			if (currentSceneType == SceneType.SEARCHTAB) {
