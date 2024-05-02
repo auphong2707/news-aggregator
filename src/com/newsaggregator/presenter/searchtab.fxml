@@ -412,7 +412,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="19.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToHomepage">
+                  <Button layoutX="58.0" layoutY="28.0" mnemonicParsing="false" onAction="#switchToHomepage">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -427,7 +427,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="70.0" layoutY="26.0" mnemonicParsing="false" onAction="#returnScene">
+                  <Button fx:id="forwardButton" layoutX="101.0" layoutY="28.0" mnemonicParsing="false" onAction="#forwardScene">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -437,7 +437,22 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/return.jpg" />
+                              <Image url="@../../../../images/arrow.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="returnButton" layoutX="16.0" layoutY="28.0" mnemonicParsing="false" onAction="#returnScene">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" rotate="180.0">
+                           <image>
+                              <Image url="@../../../../images/arrow.jpg" />
                            </image>
                         </ImageView>
                      </graphic>

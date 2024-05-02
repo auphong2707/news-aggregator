@@ -432,7 +432,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="19.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToHomepage" prefHeight="31.0" prefWidth="35.0">
+                  <Button layoutX="55.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToHomepage" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -447,7 +447,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="64.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
+                  <Button fx:id="forwardButton" layoutX="90.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -457,13 +457,13 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/return.jpg" />
+                              <Image url="@../../../../images/arrow.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="searchBar" layoutX="109.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="317.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <TextField fx:id="searchBar" layoutX="130.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="338.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
@@ -474,6 +474,21 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                  </Button>
+                  <Button fx:id="returnButton" layoutX="19.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" rotate="180.0">
+                           <image>
+                              <Image url="@../../../../images/arrow.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </AnchorPane>

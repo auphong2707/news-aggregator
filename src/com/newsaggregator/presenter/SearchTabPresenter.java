@@ -31,6 +31,7 @@ public class SearchTabPresenter extends Presenter {
 	
 	@FXML private Label pageLabel;
 	@FXML private Button returnButton;
+	@FXML private Button forwardButton;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
 	
@@ -115,6 +116,11 @@ public class SearchTabPresenter extends Presenter {
 	@FXML
 	void returnScene() {
 		SceneManager.getInstance().returnScene();
+	}
+	
+	@FXML
+	void forwardScene() {
+		SceneManager.getInstance().forwardScene();
 	}
 	
 	@Override

@@ -21,6 +21,7 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private Button returnButton;
+	@FXML private Button forwardButton;
 	@FXML private Label dateLabel;
 	
 	@FXML private Label titleLabel; 
@@ -124,5 +125,10 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML
 	void returnScene() {
 		SceneManager.getInstance().returnScene();
+	}
+	
+	@FXML
+	void forwardScene() {
+		SceneManager.getInstance().forwardScene();
 	}
 }

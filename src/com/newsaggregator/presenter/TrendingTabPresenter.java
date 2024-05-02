@@ -30,6 +30,7 @@ public class TrendingTabPresenter extends Presenter {
 	@FXML private Label dateLabel;
 	
 	@FXML private Button returnButton;
+	@FXML private Button forwardButton;
 	@FXML private TextField searchBar;
 	@FXML private Button searchButton;
 	@FXML private Label pageLabel;
@@ -122,6 +123,11 @@ public class TrendingTabPresenter extends Presenter {
 	@FXML
 	void returnScene() {
 		SceneManager.getInstance().returnScene();
+	}
+	
+	@FXML
+	void forwardScene() {
+		SceneManager.getInstance().forwardScene();
 	}
 	
 	@Override

@@ -30,7 +30,8 @@ public class SceneManager {
 	private Presenter[] presenters;
 	private SceneType currentSceneType;
 	
-	Stack<Pair<SceneType, Object>> history = new Stack<Pair<SceneType, Object>>();
+	Stack<Pair<SceneType, Object>> backHistory = new Stack<Pair<SceneType, Object>>();
+	Stack<Pair<SceneType, Object>> forwardHistory = new Stack<Pair<SceneType, Object>>();
 	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
@@ -80,7 +81,7 @@ public class SceneManager {
 	}
 	
 	void moveScene(SceneType nextSceneType, Object object) {
-		history.push(new Pair<SceneType, Object>(
+		backHistory.push(new Pair<SceneType, Object>(
 		    currentSceneType,
 		    switch (currentSceneType) {
 		        case SEARCHTAB -> searchContent;
@@ -88,6 +89,7 @@ public class SceneManager {
 		        default -> null; 
 		    }
 		));
+		forwardHistory.clear();
 
 		currentSceneType = nextSceneType;
 		if (currentSceneType == SceneType.SEARCHTAB) {
@@ -100,8 +102,16 @@ public class SceneManager {
 	}
 		
 	void returnScene() {
-		if (history.size() > 0) {
-			Pair<SceneType, Object> lastPage = history.pop();
+		if (backHistory.size() > 0) {
+			forwardHistory.push(new Pair<SceneType, Object>(
+				    currentSceneType,
+				    switch (currentSceneType) {
+				        case SEARCHTAB -> searchContent;
+				        case ARTICLE_VIEW -> selectedArticleData;
+				        default -> null; 
+				    }
+				));
+			Pair<SceneType, Object> lastPage = backHistory.pop();
 			
 			currentSceneType = lastPage.getKey();
 			if (currentSceneType == SceneType.SEARCHTAB) {
@@ -112,5 +122,28 @@ public class SceneManager {
 			
 			switchScene(currentSceneType);
 		}
-	}	
+	}
+	
+	void forwardScene() {
+		if (forwardHistory.size() > 0) {
+			Pair<SceneType, Object> nextPage = forwardHistory.pop();
+			backHistory.push(new Pair<SceneType, Object>(
+				    currentSceneType,
+				    switch (currentSceneType) {
+				        case SEARCHTAB -> searchContent;
+				        case ARTICLE_VIEW -> selectedArticleData;
+				        default -> null; 
+				    }
+				));
+			
+			currentSceneType = nextPage.getKey();
+			if (currentSceneType == SceneType.SEARCHTAB) {
+				searchContent = (String) nextPage.getValue();
+			} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+				selectedArticleData = (ArticleData) nextPage.getValue();
+			}
+			
+			switchScene(currentSceneType);
+		}
+	}
 }
