@@ -126,9 +126,9 @@ public class SearchTabPresenter extends Presenter {
 	@Override
 	void sceneSwitchInitialize() {
 		// TODO Auto-generated method stub
-		searchBar.setText(SceneManager.getInstance().searchContent);
+		searchBar.setText(SceneManager.getInstance().getSearchContent());
 		
-		searchData = model.search(SceneManager.getInstance().searchContent);
+		searchData = model.search(SceneManager.getInstance().getSearchContent());
 		setPage(1);
 
 		updateArticles();

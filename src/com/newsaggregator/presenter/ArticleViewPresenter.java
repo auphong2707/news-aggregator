@@ -62,7 +62,7 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
-		ArticleData selected = SceneManager.getInstance().selectedArticleData;
+		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
 		
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();

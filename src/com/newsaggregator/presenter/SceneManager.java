@@ -22,8 +22,8 @@ public class SceneManager {
         return instance;
     }
 	
-    String searchContent;
-    ArticleData selectedArticleData;
+    private String searchContent;
+    private ArticleData selectedArticleData;
     
 	private Stage window;
 	private Scene[] scenes;
@@ -64,6 +64,14 @@ public class SceneManager {
 	public Scene getCurrentScene() {
 		return scenes[currentSceneType.ordinal()];
 	}
+	
+	public String getSearchContent() {
+		return searchContent;
+	}
+
+	public ArticleData getSelectedArticleData() {
+		return selectedArticleData;
+	}
 
 	private void switchScene(SceneType nextSceneType) {
 		System.gc();
@@ -91,16 +99,20 @@ public class SceneManager {
 			));
 	}
 	
-	void moveScene(SceneType nextSceneType, Object object) {
+	private void updateSceneVariables(SceneType sceneType, Object information) {
+		currentSceneType = sceneType;
+		if (currentSceneType == SceneType.SEARCHTAB) {
+			searchContent = (String) information;
+		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+			selectedArticleData = (ArticleData) information;
+		}
+	}
+	
+	void moveScene(SceneType nextSceneType, Object information) {
 		addHistory(backHistory);
 		forwardHistory.clear();
 
-		currentSceneType = nextSceneType;
-		if (currentSceneType == SceneType.SEARCHTAB) {
-			searchContent = (String) object;
-		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
-			selectedArticleData = (ArticleData) object;
-		}
+		updateSceneVariables(nextSceneType, information);
 		
 		switchScene(currentSceneType);
 	}
@@ -110,12 +122,7 @@ public class SceneManager {
 			addHistory(forwardHistory);
 			Pair<SceneType, Object> lastPage = backHistory.pop();
 			
-			currentSceneType = lastPage.getKey();
-			if (currentSceneType == SceneType.SEARCHTAB) {
-				searchContent = (String) lastPage.getValue();
-			} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
-				selectedArticleData = (ArticleData) lastPage.getValue();
-			}
+			updateSceneVariables(lastPage.getKey(), lastPage.getValue());
 			
 			switchScene(currentSceneType);
 		}
@@ -126,12 +133,7 @@ public class SceneManager {
 			Pair<SceneType, Object> nextPage = forwardHistory.pop();
 			addHistory(backHistory);
 			
-			currentSceneType = nextPage.getKey();
-			if (currentSceneType == SceneType.SEARCHTAB) {
-				searchContent = (String) nextPage.getValue();
-			} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
-				selectedArticleData = (ArticleData) nextPage.getValue();
-			}
+			updateSceneVariables(nextPage.getKey(), nextPage.getValue());
 			
 			switchScene(currentSceneType);
 		}
