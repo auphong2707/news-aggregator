@@ -177,5 +177,4 @@ public class HomepagePresenter extends Presenter {
 	void sceneSwitchInitialize() {
 		searchBar.clear();
 	}
-
 }
