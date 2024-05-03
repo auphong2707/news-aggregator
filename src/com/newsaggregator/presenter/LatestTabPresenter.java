@@ -29,6 +29,7 @@ public class LatestTabPresenter extends Presenter {
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
 	
+	@FXML private Button historyButton;
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	@FXML private TextField searchBar;
@@ -128,6 +129,11 @@ public class LatestTabPresenter extends Presenter {
 	@FXML
 	void forwardScene() {
 		SceneManager.getInstance().forwardScene();
+	}
+	
+	@FXML 
+	void openHistory() {
+		SceneManager.getInstance().openHistory();
 	}
 	
 	@Override

@@ -457,6 +457,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="historyButton" layoutX="162.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="34.0" prefWidth="42.0">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/web%20history.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
         </content>

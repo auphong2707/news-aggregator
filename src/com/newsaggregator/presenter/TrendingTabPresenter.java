@@ -29,6 +29,7 @@ public class TrendingTabPresenter extends Presenter {
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
 	
+	@FXML private Button historyButton;
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	@FXML private TextField searchBar;
@@ -121,13 +122,18 @@ public class TrendingTabPresenter extends Presenter {
     }
 	
 	@FXML
-	void returnScene() {
+	private void returnScene() {
 		SceneManager.getInstance().returnScene();
 	}
 	
 	@FXML
-	void forwardScene() {
+	private void forwardScene() {
 		SceneManager.getInstance().forwardScene();
+	}
+	
+	@FXML 
+	private void openHistory() {
+		SceneManager.getInstance().openHistory();
 	}
 	
 	@Override

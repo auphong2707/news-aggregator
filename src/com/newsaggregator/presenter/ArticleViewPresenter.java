@@ -20,6 +20,7 @@ import javafx.scene.web.WebView;
 public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
+	@FXML private Button historyButton;
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	@FXML private Label dateLabel;
@@ -130,5 +131,10 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML
 	void forwardScene() {
 		SceneManager.getInstance().forwardScene();
+	}
+	
+	@FXML 
+	void openHistory() {
+		SceneManager.getInstance().openHistory();
 	}
 }

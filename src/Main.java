@@ -21,7 +21,7 @@ public class Main extends Application {
     	Model.runLocalServer();
 	    try {
 	    	SceneManager.getInstance().initialize(primaryStage);
-	        
+	    	
 	        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 	            @Override
 	            public void handle(WindowEvent event) {

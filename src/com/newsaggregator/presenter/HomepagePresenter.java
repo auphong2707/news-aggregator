@@ -14,7 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Node;
 
@@ -52,6 +56,7 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Button searchButton;
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
+	@FXML private Button historyButton;
 	
 	private Model model = new Model();
 	
@@ -166,5 +171,10 @@ public class HomepagePresenter extends Presenter {
 	@Override
 	void sceneSwitchInitialize() {
 		searchBar.clear();
+	}
+	
+	@FXML 
+	void openHistory() {
+		SceneManager.getInstance().openHistory();
 	}
 }

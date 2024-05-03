@@ -245,7 +245,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Group>
-                  <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
+                  <Button layoutX="986.0" layoutY="23.0" mnemonicParsing="false" text="Sign up">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -253,7 +253,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="1088.0" layoutY="17.0" mnemonicParsing="false" text="Log in">
+                  <Button layoutX="1084.0" layoutY="23.0" mnemonicParsing="false" text="Log in">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -989,6 +989,17 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button fx:id="historyButton" layoutX="378.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="34.0" prefWidth="42.0">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/web%20history.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </AnchorPane>
         </content>
