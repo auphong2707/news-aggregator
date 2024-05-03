@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -114,6 +115,7 @@ public class SceneManager {
 		
 		addHistory(webHistory);
 		box.getChildren().add(0, visitedWeb());
+		historyWindow.close();
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
@@ -176,8 +178,9 @@ public class SceneManager {
 			webContent = "";
 		}
 		
-		Label web = new Label(currentWeb.getKey() + webContent);
+		Label web = new Label("<> " + currentWeb.getKey() + webContent);
 		web.setCursor(Cursor.HAND);
+		web.setWrapText(true);
 		web.setOnMouseClicked(e -> {
             moveScene(currentWeb.getKey(), currentWeb.getValue());
         });
@@ -197,17 +200,21 @@ public class SceneManager {
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setPrefSize(300, 450);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        //scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         anchorPane.getChildren().add(scrollPane);
         AnchorPane.setTopAnchor(scrollPane, 50.0);
 
         AnchorPane innerAnchorPane = new AnchorPane();
         scrollPane.setContent(innerAnchorPane);
 
-        box.setPrefSize(270, 993);
+        box.setPrefSize(270, 990);
         innerAnchorPane.getChildren().add(box);
         AnchorPane.setLeftAnchor(box, 7.0);
         AnchorPane.setTopAnchor(box, 1.0);
+        
+        Line line = new Line(0, 0, 300, 0);
+        line.setStyle("-fx-stroke: black; -fx-stroke-width: 4;");
+        root.getChildren().add(line);
 
         Label label = new Label("WEB BROWSING HISTORY");
         label.setFont(new Font("System Bold", 18.0));
@@ -221,7 +228,7 @@ public class SceneManager {
         	historyWindow.close();
         });
         anchorPane.getChildren().add(closeButton);
-        AnchorPane.setTopAnchor(closeButton, -2.0);
+        AnchorPane.setTopAnchor(closeButton, 5.0);
 
         Scene scene = new Scene(root);
         historyWindow.setScene(scene);
