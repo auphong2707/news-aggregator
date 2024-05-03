@@ -159,22 +159,23 @@ public class HomepagePresenter extends Presenter {
     }
 	
 	@FXML
-	void returnScene() {
+	private void returnScene() {
 		SceneManager.getInstance().returnScene();
 	}
 	
 	@FXML
-	void forwardScene() {
+	private void forwardScene() {
 		SceneManager.getInstance().forwardScene();
+	}
+	
+	@FXML 
+	private void openHistory() {
+		SceneManager.getInstance().openHistory();
 	}
 	
 	@Override
 	void sceneSwitchInitialize() {
 		searchBar.clear();
 	}
-	
-	@FXML 
-	void openHistory() {
-		SceneManager.getInstance().openHistory();
-	}
+
 }

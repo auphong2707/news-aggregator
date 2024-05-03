@@ -124,17 +124,17 @@ public class ArticleViewPresenter extends Presenter {
     }
 	
 	@FXML
-	void returnScene() {
+	private void returnScene() {
 		SceneManager.getInstance().returnScene();
 	}
 	
 	@FXML
-	void forwardScene() {
+	private void forwardScene() {
 		SceneManager.getInstance().forwardScene();
 	}
 	
 	@FXML 
-	void openHistory() {
+	private void openHistory() {
 		SceneManager.getInstance().openHistory();
 	}
 }

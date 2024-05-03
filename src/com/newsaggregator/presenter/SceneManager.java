@@ -40,9 +40,8 @@ public class SceneManager {
 	private Presenter[] presenters;
 	private SceneType currentSceneType;
 	
-	Stage historyWindow = new Stage();
-	//private Scene history;
-	VBox box = new VBox();
+	private Stage historyWindow = new Stage();
+	private VBox box = new VBox();
 
 	Stack<Pair<SceneType, Object>> backHistory = new Stack<Pair<SceneType, Object>>();
 	Stack<Pair<SceneType, Object>> forwardHistory = new Stack<Pair<SceneType, Object>>();
@@ -123,7 +122,7 @@ public class SceneManager {
         nextPresenter.sceneSwitchInitialize();
 	}
 	
-	void moveScene(SceneType nextSceneType, Object information) {
+	public void moveScene(SceneType nextSceneType, Object information) {
 		addHistory(backHistory);
 		forwardHistory.clear();
 
@@ -132,7 +131,7 @@ public class SceneManager {
 		switchScene(currentSceneType);
 	}
 		
-	void returnScene() {
+	public void returnScene() {
 		if (backHistory.size() > 0) {
 			addHistory(forwardHistory);
 			Pair<SceneType, Object> lastPage = backHistory.pop();
@@ -143,7 +142,7 @@ public class SceneManager {
 		}
 	}
 	
-	void forwardScene() {
+	public void forwardScene() {
 		if (forwardHistory.size() > 0) {
 			Pair<SceneType, Object> nextPage = forwardHistory.pop();
 			addHistory(backHistory);
@@ -165,7 +164,7 @@ public class SceneManager {
 			));
 	}
 	
-	Label visitedWeb() {
+	private Label visitedWeb() {
 		Pair<SceneType, Object> currentWeb = webHistory.pop();
 		String webContent = new String();
 		if (currentWeb.getKey()== SceneType.ARTICLE_VIEW) {
@@ -185,7 +184,7 @@ public class SceneManager {
 		return web;
 	}
 	
-	void openHistory() {
+	public void openHistory() {
 		BorderPane root = new BorderPane();
         root.setPrefSize(300, 500);
 
