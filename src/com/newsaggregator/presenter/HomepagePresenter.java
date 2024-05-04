@@ -51,6 +51,7 @@ public class HomepagePresenter extends Presenter {
 	@FXML private TextField searchBar;
 	@FXML private Button searchButton;
 	@FXML private Button returnButton;
+	@FXML private Button forwardButton;
 	
 	private Model model = new Model();
 	
@@ -153,8 +154,13 @@ public class HomepagePresenter extends Presenter {
     }
 	
 	@FXML
-	void returntScene() {
+	void returnScene() {
 		SceneManager.getInstance().returnScene();
+	}
+	
+	@FXML
+	void forwardScene() {
+		SceneManager.getInstance().forwardScene();
 	}
 	
 	@Override

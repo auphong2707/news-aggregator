@@ -21,6 +21,7 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private Button returnButton;
+	@FXML private Button forwardButton;
 	@FXML private Label dateLabel;
 	
 	@FXML private Label titleLabel; 
@@ -76,7 +77,7 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
-		ArticleData selected = SceneManager.getInstance().selectedArticleData;
+		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
 		
 		String title = selected.getTITLE();
 		String intro = selected.getINTRO();
@@ -140,5 +141,10 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML
 	void returnScene() {
 		SceneManager.getInstance().returnScene();
+	}
+	
+	@FXML
+	void forwardScene() {
+		SceneManager.getInstance().forwardScene();
 	}
 }

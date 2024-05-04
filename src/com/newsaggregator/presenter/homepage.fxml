@@ -814,8 +814,8 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="searchBar" layoutX="72.0" layoutY="28.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="283.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <TextField fx:id="searchBar" layoutX="106.0" layoutY="28.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="317.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
@@ -966,17 +966,29 @@
                   </HBox>
                   <Line endX="280.0" layoutX="82.0" layoutY="970.0" stroke="#a19797" />
                   <Line endX="285.0" layoutX="392.0" layoutY="970.0" stroke="#a19797" />
-                  <Button fx:id="returnButton" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#returntScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
+                  <Button fx:id="returnButton" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true">
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" rotate="180.0">
                            <image>
-                              <Image url="@../../../../images/return.jpg" />
+                              <Image url="@../../../../images/arrow.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
+                  <Button fx:id="forwardButton" layoutX="67.0" layoutY="28.0" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/arrow.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
         </content>

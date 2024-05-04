@@ -31,6 +31,7 @@ public class SearchTabPresenter extends Presenter {
 	
 	@FXML private Label pageLabel;
 	@FXML private Button returnButton;
+	@FXML private Button forwardButton;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
 	
@@ -117,12 +118,17 @@ public class SearchTabPresenter extends Presenter {
 		SceneManager.getInstance().returnScene();
 	}
 	
+	@FXML
+	void forwardScene() {
+		SceneManager.getInstance().forwardScene();
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
 		// TODO Auto-generated method stub
-		searchBar.setText(SceneManager.getInstance().searchContent);
+		searchBar.setText(SceneManager.getInstance().getSearchContent());
 		
-		searchData = model.search(SceneManager.getInstance().searchContent);
+		searchData = model.search(SceneManager.getInstance().getSearchContent());
 		setPage(1);
 
 		updateArticles();
