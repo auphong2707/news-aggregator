@@ -410,7 +410,7 @@
                                     <Image url="@../../../../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
-                              <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" visible="false" />
+                              <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
