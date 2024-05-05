@@ -52,7 +52,6 @@ public class SceneManager {
         Scene article = new Scene(articleLoader.load());
         Scene trending = new Scene(trendingLoader.load());
         Scene latest = new Scene(latestLoader.load());
-        //history = new Scene(historyLoader.load());
         
         scenes = new Scene[] {homepage, searchtab, article, trending, latest};
         presenters = new Presenter[] {
