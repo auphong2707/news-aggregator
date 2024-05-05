@@ -36,7 +36,7 @@ public class HistoryWindow {
 	
 	public void initialize() {
 		historyWindow.initStyle(StageStyle.UNDECORATED);
-		historyWindow.setX(10);
+		historyWindow.setX(1200);
 		historyWindow.setY(100);
 	}
 	
@@ -52,18 +52,25 @@ public class HistoryWindow {
 			webContent = "";
 		}
 		
-		Label web = new Label("<> " + currentWeb.getKey() + webContent);
+		Label web = new Label("  <> " + currentWeb.getKey() + webContent);
 		web.setCursor(Cursor.HAND);
 		web.setWrapText(true);
+		web.setOnMouseEntered(e -> {
+			web.setStyle("-fx-font-weight: bold; -fx-underline: true;");
+		});
+		web.setOnMouseExited(e -> {
+			web.setStyle("");
+		});
 		web.setOnMouseClicked(e -> {
             SceneManager.getInstance().moveScene(currentWeb.getKey(), currentWeb.getValue());
         });
+		
 		return web;
 	}
 	
 	private void constructWindow() {
 		BorderPane root = new BorderPane();
-        root.setPrefSize(300, 500);
+        root.setPrefSize(300, 400);
 
         StackPane centerPane = new StackPane();
         root.setCenter(centerPane);
@@ -71,34 +78,37 @@ public class HistoryWindow {
         AnchorPane anchorPane = new AnchorPane();
         centerPane.getChildren().add(anchorPane);
         StackPane.setAlignment(anchorPane, javafx.geometry.Pos.CENTER);
+        
+        Line line = new Line(0, 0, 300, 0);
+        line.setStyle("-fx-stroke: black; -fx-stroke-width: 4;");
+        Line line1 = new Line(1, 0, 1, 50);
+        line.setStyle("-fx-stroke: black; -fx-stroke-width: 4;");
+        Line line2 = new Line(302, 0, 302, 50);
+        line.setStyle("-fx-stroke: black; -fx-stroke-width: 4;");
+        Label label = new Label("WEB BROWSING HISTORY");
+        label.setFont(new Font("System Bold", 18.0));
+        anchorPane.getChildren().addAll(label, line, line1, line2);
+        AnchorPane.setLeftAnchor(label, 45.0);
+        AnchorPane.setTopAnchor(label, 13.0);
 
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setPrefSize(300, 450);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setPrefSize(300, 350);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         anchorPane.getChildren().add(scrollPane);
         AnchorPane.setTopAnchor(scrollPane, 50.0);
 
-        AnchorPane innerAnchorPane = new AnchorPane();
+        AnchorPane innerAnchorPane = new AnchorPane();        
+        innerAnchorPane.autosize();
         scrollPane.setContent(innerAnchorPane);
         
         while (!webHistory.isEmpty()) {
         	vbox.getChildren().add(0, visitedWeb());
         }
-        
-        vbox.setPrefSize(270, 990);
+        vbox.setPrefWidth(270);
+        vbox.autosize();
         innerAnchorPane.getChildren().add(vbox);
-        AnchorPane.setLeftAnchor(vbox, 7.0);
+        AnchorPane.setLeftAnchor(vbox, 10.0);
         AnchorPane.setTopAnchor(vbox, 1.0);
-        
-        Line line = new Line(0, 0, 300, 0);
-        line.setStyle("-fx-stroke: black; -fx-stroke-width: 4;");
-        root.getChildren().add(line);
-
-        Label label = new Label("WEB BROWSING HISTORY");
-        label.setFont(new Font("System Bold", 18.0));
-        anchorPane.getChildren().add(label);
-        AnchorPane.setLeftAnchor(label, 45.0);
-        AnchorPane.setTopAnchor(label, 13.0);
 
         Scene scene = new Scene(root);
         historyWindow.setScene(scene);
@@ -111,8 +121,12 @@ public class HistoryWindow {
 			historyWindow.show();
 			isOpening = true;
 		} else {
-			historyWindow.close();
-			isOpening = false;
+			closeWindow();
 		}
+	}
+	
+	public void closeWindow() {
+		historyWindow.close();
+		isOpening = false;
 	}
 }

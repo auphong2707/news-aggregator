@@ -105,7 +105,7 @@ public class SceneManager {
         
         nextPresenter.sceneSwitchInitialize();
         
-        HistoryWindow.getInstance().historyWindow.close();
+        HistoryWindow.getInstance().closeWindow();
 	}
 	
 	public void moveScene(SceneType nextSceneType, Object information) {
