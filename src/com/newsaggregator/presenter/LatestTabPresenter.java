@@ -133,7 +133,7 @@ public class LatestTabPresenter extends Presenter {
 	
 	@FXML 
 	private void openHistory() {
-		SceneManager.getInstance().openHistory();
+		HistoryWindow.getInstance().switchWindow();
 	}
 	
 	@Override

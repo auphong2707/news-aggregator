@@ -170,7 +170,7 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML 
 	private void openHistory() {
-		SceneManager.getInstance().openHistory();
+		HistoryWindow.getInstance().switchWindow();
 	}
 	
 	@Override
