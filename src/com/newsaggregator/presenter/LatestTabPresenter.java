@@ -114,7 +114,7 @@ public class LatestTabPresenter extends Presenter {
 			selectedGroup = (Group) clickedObject;
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
-		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(6))).getText());
+		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = latestData.get(index);
 		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
