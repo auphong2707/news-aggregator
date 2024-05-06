@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,8 +97,12 @@ class WebScrapperExpress extends WebScrapper {
     @Override 
     String getCreationDate(Document document) {
     	Elements content = document.select(".ie-network-post-meta-date");
-    	String creationDate = content.attr("datetime");
-    	return creationDate;
+    	String timestamp = content.attr("datetime");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+        LocalDate date = LocalDate.parse(timestamp, formatter);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dateString = date.format(outputFormatter);
+    	return dateString;
     }
       
     @Override
