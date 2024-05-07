@@ -78,7 +78,8 @@ class Vectorizer:
         self.vectorized_data = vectorized_article
     
     def export_vector(self):
-        np.save(self.file_path + "data/temps.npy", self.vectorized_data)
+        with open(self.file_path + "data/temps.npy", "wb") as f:
+            np.save(f, self.vectorized_data)
         print(f"Vectorized text saved at {self.file_path}")
     
     def run(self, training = False):
@@ -99,7 +100,7 @@ class Vectorizer:
         
 if __name__ == "__main__":
     VectorizerModel = Vectorizer()
-    VectorizerModel.run()
+    #VectorizerModel.run()
     print(len(VectorizerModel.data))
     #VectorizerModel.vectorize()
     #VectorizerModel.delete_temps()
