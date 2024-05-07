@@ -1,22 +1,15 @@
-import math
-import string
 import json 
 import os
-import numpy as np
 
 
-from Summarizer import Summarizer
-from Vectorizer import Vectorizer 
 from TrendDetection import TrendDetection
-from CategoryDistributor import CategoryDistributor
 from SearchEngine import SearchEngine
+from flask import Flask, request
 
-categoryDistributorModel = CategoryDistributor()
-trendDetectorModel = TrendDetection()
-articleVectorizer = Vectorizer()
-summarizerModel = Summarizer()
-searchEngine = SearchEngine()
+server = Flask(__name__)
 
+search_engine = SearchEngine()
+trend_detector_model = TrendDetection()
 
 def split_date(article):
     '''
@@ -26,6 +19,7 @@ def split_date(article):
     if len(splitted_date) == 1:
         return 0, 0, 0
     return -int(splitted_date[0]), -int(splitted_date[1]), -int(splitted_date[2])
+
 def sort_by_date():
     '''
     Sort data by dates in descending order, save it in newsAll.json
@@ -39,6 +33,36 @@ def sort_by_date():
     with open(file_path + 'data/newsAll.json', 'w') as f:
         json.dump(data, f, indent = 2)
 
+def process_data():
+    from Summarizer import Summarizer
+    from CategoryDistributor import CategoryDistributor
+
+    category_distributor_model = CategoryDistributor()
+    summarizerModel = Summarizer()
+
+    category_distributor_model.run()
+    #summarizerModel.run()
+
+def analyze_data():
+    trend_detector_model.run()
+    search_engine.run()
+    
+    #Search for something: searchEngine.search(query_string: str, num_of_relevant_results: int)
+    #Get trending articles: trendDetectorModel.get_trending()
+
+def process_new_data():
+    from Vectorizer import Vectorizer 
+    article_vectorizer = Vectorizer()
+
+    sort_by_date()
+    article_vectorizer.run()
+
+    process_data()
+    analyze_data()
+    
+    article_vectorizer.delete_temps()
+
+@server.route('/getlatest', methods=['GET'])
 def get_latest():
     '''
     Get the latest 100 articles from the json files
@@ -50,25 +74,18 @@ def get_latest():
     f.close()
     
     return json.dump(data[:100])
+
+@server.route('/search/', methods = ['POST'])
+def search():
+    if request.method == 'POST':
+        decoded_request = request.data.decode('utf-8')
+        print(decoded_request)
+        params = json.loads(decoded_request)
+        return search_engine.search(params['content'], 50)
     
-
-def process_data():
-    categoryDistributorModel.run()
-    #summarizerModel.run()
-
-def process_new_data():
-    sort_by_date()
-    articleVectorizer.run()
-    process_data()
-    analyze_data()
-    articleVectorizer.delete_temps()
-
-def analyze_data():
-    trendDetectorModel.run()
-    searchEngine.run()
-    
-    #Search for something: searchEngine.search(query_string: str, num_of_relevant_results: int)
-    #Get trending articles: trendDetectorModel.get_trending()
+@server.route('/trending', methods=['GET'])
+def get_trending():
+    return trend_detector_model.get_trending()
 
 if __name__ == "__main__":
-    process_new_data()
+    server.run()
