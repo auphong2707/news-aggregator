@@ -59,6 +59,7 @@ class Summarizer():
         '''
         f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
         self.data = json.load(f)       
+        f.close()
 
     def export_data(self):
         '''
