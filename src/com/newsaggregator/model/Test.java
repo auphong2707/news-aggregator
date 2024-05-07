@@ -17,7 +17,7 @@ import javafx.util.Pair;
 public class Test {
 	public static void main(String[] args) throws IOException, HttpStatusException{   	
 		Model model = new Model();
-		model.scrapeNewData(7);
+		model.scrapeNewData(8);
 	}
 }
         

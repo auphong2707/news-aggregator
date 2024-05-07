@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Model {
 	private final static String DIRECTORY = "data/";
-	private final static String RESULT_FILE_NAME = "newsAllProcessed.json";
+	private final static String RESULT_FILE_NAME = "newsAll.json";
 	private final static WebScrapper[] scrapers;
 	
 	private static long processPid = -1;
