@@ -6,13 +6,7 @@ import string
 import json 
 import os
 from unidecode import unidecode
-
-def preprocessing(str_input):
-    str_ascii = unidecode(str_input)
-    translation_table = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    str_input_no_punct = str_ascii.translate(translation_table)
-    preprocesed_str = ' '.join(str_input_no_punct.split())
-    return preprocesed_str.lower()
+from Utilities import *
 
 def update_scores(current_score, previous_score):
     
@@ -35,26 +29,32 @@ class SearchEngine:
         self.k1 = k1
         self.b = b
         self.average_document_length = 0
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+        self.processed_article_contents = []
 
-
-    def fit(self, data):
+    def run(self):
         '''
-        The data is fed  into the class
+        The data is fed into the class attributes self.data \\
+        The processed_article_contents list will contain the processed article content string of every content in the list \\ 
         '''
+        f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
+        data = json.load(f)
         self.data = data
-        self.average_document_length = sum([len(article['DETAILED_CONTENT_PROCESSED'].split()) for article in self.data]) / len(self.data)
+        for i in range(len(self.data)):
+            self.processed_article_contents.append(StringProcessor.process(self.data[i]['DETAILED_CONTENT']))
+        self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(self.data))]) / len(self.data)
     
     def get_word_occurences(self, word, data_index):
         '''
         Return word occurences in a document given index
         '''
-        return self.data[data_index]['DETAILED_CONTENT_PROCESSED'].count(word)
+        return self.processed_article_contents[data_index].count(word)
 
     def get_word_occurences_global(self, word):
         '''
         Return total number of documents in data that has the word
         '''        
-        return sum([word in article['DETAILED_CONTENT_PROCESSED'] for article in self.data])
+        return sum([word in self.processed_article_contents[i] for i in range(len(self.data))])
 
     def idf(self, word):
         '''
@@ -75,7 +75,7 @@ class SearchEngine:
         average_document_length = self.average_document_length
         k1, b = self.k1, self.b  
         
-        query_tokens = preprocessing(query).split()
+        query_tokens = StringProcessor.process(query).split()
         result = []
         word_idf = self.idf(query) 
         for i in range(len(self.data)):
@@ -91,7 +91,7 @@ class SearchEngine:
         query: a string of words
         return: top 10 most relevant results, in form of dictionary
         '''
-        query_tokens = preprocessing(query).split()
+        query_tokens = StringProcessor.process(query).split()
         query_score = [0] * len(self.data) 
         results = [0] * num_relevant_results
         
@@ -113,23 +113,16 @@ class SearchEngine:
         return return_json_string
 
 if __name__ == "__main__":
-    CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/SearchEngine.py', '')
-
-    print(CURRENT_WORKING_DIRECTORY)
 
     '''
     Loading data into the search engine
     '''
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
-    data = json.load(f)
     search_engine = SearchEngine()
-    search_engine.fit(data)
+    search_engine.run()
 
     '''
     Show all relevant articles given the query string
     return variable is a json string
     '''
-    #print(search_engine.data[0]['DETAILED_CONTENT'])
-    #result = search_engine.search("Facebook Libra: the", 10)
-    #print(len(result))
+    result = search_engine.search("Facebook Libra: the", 10)
 
