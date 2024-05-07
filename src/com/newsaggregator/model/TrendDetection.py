@@ -19,7 +19,7 @@ class TrendDetection:
         self.vectorized_document = None
         self.number_clusters = 0
         self.trending_articles = None
-        self.most_frequent_articles: list = []
+        self.number_of_latest_articles = 100
         self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
     
     def load_data(self):
@@ -27,8 +27,11 @@ class TrendDetection:
         Load data to self.vectorized_document
         '''
         f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
-        self.data = json.load(f)
-        self.vectorized_document =  np.load(self.file_path + "data/temps.npy", mmap_mode = 'r')
+        self.data = json.load(f)[:self.number_of_latest_articles]
+        f.close()
+        with open(self.file_path + "data/temps.npy", "rb") as f:
+            a = np.load(f)
+            self.vectorized_document = a[:self.number_of_latest_articles, :]
     
     def select_number_clusters(self):
         
@@ -119,6 +122,8 @@ class TrendDetection:
 if __name__ == "__main__":
     #print(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
     TrendDetector= TrendDetection()
+    TrendDetector.run()
+    print(TrendDetector.number_clusters)
     '''
     Uncomment these codes if need to be retrained to get new trending from beginning
     
