@@ -7,92 +7,58 @@ import matplotlib.pyplot as plt
 import pickle 
 import time 
 
-from unidecode import unidecode
-from gensim.models import Word2Vec
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
 CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
 
-
-
-def preprocess_corpus(data):
-    '''
-    Preprocess the detailed content of the articles
-    And split them into specific tokens
-    '''
-    corpus = []
-    for content in data:
-        detailed_content = content['DETAILED_CONTENT_PROCESSED']
-        corpus.append(detailed_content)
-    
-    documents = [text.split() for text in corpus]
-    return documents
-
-def vectorize(document, model):
-    '''
-    Vectorize the tokens into densed vectors using word2vec
-    '''
-    vectorized_article = []
-    for content in document:
-        len = 0
-        article_content_vec = np.zeros(200, )
-        
-        for word in content:
-            if word in model.wv.index_to_key:
-                article_content_vec += model.wv[word]
-                len += 1
-        if len != 0:
-            article_content_vec = article_content_vec / len
-        
-        article_content_vec = article_content_vec.reshape(-1, 1).T
-        vectorized_article.append(article_content_vec)
-    
-    vectorized_article = np.array(vectorized_article).squeeze()
-    return vectorized_article
-    
-class TrendDetectionModel:
-    def __init__(self, word2vec_model, number_clusters = 8):
+class TrendDetection:
+    def __init__(self):
         self.data = None 
-        self.document = None
         self.kmean_model = None 
-        self.word2vec_model = word2vec_model
         self.vectorized_document = None
-        self.number_clusters = number_clusters
+        self.number_clusters = 0
+        self.trending_articles = None
+        self.most_frequent_articles: list = []
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
     
-    def fit_data(self, data, training = False):
-        '''
-        Fit all article data into the class, perform necessary transformation
-        ''' 
-        self.data = data 
-        if training == True:
-            self.document = preprocess_corpus(data)
-            self.vectorized_document = vectorize(self.document, self.word2vec_model)
-    
-    def save_data(self, filepath):
-        '''
-        Save data to news-aggregator/data/model
-        '''
-        np.save(filepath + "data/model/vectorized_document.npy", self.vectorized_document)
-    
-    def load_data(self, data, filepath):
+    def load_data(self):
         '''
         Load data to self.vectorized_document
         '''
-        self.data = data 
-        vectorized_document = np.load(filepath + "data/model/vectorized_document.npy", mmap_mode = 'r')
-        self.vectorized_document = vectorized_document
-
-    def load_model(self, filepath):
-        with open(filepath + "data/model/" + "kmean_model.pkl", "rb") as f:
-            self.kmean_model = pickle.load(f)
+        f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
+        self.data = json.load(f)
+        self.vectorized_document =  np.load(self.file_path + "data/temps.npy", mmap_mode = 'r')
     
-    def save_model(self, filepath):
-        '''
-        Save model if needed
-        '''
-        with open(filepath + "data/model/" + "kmean_model.pkl", "wb") as f:
-            pickle.dump(self.kmean_model, f)
+    def select_number_clusters(self):
+        
+        loss_pairs = []
+        loss_val = []
+        
+        for k in range(1, 21):
+            kmean_model = KMeans(n_clusters = k, init = 'k-means++', n_init = 10, random_state = 42)
+            kmean_model.fit(self.vectorized_document)
+            loss_pairs.append((k, kmean_model.inertia_))
+            loss_val.append(kmean_model.inertia_)
+        
+        cur_angle = -float('inf')
+        
+        for _ in range(1, len(loss_pairs) - 1):
+            
+            cur_k, cur_loss = loss_pairs[_]
+            prev_k, prev_loss = loss_pairs[_ - 1]
+            post_k, post_loss = loss_pairs[_ + 1]
+            
+            d_loss_post = cur_loss - post_loss
+            d_loss_prev = prev_loss - cur_loss
+            sub_loss = d_loss_prev - d_loss_post  
+            
+            if sub_loss > cur_angle:
+                self.number_clusters = cur_k
+                cur_angle = sub_loss
+                
+        #plt.plot(range(1, 21), loss_val)
+        #plt.show()
     
     def train_kmean(self):
         '''
@@ -101,6 +67,18 @@ class TrendDetectionModel:
         '''
         self.kmean_model = KMeans(n_clusters = self.number_clusters, init = 'k-means++', n_init = 10, random_state = 42)
         self.kmean_model.fit(self.vectorized_document)
+        y_kmean = self.kmean_model.predict(self.vectorized_document).tolist()
+        trending_articles = []
+        most_frequent_cluster = max(set(y_kmean), key = y_kmean.count)       
+        self.trending_articles = [self.data[i] for i in range(len(self.data)) if y_kmean[i] == most_frequent_cluster]
+        
+    def save_trending(self):
+        '''
+        Export data to destined file under json format
+        '''
+        with open(self.file_path + 'data/trendings.json', 'w') as f:
+            json.dump(self.trending_articles, f) 
+            print("Trending articles saved!")
     
     def visualize(self):
         '''
@@ -121,87 +99,42 @@ class TrendDetectionModel:
         ax.legend()
         plt.show()
 
+    def run(self):
+        self.load_data()
+        self.select_number_clusters()
+        self.train_kmean()
+        self.save_trending()
+    
     def get_trending(self):
         '''
         Trending is the articles that are in the cluster with most points \n
         Return a json file of "trending" articles
         '''
-        y_kmean = self.kmean_model.predict(self.vectorized_document).tolist()
-        trending_articles = []
-        most_frequent_cluster = max(set(y_kmean), key = y_kmean.count)
-        
-        trending_articles = [self.data[i] for i in range(len(self.data)) if y_kmean[i] == most_frequent_cluster]
-        return_json_trending_articles = json.dumps(trending_articles)
-        return return_json_trending_articles
-        
-    
+        f = open(CURRENT_WORKING_DIRECTORY + 'data/trendings.json', encoding = "utf8")
+        trending_articles = json.load(f)
+        return json.dumps(trending_articles)
 
-def load_model():
-    '''
-    Load saved word2vec model from news-aggregator/data/model/
-    '''
-    model = Word2Vec.load(CURRENT_WORKING_DIRECTORY + "data/model/" + "word2vec.model")
-    #sims = model.wv.most_similar('bitcoin', topn = 10)
-    #print(model.wv['bitcoin'])
-    #print(sims)
-    print("Model loaded!")
-    return model
-
-def train(data):
-    '''
-    Train word2vec models and save it into news-aggregator/data/model/word2vec.model
-    '''
-    w2v = Word2Vec(vector_size = 200, window = 3, min_count = 1)
-    w2v.build_vocab(data)
-
-    words = w2v.wv.index_to_key
-    vocab_size = len(words)
-    
-    w2v.train(data, total_examples = len(data), epochs = 32)
-    w2v.save(CURRENT_WORKING_DIRECTORY + "data/model/" + "word2vec.model")
-    print("Model trained and saved!")
+         
 
 if __name__ == "__main__":
-    CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/TrendDetection.py', '')
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
-    
-    data = json.load(f)
+    #print(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    TrendDetector= TrendDetection()
     '''
-    If you want to retrain word2vec model, then do as follow
+    Uncomment these codes if need to be retrained to get new trending from beginning
     
-    # splited_data = preprocess_corpus(data)
-    # train(splited_data)
-    '''
-    model = load_model()
-    TrendDetector = TrendDetectionModel(model, 11)
-    '''
-    Fit the data in the model, let training = True if you want to revectorize everything
-    
-    # TrendDetector.fit_data(data, training = True)
-    
-    If you revectorize or vectorize document for the first time
-    Then you should run TrendDetector.save_data()
-    
-    # TrendDetector.save_data(CURRENT_WORKING_DIRECTORY) 
+    TrendDetector.load_data(CURRENT_WORKING_DIRECTORY)
+    TrendDetector.train_kmean()
+    TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
+    TrendDetector.save_trending(CURRENT_WORKING_DIRECTORY)
     '''
     
-    # Load vectorized document into the model if it is already been done before
-    TrendDetector.load_data(data, CURRENT_WORKING_DIRECTORY)
-    
-    '''
-    Train k_mean model and save it to cluster documents
-    And save the model
-
-    # TrendDetector.train_kmean()
-    # TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
-    '''
     # Load k-mean model and cluster it to find trendings articles
-    TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
-    trending_articles = TrendDetector.get_trending() #this is output
+    #TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
+    #trending_articles = TrendDetector.get_trending() #this is output
+    #print(trending_articles)
     #TrendDetector.visualize()
     
     #print(articles)
-
 
 
 
