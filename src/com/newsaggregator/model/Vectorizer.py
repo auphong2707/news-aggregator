@@ -10,6 +10,8 @@ import nltk
 from unidecode import unidecode
 from gensim.models import Word2Vec
 from nltk.corpus import stopwords
+from Utilities import *
+
 nltk.download('stopwords')
 STOPWORDS = stopwords.words('english')
 CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/LocalServer.py', '')
@@ -27,7 +29,7 @@ class Vectorizer:
         data = json.load(f)
         with open(self.file_path + 'data/newsAll.json', 'w') as f:
             json.dump(data, f, indent = 2)
-        self.data = preprocess_corpus(data)
+        self.data = DocumentProcessor.process(data, 'DETAILED_CONTENT')
 
     def train_model(self):
         '''
@@ -95,37 +97,6 @@ class Vectorizer:
         else:
             print("File does not exist!")
         
-
-def remove_stop_words(text: str) -> str:
-    '''
-    Remove unnecessary stopwords
-    '''
-    return ' '.join(word for word in text.split() if word not in STOPWORDS)
-
-def preprocessing(str_input) -> str:
-    '''
-    Convert non-ascii characters to ascii ones, remove punctuations, redundant spaces
-    Return: a processed string
-    '''
-    str_ascii = unidecode(str_input)
-    translation_table = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    str_input_no_punct = str_ascii.translate(translation_table)
-    preprocesed_str = ' '.join(str_input_no_punct.split())
-    return remove_stop_words(preprocesed_str.lower())
-
-def preprocess_corpus(data):
-    '''
-    Preprocess the detailed content of the articles
-    And split them into specific tokens
-    '''
-    corpus = []
-    for content in data:
-        detailed_content = preprocessing(content['DETAILED_CONTENT'])
-        corpus.append(detailed_content)
-    
-    documents = [text.split() for text in corpus]
-    return documents
-
 if __name__ == "__main__":
     VectorizerModel = Vectorizer()
     VectorizerModel.run()
