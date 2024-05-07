@@ -17,7 +17,7 @@ class WebScrapperTheBlockchain extends WebScrapper {
     {
     	webSource = "The Blockchain";
     	type = "News Article";
-    	htmlContentLocation = ".td-pb-span8.td-main-content";
+    	htmlContentLocation = ".td-post-content.tagdiv-type";
     	fileName += "newsTheBlockchain.json";
     }
     

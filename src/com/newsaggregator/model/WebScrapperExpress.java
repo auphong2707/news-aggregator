@@ -73,11 +73,19 @@ class WebScrapperExpress extends WebScrapper {
     
     @Override 
     String getAuthor(Document document) {
-    	Element content = document.selectFirst(".pcl-container");
-        String author = content.text();
-        if (author.contains("By ")) {
-        	author = author.replace("By ", "");
-        }
+    	Element content = document.selectFirst(".author-link.multiple_author_link");
+    	String author = "";
+    	if (content == null) {
+    		content = document.selectFirst(".pcl-container strong");
+    		author = content.text();
+    		
+            if (author.contains("By ")) {
+            	author = author.replace("By ", "");
+            }
+    	}
+    	else{
+    		author = content.text();
+    	}
         return author;
     }
 
@@ -96,9 +104,9 @@ class WebScrapperExpress extends WebScrapper {
     
     @Override 
     String getCreationDate(Document document) {
-    	Elements content = document.select(".ie-network-post-meta-date");
+    	Elements content = document.select(".ie-network-post-meta-date time");
     	String timestamp = content.attr("datetime");
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
         LocalDate date = LocalDate.parse(timestamp, formatter);
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dateString = date.format(outputFormatter);
@@ -113,6 +121,16 @@ class WebScrapperExpress extends WebScrapper {
         	tags += content.text() + ", ";
         }
         return tags;
+    }
+    
+    @Override 
+    String getIntro(Document document) {
+		Elements content = document.select(".wp-block-post-excerpt__excerpt");
+		String intro = "";
+		if (content != null) {
+			intro = content.text();
+		}
+    	return intro;
     }
 }
 
