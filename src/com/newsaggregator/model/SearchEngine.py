@@ -40,6 +40,7 @@ class SearchEngine:
         f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
         data = json.load(f)
         self.data = data
+        f.close()
         for i in range(len(self.data)):
             self.processed_article_contents.append(StringProcessor.process(self.data[i]['DETAILED_CONTENT']))
         self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(self.data))]) / len(self.data)
