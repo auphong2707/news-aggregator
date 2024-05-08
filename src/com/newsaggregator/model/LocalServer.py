@@ -1,6 +1,6 @@
 import json 
 import os
-
+import random
 
 from TrendDetection import TrendDetection
 from SearchEngine import SearchEngine
@@ -11,7 +11,7 @@ server = Flask(__name__)
 search_engine = SearchEngine()
 trend_detector_model = TrendDetection()
 
-def split_date(article):
+def split_date(article: dict):
     '''
     Key function for sorting the articles by date descending
     '''
@@ -62,18 +62,34 @@ def process_new_data():
     
     article_vectorizer.delete_temps()
 
-@server.route('/getlatest', methods=['GET'])
-def get_latest():
+@server.route('/getrandom', methods=['GET'])
+def get_random(number_of_articles: int) -> str:
     '''
-    Get the latest 100 articles from the json files
+    Get a random number of articles from the json files
     '''
     file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
     f = open(file_path + 'data/newsAll.json', encoding = "utf8")
     data = json.load(f)
-    
     f.close()
     
-    return json.dump(data[:100])
+    selected_articles = []
+    randomIndex = random.sample(range(len(data)), number_of_articles)
+    for idx in randomIndex:
+        selected_articles.append(data[idx])
+    
+    return json.dumps(selected_articles)
+    
+@server.route('/getlatest', methods=['GET'])
+def get_latest(number_of_articles: int) -> str:
+    '''
+    Get the latest number of articles from the json files
+    '''
+    file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+    f = open(file_path + 'data/newsAll.json', encoding = "utf8")
+    data = json.load(f)
+    f.close()
+    
+    return json.dumps(data[:number_of_articles])
 
 @server.route('/search/', methods = ['POST'])
 def search():
