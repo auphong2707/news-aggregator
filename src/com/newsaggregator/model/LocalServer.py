@@ -6,25 +6,18 @@ from TrendDetection import TrendDetection
 from SearchEngine import SearchEngine
 from flask import Flask, request
 
+file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+
 server = Flask(__name__)
 
 search_engine = SearchEngine()
 trend_detector_model = TrendDetection()
 
-def split_date(article: dict):
-    '''
-    Key function for sorting the articles by date descending
-    '''
-    splitted_date = article['CREATION_DATE'].split('-')
-    if len(splitted_date) == 1:
-        return 0, 0, 0
-    return -int(splitted_date[0]), -int(splitted_date[1]), -int(splitted_date[2])
 
 def sort_by_date():
     '''
     Sort data by dates in descending order, save it in newsAll.json
     '''
-    file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
     f = open(file_path + 'data/newsAll.json', encoding = "utf8")
     data = json.load(f)
     f.close()
@@ -47,6 +40,8 @@ def analyze_data():
     trend_detector_model.run()
     search_engine.run()
     
+    trend_detector_model.load_engine(file_path)
+    
     #Search for something: searchEngine.search(query_string: str, num_of_relevant_results: int)
     #Get trending articles: trendDetectorModel.get_trending()
 
@@ -67,7 +62,7 @@ def get_random(number_of_articles: int) -> str:
     '''
     Get a random number of articles from the json files
     '''
-    file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+    
     f = open(file_path + 'data/newsAll.json', encoding = "utf8")
     data = json.load(f)
     f.close()

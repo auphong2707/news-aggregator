@@ -5,6 +5,7 @@ import math
 import string
 import json 
 import os
+import pickle
 
 from unidecode import unidecode
 from Utilities import *
@@ -18,6 +19,7 @@ def update_scores(current_score: list, previous_score: list) -> list:
     
     return updated_score
 
+
 class SearchEngine:
     def __init__(self, k1: int = 1.5, b: int = 0.75):
         '''
@@ -29,10 +31,24 @@ class SearchEngine:
         self.data = None
         self.k1 = k1
         self.b = b
-        self.average_document_length = 0
+        
         self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+        self.data_path = self.file_path + 'data/searchEngineData.txt'
         self.processed_article_contents = []
-
+        
+    def save_engine(self):
+        with open(self.file_path + 'data/model/search_engine.pkl', 'wb') as f:
+            pickle.dump(self, f)
+    
+    def load_engine(self, file_path):
+        f = open(file_path + 'data/newsAll.json', encoding = "utf8")
+        data = json.load(f)
+        f.close()
+        with open(file_path + 'data/model/search_engine.pkl', 'rb') as f:
+            loaded_search_engine =  pickle.load(f)
+        self.__dict__.update(loaded_search_engine.__dict__)
+        self.data = data
+        
     def run(self):
         '''
         The data is fed into the class attributes self.data \\
@@ -40,20 +56,19 @@ class SearchEngine:
         '''
         f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
         data = json.load(f)
-        self.data = data
         f.close()
         
-        if os.path.isfile(self.file_path + 'data/searchEngineTempData.txt'):
-            with open(self.file_path + 'data/searchEngineTempData.txt', 'r') as f:
-                for i, line in enumerate(f):
-                    self.processed_article_contents.append(line.rstrip())
-        else:      
-            for i in range(len(self.data)):
-                self.processed_article_contents.append(StringProcessor.process(self.data[i]['DETAILED_CONTENT']))   
-            with open(self.file_path + 'data/searchEngineTempData.txt', 'w') as f:
-                for i in range(len(self.data)):
-                    f.write(self.processed_article_contents[i] + "\n")
-        self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(self.data))]) / len(self.data)
+        processed_article_content_new = []
+        for i in range(len(data)):
+            processed_article_content_new.append(StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
+        for i in range(len(data)):
+            self.processed_article_contents.append(processed_article_content_new[i])  
+
+        with open(self.file_path + 'data/searchEngineData.txt', 'w') as f:
+            for i in range(len(data)):
+                f.write(processed_article_content_new[i] + "\n")
+        self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(data))]) / len(data)
+        self.save_engine()
     
     def get_word_occurences(self, word, data_index):
         '''
@@ -131,10 +146,16 @@ if __name__ == "__main__":
     search_engine = SearchEngine()
     search_engine.run()
 
+    '''py
+    second_search_engine = SearchEngine() 
+    second_search_engine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    print(search_engine.processed_article_contents[:2])
+    print(second_search_engine.processed_article_contents[:2])
+    print(second_search_engine.processed_article_contents == search_engine.processed_article_contents)
+    result = second_search_engine.search("Facebook Libra: the", 10)
+    '''
     '''
     Show all relevant articles given the query string
     return variable is a json string
     '''
-    result = search_engine.search("Facebook Libra: the", 10)
-    print(result[:500])
-
+    

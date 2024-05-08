@@ -132,15 +132,3 @@ if __name__ == "__main__":
     TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
     TrendDetector.save_trending(CURRENT_WORKING_DIRECTORY)
     '''
-    
-    # Load k-mean model and cluster it to find trendings articles
-    #TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
-    #trending_articles = TrendDetector.get_trending() #this is output
-    #print(trending_articles)
-    #TrendDetector.visualize()
-    
-    #print(articles)
-
-
-
-

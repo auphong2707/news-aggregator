@@ -10,6 +10,25 @@ import nltk
 from unidecode import unidecode
 from abc import ABC, abstractmethod
 
+
+def load_text_file(path: str) -> list:
+    return_list = []
+    if os.path.isfile(path):
+        with open(path, 'r') as f:
+            for i, line in enumerate(f):
+                return_list.append(line.rstrip())
+            
+    return return_list
+
+def split_date(article: dict):
+    '''
+    Key function for sorting the articles by date descending
+    '''
+    splitted_date = article['CREATION_DATE'].split('-')
+    if len(splitted_date) == 1:
+        return 0, 0, 0
+    return -int(splitted_date[0]), -int(splitted_date[1]), -int(splitted_date[2])
+
 class StringProcessor():
     @staticmethod
     def process(str_input: str) -> str:

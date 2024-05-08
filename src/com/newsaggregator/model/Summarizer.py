@@ -75,5 +75,4 @@ class Summarizer():
 
 if __name__ == "__main__":
     newsSummarizer = Summarizer()
-    #newsSummarizer.run()
-    
+    #newsSummarizer.run() 
