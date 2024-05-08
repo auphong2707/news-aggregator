@@ -23,8 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class LatestTabPresenter extends Presenter {
-	private Model model = new Model();
-	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
@@ -132,7 +130,7 @@ public class LatestTabPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
-		latestData = model.getLatestArticleData(60);
+		latestData = Model.getInstance().getLatest(60);
 		
 		searchBar.clear();
 		

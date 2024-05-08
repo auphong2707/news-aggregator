@@ -12,21 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class Model {
 	private final static String DIRECTORY = "data/";
 	private final static String RESULT_FILE_NAME = "newsAll.json";
-	private final static WebScrapper[] scrapers;
-	
-	private static long processPid = -1;
-	private static List<ArticleData> modelData;
-	
-	static
-	{
-		modelData = ModelTools.convertJsonToData(DIRECTORY + RESULT_FILE_NAME);
-		modelData.sort(
-			(ArticleData a1, ArticleData a2)
-			-> a2.getCREATION_DATE().compareTo(a1.getCREATION_DATE())
-		);
-		System.out.println("Size of Data: " + modelData.size());
-		
-		scrapers = new WebScrapper[] {
+	private final static WebScrapper[] scrapers = new WebScrapper[] {
 			new WebScrapperFT(),
 			new WebScrapperCONV(),
 			new WebScrapperAcademy(),
@@ -35,32 +21,32 @@ public class Model {
 			new WebScrapperFreightWave(),
 			new WebScrapperTheFintech(),
 			new WebScrapperExpress()
-		};
-	}
+	};
 	
-	public static void runLocalServer() throws IOException, InterruptedException
-	{
-		if (processPid == -1)
-		{
-			String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\DataAnalyzer.py";
-			String command = "python " + directory;
-			
-			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(10, TimeUnit.SECONDS);
-			
-			processPid = server.pid();
+	private static Model instance;
+    private Model() {
+		String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\LocalServer.py";
+		String command = "python " + directory;
+		
+		Process server = null;
+		try {
+			server = Runtime.getRuntime().exec(command);
+			server.waitFor(1500, TimeUnit.MILLISECONDS);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-	}
-	
-	public static void terminateLocalServer() throws IOException
-	{
-		if (processPid != -1)
-		{
-			String command = "taskkill /F /T /PID " + processPid;
-			Runtime.getRuntime().exec(command);
-		}
-	}
-	
+		System.out.println("Local server started!");
+    }
+
+    public static Model getInstance() {
+        if(instance == null) {
+            instance = new Model();
+        }
+        return instance;
+    }
+
 	public void scrapeNewData()
 	{
 		for(WebScrapper scraper : scrapers)
@@ -127,18 +113,51 @@ public class Model {
 		return null;
 	}
 	
-	public List<ArticleData> getLatestArticleData(int count) {
-		return modelData.subList(0, count);
+	public List<ArticleData> getLatest(int count) {
+		try {
+			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count);
+			String recievedJson = connectServerGET(url);
+			
+			return ModelTools.convertJsonStringToData(recievedJson);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
 	}
 	
-	public List<ArticleData> getRandomArticleData(int count) {
-		return ModelTools.randomSubList(modelData, count);
+	public List<ArticleData> getRandom(int count) {
+		try {
+			URL url = new URL("http://127.0.0.1:5000/random?number=" + count);
+			String recievedJson = connectServerGET(url);
+			
+			return ModelTools.convertJsonStringToData(recievedJson);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
 	}
 	
 	public List<ArticleData> getTrending(int count) {
+		try {
+			URL url = new URL("http://127.0.0.1:5000/trending?number=" + count);
+			String recievedJson = connectServerGET(url);
+			
+			return ModelTools.convertJsonStringToData(recievedJson);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
+	}
+	
+	private String connectServerGET(URL url) {
 		HttpURLConnection conn = null;
-        try{
-            URL url = new URL("http://127.0.0.1:5000/trending"); //important to add the trailing slash after add
+		try{
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("GET");
@@ -154,12 +173,8 @@ public class Model {
 
             conn.disconnect();
             
-            List<ArticleData> trendingData = ModelTools.convertJsonStringToData(output);
-            return ModelTools.randomSubList(trendingData, count);
-	    } 
-        catch (MalformedURLException e) {
-	        e.printStackTrace();
-	    } 
+            return output;
+	    }
         catch (IOException e){
 	        e.printStackTrace();
 	    } 

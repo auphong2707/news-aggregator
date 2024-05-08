@@ -23,8 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class SearchTabPresenter extends Presenter {
-	private Model model = new Model();
-	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
@@ -128,7 +126,7 @@ public class SearchTabPresenter extends Presenter {
 		// TODO Auto-generated method stub
 		searchBar.setText(SceneManager.getInstance().getSearchContent());
 		
-		searchData = model.search(SceneManager.getInstance().getSearchContent());
+		searchData = Model.getInstance().search(SceneManager.getInstance().getSearchContent());
 		setPage(1);
 
 		updateArticles();
