@@ -5,16 +5,11 @@ import os
 import numpy as np
 import pickle 
 import time 
-import nltk
 
 from unidecode import unidecode
 from gensim.models import Word2Vec
 from nltk.corpus import stopwords
 from Utilities import *
-
-nltk.download('stopwords')
-STOPWORDS = stopwords.words('english')
-CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/LocalServer.py', '')
 
 class Vectorizer:
     def __init__(self, hidden_size = 200):
@@ -25,6 +20,9 @@ class Vectorizer:
         self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
     
     def fit(self):
+        '''
+        Read the json file into the model
+        '''
         f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
         data = json.load(f)
         with open(self.file_path + 'data/newsAll.json', 'w') as f:
@@ -92,6 +90,9 @@ class Vectorizer:
         self.export_vector()
     
     def delete_temps(self):
+        '''
+        Delete temps.npy from project folder
+        '''
         if os.path.exists(self.file_path + "data/temps.npy"):
             os.remove(self.file_path + "data/temps.npy")
             print("File deleted sucessfully!")
@@ -100,7 +101,7 @@ class Vectorizer:
         
 if __name__ == "__main__":
     VectorizerModel = Vectorizer()
-    #VectorizerModel.run()
+    VectorizerModel.run()
     print(len(VectorizerModel.data))
     #VectorizerModel.vectorize()
     #VectorizerModel.delete_temps()
