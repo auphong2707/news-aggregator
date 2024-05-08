@@ -74,15 +74,6 @@ class CategoryDistributor:
         self.load_data()
         self.train_kmean()
         self.save_category()
-    
-    def get_trending(self):
-        '''
-        Trending is the articles that are in the cluster with most points \n
-        Return a json file of "trending" articles
-        '''
-        f = open(CURRENT_WORKING_DIRECTORY + 'data/trendings.json', encoding = "utf8")
-        trending_articles = json.load(f)
-        return json.dumps(trending_articles)
 
         
 
@@ -91,22 +82,6 @@ if __name__ == "__main__":
     categoryDistributorModel = CategoryDistributor()
     categoryDistributorModel.run()    
     categoryDistributorModel.visualize()
-    '''
-    Uncomment these codes if need to be retrained to get new trending from beginning
-    
-    TrendDetector.load_data(CURRENT_WORKING_DIRECTORY)
-    TrendDetector.train_kmean()
-    TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
-    TrendDetector.save_trending(CURRENT_WORKING_DIRECTORY)
-    '''
-    
-    # Load k-mean model and cluster it to find trendings articles
-    #TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
-    
-    #print(trending_articles)
-    #TrendDetector.visualize()
-    
-    #print(articles)
 
 
 
