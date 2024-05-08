@@ -1,11 +1,7 @@
-import math
-import string
 import json 
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-import pickle 
-import time 
 
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -107,23 +103,14 @@ class TrendDetector:
         self.select_number_clusters()
         self.train_kmean()
         self.save_trending()
-    
-    def get_trending(self) -> str:
-        '''
-        Trending is the articles that are in the cluster with most points \n
-        Return a json file of "trending" articles
-        '''
-        f = open(CURRENT_WORKING_DIRECTORY + 'data/trendings.json', encoding = "utf8")
-        trending_articles = json.load(f)
-        return json.dumps(trending_articles)
 
          
 
 if __name__ == "__main__":
     #print(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
-    TrendDetector= TrendDetector()
-    TrendDetector.run()
-    print(TrendDetector.number_clusters)
+    trend_detector= TrendDetector()
+    trend_detector.run()
+    print(trend_detector.number_clusters)
     '''
     Uncomment these codes if need to be retrained to get new trending from beginning
     
@@ -132,3 +119,11 @@ if __name__ == "__main__":
     TrendDetector.save_model(CURRENT_WORKING_DIRECTORY)
     TrendDetector.save_trending(CURRENT_WORKING_DIRECTORY)
     '''
+    
+    # Load k-mean model and cluster it to find trendings articles
+    #TrendDetector.load_model(CURRENT_WORKING_DIRECTORY)
+    #trending_articles = TrendDetector.get_trending() #this is output
+    #print(trending_articles)
+    #TrendDetector.visualize()
+    
+    #print(articles)

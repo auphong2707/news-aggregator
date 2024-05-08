@@ -1,14 +1,6 @@
-import math
 import string
-import json 
-import os
-import numpy as np
-import pickle 
-import time 
-import nltk
 
 from unidecode import unidecode
-from abc import ABC, abstractmethod
 
 
 def split_date(article: dict):

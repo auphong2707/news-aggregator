@@ -1,14 +1,8 @@
-import math
-import string
 import json 
 import os
 import numpy as np
-import pickle 
-import time 
 
-from unidecode import unidecode
 from gensim.models import Word2Vec
-from nltk.corpus import stopwords
 from Utilities import *
 
 class Vectorizer:

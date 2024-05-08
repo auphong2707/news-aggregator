@@ -1,11 +1,7 @@
-import math
-import string
 import json 
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-import pickle 
-import time 
 
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA

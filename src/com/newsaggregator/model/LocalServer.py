@@ -36,8 +36,8 @@ def process_data():
     #summarizerModel.run()
 
 def analyze_data():
-    from TrendDetection import TrendDetection
-    trend_detector_model = TrendDetection()
+    from TrendDetector import TrendDetector
+    trend_detector_model = TrendDetector()
 
     trend_detector_model.run()
     search_engine.run()
