@@ -5,10 +5,11 @@ import math
 import string
 import json 
 import os
+
 from unidecode import unidecode
 from Utilities import *
 
-def update_scores(current_score, previous_score):
+def update_scores(current_score: list, previous_score: list) -> list:
     
     updated_score = [0] * len(current_score)
     
@@ -18,7 +19,7 @@ def update_scores(current_score, previous_score):
     return updated_score
 
 class SearchEngine:
-    def __init__(self, k1 = 1.5, b = 0.75):
+    def __init__(self, k1: int = 1.5, b: int = 0.75):
         '''
         data: a list of dictionary of articles, which contains {title, url, content}
         k1: constant for BM25 ranker
@@ -41,8 +42,17 @@ class SearchEngine:
         data = json.load(f)
         self.data = data
         f.close()
-        for i in range(len(self.data)):
-            self.processed_article_contents.append(StringProcessor.process(self.data[i]['DETAILED_CONTENT']))
+        
+        if os.path.isfile(self.file_path + 'data/searchEngineTempData.txt'):
+            with open(self.file_path + 'data/searchEngineTempData.txt', 'r') as f:
+                for i, line in enumerate(f):
+                    self.processed_article_contents.append(line.rstrip())
+        else:      
+            for i in range(len(self.data)):
+                self.processed_article_contents.append(StringProcessor.process(self.data[i]['DETAILED_CONTENT']))   
+            with open(self.file_path + 'data/searchEngineTempData.txt', 'w') as f:
+                for i in range(len(self.data)):
+                    f.write(self.processed_article_contents[i] + "\n")
         self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(self.data))]) / len(self.data)
     
     def get_word_occurences(self, word, data_index):
@@ -57,7 +67,7 @@ class SearchEngine:
         '''        
         return sum([word in self.processed_article_contents[i] for i in range(len(self.data))])
 
-    def idf(self, word):
+    def idf(self, word: str) -> float:
         '''
         return inverse document frequency value (idf) of the word
         '''
@@ -66,7 +76,7 @@ class SearchEngine:
         
         return math.log((num_documents - num_occurences + 0.5) / (num_occurences + 0.5) + 1)
 
-    def bm25_score(self, query):
+    def bm25_score(self, query: str) -> list:
         '''
         query: a word
         
@@ -87,7 +97,7 @@ class SearchEngine:
             
         return result
 
-    def search(self, query, num_relevant_results):
+    def search(self, query: str, num_relevant_results: int) -> str:
         '''
         query: a string of words
         return: top 10 most relevant results, in form of dictionary
@@ -126,4 +136,5 @@ if __name__ == "__main__":
     return variable is a json string
     '''
     result = search_engine.search("Facebook Libra: the", 10)
+    print(result[:500])
 
