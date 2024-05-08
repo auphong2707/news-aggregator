@@ -16,8 +16,19 @@ import javafx.util.Pair;
 
 public class Test {
 	public static void main(String[] args) throws IOException, HttpStatusException{   	
-		Model model = new Model();
-		model.scrapeNewData(8);
+		Model.getInstance();
+		System.out.println("Latest:");
+		for(ArticleData d : Model.getInstance().getLatest(5)) {
+			System.out.println(d.getTITLE());
+		}
+		System.out.println("Random:");
+		for(ArticleData d : Model.getInstance().getRandom(5)) {
+			System.out.println(d.getTITLE());
+		}
+		System.out.println("Trending:");
+		for(ArticleData d : Model.getInstance().getTrending(5)) {
+			System.out.println(d.getTITLE());
+		}
 	}
 }
         
