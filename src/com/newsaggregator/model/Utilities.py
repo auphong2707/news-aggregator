@@ -11,15 +11,6 @@ from unidecode import unidecode
 from abc import ABC, abstractmethod
 
 
-def load_text_file(path: str) -> list:
-    return_list = []
-    if os.path.isfile(path):
-        with open(path, 'r') as f:
-            for i, line in enumerate(f):
-                return_list.append(line.rstrip())
-            
-    return return_list
-
 def split_date(article: dict):
     '''
     Key function for sorting the articles by date descending
