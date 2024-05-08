@@ -23,21 +23,11 @@ public class Model {
 			new WebScrapperExpress()
 	};
 	
+	private static long processPid = -1;
+	
 	private static Model instance;
     private Model() {
-		String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\LocalServer.py";
-		String command = "python " + directory;
-		
-		Process server = null;
-		try {
-			server = Runtime.getRuntime().exec(command);
-			server.waitFor(1500, TimeUnit.MILLISECONDS);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Local server started!");
+    	runLocalServer();
     }
 
     public static Model getInstance() {
@@ -46,6 +36,11 @@ public class Model {
         }
         return instance;
     }
+	
+	@Override
+	protected void finalize() throws Throwable {
+		terminateLocalServer();
+	}
 
 	public void scrapeNewData()
 	{
@@ -116,9 +111,9 @@ public class Model {
 	public List<ArticleData> getLatest(int count) {
 		try {
 			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count);
-			String recievedJson = connectServerGET(url);
+			String recievedJsonString = connectServerGET(url);
 			
-			return ModelTools.convertJsonStringToData(recievedJson);
+			return ModelTools.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -130,9 +125,9 @@ public class Model {
 	public List<ArticleData> getRandom(int count) {
 		try {
 			URL url = new URL("http://127.0.0.1:5000/random?number=" + count);
-			String recievedJson = connectServerGET(url);
+			String recievedJsonString = connectServerGET(url);
 			
-			return ModelTools.convertJsonStringToData(recievedJson);
+			return ModelTools.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -144,9 +139,9 @@ public class Model {
 	public List<ArticleData> getTrending(int count) {
 		try {
 			URL url = new URL("http://127.0.0.1:5000/trending?number=" + count);
-			String recievedJson = connectServerGET(url);
+			String recievedJsonString = connectServerGET(url);
 			
-			return ModelTools.convertJsonStringToData(recievedJson);
+			return ModelTools.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -208,6 +203,42 @@ public class Model {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	private void runLocalServer()
+	{
+		if (processPid == -1)
+		{
+			String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\LocalServer.py";
+			String command = "python " + directory;
+			
+			Process server = null;
+			try {
+				server = Runtime.getRuntime().exec(command);
+				server.waitFor(10, TimeUnit.SECONDS);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			processPid = server.pid();
+		}
+		System.out.println("Local server started!");
+	}
+	
+	private void terminateLocalServer()
+	{
+		System.out.println("Local server is terminated!");
+		if (processPid != -1)
+		{
+			String command = "taskkill /F /T /PID " + processPid;
+			try {
+				Runtime.getRuntime().exec(command);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
