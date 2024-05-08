@@ -107,15 +107,6 @@ class TrendDetection:
         self.select_number_clusters()
         self.train_kmean()
         self.save_trending()
-    
-    def get_trending(self):
-        '''
-        Trending is the articles that are in the cluster with most points \n
-        Return a json file of "trending" articles
-        '''
-        f = open(CURRENT_WORKING_DIRECTORY + 'data/trendings.json', encoding = "utf8")
-        trending_articles = json.load(f)
-        return json.dumps(trending_articles)
 
          
 
