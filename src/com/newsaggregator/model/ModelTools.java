@@ -70,7 +70,7 @@ class ModelTools {
     	return document;
     }
 	
-	static List<ArticleData> convertJsonToData(String directory) {
+	static List<ArticleData> convertJsonFileToData(String directory) {
 		try {
 		      File jsonFile = new File(directory);
 
@@ -124,11 +124,5 @@ class ModelTools {
                 e.printStackTrace();
             }
         }
-	}
-	
-	static <T> List<T> randomSubList(List<T> list, int newSize) {
-	    list = new ArrayList<>(list);
-	    Collections.shuffle(list);
-	    return list.subList(0, newSize);
 	}
 }
