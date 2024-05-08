@@ -40,14 +40,17 @@ class SearchEngine:
         with open(self.file_path + 'data/model/search_engine.pkl', 'wb') as f:
             pickle.dump(self, f)
     
-    def load_engine(self, file_path):
+    @classmethod
+    def load_engine(cls, file_path):
         f = open(file_path + 'data/newsAll.json', encoding = "utf8")
         data = json.load(f)
         f.close()
+
         with open(file_path + 'data/model/search_engine.pkl', 'rb') as f:
-            loaded_search_engine =  pickle.load(f)
-        self.__dict__.update(loaded_search_engine.__dict__)
-        self.data = data
+            loaded_search_engine = pickle.load(f)
+        loaded_search_engine.data = data
+        
+        return loaded_search_engine
         
     def run(self):
         '''

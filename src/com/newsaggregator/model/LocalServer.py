@@ -10,7 +10,7 @@ file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' 
 
 server = Flask(__name__)
 
-search_engine = SearchEngine()
+search_engine = SearchEngine.load_engine(file_path)
 
 
 def sort_by_date():
