@@ -5,6 +5,7 @@ import random
 from TrendDetection import TrendDetection
 from SearchEngine import SearchEngine
 from flask import Flask, request
+from Utilities import *
 
 file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
 
