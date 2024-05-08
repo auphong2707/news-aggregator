@@ -9,20 +9,10 @@ import nltk
 
 from unidecode import unidecode
 from abc import ABC, abstractmethod
-from nltk.corpus import stopwords
-nltk.download('stopwords')
-STOPWORDS = stopwords.words('english')
 
 class StringProcessor():
     @staticmethod
-    def remove_stop_words(text: str) -> str:
-        '''
-        Remove unnecessary stopwords from a string
-        Return: a processed string
-        '''
-        return ' '.join(word for word in text.split() if word not in STOPWORDS)
-    @classmethod
-    def process(cls, str_input: str):
+    def process(str_input: str) -> str:
         '''
         Convert non-ascii characters to ascii ones, remove punctuations, redundant spaces
         Return: a processed string
@@ -35,7 +25,7 @@ class StringProcessor():
 
 class DocumentProcessor():
     @staticmethod
-    def process(data, key):
+    def process(data: list, key: str) -> list:
         '''
         Process the string content at [key] of a list of dictionaries
         The process involve preprocessing each document using StringProcessor() 
