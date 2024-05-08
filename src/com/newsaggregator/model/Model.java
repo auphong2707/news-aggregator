@@ -36,11 +36,6 @@ public class Model {
         }
         return instance;
     }
-	
-	@Override
-	protected void finalize() throws Throwable {
-		terminateLocalServer();
-	}
 
 	public void scrapeNewData()
 	{
@@ -64,7 +59,7 @@ public class Model {
         DataOutputStream os = null;
         
         try{
-            URL url = new URL("http://127.0.0.1:5000/search/"); //important to add the trailing slash after add
+            URL url = new URL("http://127.0.0.1:5000/search/");
             String input = "{\"content\": \"" + inputContent + "\"}";
             byte[] postData = input.getBytes(StandardCharsets.UTF_8);
             
@@ -216,7 +211,7 @@ public class Model {
 			Process server = null;
 			try {
 				server = Runtime.getRuntime().exec(command);
-				server.waitFor(10, TimeUnit.SECONDS);
+				server.waitFor(2500, TimeUnit.MILLISECONDS);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
@@ -228,7 +223,7 @@ public class Model {
 		System.out.println("Local server started!");
 	}
 	
-	private void terminateLocalServer()
+	public void terminateLocalServer()
 	{
 		System.out.println("Local server is terminated!");
 		if (processPid != -1)

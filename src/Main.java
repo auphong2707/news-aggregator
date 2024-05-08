@@ -1,3 +1,4 @@
+import com.newsaggregator.model.Model;
 import com.newsaggregator.presenter.*;
 
 import javafx.application.Application;
@@ -14,6 +15,11 @@ public class Main extends Application {
         // TODO  Auto-generated method stub
 	    try {
 	    	SceneManager.getInstance().initialize(primaryStage);
+	    	Runtime.getRuntime().addShutdownHook(new Thread() {
+	    	    public void run() {
+	    	    	Model.getInstance().terminateLocalServer();
+	    	    }
+	    	});
 	        
 	        primaryStage.setTitle("News Alligator");
 	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/images/alligator.png"));
