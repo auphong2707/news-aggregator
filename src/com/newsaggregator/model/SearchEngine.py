@@ -36,6 +36,7 @@ class SearchEngine:
         self.processed_article_contents = []
         
     def save_engine(self):
+        self.data = None
         with open(self.file_path + 'data/model/search_engine.pkl', 'wb') as f:
             pickle.dump(self, f)
     
@@ -63,12 +64,8 @@ class SearchEngine:
         processed_article_content_new = []
         for i in range(len(data)):
             processed_article_content_new.append(StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
-        for i in range(len(data)):
-            self.processed_article_contents.append(processed_article_content_new[i])  
-
-        with open(self.file_path + 'data/searchEngineData.txt', 'w') as f:
-            for i in range(len(data)):
-                f.write(processed_article_content_new[i] + "\n")
+        self.processed_article_contents = processed_article_content_new
+        
         self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(data))]) / len(data)
         self.save_engine()
     
@@ -145,7 +142,7 @@ if __name__ == "__main__":
     '''
     Loading data into the search engine
     '''
-    search_engine = SearchEngine()
+    search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
     search_engine.run()
 
     '''py
