@@ -105,6 +105,9 @@ class ModelTools {
 		FileWriter fileWriter = null;
    	 
         try {
+        	File file = new File(fileDirectory);
+        	file.createNewFile();
+        	
             fileWriter = new FileWriter(fileDirectory);
  
             Gson gson = new Gson();

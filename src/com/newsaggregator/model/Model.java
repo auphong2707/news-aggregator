@@ -37,18 +37,11 @@ public class Model {
         return instance;
     }
 
-	public void scrapeNewData()
+	private void scrapeNewData()
 	{
 		for(WebScrapper scraper : scrapers)
 		{
 			scraper.scrapeAllData();
-		}
-		combineData();
-	}
-	
-	public void scrapeNewData(int startIndex) {
-		for(int i = startIndex;  i < scrapers.length; ++i) {
-			scrapers[i].scrapeAllData();
 		}
 		combineData();
 	}
@@ -145,12 +138,35 @@ public class Model {
 		return null;
 	}
 	
+	public void aggregateNewData() {
+		// Phase 1: Scrape new data to newsAll.json
+		scrapeNewData();
+		
+		// Phase 2: Process the scraped data
+		String result = "";
+		while(true) {
+			try {
+				URL url = new URL("http://127.0.0.1:5000/update");
+				result = connectServerGET(url);
+				System.out.println(result);
+				if (result.equals("Data is already updated")) break;
+				
+				Thread.sleep(300000);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private String connectServerGET(URL url) {
 		HttpURLConnection conn = null;
 		try{
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("GET");
+            conn.setConnectTimeout(0);
             
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
@@ -184,6 +200,7 @@ public class Model {
 		};
 		
 		try {
+			// Combine all files to create newsAll.json
 			List<ArticleData> listOfData = new ArrayList<ArticleData>();
 			for(String fileName : arrayOfFileNames)
 			{
@@ -195,8 +212,18 @@ public class Model {
 				scanner.close();
 			}
 			ModelTools.convertDataToJson(listOfData, DIRECTORY + RESULT_FILE_NAME);
+			
+			// Delete all the materials
+			for(String fileName : arrayOfFileNames) {
+				File file = new File(DIRECTORY + fileName);
+				if (file.delete()) {
+		            System.out.println("File " + fileName + " deleted successfully");
+		        }
+		        else {
+		            System.out.println("Failed to delete the file " + fileName);
+		        }
+			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

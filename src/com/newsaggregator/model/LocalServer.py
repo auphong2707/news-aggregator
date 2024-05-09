@@ -1,6 +1,8 @@
 import json 
 import os
 import random
+import psutil
+import subprocess
 
 from SearchEngine import SearchEngine
 from flask import Flask, request
@@ -9,55 +11,20 @@ from Utilities import *
 file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
 
 server = Flask(__name__)
+process = None
 
 search_engine = SearchEngine.load_engine(file_path)
 
-
-def sort_by_date():
-    '''
-    Sort data by dates in descending order, save it in newsAll.json
-    '''
-    f = open(file_path + 'data/newsAll.json', encoding = "utf8")
-    data = json.load(f)
-    f.close()
-    
-    data.sort(key = split_date)
-    with open(file_path + 'data/newsAll.json', 'w') as f:
-        json.dump(data, f, indent = 2)
-
-def process_data():
-    from Summarizer import Summarizer
-    from CategoryDistributor import CategoryDistributor
-
-    category_distributor_model = CategoryDistributor()
-    summarizerModel = Summarizer()
-
-    category_distributor_model.run()
-    #summarizerModel.run()
-
-def analyze_data():
-    from TrendDetector import TrendDetector
-    trend_detector_model = TrendDetector()
-
-    trend_detector_model.run()
-    search_engine.run()
-    
-    trend_detector_model.load_engine(file_path)
-    
-    #Search for something: searchEngine.search(query_string: str, num_of_relevant_results: int)
-    #Get trending articles: trendDetectorModel.get_trending()
-
+@server.route('/update', methods=['GET'])
 def process_new_data():
-    from Vectorizer import Vectorizer 
-    article_vectorizer = Vectorizer()
-
-    sort_by_date()
-    article_vectorizer.run()
-
-    process_data()
-    analyze_data()
-    
-    article_vectorizer.delete_temps()
+    global process
+    if process is None:
+        process = subprocess.Popen(['python', file_path + 'src/com/newsaggregator/model/DataProcessor.py'])
+        return "Start processing data"
+    elif process.poll() is not None:
+        return "Data is already updated"
+    else:
+        return "Data is in the process"
 
 @server.route('/random', methods=['GET'])
 def get_random() -> str:
