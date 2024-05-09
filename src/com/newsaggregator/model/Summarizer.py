@@ -1,4 +1,5 @@
 #pip install -U sentence-transformers
+#pip install bert-extractive-summarizer
 
 from summarizer.sbert import SBertSummarizer
 from os.path import expanduser
