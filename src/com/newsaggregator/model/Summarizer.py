@@ -1,4 +1,4 @@
-#pip install -U sentence-transformers
+#pip install sentence-transformers
 #pip install bert-extractive-summarizer
 
 from summarizer.sbert import SBertSummarizer
@@ -27,12 +27,12 @@ class Summarizer():
         Using pretrained Sentence-Bert model to summarize detailed content
         Of the article in 30% length of the originals.
         '''
-        for i, article in enumerate(articles):
-            body = article['DETAILED_CONTENT']
+        for i in range(len(articles)):
+            body = articles[i]['DETAILED_CONTENT']
             summary = self.model(body, ratio=0.3)
             
             with self.lock:
-                article['SUMMARY'] = summary
+                articles[i]['SUMMARY'] = summary
         
             print(f"Article {start_idx + i} summarized")
         #print("article summarized")
@@ -66,8 +66,8 @@ class Summarizer():
         '''
         Export data to destined file under json format
         '''
-        with open(self.file_path + 'data/newsAllBackup.json', 'w') as f:
-            json.dump(self.data, f)
+        with open(self.file_path + 'data/newsAll.json', 'w') as f:
+            json.dump(self.data, f, indent = 2)
     def run(self):
         self.import_data()
         self.summarize_data()

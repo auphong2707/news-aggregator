@@ -48,7 +48,7 @@ class SearchEngine:
         with open(file_path + 'data/model/search_engine.pkl', 'rb') as f:
             loaded_search_engine = pickle.load(f)
         loaded_search_engine.data = data
-        
+        loaded_search_engine.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
         return loaded_search_engine
         
     def run(self):
