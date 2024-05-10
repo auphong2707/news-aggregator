@@ -104,6 +104,9 @@ public class ArticleData {
     	if (WEBSITE_SOURCE.equals("The Fintech Times")) {
     		contents.select(".pp-multiple-authors-wrappermultiple-authors-target-the-content"
     				+ ".pp-multiple-authors-layout-boxed").remove();
+    		contents.select(".wp-caption.alignleft").remove();
+    		contents.select(".wp-caption.alignright").remove();
+    		
     	}
     	
     	if (WEBSITE_SOURCE.equals("Financial Express")) {
@@ -112,6 +115,7 @@ public class ArticleData {
     		contents.select(".wp-block-ie-network-blocks-also-read").remove();
     	}
 	    
+    		
     	String htmlContent = contents.html().replaceAll("<img ", 
     			"<img onerror=\"this.style.display='none'\" ");
     	
