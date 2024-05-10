@@ -105,6 +105,12 @@ public class ArticleData {
     		contents.select(".pp-multiple-authors-wrappermultiple-authors-target-the-content"
     				+ ".pp-multiple-authors-layout-boxed").remove();
     	}
+    	
+    	if (WEBSITE_SOURCE.equals("Financial Express")) {
+    		contents.select(".parent_also_read").remove();
+    		contents.select(".wp-block-newspack-blocks-wp-block-newspack-ads-blocks-ad-unit").remove();
+    		contents.select(".wp-block-ie-network-blocks-also-read").remove();
+    	}
 	    
     	String htmlContent = contents.html().replaceAll("<img ", 
     			"<img onerror=\"this.style.display='none'\" ");
