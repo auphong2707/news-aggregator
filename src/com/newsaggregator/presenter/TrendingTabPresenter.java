@@ -23,8 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class TrendingTabPresenter extends Presenter {
-	private Model model = new Model();
-	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
@@ -132,7 +130,7 @@ public class TrendingTabPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
-		trendingData = model.getTrending(60);
+		trendingData = Model.getInstance().getTrending(60);
 		
 		searchBar.clear();
 		

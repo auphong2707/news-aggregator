@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,8 +104,12 @@ class WebScrapperCONV extends WebScrapper {
     String getCreationDate(Document document) {
     	Elements contents = document.select(".timestamps time[datetime]");
     	for (Element content : contents) {
-    		String creationDate = content.attr("datetime");
-    		return creationDate;
+    		String timestamp = content.attr("datetime");
+    		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssX");
+            LocalDate date = LocalDate.parse(timestamp, formatter);
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String dateString = date.format(outputFormatter);
+    		return dateString;
     	}
     	return "";
     }

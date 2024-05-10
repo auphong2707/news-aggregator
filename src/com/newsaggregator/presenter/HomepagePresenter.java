@@ -53,8 +53,6 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	
-	private Model model = new Model();
-	
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
 	private List<ArticleData> trendingData;
@@ -77,7 +75,7 @@ public class HomepagePresenter extends Presenter {
 	}
 	
 	private void setLatestArticle() {
-		latestData = model.getLatestArticleData(6);
+		latestData = Model.getInstance().getLatest(6);
 		
 		Group[] latestSmallArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3,
 				 								  smallArticle4, smallArticle5, smallArticle6};
@@ -89,7 +87,7 @@ public class HomepagePresenter extends Presenter {
 		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
 											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
 		
-		randomData = model.getRandomArticleData(randomArticle.length);
+		randomData = Model.getInstance().getRandom(randomArticle.length);
 		
 		PresenterTools.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
 	}
@@ -99,7 +97,7 @@ public class HomepagePresenter extends Presenter {
 		Group[] trendingNotSoBigArticle = new Group[] {notSoBigArticle1t, notSoBigArticle2t,
 													   notSoBigArticle3t, notSoBigArticle4t};
 		
-		trendingData = model.getTrending(6);
+		trendingData = Model.getInstance().getTrending(6);
 		
 		PresenterTools.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
 		PresenterTools.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);

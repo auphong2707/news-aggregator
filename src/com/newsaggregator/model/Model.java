@@ -11,22 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Model {
 	private final static String DIRECTORY = "data/";
-	private final static String RESULT_FILE_NAME = "newsAllProcessed.json";
-	private final static WebScrapper[] scrapers;
-	
-	private static long processPid = -1;
-	private static List<ArticleData> modelData;
-	
-	static
-	{
-		modelData = ModelTools.convertJsonToData(DIRECTORY + RESULT_FILE_NAME);
-		modelData.sort(
-			(ArticleData a1, ArticleData a2)
-			-> a2.getCREATION_DATE().compareTo(a1.getCREATION_DATE())
-		);
-		System.out.println("Size of Data: " + modelData.size());
-		
-		scrapers = new WebScrapper[] {
+	private final static String RESULT_FILE_NAME = "newsAll.json";
+	private final static WebScrapper[] scrapers = new WebScrapper[] {
 			new WebScrapperFT(),
 			new WebScrapperCONV(),
 			new WebScrapperAcademy(),
@@ -35,44 +21,27 @@ public class Model {
 			new WebScrapperFreightWave(),
 			new WebScrapperTheFintech(),
 			new WebScrapperExpress()
-		};
-	}
+	};
 	
-	public static void runLocalServer() throws IOException, InterruptedException
-	{
-		if (processPid == -1)
-		{
-			String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\DataAnalyzer.py";
-			String command = "python " + directory;
-			
-			Process server = Runtime.getRuntime().exec(command);
-			server.waitFor(10, TimeUnit.SECONDS);
-			
-			processPid = server.pid();
-		}
-	}
+	private static long processPid = -1;
 	
-	public static void terminateLocalServer() throws IOException
-	{
-		if (processPid != -1)
-		{
-			String command = "taskkill /F /T /PID " + processPid;
-			Runtime.getRuntime().exec(command);
-		}
-	}
-	
-	public void scrapeNewData()
+	private static Model instance;
+    private Model() {
+    	runLocalServer();
+    }
+
+    public static Model getInstance() {
+        if(instance == null) {
+            instance = new Model();
+        }
+        return instance;
+    }
+
+	private void scrapeNewData()
 	{
 		for(WebScrapper scraper : scrapers)
 		{
 			scraper.scrapeAllData();
-		}
-		combineData();
-	}
-	
-	public void scrapeNewData(int startIndex) {
-		for(int i = startIndex;  i < scrapers.length; ++i) {
-			scrapers[i].scrapeAllData();
 		}
 		combineData();
 	}
@@ -83,7 +52,7 @@ public class Model {
         DataOutputStream os = null;
         
         try{
-            URL url = new URL("http://127.0.0.1:5000/search/"); //important to add the trailing slash after add
+            URL url = new URL("http://127.0.0.1:5000/search/");
             String input = "{\"content\": \"" + inputContent + "\"}";
             byte[] postData = input.getBytes(StandardCharsets.UTF_8);
             
@@ -127,21 +96,77 @@ public class Model {
 		return null;
 	}
 	
-	public List<ArticleData> getLatestArticleData(int count) {
-		return modelData.subList(0, count);
+	public List<ArticleData> getLatest(int count) {
+		try {
+			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count);
+			String recievedJsonString = connectServerGET(url);
+			
+			return ModelTools.convertJsonStringToData(recievedJsonString);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
 	}
 	
-	public List<ArticleData> getRandomArticleData(int count) {
-		return ModelTools.randomSubList(modelData, count);
+	public List<ArticleData> getRandom(int count) {
+		try {
+			URL url = new URL("http://127.0.0.1:5000/random?number=" + count);
+			String recievedJsonString = connectServerGET(url);
+			
+			return ModelTools.convertJsonStringToData(recievedJsonString);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
 	}
 	
 	public List<ArticleData> getTrending(int count) {
+		try {
+			URL url = new URL("http://127.0.0.1:5000/trending?number=" + count);
+			String recievedJsonString = connectServerGET(url);
+			
+			return ModelTools.convertJsonStringToData(recievedJsonString);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
+	}
+	
+	public void aggregateNewData() {
+		// Phase 1: Scrape new data to newsAll.json
+		scrapeNewData();
+		
+		// Phase 2: Process the scraped data
+		String result = "";
+		while(true) {
+			try {
+				URL url = new URL("http://127.0.0.1:5000/update");
+				result = connectServerGET(url);
+				System.out.println(result);
+				if (result.equals("Data is already updated")) break;
+				
+				Thread.sleep(300000);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private String connectServerGET(URL url) {
 		HttpURLConnection conn = null;
-        try{
-            URL url = new URL("http://127.0.0.1:5000/trending"); //important to add the trailing slash after add
+		try{
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("GET");
+            conn.setConnectTimeout(0);
             
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
@@ -154,12 +179,8 @@ public class Model {
 
             conn.disconnect();
             
-            List<ArticleData> trendingData = ModelTools.convertJsonStringToData(output);
-            return ModelTools.randomSubList(trendingData, count);
-	    } 
-        catch (MalformedURLException e) {
-	        e.printStackTrace();
-	    } 
+            return output;
+	    }
         catch (IOException e){
 	        e.printStackTrace();
 	    } 
@@ -179,6 +200,7 @@ public class Model {
 		};
 		
 		try {
+			// Combine all files to create newsAll.json
 			List<ArticleData> listOfData = new ArrayList<ArticleData>();
 			for(String fileName : arrayOfFileNames)
 			{
@@ -190,9 +212,55 @@ public class Model {
 				scanner.close();
 			}
 			ModelTools.convertDataToJson(listOfData, DIRECTORY + RESULT_FILE_NAME);
+			
+			// Delete all the materials
+			for(String fileName : arrayOfFileNames) {
+				File file = new File(DIRECTORY + fileName);
+				if (file.delete()) {
+		            System.out.println("File " + fileName + " deleted successfully");
+		        }
+		        else {
+		            System.out.println("Failed to delete the file " + fileName);
+		        }
+			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	private void runLocalServer()
+	{
+		if (processPid == -1)
+		{
+			String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\LocalServer.py";
+			String command = "python " + directory;
+			
+			Process server = null;
+			try {
+				server = Runtime.getRuntime().exec(command);
+				server.waitFor(2500, TimeUnit.MILLISECONDS);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			processPid = server.pid();
+		}
+		System.out.println("Local server started!");
+	}
+	
+	public void terminateLocalServer()
+	{
+		System.out.println("Local server is terminated!");
+		if (processPid != -1)
+		{
+			String command = "taskkill /F /T /PID " + processPid;
+			try {
+				Runtime.getRuntime().exec(command);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

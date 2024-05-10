@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,8 +98,12 @@ class WebScrapperTheBlockchain extends WebScrapper {
     @Override 
     String getCreationDate(Document document) {
     	Element content = document.selectFirst(".td-post-date");
-    	String creationDate = content.select(".entry-date.updated.td-module-date").attr("datetime");
-    	return creationDate;
+    	String timestamp = content.select(".entry-date.updated.td-module-date").attr("datetime");
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+        LocalDate date = LocalDate.parse(timestamp, formatter);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dateString = date.format(outputFormatter);
+    	return dateString;
     }
     
     @Override
