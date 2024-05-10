@@ -100,6 +100,11 @@ public class ArticleData {
 		
 		Elements contents = document.select(HTML_CONTENT_LOCATION);
     	if (contents == null) return "";
+    	
+    	if (WEBSITE_SOURCE.equals("The Fintech Times")) {
+    		contents.select(".pp-multiple-authors-wrappermultiple-authors-target-the-content"
+    				+ ".pp-multiple-authors-layout-boxed").remove();
+    	}
 	    
     	String htmlContent = contents.html().replaceAll("<img ", 
     			"<img onerror=\"this.style.display='none'\" ");
