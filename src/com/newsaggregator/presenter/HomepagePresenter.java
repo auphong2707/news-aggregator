@@ -216,6 +216,12 @@ public class HomepagePresenter extends Presenter {
 	    }
 	}
 	
+	@FXML
+	public void refreshHomepage() {
+		setRandomArticle();
+		setTrendingArticle();
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
 		searchBar.clear();
