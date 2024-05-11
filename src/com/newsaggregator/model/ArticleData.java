@@ -106,16 +106,12 @@ public class ArticleData {
     				+ ".pp-multiple-authors-layout-boxed").remove();
     		contents.select(".wp-caption.alignleft").remove();
     		contents.select(".wp-caption.alignright").remove();
-    		
-    	}
-    	
-    	if (WEBSITE_SOURCE.equals("Financial Express")) {
+    		contents.select(".alignnone").remove();	
+    	} else if (WEBSITE_SOURCE.equals("Financial Express")) {
     		contents.select(".parent_also_read").remove();
     		contents.select(".wp-block-newspack-blocks-wp-block-newspack-ads-blocks-ad-unit").remove();
     		contents.select(".wp-block-ie-network-blocks-also-read").remove();
-    	}
-	    
-    	if (WEBSITE_SOURCE.equals("Freight Wave")) {
+    	} else if (WEBSITE_SOURCE.equals("Freight Wave")) {
     		contents.select(".essb_links_list").remove();
     	}
     		
