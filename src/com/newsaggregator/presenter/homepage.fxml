@@ -230,7 +230,7 @@
                   </VBox>
                   <Group layoutX="298.0" layoutY="62.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="280.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="13.0" onMouseClicked="#refreshHomepage" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="13.0" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
                            <font>
                               <Font name="Lucida Sans Demibold Italic" size="68.0" />
                            </font>
