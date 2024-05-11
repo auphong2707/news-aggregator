@@ -23,8 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class TrendingTabPresenter extends Presenter {
-	private Model model = new Model();
-	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
@@ -115,7 +113,7 @@ public class TrendingTabPresenter extends Presenter {
 			selectedGroup = (Group) clickedObject;
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
-		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(6))).getText());
+		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = trendingData.get(index);
 		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
@@ -138,7 +136,7 @@ public class TrendingTabPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
-		trendingData = model.getTrending(60);
+		trendingData = Model.getInstance().getTrending(60);
 		
 		searchBar.clear();
 		

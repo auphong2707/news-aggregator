@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 class WebScrapperFT extends WebScrapper {
     WebScrapperFT()
     {
@@ -102,8 +105,12 @@ class WebScrapperFT extends WebScrapper {
     String getCreationDate(Document document) {
     	Elements contents = document.select(".article-info__timestamp.o-date");
     	for (Element content : contents) {
-    		String creationDate = content.attr("datetime");
-    		return creationDate;
+    		String timestamp = content.attr("datetime");
+    		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+            LocalDate date = LocalDate.parse(timestamp, formatter);
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String dateString = date.format(outputFormatter);
+    		return dateString;
     	}
     	return "";
     }

@@ -7,6 +7,8 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,8 +99,14 @@ class WebScrapperCoindesk extends WebScrapper {
     @Override 
     String getCreationDate(Document document) {
     	Elements content = document.select(".at-created.label-with-icon");
-    	String creationDate = content.text();
-    	return creationDate;
+    	String date = content.text();
+    	date = date.replaceAll("a\\.m\\.", "AM").replaceAll("p\\.m\\.", "PM");
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy 'at' h:mm a z"); 
+        LocalDateTime dateTime = LocalDateTime.parse(date, dateFormatter);
+        
+        DateTimeFormatter dateToString = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dateString = dateTime.format(dateToString);
+    	return dateString;
     }
     
     @Override

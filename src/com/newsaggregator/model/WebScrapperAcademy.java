@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 class WebScrapperAcademy extends WebScrapper {
 	WebScrapperAcademy()
 	{
@@ -99,10 +103,14 @@ class WebScrapperAcademy extends WebScrapper {
     	Elements contents = document.select(".styles_lastUpdated__pOFs8.caption-12-capitalize");
 		for (Element content : contents) {
 			String date = content.select("p").text();
-			if (date.contains("Updated ")){
-				date.replace("Updated ", "");
-			}
-			return date;
+			date = date.replace("Updated ", "");
+			date = date.replaceAll("(?<=\\d)(st|nd|rd|th)", "");
+	        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy 'at' HH:mm");   
+	        LocalDateTime dateTime = LocalDateTime.parse(date, dateFormatter);
+	        
+	        DateTimeFormatter dateToString = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        String dateString = dateTime.format(dateToString);
+			return dateString;
 		}
     	return "";
     }

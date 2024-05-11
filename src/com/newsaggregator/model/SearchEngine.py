@@ -2,19 +2,14 @@
 References: https://www.alexmolas.com/2024/02/05/a-search-engine-in-80-lines.html?fbclid=IwAR0AYO9zMrklZic5TXVtE-uAO1dXeEYVcbGw0AApLhDnDcaD8aDyaMxNVaI
 ''' 
 import math
-import string
 import json 
 import os
+import pickle
+
 from unidecode import unidecode
+from Utilities import *
 
-def preprocessing(str_input):
-    str_ascii = unidecode(str_input)
-    translation_table = str.maketrans(string.punctuation, ' ' * len(string.punctuation))
-    str_input_no_punct = str_ascii.translate(translation_table)
-    preprocesed_str = ' '.join(str_input_no_punct.split())
-    return preprocesed_str.lower()
-
-def update_scores(current_score, previous_score):
+def update_scores(current_score: list, previous_score: list) -> list:
     
     updated_score = [0] * len(current_score)
     
@@ -23,8 +18,9 @@ def update_scores(current_score, previous_score):
     
     return updated_score
 
+
 class SearchEngine:
-    def __init__(self, k1 = 1.5, b = 0.75):
+    def __init__(self, k1: int = 1.5, b: int = 0.75):
         '''
         data: a list of dictionary of articles, which contains {title, url, content}
         k1: constant for BM25 ranker
@@ -34,29 +30,58 @@ class SearchEngine:
         self.data = None
         self.k1 = k1
         self.b = b
-        self.average_document_length = 0
+        
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+        self.data_path = self.file_path + 'data/searchEngineData.txt'
+        self.processed_article_contents = []
+        
+    def save_engine(self):
+        self.data = None
+        with open(self.file_path + 'data/model/search_engine.pkl', 'wb') as f:
+            pickle.dump(self, f)
+    
+    @classmethod
+    def load_engine(cls, file_path):
+        f = open(file_path + 'data/newsAll.json', encoding = "utf8")
+        data = json.load(f)
+        f.close()
 
-
-    def fit(self, data):
+        with open(file_path + 'data/model/search_engine.pkl', 'rb') as f:
+            loaded_search_engine = pickle.load(f)
+        loaded_search_engine.data = data
+        loaded_search_engine.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+        return loaded_search_engine
+        
+    def run(self):
         '''
-        The data is fed  into the class
+        The data is fed into the class attributes self.data \\
+        The processed_article_contents list will contain the processed article content string of every content in the list \\ 
         '''
-        self.data = data
-        self.average_document_length = sum([len(article['DETAILED_CONTENT_PROCESSED'].split()) for article in self.data]) / len(self.data)
+        f = open(self.file_path + 'data/newsAll.json', encoding = "utf8")
+        data = json.load(f)
+        f.close()
+        
+        processed_article_content_new = []
+        for i in range(len(data)):
+            processed_article_content_new.append(StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
+        self.processed_article_contents = processed_article_content_new
+        
+        self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(data))]) / len(data)
+        self.save_engine()
     
     def get_word_occurences(self, word, data_index):
         '''
         Return word occurences in a document given index
         '''
-        return self.data[data_index]['DETAILED_CONTENT_PROCESSED'].count(word)
+        return self.processed_article_contents[data_index].count(word)
 
     def get_word_occurences_global(self, word):
         '''
         Return total number of documents in data that has the word
         '''        
-        return sum([word in article['DETAILED_CONTENT_PROCESSED'] for article in self.data])
+        return sum([word in self.processed_article_contents[i] for i in range(len(self.data))])
 
-    def idf(self, word):
+    def idf(self, word: str) -> float:
         '''
         return inverse document frequency value (idf) of the word
         '''
@@ -65,7 +90,7 @@ class SearchEngine:
         
         return math.log((num_documents - num_occurences + 0.5) / (num_occurences + 0.5) + 1)
 
-    def bm25_score(self, query):
+    def bm25_score(self, query: str) -> list:
         '''
         query: a word
         
@@ -75,7 +100,7 @@ class SearchEngine:
         average_document_length = self.average_document_length
         k1, b = self.k1, self.b  
         
-        query_tokens = preprocessing(query).split()
+        query_tokens = StringProcessor.process(query).split()
         result = []
         word_idf = self.idf(query) 
         for i in range(len(self.data)):
@@ -86,12 +111,12 @@ class SearchEngine:
             
         return result
 
-    def search(self, query, num_relevant_results):
+    def search(self, query: str, num_relevant_results: int) -> str:
         '''
         query: a string of words
         return: top 10 most relevant results, in form of dictionary
         '''
-        query_tokens = preprocessing(query).split()
+        query_tokens = StringProcessor.process(query).split()
         query_score = [0] * len(self.data) 
         results = [0] * num_relevant_results
         
@@ -113,23 +138,23 @@ class SearchEngine:
         return return_json_string
 
 if __name__ == "__main__":
-    CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/SearchEngine.py', '')
-
-    print(CURRENT_WORKING_DIRECTORY)
 
     '''
     Loading data into the search engine
     '''
-    f = open(CURRENT_WORKING_DIRECTORY + 'data/newsAllProcessed.json', encoding = "utf8")
-    data = json.load(f)
-    search_engine = SearchEngine()
-    search_engine.fit(data)
+    search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    search_engine.run()
 
+    '''py
+    second_search_engine = SearchEngine() 
+    second_search_engine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    print(search_engine.processed_article_contents[:2])
+    print(second_search_engine.processed_article_contents[:2])
+    print(second_search_engine.processed_article_contents == search_engine.processed_article_contents)
+    result = second_search_engine.search("Facebook Libra: the", 10)
+    '''
     '''
     Show all relevant articles given the query string
     return variable is a json string
     '''
-    #print(search_engine.data[0]['DETAILED_CONTENT'])
-    #result = search_engine.search("Facebook Libra: the", 10)
-    #print(len(result))
-
+    

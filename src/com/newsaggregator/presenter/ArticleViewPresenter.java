@@ -42,7 +42,6 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML private Group bigArticle2;
 	@FXML private Group bigArticle3;
 	
-	private Model model = new Model();
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
 	
@@ -87,7 +86,7 @@ public class ArticleViewPresenter extends Presenter {
 		Group[] latestArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3, 
 											 smallArticle4, smallArticle5};
 		
-		latestData = model.getLatestArticleData(latestArticle.length);
+		latestData = Model.getInstance().getLatest(latestArticle.length);
 		
 		PresenterTools.setArrayArticleViews(latestArticle, latestData, ArticleSize.SMALL);
 	}
@@ -95,7 +94,7 @@ public class ArticleViewPresenter extends Presenter {
 	private void setReadNextArticle() {
 		Group[] reedNextArticle = new Group[] {bigArticle1, bigArticle2, bigArticle3};
 		
-		randomData = model.getRandomArticleData(reedNextArticle.length);
+		randomData = Model.getInstance().getRandom(reedNextArticle.length);
 		
 		PresenterTools.setArrayArticleViews(reedNextArticle, randomData, ArticleSize.BIG);
 	}
