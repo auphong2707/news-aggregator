@@ -1,6 +1,8 @@
 package com.newsaggregator.presenter;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 import com.newsaggregator.model.ArticleData;
@@ -29,13 +31,16 @@ public class SceneManager {
 	private Scene[] scenes;
 	private Presenter[] presenters;
 	private SceneType currentSceneType;
-	
+
 	Stack<Pair<SceneType, Object>> backHistory = new Stack<Pair<SceneType, Object>>();
 	Stack<Pair<SceneType, Object>> forwardHistory = new Stack<Pair<SceneType, Object>>();
+	Queue<Pair<SceneType, Object>> webHistory = new LinkedList<Pair<SceneType, Object>>();
 	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
 		
+		HistoryWindow.getInstance().initialize();
+
 		FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
     	FXMLLoader homepageLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
     	FXMLLoader articleLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
@@ -48,7 +53,6 @@ public class SceneManager {
         Scene trending = new Scene(trendingLoader.load());
         Scene latest = new Scene(latestLoader.load());
         
-        
         scenes = new Scene[] {homepage, searchtab, article, trending, latest};
         presenters = new Presenter[] {
         	homepageLoader.<Presenter>getController(),
@@ -59,6 +63,8 @@ public class SceneManager {
         };
         
         currentSceneType = SceneType.HOMEPAGE;
+        
+        addHistory(webHistory);
 	}
 	
 	public Scene getCurrentScene() {
@@ -72,6 +78,15 @@ public class SceneManager {
 	public ArticleData getSelectedArticleData() {
 		return selectedArticleData;
 	}
+	
+	private void updateSceneVariables(SceneType sceneType, Object information) {
+		currentSceneType = sceneType;
+		if (currentSceneType == SceneType.SEARCHTAB) {
+			searchContent = (String) information;
+		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
+			selectedArticleData = (ArticleData) information;
+		}
+	}
 
 	private void switchScene(SceneType nextSceneType) {
 		System.gc();
@@ -81,11 +96,46 @@ public class SceneManager {
 		
 		currentSceneType = nextSceneType;
 		
+		addHistory(webHistory);
+		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         window.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
         
         nextPresenter.sceneSwitchInitialize();
+        
+        HistoryWindow.getInstance().closeWindow();
+	}
+	
+	public void moveScene(SceneType nextSceneType, Object information) {
+		addHistory(backHistory);
+		forwardHistory.clear();
+
+		updateSceneVariables(nextSceneType, information);
+		
+		switchScene(currentSceneType);
+	}
+		
+	public void returnScene() {
+		if (backHistory.size() > 0) {
+			addHistory(forwardHistory);
+			Pair<SceneType, Object> lastPage = backHistory.pop();
+			
+			updateSceneVariables(lastPage.getKey(), lastPage.getValue());
+			
+			switchScene(currentSceneType);
+		}
+	}
+	
+	public void forwardScene() {
+		if (forwardHistory.size() > 0) {
+			Pair<SceneType, Object> nextPage = forwardHistory.pop();
+			addHistory(backHistory);
+			
+			updateSceneVariables(nextPage.getKey(), nextPage.getValue());
+			
+			switchScene(currentSceneType);
+		}
 	}
 	
 	private void addHistory(Stack<Pair<SceneType, Object>> history) {
@@ -99,43 +149,14 @@ public class SceneManager {
 			));
 	}
 	
-	private void updateSceneVariables(SceneType sceneType, Object information) {
-		currentSceneType = sceneType;
-		if (currentSceneType == SceneType.SEARCHTAB) {
-			searchContent = (String) information;
-		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
-			selectedArticleData = (ArticleData) information;
-		}
-	}
-	
-	void moveScene(SceneType nextSceneType, Object information) {
-		addHistory(backHistory);
-		forwardHistory.clear();
-
-		updateSceneVariables(nextSceneType, information);
-		
-		switchScene(currentSceneType);
-	}
-		
-	void returnScene() {
-		if (backHistory.size() > 0) {
-			addHistory(forwardHistory);
-			Pair<SceneType, Object> lastPage = backHistory.pop();
-			
-			updateSceneVariables(lastPage.getKey(), lastPage.getValue());
-			
-			switchScene(currentSceneType);
-		}
-	}
-	
-	void forwardScene() {
-		if (forwardHistory.size() > 0) {
-			Pair<SceneType, Object> nextPage = forwardHistory.pop();
-			addHistory(backHistory);
-			
-			updateSceneVariables(nextPage.getKey(), nextPage.getValue());
-			
-			switchScene(currentSceneType);
-		}
+	private void addHistory(Queue<Pair<SceneType, Object>> history) {
+		history.offer(new Pair<SceneType, Object>(
+			    currentSceneType,
+			    switch (currentSceneType) {
+			        case SEARCHTAB -> searchContent;
+			        case ARTICLE_VIEW -> selectedArticleData;
+			        default -> null; 
+			    }
+			));
 	}
 }

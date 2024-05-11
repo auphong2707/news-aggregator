@@ -45,22 +45,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button layoutX="973.0" layoutY="16.0" mnemonicParsing="false" text="Sign up">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button layoutX="1088.0" layoutY="17.0" mnemonicParsing="false" text="Log in">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Label fx:id="dateLabel" layoutX="19.0" layoutY="65.0" prefHeight="46.0" prefWidth="142.0" text="day, dd/mm/yyyy">
                      <font>
                         <Font size="18.0" />
@@ -444,7 +428,7 @@
                      </font>
                   </Label>
                   <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="991.0" layoutY="521.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
-                  <WebView fx:id="webView" layoutX="55.0" layoutY="504.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="775.0" />
+                  <WebView fx:id="webView" layoutX="42.0" layoutY="504.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="775.0" />
                   <Button layoutX="62.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchToHomepage">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -489,6 +473,18 @@
                            </image>
                         </ImageView>
                      </graphic>
+                  </Button>
+                  <Button fx:id="historyButton" layoutX="1108.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="34.0" prefWidth="42.0">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/web%20history.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>

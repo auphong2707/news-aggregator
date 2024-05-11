@@ -28,6 +28,7 @@ public class SearchTabPresenter extends Presenter {
 	@FXML private Label dateLabel;
 	
 	@FXML private Label pageLabel;
+	@FXML private Button historyButton;
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	@FXML private Button nextPage;
@@ -112,13 +113,18 @@ public class SearchTabPresenter extends Presenter {
     }
 	
 	@FXML
-	void returnScene() {
+	private void returnScene() {
 		SceneManager.getInstance().returnScene();
 	}
 	
 	@FXML
-	void forwardScene() {
+	private void forwardScene() {
 		SceneManager.getInstance().forwardScene();
+	}
+	
+	@FXML 
+	private void openHistory() {
+		HistoryWindow.getInstance().switchWindow();
 	}
 	
 	@Override
