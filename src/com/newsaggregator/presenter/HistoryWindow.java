@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
@@ -36,8 +37,15 @@ public class HistoryWindow {
 	
 	public void initialize() {
 		historyWindow.initStyle(StageStyle.UNDECORATED);
-		historyWindow.setX(1200);
-		historyWindow.setY(100);
+	      
+		historyWindow.setX(Screen.getPrimary().getVisualBounds().getMaxX() - 400);
+		historyWindow.setY(Screen.getPrimary().getVisualBounds().getMinY() + 100);
+		
+        historyWindow.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (! isNowFocused) {
+                historyWindow.close();
+            }
+        });
 	}
 	
 	private Label visitedWeb() {
@@ -117,16 +125,6 @@ public class HistoryWindow {
 	public void switchWindow() {
 		constructWindow();
 		
-		if (isOpening == false) {
-			historyWindow.show();
-			isOpening = true;
-		} else {
-			closeWindow();
-		}
-	}
-	
-	public void closeWindow() {
-		historyWindow.close();
-		isOpening = false;
+		historyWindow.show();
 	}
 }
