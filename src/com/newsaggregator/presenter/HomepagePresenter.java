@@ -1,6 +1,9 @@
 package com.newsaggregator.presenter;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -57,6 +60,15 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	@FXML private Button historyButton;
+	
+	@FXML private Label newspaper1;
+	@FXML private Label newspaper2;
+	@FXML private Label newspaper3;
+	@FXML private Label newspaper4;
+	@FXML private Label newspaper5;
+	@FXML private Label newspaper6;
+	@FXML private Label newspaper7;
+	@FXML private Label newspaper8;
 	
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
@@ -169,6 +181,36 @@ public class HomepagePresenter extends Presenter {
 	@FXML 
 	private void openHistory() {
 		HistoryWindow.getInstance().switchWindow();
+	}
+	
+	@FXML
+	private void openWebsite(MouseEvent event) {
+	    String link = "";
+		Label clickedObject = (Label) event.getSource();
+		
+		if (clickedObject == newspaper1) {
+			link = "https://academy.moralis.io/";
+		} else if (clickedObject == newspaper2) {
+			link = "https://www.coindesk.com/";
+		} else if (clickedObject == newspaper3) {
+			link = "https://www.financialexpress.com/";
+		} else if (clickedObject == newspaper4) {
+			link = "https://www.ft.com/";
+		} else if (clickedObject == newspaper5) {
+			link = "https://www.freightwaves.com/";
+		} else if (clickedObject == newspaper6) {
+			link = "https://www.the-blockchain.com/";
+		} else if (clickedObject == newspaper7) {
+			link = "https://theconversation.com/global";
+		} else if (clickedObject == newspaper8) {
+			link = "https://thefintechtimes.com/";
+		}
+		
+		try {
+	        Desktop.getDesktop().browse(new URI(link));
+	    } catch (IOException | URISyntaxException e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 	@Override

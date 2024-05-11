@@ -725,67 +725,67 @@
                   </VBox>
                   <Line endX="130.0" endY="990.0" layoutX="410.0" layoutY="1229.0" startX="130.0" startY="-48.0" />
                   <Line endX="1130.0" endY="1890.39990234375" layoutY="372.0" startX="70.0" startY="1892.0" />
-                  <HBox alignment="CENTER" layoutX="86.0" layoutY="2271.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
+                  <HBox alignment="CENTER" layoutX="79.0" layoutY="2265.0" prefHeight="35.0" prefWidth="1043.0" spacing="20.0">
                      <children>
-                        <Label text="Newspaper 1">
+                        <Label fx:id="newspaper1" onMouseClicked="#openWebsite" text="Academy Morallis">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label text="Newspaper 2">
+                        <Label fx:id="newspaper2" onMouseClicked="#openWebsite" text="Coindesk">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label text="Newspaper 3">
+                        <Label fx:id="newspaper3" onMouseClicked="#openWebsite" text="Financial Express">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Newspaper 4">
+                        <Label fx:id="newspaper4" layoutX="10.0" layoutY="10.0" onMouseClicked="#openWebsite" text="Financial Time">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label layoutX="274.0" layoutY="10.0" text="Newspaper 5">
+                        <Label fx:id="newspaper5" layoutX="274.0" layoutY="10.0" onMouseClicked="#openWebsite" text="Frieght Wave">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label layoutX="292.0" layoutY="10.0" text="Newspaper 6">
+                        <Label fx:id="newspaper6" layoutX="292.0" layoutY="10.0" onMouseClicked="#openWebsite" text="The Blockchain">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label layoutX="304.0" layoutY="10.0" text="Newspaper 7">
+                        <Label fx:id="newspaper7" layoutX="304.0" layoutY="10.0" onMouseClicked="#openWebsite" text="The Conversation">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label layoutX="312.0" layoutY="10.0" text="Newspaper 8">
+                        <Label fx:id="newspaper8" layoutX="312.0" layoutY="10.0" onMouseClicked="#openWebsite" text="The Fintech Times">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -793,7 +793,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Text layoutX="424.0" layoutY="2319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED">
+                  <Text layoutX="447.7" layoutY="2315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED" AnchorPane.leftAnchor="447.7" AnchorPane.rightAnchor="447.9306640625">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
