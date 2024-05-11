@@ -45,6 +45,21 @@ public class ArticleViewPresenter extends Presenter {
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
 	
+	private final String CSS = "<style>"
+			+ "img {max-width: 100%; height: auto; } "
+			+ "body {width: 97%; height: 100%; margin: 0; "
+			+ "		 font-family: verdana, arial, sans-serif; "
+			+ "		 font-size: 20px; "
+			+ "		 align-items: center;"
+			+ "		 overflow-x: hidden; "
+			+ "		 text-align: justify; "
+			+ "		 background-color: #f4f4f4;}"
+			+ "aside { display: none !important; }"
+			+ "button { display: none !important; }"
+			+ "iframe { display: none !important; }"
+			+ "a { text-decoration: none; color: inherit; cursor: text; pointer-events: none;}"
+			+ "</style>";
+	
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
@@ -70,10 +85,11 @@ public class ArticleViewPresenter extends Presenter {
 		String htmlContent = selected.getHTML_CONTENT();
 		String publishDate = selected.getCREATION_DATE();
 		String website = selected.getWEBSITE_SOURCE();
+
 		
 		titleLabel.setText(title);
 		introLabel.setText(intro);
-		webView.getEngine().loadContent(htmlContent);
+		webView.getEngine().loadContent(CSS + htmlContent);
 		authorLabel.setText(author);
 		publishDateLabel.setText(publishDate);
 		websiteLabel.setText(website);
