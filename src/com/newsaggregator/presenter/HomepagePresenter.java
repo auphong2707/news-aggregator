@@ -171,6 +171,12 @@ public class HomepagePresenter extends Presenter {
 		HistoryWindow.getInstance().switchWindow();
 	}
 	
+	@FXML
+	private void refreshHomepage() {
+		setRandomArticle();
+		setTrendingArticle();
+	}
+	
 	@Override
 	void sceneSwitchInitialize() {
 		searchBar.clear();
