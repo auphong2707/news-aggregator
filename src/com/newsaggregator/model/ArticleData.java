@@ -115,6 +115,9 @@ public class ArticleData {
     		contents.select(".wp-block-ie-network-blocks-also-read").remove();
     	}
 	    
+    	if (WEBSITE_SOURCE.equals("Freight Wave")) {
+    		contents.select(".essb_links_list").remove();
+    	}
     		
     	String htmlContent = contents.html().replaceAll("<img ", 
     			"<img onerror=\"this.style.display='none'\" ");
