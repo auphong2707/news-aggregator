@@ -10,6 +10,7 @@ import com.newsaggregator.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -24,6 +25,8 @@ import javafx.scene.Node;
 
 
 public class HomepagePresenter extends Presenter {
+	@FXML private ScrollPane scrollPane;
+	
 	@FXML private Label dateLabel;
 	@FXML private Label trendingLabel;
 	@FXML private Label latestLabel;
@@ -174,5 +177,7 @@ public class HomepagePresenter extends Presenter {
 	@Override
 	void sceneSwitchInitialize() {
 		searchBar.clear();
+		
+		scrollPane.setVvalue(0);
 	}
 }

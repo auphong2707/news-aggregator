@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -23,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class TrendingTabPresenter extends Presenter {
+	@FXML private ScrollPane scrollPane;
+	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
@@ -136,6 +139,8 @@ public class TrendingTabPresenter extends Presenter {
 	
 	@Override
 	void sceneSwitchInitialize() {
+		scrollPane.setVvalue(0);
+		
 		trendingData = Model.getInstance().getTrending(60);
 		
 		searchBar.clear();
