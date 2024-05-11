@@ -9,8 +9,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -50,7 +53,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Line endX="1130.0" layoutY="229.0" startX="70.0" />
+                  <Line endX="1130.0" layoutY="230.0" startX="50.0" />
                   <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
                      <children>
                         <Label text="Category 1">
@@ -119,316 +122,333 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="1130.0" endY="1890.39990234375" layoutY="53.0" startX="70.0" startY="1892.0" />
-                  <HBox alignment="CENTER" layoutX="86.0" layoutY="1945.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
+                  <GridPane layoutX="53.0" layoutY="240.0" prefHeight="1720.0" prefWidth="1074.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label text="Newspaper 1">
+                        <Label fx:id="titleLabel" alignment="TOP_LEFT" text="Article Title" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
                         </Label>
-                        <Label text="Newspaper 2">
+                        <Label fx:id="introLabel" alignment="TOP_LEFT" text="Brief summary" wrapText="true" GridPane.rowIndex="1">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="18.0" />
                            </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
                         </Label>
-                        <Label text="Newspaper 3">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Newspaper 4">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="274.0" layoutY="10.0" text="Newspaper 5">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="292.0" layoutY="10.0" text="Newspaper 6">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="304.0" layoutY="10.0" text="Newspaper 7">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="312.0" layoutY="10.0" text="Newspaper 8">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Text layoutX="430.0" layoutY="2000.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="titleLabel" alignment="TOP_LEFT" layoutX="72.0" layoutY="246.0" prefHeight="106.0" prefWidth="1055.0" text="Article Title" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="introLabel" alignment="TOP_LEFT" layoutX="72.0" layoutY="369.0" prefHeight="106.0" prefWidth="1055.0" text="Brief summary" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Line endX="775.0" layoutX="55.0" layoutY="492.0" stroke="#999090" />
-                  <Label fx:id="authorLabel" layoutX="625.0" layoutY="1180.0" prefHeight="20.0" prefWidth="170.0" text="Author">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="publishDateLabel" layoutX="625.0" layoutY="1200.0" prefHeight="20.0" prefWidth="170.0" text="Publish Date">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="websiteLabel" layoutX="625.0" layoutY="1223.0" prefHeight="24.0" prefWidth="170.0" text="Website">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-                  <Line endX="775.0" layoutX="46.0" layoutY="1273.0" stroke="#999090" />
-                  <Label layoutX="108.0" layoutY="1282.0" prefHeight="35.0" prefWidth="119.0" text="Read next" textFill="#4b54fa">
-                     <font>
-                        <Font name="Berlin Sans FB" size="24.0" />
-                     </font>
-                  </Label>
-                  <VBox layoutX="100.0" layoutY="1331.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
-                     <children>
-                        <Group fx:id="bigArticle1" onMouseClicked="#switchToArticle">
+                        <Group GridPane.rowIndex="2">
                            <children>
-                              <Label contentDisplay="RIGHT" layoutX="231.0" layoutY="-16.0" prefHeight="33.0" prefWidth="418.0" text="Website" textAlignment="CENTER">
+                              <WebView fx:id="webView" layoutX="-391.0" layoutY="-104.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="775.0" />
+                              <Line endX="390.0" layoutY="-120.0" startX="-400.0" stroke="#999090" />
+                              <Label fx:id="authorLabel" layoutX="216.0" layoutY="610.0" prefHeight="20.0" prefWidth="170.0" text="Author">
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="24.0" prefHeight="58.0" prefWidth="417.0" text="Article title" wrapText="true">
+                              <Label fx:id="publishDateLabel" layoutX="216.0" layoutY="630.0" prefHeight="20.0" prefWidth="170.0" text="Publish Date">
                                  <font>
-                                    <Font name="System Bold" size="18.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="83.0" prefHeight="53.0" prefWidth="417.0" text="Brief summary" wrapText="true" />
-                              <Label layoutX="231.0" layoutY="138.0" prefHeight="20.0" prefWidth="327.0" text="Author">
+                              <Label fx:id="websiteLabel" layoutX="216.0" layoutY="653.0" prefHeight="24.0" prefWidth="170.0" text="Website">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="390.0" layoutY="700.0" startX="-400.0" stroke="#999090" />
+                              <Label layoutX="-384.0" layoutY="707.0" prefHeight="35.0" prefWidth="119.0" text="Read next" textFill="#4b54fa">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="24.0" />
+                                 </font>
+                              </Label>
+                              <VBox layoutX="-384.0" layoutY="753.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                                 <children>
+                                    <Group fx:id="bigArticle1" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label contentDisplay="RIGHT" layoutX="231.0" layoutY="-16.0" prefHeight="33.0" prefWidth="418.0" text="Website" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="24.0" prefHeight="58.0" prefWidth="417.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="83.0" prefHeight="53.0" prefWidth="417.0" text="Brief summary" wrapText="true" />
+                                          <Label layoutX="231.0" layoutY="138.0" prefHeight="20.0" prefWidth="327.0" text="Author">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="2.0" layoutY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R0" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="650.0" stroke="#999090" />
+                                    <Group fx:id="bigArticle2" layoutX="11.0" layoutY="26.0" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label contentDisplay="RIGHT" layoutX="231.0" layoutY="-16.0" prefHeight="33.0" prefWidth="418.0" text="Website" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="24.0" prefHeight="58.0" prefWidth="417.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="83.0" prefHeight="53.0" prefWidth="417.0" text="Brief summary" wrapText="true" />
+                                          <Label layoutX="231.0" layoutY="138.0" prefHeight="20.0" prefWidth="327.0" text="Author">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="11.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R1" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="650.0" stroke="#999090" />
+                                    <Group fx:id="bigArticle3" layoutX="11.0" layoutY="233.0" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label contentDisplay="RIGHT" layoutX="231.0" layoutY="-16.0" prefHeight="33.0" prefWidth="418.0" text="Website" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="24.0" prefHeight="58.0" prefWidth="417.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="83.0" prefHeight="53.0" prefWidth="417.0" text="Brief summary" wrapText="true" />
+                                          <Label layoutX="231.0" layoutY="138.0" prefHeight="20.0" prefWidth="327.0" text="Author">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R2" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="650.0" stroke="#999090" />
+                                 </children>
+                              </VBox>
+                              <Line endX="680.0" endY="1370.0" startX="-400.0" startY="1370.0" />
+                              <HBox alignment="CENTER" layoutX="-331.0" layoutY="1371.0" prefHeight="35.0" prefWidth="967.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Newspaper 1">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label text="Newspaper 2">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label text="Newspaper 3">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Newspaper 4">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label layoutX="274.0" layoutY="10.0" text="Newspaper 5">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label layoutX="292.0" layoutY="10.0" text="Newspaper 6">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label layoutX="304.0" layoutY="10.0" text="Newspaper 7">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <Label layoutX="312.0" layoutY="10.0" text="Newspaper 8">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Text layoutX="3.0" layoutY="1420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
+                              </Text>
+                              <VBox layoutX="407.0" layoutY="-85.0" prefHeight="607.0" prefWidth="301.0" spacing="25.0">
+                                 <children>
+                                    <Group fx:id="smallArticle1" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
+                                          <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="2.0" layoutY="-3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L0" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="300.0" stroke="#999090" />
+                                    <Group fx:id="smallArticle2" layoutX="11.0" layoutY="18.0" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
+                                          <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="5.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L1" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="300.0" stroke="#999090" />
+                                    <Group fx:id="smallArticle3" layoutX="11.0" layoutY="147.0" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
+                                          <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="11.0" layoutY="8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L2" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="300.0" stroke="#999090" />
+                                    <Group fx:id="smallArticle4" layoutX="11.0" layoutY="276.0" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
+                                          <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="11.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L3" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="300.0" stroke="#999090" />
+                                    <Group fx:id="smallArticle5" layoutX="11.0" layoutY="405.0" onMouseClicked="#switchToArticle">
+                                       <children>
+                                          <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
+                                          <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@../../../../images/blank_rectangle.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Text layoutX="4.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L4" visible="false" />
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Group>
+                                    <Line endX="300.0" stroke="#999090" />
+                                 </children>
+                              </VBox>
+                              <Label layoutX="427.0" layoutY="-132.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="24.0" />
+                                 </font>
                               </Label>
-                              <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="2.0" layoutY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R0" visible="false" />
+                              <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="542.0" layoutY="-103.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
                            </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
                         </Group>
-                        <Line endX="650.0" stroke="#999090" />
-                        <Group fx:id="bigArticle2" layoutX="11.0" layoutY="26.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label contentDisplay="RIGHT" layoutX="231.0" layoutY="-16.0" prefHeight="33.0" prefWidth="418.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="24.0" prefHeight="58.0" prefWidth="417.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="83.0" prefHeight="53.0" prefWidth="417.0" text="Brief summary" wrapText="true" />
-                              <Label layoutX="231.0" layoutY="138.0" prefHeight="20.0" prefWidth="327.0" text="Author">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="11.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R1" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="650.0" stroke="#999090" />
-                        <Group fx:id="bigArticle3" layoutX="11.0" layoutY="233.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label contentDisplay="RIGHT" layoutX="231.0" layoutY="-16.0" prefHeight="33.0" prefWidth="418.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="24.0" prefHeight="58.0" prefWidth="417.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_LEFT" layoutX="231.0" layoutY="83.0" prefHeight="53.0" prefWidth="417.0" text="Brief summary" wrapText="true" />
-                              <Label layoutX="231.0" layoutY="138.0" prefHeight="20.0" prefWidth="327.0" text="Author">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R2" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="650.0" stroke="#999090" />
                      </children>
-                  </VBox>
-                  <VBox layoutX="866.0" layoutY="549.0" prefHeight="607.0" prefWidth="301.0" spacing="25.0" AnchorPane.rightAnchor="33.0">
-                     <children>
-                        <Group fx:id="smallArticle1" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="2.0" layoutY="-3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L0" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="300.0" stroke="#999090" />
-                        <Group fx:id="smallArticle2" layoutX="11.0" layoutY="18.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="5.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L1" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="300.0" stroke="#999090" />
-                        <Group fx:id="smallArticle3" layoutX="11.0" layoutY="147.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="11.0" layoutY="8.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L2" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="300.0" stroke="#999090" />
-                        <Group fx:id="smallArticle4" layoutX="11.0" layoutY="276.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="11.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L3" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="300.0" stroke="#999090" />
-                        <Group fx:id="smallArticle5" layoutX="11.0" layoutY="405.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label layoutX="143.0" layoutY="-8.0" prefHeight="17.0" prefWidth="155.0" text="Website" wrapText="true" />
-                              <Label layoutX="143.0" layoutY="9.0" prefHeight="60.0" prefWidth="155.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutY="-8.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="4.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L4" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="300.0" stroke="#999090" />
-                     </children>
-                  </VBox>
-                  <Label layoutX="867.0" layoutY="486.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
-                     <font>
-                        <Font name="Berlin Sans FB" size="24.0" />
-                     </font>
-                  </Label>
-                  <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="991.0" layoutY="521.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
-                  <WebView fx:id="webView" layoutX="42.0" layoutY="504.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="775.0" />
+                  </GridPane>
                   <Button layoutX="62.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchToHomepage">
                      <font>
                         <Font name="System Bold" size="18.0" />

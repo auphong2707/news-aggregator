@@ -86,7 +86,8 @@ public class ArticleViewPresenter extends Presenter {
 		String publishDate = selected.getCREATION_DATE();
 		String website = selected.getWEBSITE_SOURCE();
 
-		
+		titleLabel.autosize();
+		introLabel.autosize();
 		titleLabel.setText(title);
 		introLabel.setText(intro);
 		webView.getEngine().loadContent(CSS + htmlContent);
