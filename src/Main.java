@@ -28,7 +28,6 @@ public class Main extends Application {
 	            	System.out.println("Server's terminated");
 	        		try {
 						Model.terminateLocalServer();
-						HistoryWindow.getInstance().closeWindow();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
