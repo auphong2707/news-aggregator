@@ -6,15 +6,23 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -22,10 +30,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Node;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class HomepagePresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
@@ -76,6 +86,7 @@ public class HomepagePresenter extends Presenter {
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
 	private List<ArticleData> trendingData;
+	
 	
 	@FXML
 	public void initialize() throws IOException, InterruptedException {
@@ -222,6 +233,63 @@ public class HomepagePresenter extends Presenter {
 		setTrendingArticle();
 	}
 	
+	@FXML
+	private void showWarningDialog(ActionEvent event) {
+	    Alert alert = new Alert(Alert.AlertType.WARNING);
+	    alert.setTitle("News Alligator");
+	    alert.setHeaderText("Warning");
+	    alert.setContentText("This will reset everything! Would you like to continue?");
+	    
+	    Image image = new Image("file:///" + System.getProperty("user.dir") + "/images/alligator.png");
+	    ImageView imageView = new ImageView(image);
+	    
+	    alert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+	    Optional<ButtonType> result = alert.showAndWait();
+
+	    if (result.isPresent() && result.get() == ButtonType.OK) {
+	    	showLoadingScreen();
+	    	
+	        Task<Void> task = new Task<Void>() {
+	            @Override
+	            protected Void call() throws Exception {
+	                Model.getInstance().aggregateNewData();
+	                //testButton();
+	            	return null;
+	            }
+	        };
+	        
+	        task.setOnSucceeded(e -> hideLoadingScreen());
+
+	        new Thread(task).start();
+	    }
+	}
+	
+//	  private void testButton() {
+//		  try {
+//			Thread.sleep(10000);
+//		} catch (InterruptedException e) {
+//			Thread.currentThread().interrupt();
+//			e.printStackTrace();
+//		}
+//	  }
+	
+	  private void showLoadingScreen() {
+	        try {
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("loadingscreen.fxml"));
+	            Parent root = loader.load();
+	            Stage stage = new Stage();
+	            stage.initModality(Modality.APPLICATION_MODAL);
+	            stage.setScene(new Scene(root));
+	            stage.show();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    private void hideLoadingScreen() {
+	    	System.exit(0);
+	    }
+	    
 	@Override
 	void sceneSwitchInitialize() {
 		searchBar.clear();
