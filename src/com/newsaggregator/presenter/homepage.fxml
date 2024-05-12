@@ -984,6 +984,18 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
+                  <Button fx:id="historyButton1" layoutX="1046.0" layoutY="23.0" mnemonicParsing="false" onAction="#showWarningDialog" prefHeight="34.0" prefWidth="42.0">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/warning.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
