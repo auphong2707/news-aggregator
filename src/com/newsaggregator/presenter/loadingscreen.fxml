@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.LoadingScreenPresenter">
+   <children>
+      <Group layoutX="21.0" layoutY="11.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="17.0" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
+               <font>
+                  <Font name="Lucida Sans Demibold Italic" size="68.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/alligator.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Group>
+      <Label fx:id="loadingLabel" layoutX="331.0" layoutY="144.0" prefHeight="50.0" prefWidth="97.0" text="Loading...">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="289.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/Rolling@1x-1.0s-200px-200px.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
