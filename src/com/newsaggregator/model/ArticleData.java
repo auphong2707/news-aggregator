@@ -100,7 +100,21 @@ public class ArticleData {
 		
 		Elements contents = document.select(HTML_CONTENT_LOCATION);
     	if (contents == null) return "";
-	    
+    	
+    	if (WEBSITE_SOURCE.equals("The Fintech Times")) {
+    		contents.select(".pp-multiple-authors-wrappermultiple-authors-target-the-content"
+    				+ ".pp-multiple-authors-layout-boxed").remove();
+    		contents.select(".wp-caption.alignleft").remove();
+    		contents.select(".wp-caption.alignright").remove();
+    		contents.select(".alignnone").remove();	
+    	} else if (WEBSITE_SOURCE.equals("Financial Express")) {
+    		contents.select(".parent_also_read").remove();
+    		contents.select(".wp-block-newspack-blocks-wp-block-newspack-ads-blocks-ad-unit").remove();
+    		contents.select(".wp-block-ie-network-blocks-also-read").remove();
+    	} else if (WEBSITE_SOURCE.equals("Freight Wave")) {
+    		contents.select(".essb_links_list").remove();
+    	}
+    		
     	String htmlContent = contents.html().replaceAll("<img ", 
     			"<img onerror=\"this.style.display='none'\" ");
     	
