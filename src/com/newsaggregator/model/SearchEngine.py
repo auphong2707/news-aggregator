@@ -63,7 +63,7 @@ class SearchEngine:
         
         processed_article_content_new = []
         for i in range(len(data)):
-            processed_article_content_new.append(StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
+            processed_article_content_new.append(StringProcessor.process(data[i]['TITLE']) * 10 + StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
         self.processed_article_contents = processed_article_content_new
         
         self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(data))]) / len(data)
@@ -133,7 +133,7 @@ class SearchEngine:
             index = query_score[i][0]
             results[i] = self.data[index]
         
-        return_json_string = json.dumps(results)
+        return_json_string = json.dumps(results, indent = 2)
         
         return return_json_string
 
@@ -142,16 +142,15 @@ if __name__ == "__main__":
     '''
     Loading data into the search engine
     '''
+    
+    '''py
+    search_engine = SearchEngine()
     search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
     search_engine.run()
-
-    '''py
-    second_search_engine = SearchEngine() 
-    second_search_engine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
-    print(search_engine.processed_article_contents[:2])
-    print(second_search_engine.processed_article_contents[:2])
-    print(second_search_engine.processed_article_contents == search_engine.processed_article_contents)
-    result = second_search_engine.search("Facebook Libra: the", 10)
+    second_search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    query = input()
+    result = second_search_engine.search(query, 50)
+    print(result[:2000])
     '''
     '''
     Show all relevant articles given the query string
