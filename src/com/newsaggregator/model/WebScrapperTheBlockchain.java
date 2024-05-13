@@ -7,24 +7,27 @@ import org.jsoup.select.Elements;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 class WebScrapperTheBlockchain extends WebScrapper {
+	static int count = 0;
     WebScrapperTheBlockchain()
     {
     	webSource = "The Blockchain";
     	type = "News Article";
-    	htmlContentLocation = ".td-post-content.tagdiv-type";
+    	htmlContentLocation = ".td-pb-span8.td-main-content";
     	fileName += "newsTheBlockchain.json";
     }
     
     @Override 
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
-    	
     	try {	
             Document document = ModelTools.connectWeb("https://the-blockchain.com/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
@@ -43,6 +46,9 @@ class WebScrapperTheBlockchain extends WebScrapper {
         } catch (Exception e) {
             e.printStackTrace();
         } 
+    	Set<Pair<String, String>> set = new HashSet<>(linkAndImage);
+    	linkAndImage.clear();
+    	linkAndImage.addAll(set);
     	return linkAndImage;
     }
     
