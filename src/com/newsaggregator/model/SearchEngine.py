@@ -138,17 +138,11 @@ class SearchEngine:
             index = query_score[i][0]
             results[i] = self.data[index]
         
-        return_json_string = json.dumps(results, indent = 2)
+        return_json_string = json.dumps(results)
         
         return return_json_string
 
 if __name__ == "__main__":
-    #search_engine = SearchEngine()
-    #search_engine.run()
-    second_search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
-    query = input("Search engine string: ")
-    result = second_search_engine.search(query, 50)
-    print(result[:20000])
     '''
     Loading data into the search engine
     '''
