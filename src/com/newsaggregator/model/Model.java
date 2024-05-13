@@ -97,14 +97,17 @@ public class Model {
 	}
 	
 	public List<ArticleData> getLatest(int count) {
+		return getLatest(count, "All");
+	}
+	
+	public List<ArticleData> getLatest(int count, String category) {
 		try {
-			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count + "&category=All");
+			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count + "&category=" + category);
 			String recievedJsonString = connectServerGET(url);
 			
 			return ModelTools.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return null;
