@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -27,6 +28,9 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
 	@FXML private Label dateLabel;
+	
+	@FXML private ToggleButton contentToggleButton;
+	@FXML private ToggleButton summaryToggleButton;
 	
 	@FXML private Label titleLabel; 
 	@FXML private Label introLabel; 
@@ -197,5 +201,21 @@ public class ArticleViewPresenter extends Presenter {
 	    } catch (IOException | URISyntaxException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	@FXML
+	private void openSummary() {
+		contentToggleButton.setSelected(false);
+		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
+		String summary = selected.getSUMMARY();
+		webView.getEngine().loadContent(CSS + summary);
+	}
+	
+	@FXML
+	private void openContent() {
+		summaryToggleButton.setSelected(false);
+		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
+		String content = selected.getHTML_CONTENT();
+		webView.getEngine().loadContent(CSS + content);
 	}
 }
