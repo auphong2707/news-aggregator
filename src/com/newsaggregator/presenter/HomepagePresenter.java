@@ -21,14 +21,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -239,10 +234,6 @@ public class HomepagePresenter extends Presenter {
 	    alert.setTitle("News Alligator");
 	    alert.setHeaderText("Warning");
 	    alert.setContentText("This will reset everything! Would you like to continue?");
-	    
-	    Image image = new Image("file:///" + System.getProperty("user.dir") + "/images/alligator.png");
-	    ImageView imageView = new ImageView(image);
-	    
 	    alert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
 	    Optional<ButtonType> result = alert.showAndWait();
 
@@ -253,7 +244,6 @@ public class HomepagePresenter extends Presenter {
 	            @Override
 	            protected Void call() throws Exception {
 	                Model.getInstance().aggregateNewData();
-	                //testButton();
 	            	return null;
 	            }
 	        };
@@ -263,15 +253,6 @@ public class HomepagePresenter extends Presenter {
 	        new Thread(task).start();
 	    }
 	}
-	
-//	  private void testButton() {
-//		  try {
-//			Thread.sleep(10000);
-//		} catch (InterruptedException e) {
-//			Thread.currentThread().interrupt();
-//			e.printStackTrace();
-//		}
-//	  }
 	
 	  private void showLoadingScreen() {
 	        try {
