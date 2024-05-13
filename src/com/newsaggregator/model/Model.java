@@ -98,7 +98,7 @@ public class Model {
 	
 	public List<ArticleData> getLatest(int count) {
 		try {
-			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count);
+			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count + "&category=All");
 			String recievedJsonString = connectServerGET(url);
 			
 			return ModelTools.convertJsonStringToData(recievedJsonString);

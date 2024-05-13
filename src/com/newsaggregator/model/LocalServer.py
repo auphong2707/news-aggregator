@@ -50,11 +50,21 @@ def get_latest() -> str:
     Get the latest number of articles from the json files
     '''
     number_of_articles = request.args.get('number', type=int)
+    category = request.args.get('category', type=str)
+
     f = open(file_path + 'data/newsAll.json', encoding = "utf8")
     data = json.load(f)
     f.close()
+
+    result_data = list()
+    for i in range(len(data)):
+        if category == 'All' or data[i]['CATEGORY'] == category:
+            result_data.append(data[i])
+
+        if len(result_data) == number_of_articles:
+            break
     
-    return json.dumps(data[:number_of_articles])
+    return json.dumps(result_data)
 
 @server.route('/search/', methods = ['POST'])
 def search():
