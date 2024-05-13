@@ -220,7 +220,6 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
-                              <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -724,8 +723,8 @@
                      </children>
                   </VBox>
                   <Line endX="130.0" endY="990.0" layoutX="410.0" layoutY="1229.0" startX="130.0" startY="-48.0" />
-                  <Line endX="1130.0" endY="1890.39990234375" layoutY="372.0" startX="70.0" startY="1892.0" />
-                  <HBox alignment="CENTER" layoutX="79.0" layoutY="2265.0" prefHeight="35.0" prefWidth="1043.0" spacing="20.0">
+                  <Line endX="1130.0" endY="1892.0" layoutY="352.0" startX="70.0" startY="1892.0" />
+                  <HBox alignment="CENTER" layoutX="79.0" layoutY="2245.0" prefHeight="35.0" prefWidth="1043.0" spacing="20.0">
                      <children>
                         <Label fx:id="newspaper1" onMouseClicked="#openWebsite" text="Academy Morallis">
                            <font>
@@ -793,7 +792,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Text layoutX="447.7" layoutY="2315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED" AnchorPane.leftAnchor="447.7" AnchorPane.rightAnchor="447.9306640625">
+                  <Text layoutX="447.7" layoutY="2295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED" AnchorPane.leftAnchor="447.7" AnchorPane.rightAnchor="447.9306640625">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
@@ -811,14 +810,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="985.0" layoutY="2227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button layoutX="1031.0" layoutY="2227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
                   <Label layoutX="740.0" layoutY="238.0" onMouseClicked="#switchToLatestTab" prefHeight="26.0" text="Latest &gt;" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="20.0" />
