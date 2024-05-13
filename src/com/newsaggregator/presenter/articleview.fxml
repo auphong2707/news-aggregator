@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -129,6 +130,7 @@
                     <rowConstraints>
                       <RowConstraints maxHeight="-Infinity" minHeight="0.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -142,7 +144,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Group GridPane.rowIndex="2">
+                        <Group GridPane.rowIndex="3">
                            <children>
                               <WebView fx:id="webView" layoutX="-391.0" layoutY="-104.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="775.0" />
                               <Line endX="390.0" layoutY="-120.0" startX="-400.0" stroke="#999090" />
@@ -445,6 +447,21 @@
                                     <Font name="System Italic" size="14.0" />
                                  </font>
                               </Text>
+                           </children>
+                        </Group>
+                        <Group GridPane.rowIndex="2" />
+                        <Group GridPane.rowIndex="2">
+                           <children>
+                                <ToggleButton fx:id="contentToggleButton" layoutY="13.0" onAction="#openContent" prefHeight="55.0" prefWidth="92.0" selected="true" text="CONTENT">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                </ToggleButton>
+                              <ToggleButton fx:id="summaryToggleButton" layoutX="92.0" layoutY="13.0" onAction="#openSummary" prefHeight="55.0" prefWidth="92.0" text="SUMMARY">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </ToggleButton>
                            </children>
                         </Group>
                      </children>
