@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.presenter.LoadingScreenPresenter">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group layoutX="21.0" layoutY="11.0">
+      <Group layoutX="-57.0" layoutY="15.0" scaleX="0.75" scaleY="0.75">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="17.0" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
                <font>
@@ -27,13 +27,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Group>
-      <Label fx:id="loadingLabel" layoutX="331.0" layoutY="144.0" prefHeight="50.0" prefWidth="97.0" text="Loading...">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-      <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="289.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="118.0" layoutX="237.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="234.5">
          <image>
-            <Image url="@../../../../images/Rolling@1x-1.0s-200px-200px.gif" />
+            <Image url="@../../../../images/loading.gif" />
          </image>
       </ImageView>
    </children>

@@ -348,7 +348,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/arrow.jpg" />
+                              <Image url="@../../../../images/arrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -363,16 +363,16 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" rotate="180.0">
                            <image>
-                              <Image url="@../../../../images/arrow.jpg" />
+                              <Image url="@../../../../images/arrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="historyButton" layoutX="1113.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="34.0" prefWidth="42.0">
+                  <Button fx:id="historyButton" layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
                      <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/web%20history.jpg" />
+                              <Image url="@../../../../images/history.png" />
                            </image>
                         </ImageView>
                      </graphic>
