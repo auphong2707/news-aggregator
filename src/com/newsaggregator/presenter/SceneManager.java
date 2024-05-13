@@ -25,6 +25,7 @@ public class SceneManager {
     }
 	
     private String searchContent;
+    private String categoryName;
     private ArticleData selectedArticleData;
     
 	private Stage window;
@@ -46,20 +47,23 @@ public class SceneManager {
     	FXMLLoader articleLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
     	FXMLLoader trendingLoader = new FXMLLoader(getClass().getResource("trendingtab.fxml"));
     	FXMLLoader latestLoader = new FXMLLoader(getClass().getResource("latesttab.fxml"));
+    	FXMLLoader categoryLoader = new FXMLLoader(getClass().getResource("categorytab.fxml"));
         
         Scene homepage = new Scene(homepageLoader.load()); 
         Scene searchtab = new Scene(searchtabLoader.load());
         Scene article = new Scene(articleLoader.load());
         Scene trending = new Scene(trendingLoader.load());
         Scene latest = new Scene(latestLoader.load());
+        Scene category = new Scene(categoryLoader.load());
         
-        scenes = new Scene[] {homepage, searchtab, article, trending, latest};
+        scenes = new Scene[] {homepage, searchtab, article, trending, latest, category};
         presenters = new Presenter[] {
         	homepageLoader.<Presenter>getController(),
         	searchtabLoader.<Presenter>getController(),
         	articleLoader.<Presenter>getController(),
         	trendingLoader.<Presenter>getController(),
-        	latestLoader.<Presenter>getController()
+        	latestLoader.<Presenter>getController(),
+        	categoryLoader.<Presenter>getController()
         };
         
         currentSceneType = SceneType.HOMEPAGE;
@@ -79,10 +83,16 @@ public class SceneManager {
 		return selectedArticleData;
 	}
 	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	
 	private void updateSceneVariables(SceneType sceneType, Object information) {
 		currentSceneType = sceneType;
 		if (currentSceneType == SceneType.SEARCHTAB) {
 			searchContent = (String) information;
+		} else if (currentSceneType == SceneType.CATEGORYTAB) {
+			categoryName = (String) information;
 		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
 			selectedArticleData = (ArticleData) information;
 		}
@@ -143,6 +153,7 @@ public class SceneManager {
 			    currentSceneType,
 			    switch (currentSceneType) {
 			        case SEARCHTAB -> searchContent;
+			        case CATEGORYTAB -> categoryName;
 			        case ARTICLE_VIEW -> selectedArticleData;
 			        default -> null; 
 			    }
@@ -154,6 +165,7 @@ public class SceneManager {
 			    currentSceneType,
 			    switch (currentSceneType) {
 			        case SEARCHTAB -> searchContent;
+			        case CATEGORYTAB -> categoryName;
 			        case ARTICLE_VIEW -> selectedArticleData;
 			        default -> null; 
 			    }
