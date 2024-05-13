@@ -42,4 +42,6 @@ class DocumentProcessor():
         
         documents = [text.split() for text in corpus]
         return documents
-        
+
+if __name__ == '__main__':
+    print(StringProcessor.process("This is funn:y please stop:ed"))
