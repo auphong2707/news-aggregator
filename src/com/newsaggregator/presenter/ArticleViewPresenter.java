@@ -58,7 +58,10 @@ public class ArticleViewPresenter extends Presenter {
 	private List<ArticleData> randomData;
 	
 	private final String CSS = "<style>"
-			+ "img {max-width: 100%; height: auto; } "
+			+ "img {max-width: 100%; height: auto; "
+			+ "		display: block; "
+			+ "		margin: 0 auto; }"
+			+ "figcaption {text-align: center; }"
 			+ "body {width: 97%; height: 100%; margin: 0; "
 			+ "		 font-family: verdana, arial, sans-serif; "
 			+ "		 font-size: 20px; "
