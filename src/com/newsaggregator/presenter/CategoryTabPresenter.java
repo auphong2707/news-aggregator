@@ -187,7 +187,7 @@ public class CategoryTabPresenter extends Presenter {
 		
 		category = SceneManager.getInstance().getCategoryName();
 		
-		categoryLabel.setText(category);
+		categoryLabel.setText("Category: " + category);
 		categoryData = Model.getInstance().getLatest(60, category);
 		
 		searchBar.clear();
