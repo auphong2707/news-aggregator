@@ -21,7 +21,7 @@
    <center>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <Group layoutX="298.0" layoutY="62.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="280.0">
                      <children>
