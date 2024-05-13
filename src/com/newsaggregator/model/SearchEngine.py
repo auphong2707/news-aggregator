@@ -33,7 +33,7 @@ class SearchEngine:
         
         self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
         self.data_path = self.file_path + 'data/searchEngineData.txt'
-        self.processed_article_contents = []
+        self.vocab = []
         
     def save_engine(self):
         self.data = None
@@ -61,25 +61,30 @@ class SearchEngine:
         data = json.load(f)
         f.close()
         
+        self.vocab = [dict() for i in range(len(data))]
         processed_article_content_new = []
         for i in range(len(data)):
-            processed_article_content_new.append(StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
-        self.processed_article_contents = processed_article_content_new
+            processed_article_content_new.append(StringProcessor.process(data[i]['TITLE'] + ' ') * 10 + ' ' + StringProcessor.process(data[i]['DETAILED_CONTENT'])) 
         
-        self.average_document_length = sum([len(self.processed_article_contents[i].split()) for i in range(len(data))]) / len(data)
+        for i, content in enumerate(processed_article_content_new):
+            words = content.split()
+            for word in words:
+                self.vocab[i][word] = self.vocab[i].get(word, 0) + 1
+
+        self.average_document_length = sum([len(processed_article_content_new[i].split()) for i in range(len(data))]) / len(data)
         self.save_engine()
     
     def get_word_occurences(self, word, data_index):
         '''
         Return word occurences in a document given index
         '''
-        return self.processed_article_contents[data_index].count(word)
+        return self.vocab[data_index].get(word, 0)
 
     def get_word_occurences_global(self, word):
         '''
         Return total number of documents in data that has the word
         '''        
-        return sum([word in self.processed_article_contents[i] for i in range(len(self.data))])
+        return sum([(self.vocab[i].get(word, 0) != 0) for i in range(len(self.data))])
 
     def idf(self, word: str) -> float:
         '''
@@ -138,20 +143,17 @@ class SearchEngine:
         return return_json_string
 
 if __name__ == "__main__":
-
     '''
     Loading data into the search engine
     '''
-    search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
-    search_engine.run()
-
+    
     '''py
-    second_search_engine = SearchEngine() 
-    second_search_engine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
-    print(search_engine.processed_article_contents[:2])
-    print(second_search_engine.processed_article_contents[:2])
-    print(second_search_engine.processed_article_contents == search_engine.processed_article_contents)
-    result = second_search_engine.search("Facebook Libra: the", 10)
+    search_engine = SearchEngine()
+    search_engine.run()
+    second_search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    query = input()
+    result = second_search_engine.search(query, 50)
+    print(result[:2000])
     '''
     '''
     Show all relevant articles given the query string
