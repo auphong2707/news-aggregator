@@ -116,7 +116,7 @@ class SearchEngine:
             
         return result
 
-    def search(self, **query) -> str:
+    def search(self, query) -> str:
         '''
         query: a string of words
         return: top 10 most relevant results, in form of dictionary

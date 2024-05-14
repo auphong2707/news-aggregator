@@ -60,9 +60,9 @@ def get_latest() -> str:
 def search():
     if request.method == 'POST':
         decoded_request = request.data.decode('utf-8')
-        print(decoded_request)
+        
         params = json.loads(decoded_request)
-        return search_engine.search(params['content'], 50)
+        return search_engine.search(params)
     
 @server.route('/trending', methods=['GET'])
 def get_trending():
