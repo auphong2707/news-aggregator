@@ -111,7 +111,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Crypto" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="   Crypto" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -177,7 +177,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Others" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="   Others" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -227,7 +227,7 @@
                         </Group>
                      </children>
                   </VBox>
-                  <Group layoutX="298.0" layoutY="62.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="280.0">
+                  <Group layoutX="298.0" layoutY="85.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="280.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="13.0" onMouseClicked="#refreshHomepage" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
                            <font>
