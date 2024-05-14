@@ -1,5 +1,6 @@
 package com.newsaggregator.presenter;
 
+import java.util.List;
 import java.util.Queue;
 
 import com.newsaggregator.model.ArticleData;
@@ -53,9 +54,11 @@ public class HistoryWindow {
 		String webContent = new String();
 		if (currentWeb.getKey()== SceneType.ARTICLE_VIEW) {
 			ArticleData information = (ArticleData) currentWeb.getValue();
-			webContent = " : " + information.getTITLE();  
+			webContent = ": " + information.getTITLE();  
 		} else if (currentWeb.getKey()== SceneType.SEARCHTAB) {
-			webContent = " : " + currentWeb.getValue();
+			@SuppressWarnings("unchecked")
+			List<String > searchContent = (List<String>) currentWeb.getValue();
+			webContent = ": " + searchContent.get(0) + " (" + searchContent.get(1) + ", " + searchContent.get(2) + ")";
 		} else {
 			webContent = "";
 		}

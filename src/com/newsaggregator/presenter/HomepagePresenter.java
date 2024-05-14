@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -142,14 +144,14 @@ public class HomepagePresenter extends Presenter {
 	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			String searchContent = searchBar.getText();
+			List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
 			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 		}
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		String searchContent = searchBar.getText();
+		List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
 		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 	}
 	

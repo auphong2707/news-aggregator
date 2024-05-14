@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import com.newsaggregator.model.Model;
 
@@ -73,8 +74,6 @@ public class SearchTabPresenter extends Presenter {
 		categoryBox.getItems().addAll("All", "Blockchain", "Crypto", "Others");
 		webBox.getItems().addAll("All", "Academy Moralis", "Coindesk", "The Conversation", 
 				"Financial Express", "Freight Wave", "Financial Times", "The Blockchain", "The Fintech Times");
-		categoryBox.setValue("All");
-		webBox.setValue("All");		
 	}
 	
 	private void setDate() {
@@ -104,13 +103,14 @@ public class SearchTabPresenter extends Presenter {
 	@FXML
 	private void search(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
-			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchBar.getText());
+			List<String> searchContent = Arrays.asList(searchBar.getText(), categoryBox.getValue(), webBox.getValue());
+			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 		} 	
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		String searchContent = searchBar.getText();
+		List<String> searchContent = Arrays.asList(searchBar.getText(), categoryBox.getValue(), webBox.getValue());
 		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 	}
 	
@@ -124,7 +124,6 @@ public class SearchTabPresenter extends Presenter {
 	@FXML
 	private void switchToHomepage() throws IOException {
 		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
-		clearSearch();
 	}
 	
 	private void updateArticles() {
@@ -151,8 +150,6 @@ public class SearchTabPresenter extends Presenter {
 		
 		ArticleData selectedData = searchData.get(index);
 		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
-		
-		clearSearch();
     }
 	
 	@FXML
@@ -204,9 +201,13 @@ public class SearchTabPresenter extends Presenter {
 	void sceneSwitchInitialize() {
 		scrollPane.setVvalue(0);
 		
-		searchBar.setText(SceneManager.getInstance().getSearchContent());
+		List<String> searchContent = SceneManager.getInstance().getSearchContent();		
 		
-		searchData = Model.getInstance().search(SceneManager.getInstance().getSearchContent(), categoryBox.getValue(), webBox.getValue());
+		searchBar.setText(searchContent.get(0));
+		categoryBox.setValue(searchContent.get(1));
+		webBox.setValue(searchContent.get(2));
+		
+		searchData = Model.getInstance().search(searchContent.get(0), searchContent.get(1), searchContent.get(2));
 		
 		setPage(1);
 
