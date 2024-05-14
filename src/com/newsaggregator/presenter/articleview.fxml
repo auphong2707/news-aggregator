@@ -55,74 +55,6 @@
                      </font>
                   </Label>
                   <Line endX="1130.0" layoutY="230.0" startX="50.0" />
-                  <HBox alignment="CENTER" layoutX="117.0" layoutY="184.0" prefHeight="35.0" prefWidth="967.0" spacing="30.0">
-                     <children>
-                        <Label text="Category 1">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label text="Category 2">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label text="Category 3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Category 4">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="274.0" layoutY="10.0" text="Category 5">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="292.0" layoutY="10.0" text="Category 6">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="304.0" layoutY="10.0" text="Category 7">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Label layoutX="312.0" layoutY="10.0" text="Category 8">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                  </HBox>
                   <GridPane layoutX="53.0" layoutY="240.0" prefHeight="1720.0" prefWidth="1074.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -368,7 +300,7 @@
                                     <Line endX="300.0" stroke="#999090" />
                                  </children>
                               </VBox>
-                              <Label layoutX="427.0" layoutY="-132.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
+                              <Label layoutX="427.0" layoutY="-132.0" onMouseClicked="#switchToLatestTab" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
                                  <font>
                                     <Font name="Berlin Sans FB" size="24.0" />
                                  </font>

@@ -141,6 +141,11 @@ public class ArticleViewPresenter extends Presenter {
 	}
 	
 	@FXML
+	private void switchToLatestTab() {
+		SceneManager.getInstance().moveScene(SceneType.LATESTTAB, null);
+	}
+	
+	@FXML
 	private void switchToArticle(MouseEvent event) throws IOException {
 		Node clickedObject = (Node) event.getSource();
 		Group selectedGroup;
