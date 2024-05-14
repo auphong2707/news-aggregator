@@ -17,6 +17,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -32,6 +33,9 @@ public class SearchTabPresenter extends Presenter {
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
+	
+	@FXML private ComboBox<String> categoryBox;
+	@FXML private ComboBox<String> webBox;
 	
 	@FXML private Label pageLabel;
 	@FXML private Button historyButton;
@@ -65,6 +69,12 @@ public class SearchTabPresenter extends Presenter {
 	void initialize() throws IOException, InterruptedException {
 		setDate();
 		articles = new Group[] {article1, article2, article3, article4, article5};
+		
+		categoryBox.getItems().addAll("All", "Blockchain", "Crypto", "Others");
+		webBox.getItems().addAll("All", "Academy Moralis", "Coindesk", "The Conversation", 
+				"Financial Express", "Freight Wave", "Financial Times", "The Blockchain", "The Fintech Times");
+		categoryBox.setValue("All");
+		webBox.setValue("All");		
 	}
 	
 	private void setDate() {
@@ -86,6 +96,8 @@ public class SearchTabPresenter extends Presenter {
 			setPage(page - 1);
 		}
 		
+		scrollPane.setVvalue(0);
+		
 		updateArticles();
 	} 
 	
@@ -97,8 +109,22 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	@FXML
+	private void searchByButton() throws IOException {
+		String searchContent = searchBar.getText();
+		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+	}
+	
+	@FXML
+	private void clearSearch() {
+		searchBar.clear();
+		categoryBox.setValue("All");
+		webBox.setValue("All");	
+	}
+	
+	@FXML
 	private void switchToHomepage() throws IOException {
 		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
+		clearSearch();
 	}
 	
 	private void updateArticles() {
@@ -125,6 +151,8 @@ public class SearchTabPresenter extends Presenter {
 		
 		ArticleData selectedData = searchData.get(index);
 		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
+		
+		clearSearch();
     }
 	
 	@FXML
@@ -178,7 +206,8 @@ public class SearchTabPresenter extends Presenter {
 		
 		searchBar.setText(SceneManager.getInstance().getSearchContent());
 		
-		searchData = Model.getInstance().search(SceneManager.getInstance().getSearchContent());
+		searchData = Model.getInstance().search(SceneManager.getInstance().getSearchContent(), categoryBox.getValue(), webBox.getValue());
+		
 		setPage(1);
 
 		updateArticles();

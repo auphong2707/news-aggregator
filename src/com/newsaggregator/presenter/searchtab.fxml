@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -123,18 +124,16 @@
                   <Line endX="1130.0" endY="1890.39990234375" layoutY="-112.0" startX="70.0" startY="1892.0" />
                   <Line endX="1130.0" layoutY="278.0" startX="70.0" />
                   <TextField fx:id="searchBar" layoutX="80.0" layoutY="300.0" onKeyPressed="#search" prefHeight="37.0" prefWidth="630.0" />
-                  <Label layoutX="90.0" layoutY="350.0" prefHeight="30.0" prefWidth="54.0" text="Time" textFill="#876ef7">
+                  <Label layoutX="90.0" layoutY="346.0" text="Web Source" textFill="#876ef7">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="375.0" layoutY="350.0" prefHeight="30.0" prefWidth="94.0" text="Category" textFill="#876ef7">
+                  <Label layoutX="384.0" layoutY="346.0" text="Category" textFill="#876ef7">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="80.0" layoutY="383.0" prefHeight="38.0" prefWidth="230.0" />
-                  <TextField layoutX="364.0" layoutY="385.0" prefHeight="38.0" prefWidth="345.0" />
                   <Line endX="715.0" endY="445.0" startX="70.0" startY="445.0" />
                   <VBox layoutX="79.0" layoutY="470.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                      <children>
@@ -453,6 +452,32 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </Text>
+                  <ComboBox fx:id="categoryBox" layoutX="375.0" layoutY="378.0" prefHeight="39.0" prefWidth="234.0" />
+                  <ComboBox fx:id="webBox" layoutX="80.0" layoutY="378.0" prefHeight="39.0" prefWidth="234.0" />
+                  <Button layoutX="761.0" layoutY="303.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="49.0" prefWidth="54.0">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="761.0" layoutY="378.0" mnemonicParsing="false" onAction="#clearSearch" prefHeight="49.0" prefWidth="54.0">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../../../../images/eraser.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
