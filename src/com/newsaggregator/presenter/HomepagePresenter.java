@@ -140,6 +140,12 @@ public class HomepagePresenter extends Presenter {
 	}
 	
 	@FXML
+	private void switchTCategoryTab(MouseEvent event) {
+		String category = ((Label) event.getSource()).getText();
+		SceneManager.getInstance().moveScene(SceneType.CATEGORYTAB, category);
+	}
+	
+	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
 			String searchContent = searchBar.getText();
