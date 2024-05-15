@@ -147,7 +147,6 @@ class SearchEngine:
             index = query_score[i][0]
             results[i] = self.data[index]
         
-        print(results)
         return_json_string = json.dumps(results)
         
         return return_json_string
