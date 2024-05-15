@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
@@ -12,8 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScrapperFreightWave extends WebScrapper {
-	WebScrapperFreightWave()
+class WebScraperFreightWave extends WebScraper {
+	WebScraperFreightWave()
     {
     	webSource = "Freight Wave";
     	type = "News Article";
@@ -26,7 +28,7 @@ class WebScrapperFreightWave extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-            Document document = ModelTools.connectWeb("https://www.freightwaves.com/blockchain");
+            Document document = WebConnector.connectWeb("https://www.freightwaves.com/blockchain");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".fw-pagination");
 
@@ -43,7 +45,7 @@ class WebScrapperFreightWave extends WebScrapper {
             	String link = nextPageLink.attr("href");
                 if (link == null || link.isEmpty()) break;
                 
-                document = ModelTools.connectWeb(link);
+                document = WebConnector.connectWeb(link);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".fw-pagination");

@@ -7,27 +7,26 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
+import com.newsaggregator.model.tools.Converter;
+import com.newsaggregator.model.webscraper.WebScraper;
+
+import javafx.util.Pair;;
 
 public class Model {
 	private final static String DIRECTORY = "data/";
 	private final static String RESULT_FILE_NAME = "newsAll.json";
-	private final static WebScrapper[] scrapers = new WebScrapper[] {
-			new WebScrapperFT(),
-			new WebScrapperCONV(),
-			new WebScrapperAcademy(),
-			new WebScrapperTheBlockchain(),
-			new WebScrapperCoindesk(),
-			new WebScrapperFreightWave(),
-			new WebScrapperTheFintech(),
-			new WebScrapperExpress()
-	};
+	private static WebScraper[] scrapers;
 	
 	private static long processPid = -1;
 	
 	private static Model instance;
     private Model() {
     	runLocalServer();
+    	scrapers = WebScraper.getAllInstances();
     }
 
     public static Model getInstance() {
@@ -39,10 +38,19 @@ public class Model {
 
 	private void scrapeNewData()
 	{
-		for(WebScrapper scraper : scrapers)
-		{
-			scraper.scrapeAllData();
-		}
+		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+	    
+		for(WebScraper scraper : scrapers) {
+    		executor.submit(() -> {
+                scraper.scrapeAllData();
+            });
+    	}
+    	
+    	executor.shutdown();
+    	while (!executor.isTerminated()) {
+            // Waiting...
+        }
+    	
 		combineData();
 	}
 	
@@ -86,7 +94,7 @@ public class Model {
 
             conn.disconnect();
             
-            return ModelTools.convertJsonStringToData(output);
+            return Converter.convertJsonStringToData(output);
             
 	    } 
         catch (MalformedURLException e) {
@@ -113,7 +121,7 @@ public class Model {
 			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count + "&category=" + category);
 			String recievedJsonString = connectServerGET(url);
 			
-			return ModelTools.convertJsonStringToData(recievedJsonString);
+			return Converter.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -126,7 +134,7 @@ public class Model {
 			URL url = new URL("http://127.0.0.1:5000/random?number=" + count);
 			String recievedJsonString = connectServerGET(url);
 			
-			return ModelTools.convertJsonStringToData(recievedJsonString);
+			return Converter.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -140,7 +148,7 @@ public class Model {
 			URL url = new URL("http://127.0.0.1:5000/trending?number=" + count);
 			String recievedJsonString = connectServerGET(url);
 			
-			return ModelTools.convertJsonStringToData(recievedJsonString);
+			return Converter.convertJsonStringToData(recievedJsonString);
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -216,13 +224,13 @@ public class Model {
 			for(String fileName : arrayOfFileNames)
 			{
 				Scanner scanner = new Scanner(new File(DIRECTORY + fileName));
-				List<ArticleData> unitData = ModelTools.convertJsonStringToData(scanner.nextLine());
+				List<ArticleData> unitData = Converter.convertJsonStringToData(scanner.nextLine());
 				
 				listOfData.addAll(unitData);
 				
 				scanner.close();
 			}
-			ModelTools.convertDataToJson(listOfData, DIRECTORY + RESULT_FILE_NAME);
+			Converter.convertDataToJson(listOfData, DIRECTORY + RESULT_FILE_NAME);
 			
 			// Delete all the materials
 			for(String fileName : arrayOfFileNames) {

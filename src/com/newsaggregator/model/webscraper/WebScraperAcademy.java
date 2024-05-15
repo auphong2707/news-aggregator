@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-class WebScrapperAcademy extends WebScrapper {
-	WebScrapperAcademy()
+class WebScraperAcademy extends WebScraper {
+	WebScraperAcademy()
 	{
 		webSource = "Academy Moralis";
     	type = "Blog";
@@ -27,7 +29,7 @@ class WebScrapperAcademy extends WebScrapper {
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
     	try {	
-            Document document = ModelTools.connectWeb("https://academy.moralis.io/blog/blockchain");
+            Document document = WebConnector.connectWeb("https://academy.moralis.io/blog/blockchain");
             Elements nextElements = document.select(".page-numbers.next");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             
@@ -36,7 +38,7 @@ class WebScrapperAcademy extends WebScrapper {
                 Element linkElement = nextPageLink.getElementsByTag("a").first();
                 if (linkElement == null || linkElement == null) break;
                 String relativeLink = linkElement.attr("href");
-                document = ModelTools.connectWeb(relativeLink);
+                document = WebConnector.connectWeb(relativeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));;
                 nextElements = document.select(".page-numbers.next");
             }   

@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
@@ -12,21 +14,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScrapperCoindesk extends WebScrapper {
-	WebScrapperCoindesk()
+class WebScraperCoindesk extends WebScraper {
+	WebScraperCoindesk()
     {
     	webSource = "Coindesk";
     	type = "News Article";
     	htmlContentLocation = ".at-body";
     	fileName += "newsCoindesk.json";
     }
-    
+	
     @Override 
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-            Document document = ModelTools.connectWeb("https://www.coindesk.com/tag/blockchain-tech/");
+            Document document = WebConnector.connectWeb("https://www.coindesk.com/tag/blockchain-tech/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".page-link");
 
@@ -37,7 +39,7 @@ class WebScrapperCoindesk extends WebScrapper {
            
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://www.coindesk.com/" + relativeLink;
-                document = ModelTools.connectWeb(completeLink);
+                document = WebConnector.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".page-link");

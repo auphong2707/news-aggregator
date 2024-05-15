@@ -1,10 +1,9 @@
 package com.newsaggregator.model;
 
-import java.io.IOException;
-
-import org.jsoup.HttpStatusException;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 public class ArticleData {
 	private final String LINK;
@@ -21,7 +20,7 @@ public class ArticleData {
 	private final String CREATION_DATE;
 	private final String HTML_CONTENT_LOCATION;
 	
-	ArticleData(String link, String websiteSource, String image,
+	public ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
 			String authorName, String category, String creationDate, String htmlContentLocation) {
@@ -92,7 +91,7 @@ public class ArticleData {
 	public String getHTML_CONTENT() {
 		Document document = null;
 		try {
-			document = ModelTools.connectWeb(LINK);
+			document = WebConnector.connectWeb(LINK);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

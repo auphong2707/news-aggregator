@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
@@ -15,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class WebScrapperTheBlockchain extends WebScrapper {
+class WebScraperTheBlockchain extends WebScraper {
 	static int count = 0;
-    WebScrapperTheBlockchain()
+    WebScraperTheBlockchain()
     {
     	webSource = "The Blockchain";
     	type = "News Article";
@@ -29,7 +31,7 @@ class WebScrapperTheBlockchain extends WebScrapper {
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	try {	
-            Document document = ModelTools.connectWeb("https://the-blockchain.com/");
+            Document document = WebConnector.connectWeb("https://the-blockchain.com/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".page-nav.td-pb-padding-side");
 
@@ -38,7 +40,7 @@ class WebScrapperTheBlockchain extends WebScrapper {
             	if (nextPageLink == null) break;
             	String relativeLink = nextPageLink.attr("href");
                 if (relativeLink == null || relativeLink.isEmpty()) break;
-                document = ModelTools.connectWeb(relativeLink);
+                document = WebConnector.connectWeb(relativeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".page-nav.td-pb-padding-side");

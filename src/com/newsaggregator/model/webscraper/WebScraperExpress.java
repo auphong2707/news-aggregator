@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
@@ -12,8 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScrapperExpress extends WebScrapper {
-	WebScrapperExpress()
+class WebScraperExpress extends WebScraper {
+	WebScraperExpress()
     {
     	webSource = "Financial Express";
     	type = "News Article";
@@ -26,7 +28,7 @@ class WebScrapperExpress extends WebScrapper {
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-    		Document document = ModelTools.connectWeb("https://www.financialexpress.com/about/blockchain/");
+    		Document document = WebConnector.connectWeb("https://www.financialexpress.com/about/blockchain/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".pagination");
             
@@ -34,7 +36,7 @@ class WebScrapperExpress extends WebScrapper {
             	Elements nextPageLink = document.select("a.next.page-numbers");
             	String completeLink = nextPageLink.attr("href");
                 if (completeLink == null || completeLink.isEmpty()) break;
-                document = ModelTools.connectWeb(completeLink);
+                document = WebConnector.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));   
                 nextElements = document.select(".pagination");
             }   

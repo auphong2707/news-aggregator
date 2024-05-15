@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
@@ -12,21 +14,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScrapperTheFintech extends WebScrapper {
-	WebScrapperTheFintech()
+class WebScraperTheFintech extends WebScraper {
+	WebScraperTheFintech()
     {
     	webSource = "The Fintech Times";
     	type = "News Article";
     	htmlContentLocation = ".penci-entry-content.entry-content";
     	fileName += "newsTheFintech.json";
     }
-    
+
     @Override 
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-    		Document document = ModelTools.connectWeb("https://thefintechtimes.com/category/news/blockchain/");
+    		Document document = WebConnector.connectWeb("https://thefintechtimes.com/category/news/blockchain/");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".nav-links");
 
@@ -36,7 +38,7 @@ class WebScrapperTheFintech extends WebScrapper {
                 	
                  String completeLink = nextPageLink.attr("href");
                 if (completeLink == null || completeLink.isEmpty()) break;
-                document = ModelTools.connectWeb(completeLink);
+                document = WebConnector.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));   
                 nextElements = document.select(".nav-links");
             }   

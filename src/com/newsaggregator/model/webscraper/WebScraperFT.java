@@ -1,8 +1,10 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
@@ -13,21 +15,21 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-class WebScrapperFT extends WebScrapper {
-    WebScrapperFT()
+class WebScraperFT extends WebScraper {
+    WebScraperFT()
     {
     	webSource = "Financial Times";
     	type = "News Article";
     	htmlContentLocation = "article.n-content-body";
     	fileName += "newsFT.json";
     }
-    
+
     @Override 
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
     	try {	
-            Document document = ModelTools.connectWeb("https://www.ft.com/blockchain");
+            Document document = WebConnector.connectWeb("https://www.ft.com/blockchain");
             linkAndImage.addAll(getLinkAndImageInPage(document));
             Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
 
@@ -37,7 +39,7 @@ class WebScrapperFT extends WebScrapper {
                 if (relativeLink == null || relativeLink.isEmpty()) break;
                 String completeLink = "https://www.ft.com/blockchain" + relativeLink;
 
-                document = ModelTools.connectWeb(completeLink);
+                document = WebConnector.connectWeb(completeLink);
                 linkAndImage.addAll(getLinkAndImageInPage(document));
                 
                 nextElements = document.select(".stream__pagination.o-buttons-pagination");

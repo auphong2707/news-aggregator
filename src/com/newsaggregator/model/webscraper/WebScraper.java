@@ -1,14 +1,18 @@
-package com.newsaggregator.model;
+package com.newsaggregator.model.webscraper;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Collections;
 import java.util.List;
-import javafx.util.Pair;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.jsoup.nodes.Document;
+
+import com.newsaggregator.model.ArticleData;
+import com.newsaggregator.model.tools.WebConnector;
+import com.newsaggregator.model.tools.Converter;
+
+import javafx.util.Pair;
 
 /**
  * <h1> WebScrapper </h1>
@@ -18,7 +22,7 @@ import org.jsoup.nodes.Document;
  * @author Dat Dao, Phong Au
  * @since 2024-03-09
  */
-abstract class WebScrapper {
+public abstract class WebScraper {
 	/**
 	 * The name of the web being scraped. 
 	 */
@@ -145,7 +149,7 @@ abstract class WebScrapper {
     			author="", category="", creationDate="";
     	
     	try {
-        	Document document = ModelTools.connectWeb(articleLink);
+        	Document document = WebConnector.connectWeb(articleLink);
         	if (document == null) return null;
         	
         	summary = getSummary(document);
@@ -173,10 +177,10 @@ abstract class WebScrapper {
     }
     
     /**
-     * The package method to scrape all the details of an article from a list of all links and thumbnail
+     * The method to scrape all the details of an article from a list of all links and thumbnail
      * image URLs in a web and convert them to JSON file.
      */
-    void scrapeAllData()
+    public void scrapeAllData()
     {
     	List<Pair<String, String>> allLinksImages = getAllLinksAndImages();
     	List<ArticleData> listOfData = Collections.synchronizedList(new ArrayList<>());
@@ -201,6 +205,20 @@ abstract class WebScrapper {
             // Waiting...
         }
     	
-    	ModelTools.convertDataToJson(listOfData, fileName);
+    	Converter.convertDataToJson(listOfData, fileName);
+    }
+    
+    public static WebScraper[] getAllInstances() {
+    	WebScraper[] allInstances = new WebScraper[] {
+    		new WebScraperFT(),
+    		new WebScraperCONV(),
+    		new WebScraperAcademy(),
+    		new WebScraperTheBlockchain(),
+    		new WebScraperCoindesk(),
+    		new WebScraperFreightWave(),
+    		new WebScraperTheFintech(),
+    		new WebScraperExpress()
+    	};
+    	return allInstances;
     }
 }
