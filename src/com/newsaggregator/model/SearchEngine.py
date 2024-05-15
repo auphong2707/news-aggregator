@@ -132,7 +132,7 @@ class SearchEngine:
         
         content_tokens = StringProcessor.process(content).split()
         query_score = [0] * len(query_index) 
-        results = [0] * num_relevant_results
+        results = [None] * num_relevant_results
         
         for i, word in enumerate(content_tokens):
             word_bm25 = self.bm25_score(query_index, word)
@@ -143,10 +143,11 @@ class SearchEngine:
 
         query_score = sorted(query_score, key = lambda x: -x[1])
 
-        for i in range(num_relevant_results):
+        for i in range(min(len(query_index), num_relevant_results)):
             index = query_score[i][0]
             results[i] = self.data[index]
         
+        print(results)
         return_json_string = json.dumps(results)
         
         return return_json_string
