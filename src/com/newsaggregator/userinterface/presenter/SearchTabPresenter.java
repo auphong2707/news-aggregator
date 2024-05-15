@@ -11,7 +11,7 @@ import java.util.List;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
-import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
 import com.newsaggregator.userinterface.uienum.SceneType;
 import com.newsaggregator.model.ArticleData;
@@ -134,7 +134,7 @@ public class SearchTabPresenter extends Presenter {
 		int first = (page - 1) * 5;
 		int last = (page - 1) * 5 + 5;
 		
-		PresenterTools.setArrayArticleViews(articles, searchData.subList(first, last), ArticleSize.BIG);
+		ArticleSetter.setArrayArticleViews(articles, searchData.subList(first, last), ArticleSize.BIG);
 	}
 	
 	private void setPage(int newPage) {

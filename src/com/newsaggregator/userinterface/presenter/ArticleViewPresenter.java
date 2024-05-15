@@ -11,7 +11,7 @@ import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
-import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
 import com.newsaggregator.userinterface.uienum.SceneType;
 
@@ -129,7 +129,7 @@ public class ArticleViewPresenter extends Presenter {
 		
 		latestData = Model.getInstance().getLatest(latestArticle.length);
 		
-		PresenterTools.setArrayArticleViews(latestArticle, latestData, ArticleSize.SMALL);
+		ArticleSetter.setArrayArticleViews(latestArticle, latestData, ArticleSize.SMALL);
 	}
 	
 	private void setReadNextArticle() {
@@ -137,7 +137,7 @@ public class ArticleViewPresenter extends Presenter {
 		
 		randomData = Model.getInstance().getRandom(reedNextArticle.length);
 		
-		PresenterTools.setArrayArticleViews(reedNextArticle, randomData, ArticleSize.BIG);
+		ArticleSetter.setArrayArticleViews(reedNextArticle, randomData, ArticleSize.BIG);
 	}
 	
 	@FXML

@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class PresenterTools {	
+public class ArticleSetter {	
 	public static void setArrayArticleViews(Group[] views, List<ArticleData> data, ArticleSize size) {
 		for (int i = 0; i < views.length; i++) {
 			int index = i;
@@ -21,7 +21,7 @@ public class PresenterTools {
 				try {
 					Thread.sleep(500);
 						Platform.runLater(() -> {
-							PresenterTools.setArticleView(views[index], data.get(index), size);
+							ArticleSetter.setArticleView(views[index], data.get(index), size);
 						});
 				} catch (InterruptedException ex) {
 	                ex.printStackTrace();

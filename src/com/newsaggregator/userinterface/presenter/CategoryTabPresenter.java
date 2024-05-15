@@ -10,7 +10,7 @@ import java.util.List;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
-import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
 import com.newsaggregator.userinterface.uienum.SceneType;
 import com.newsaggregator.model.ArticleData;
@@ -118,7 +118,7 @@ public class CategoryTabPresenter extends Presenter {
 		int first = (page - 1) * 6;
 		int last = (page - 1) * 6 + 6;
 		
-		PresenterTools.setArrayArticleViews(articles, categoryData.subList(first, last), ArticleSize.BIG);
+		ArticleSetter.setArrayArticleViews(articles, categoryData.subList(first, last), ArticleSize.BIG);
 	}
 	
 	private void setPage(int newPage) {

@@ -13,7 +13,7 @@ import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
-import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
 import com.newsaggregator.userinterface.uienum.SceneType;
 
@@ -113,7 +113,7 @@ public class HomepagePresenter extends Presenter {
 		Group[] latestSmallArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3,
 				 								  smallArticle4, smallArticle5, smallArticle6};
 		
-		PresenterTools.setArrayArticleViews(latestSmallArticle, latestData, ArticleSize.SMALL);
+		ArticleSetter.setArrayArticleViews(latestSmallArticle, latestData, ArticleSize.SMALL);
 	} 
 	
 	private void setRandomArticle() {
@@ -122,7 +122,7 @@ public class HomepagePresenter extends Presenter {
 		
 		randomData = Model.getInstance().getRandom(randomArticle.length);
 		
-		PresenterTools.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
+		ArticleSetter.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
 	}
 	
 	private void setTrendingArticle() {
@@ -132,8 +132,8 @@ public class HomepagePresenter extends Presenter {
 		
 		trendingData = Model.getInstance().getTrending(6);
 		
-		PresenterTools.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
-		PresenterTools.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
+		ArticleSetter.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
+		ArticleSetter.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
 	}
 	
 	@FXML
