@@ -1,4 +1,4 @@
-package com.newsaggregator.presenter;
+package com.newsaggregator.userinterface;
 
 enum SceneType {
 	HOMEPAGE,

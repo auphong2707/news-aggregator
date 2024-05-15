@@ -1,4 +1,4 @@
-package com.newsaggregator.presenter;
+package com.newsaggregator.userinterface;
 
 
 import java.awt.Desktop;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import com.newsaggregator.model.Model;
 
@@ -26,13 +27,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-public class CategoryTabPresenter extends Presenter {
+public class TrendingTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
-	@FXML private Label categoryLabel;
 	
 	@FXML private Button historyButton;
 	@FXML private Button returnButton;
@@ -59,10 +59,9 @@ public class CategoryTabPresenter extends Presenter {
 	@FXML private Label newspaper7;
 	@FXML private Label newspaper8;
 	
-	private List<ArticleData> categoryData;
+	private List<ArticleData> trendingData;
 	private int page;
 	private Group[] articles;
-	private String category;
 
 	@FXML
 	void initialize() throws IOException, InterruptedException {
@@ -82,14 +81,14 @@ public class CategoryTabPresenter extends Presenter {
 	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			String searchContent = searchBar.getText();
+			List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
 			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 		}
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		String searchContent = searchBar.getText();
+		List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
 		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
 	}
 	
@@ -114,7 +113,7 @@ public class CategoryTabPresenter extends Presenter {
 		int first = (page - 1) * 6;
 		int last = (page - 1) * 6 + 6;
 		
-		PresenterTools.setArrayArticleViews(articles, categoryData.subList(first, last), ArticleSize.BIG);
+		PresenterTools.setArrayArticleViews(articles, trendingData.subList(first, last), ArticleSize.BIG);
 	}
 	
 	private void setPage(int newPage) {
@@ -132,7 +131,7 @@ public class CategoryTabPresenter extends Presenter {
 		else selectedGroup = (Group) clickedObject.getParent();
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
-		ArticleData selectedData = categoryData.get(index);
+		ArticleData selectedData = trendingData.get(index);
 		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
 	
@@ -185,10 +184,7 @@ public class CategoryTabPresenter extends Presenter {
 	void sceneSwitchInitialize() {
 		scrollPane.setVvalue(0);
 		
-		category = SceneManager.getInstance().getCategoryName();
-		
-		categoryLabel.setText("Category: " + category);
-		categoryData = Model.getInstance().getLatest(60, category);
+		trendingData = Model.getInstance().getTrending(60);
 		
 		searchBar.clear();
 		

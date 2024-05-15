@@ -1,5 +1,5 @@
 import com.newsaggregator.model.Model;
-import com.newsaggregator.presenter.*;
+import com.newsaggregator.userinterface.*;
 
 import javafx.application.Application;
 import javafx.scene.image.Image;

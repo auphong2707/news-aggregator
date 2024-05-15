@@ -1,4 +1,4 @@
-package com.newsaggregator.presenter;
+package com.newsaggregator.userinterface;
 
 import java.awt.Desktop;
 import java.io.IOException;
