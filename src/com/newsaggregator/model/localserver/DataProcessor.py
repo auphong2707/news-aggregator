@@ -5,7 +5,7 @@ from Utilities import *
 from SearchEngine import SearchEngine
 
 
-file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), '')
+file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
 
 search_engine = SearchEngine.load_engine(file_path)
 
