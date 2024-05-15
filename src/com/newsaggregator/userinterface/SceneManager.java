@@ -7,14 +7,18 @@ import java.util.Queue;
 import java.util.Stack;
 
 import com.newsaggregator.model.ArticleData;
+import com.newsaggregator.userinterface.presenter.Presenter;
+import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import java.io.File;
 
 public class SceneManager {
+	private static final String VIEW_PATH = "resources/views/";
 	private static SceneManager instance;
     private SceneManager() { }
 
@@ -43,12 +47,12 @@ public class SceneManager {
 		
 		HistoryWindow.getInstance().initialize();
 
-		FXMLLoader searchtabLoader = new FXMLLoader(getClass().getResource("searchtab.fxml"));
-    	FXMLLoader homepageLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
-    	FXMLLoader articleLoader = new FXMLLoader(getClass().getResource("articleview.fxml"));
-    	FXMLLoader trendingLoader = new FXMLLoader(getClass().getResource("trendingtab.fxml"));
-    	FXMLLoader latestLoader = new FXMLLoader(getClass().getResource("latesttab.fxml"));
-    	FXMLLoader categoryLoader = new FXMLLoader(getClass().getResource("categorytab.fxml"));
+		FXMLLoader searchtabLoader = new FXMLLoader((new File(VIEW_PATH + "searchtab.fxml").toURI().toURL()));
+    	FXMLLoader homepageLoader = new FXMLLoader(new File(VIEW_PATH + "homepage.fxml").toURI().toURL());
+    	FXMLLoader articleLoader = new FXMLLoader(new File(VIEW_PATH + "articleview.fxml").toURI().toURL());
+    	FXMLLoader trendingLoader = new FXMLLoader(new File(VIEW_PATH + "trendingtab.fxml").toURI().toURL());
+    	FXMLLoader latestLoader = new FXMLLoader(new File(VIEW_PATH + "latesttab.fxml").toURI().toURL());
+    	FXMLLoader categoryLoader = new FXMLLoader(new File(VIEW_PATH + "categorytab.fxml").toURI().toURL());
         
         Scene homepage = new Scene(homepageLoader.load()); 
         Scene searchtab = new Scene(searchtabLoader.load());

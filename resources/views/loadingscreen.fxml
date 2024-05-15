@@ -19,7 +19,7 @@
             </Label>
             <ImageView fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../images/alligator.png" />
+                  <Image url="@../images/alligator.png" />
                </image>
             </ImageView>
          </children>
@@ -29,7 +29,7 @@
       </Group>
       <ImageView fitHeight="114.0" fitWidth="118.0" layoutX="237.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="234.5">
          <image>
-            <Image url="@../../../../images/loading.gif" />
+            <Image url="@../images/loading.gif" />
          </image>
       </ImageView>
    </children>

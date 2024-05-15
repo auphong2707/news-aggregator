@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.userinterface.CategoryTabPresenter">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.userinterface.presenter.CategoryTabPresenter">
    <center>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
@@ -32,7 +32,7 @@
                         </Label>
                         <ImageView fx:id="logo" fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" onMouseClicked="#switchToHomepage" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/alligator.png" />
+                              <Image url="@../images/alligator.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -148,7 +148,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
@@ -182,7 +182,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="-5.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" visible="false" />
@@ -216,7 +216,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" visible="false" />
@@ -250,7 +250,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="6.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" visible="false" />
@@ -284,7 +284,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" visible="false" />
@@ -318,7 +318,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" visible="false" />
@@ -353,7 +353,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/homepage_button.png" />
+                              <Image url="@../images/homepage_button.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -368,7 +368,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/arrow.png" />
+                              <Image url="@../images/arrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -378,7 +378,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/search.png" />
+                              <Image url="@../images/search.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -396,7 +396,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" rotate="180.0">
                            <image>
-                              <Image url="@../../../../images/arrow.png" />
+                              <Image url="@../images/arrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -405,7 +405,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/history.png" />
+                              <Image url="@../images/history.png" />
                            </image>
                         </ImageView>
                      </graphic>

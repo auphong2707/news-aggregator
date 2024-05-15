@@ -1,4 +1,4 @@
-package com.newsaggregator.userinterface;
+package com.newsaggregator.userinterface.presenter;
 
 
 import java.awt.Desktop;
@@ -9,7 +9,11 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import com.newsaggregator.model.Model;
-
+import com.newsaggregator.userinterface.HistoryWindow;
+import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.uienum.ArticleSize;
+import com.newsaggregator.userinterface.uienum.SceneType;
 import com.newsaggregator.model.ArticleData;
 
 import javafx.event.ActionEvent;
@@ -181,7 +185,7 @@ public class LatestTabPresenter extends Presenter {
 	}
 	
 	@Override
-	void sceneSwitchInitialize() {
+	public void sceneSwitchInitialize() {
 		scrollPane.setVvalue(0);
 		
 		latestData = Model.getInstance().getLatest(60);

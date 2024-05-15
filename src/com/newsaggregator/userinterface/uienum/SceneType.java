@@ -1,6 +1,6 @@
-package com.newsaggregator.userinterface;
+package com.newsaggregator.userinterface.uienum;
 
-enum SceneType {
+public enum SceneType {
 	HOMEPAGE,
 	SEARCHTAB,
 	ARTICLE_VIEW,

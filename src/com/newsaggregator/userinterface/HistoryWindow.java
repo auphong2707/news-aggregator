@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Queue;
 
 import com.newsaggregator.model.ArticleData;
+import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.scene.Cursor;
 import javafx.scene.Scene;

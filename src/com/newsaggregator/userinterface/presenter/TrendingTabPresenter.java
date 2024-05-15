@@ -1,4 +1,4 @@
-package com.newsaggregator.userinterface;
+package com.newsaggregator.userinterface.presenter;
 
 
 import java.awt.Desktop;
@@ -9,7 +9,11 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import com.newsaggregator.model.Model;
-
+import com.newsaggregator.userinterface.HistoryWindow;
+import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.uienum.ArticleSize;
+import com.newsaggregator.userinterface.uienum.SceneType;
 import com.newsaggregator.model.ArticleData;
 
 import javafx.event.ActionEvent;
@@ -18,7 +22,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -28,30 +31,28 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-public class SearchTabPresenter extends Presenter {
+public class TrendingTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private ImageView logo;
 	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
 	
-	@FXML private ComboBox<String> categoryBox;
-	@FXML private ComboBox<String> webBox;
-	
-	@FXML private Label pageLabel;
 	@FXML private Button historyButton;
 	@FXML private Button returnButton;
 	@FXML private Button forwardButton;
+	@FXML private TextField searchBar;
+	@FXML private Button searchButton;
+	@FXML private Label pageLabel;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
-	
-	@FXML private TextField searchBar;
 	
 	@FXML private Group article1;
 	@FXML private Group article2;
 	@FXML private Group article3;
 	@FXML private Group article4;
 	@FXML private Group article5;
+	@FXML private Group article6;
 	
 	@FXML private Label newspaper1;
 	@FXML private Label newspaper2;
@@ -62,18 +63,14 @@ public class SearchTabPresenter extends Presenter {
 	@FXML private Label newspaper7;
 	@FXML private Label newspaper8;
 	
-	private List<ArticleData> searchData;
+	private List<ArticleData> trendingData;
 	private int page;
 	private Group[] articles;
 
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
-		articles = new Group[] {article1, article2, article3, article4, article5};
-		
-		categoryBox.getItems().addAll("All", "Blockchain", "Crypto", "Others");
-		webBox.getItems().addAll("All", "Academy Moralis", "Coindesk", "The Conversation", 
-				"Financial Express", "Freight Wave", "Financial Times", "The Blockchain", "The Fintech Times");
+		articles = new Group[] {article1, article2, article3, article4, article5, article6};
 	}
 	
 	private void setDate() {
@@ -85,6 +82,19 @@ public class SearchTabPresenter extends Presenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
+	@FXML
+	private void searchByKey(KeyEvent key) throws IOException {
+		if (key.getCode() == KeyCode.ENTER) {
+			List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
+			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+		}
+	}
+	
+	@FXML
+	private void searchByButton() throws IOException {
+		List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
+		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+	}
 	
 	@FXML
 	private void switchPage(ActionEvent event){
@@ -95,31 +105,8 @@ public class SearchTabPresenter extends Presenter {
 			setPage(page - 1);
 		}
 		
-		scrollPane.setVvalue(0);
-		
 		updateArticles();
 	} 
-	
-	@FXML
-	private void search(KeyEvent key) {
-		if (key.getCode() == KeyCode.ENTER) {
-			List<String> searchContent = Arrays.asList(searchBar.getText(), categoryBox.getValue(), webBox.getValue());
-			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
-		} 	
-	}
-	
-	@FXML
-	private void searchByButton() throws IOException {
-		List<String> searchContent = Arrays.asList(searchBar.getText(), categoryBox.getValue(), webBox.getValue());
-		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
-	}
-	
-	@FXML
-	private void clearSearch() {
-		searchBar.clear();
-		categoryBox.setValue("All");
-		webBox.setValue("All");	
-	}
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
@@ -127,10 +114,10 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
-		int first = (page - 1) * 5;
-		int last = (page - 1) * 5 + 5;
+		int first = (page - 1) * 6;
+		int last = (page - 1) * 6 + 6;
 		
-		PresenterTools.setArrayArticleViews(articles, searchData.subList(first, last), ArticleSize.BIG);
+		PresenterTools.setArrayArticleViews(articles, trendingData.subList(first, last), ArticleSize.BIG);
 	}
 	
 	private void setPage(int newPage) {
@@ -146,9 +133,9 @@ public class SearchTabPresenter extends Presenter {
 			selectedGroup = (Group) clickedObject;
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
-		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
+		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
-		ArticleData selectedData = searchData.get(index);
+		ArticleData selectedData = trendingData.get(index);
 		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
     }
 	
@@ -198,16 +185,12 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	@Override
-	void sceneSwitchInitialize() {
+	public void sceneSwitchInitialize() {
 		scrollPane.setVvalue(0);
 		
-		List<String> searchContent = SceneManager.getInstance().getSearchContent();		
+		trendingData = Model.getInstance().getTrending(60);
 		
-		searchBar.setText(searchContent.get(0));
-		categoryBox.setValue(searchContent.get(1));
-		webBox.setValue(searchContent.get(2));
-		
-		searchData = Model.getInstance().search(searchContent.get(0), searchContent.get(1), searchContent.get(2));
+		searchBar.clear();
 		
 		setPage(1);
 

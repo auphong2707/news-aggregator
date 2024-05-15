@@ -1,4 +1,4 @@
-package com.newsaggregator.userinterface;
+package com.newsaggregator.userinterface.presenter;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -9,6 +9,11 @@ import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
+import com.newsaggregator.userinterface.HistoryWindow;
+import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.uienum.ArticleSize;
+import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -95,7 +100,7 @@ public class ArticleViewPresenter extends Presenter {
 	}
 	
 	@Override
-	void sceneSwitchInitialize() {
+	public void sceneSwitchInitialize() {
 		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
 		
 		String title = selected.getTITLE();

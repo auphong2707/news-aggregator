@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.userinterface.TrendingTabPresenter">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.newsaggregator.userinterface.presenter.LatestTabPresenter">
    <center>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
@@ -32,7 +32,7 @@
                         </Label>
                         <ImageView fx:id="logo" fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" onMouseClicked="#switchToHomepage" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/alligator.png" />
+                              <Image url="@../images/alligator.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -46,7 +46,7 @@
                      </font>
                   </Label>
                   <Line endX="1130.0" layoutY="229.0" startX="70.0" />
-                  <Label layoutX="87.0" layoutY="238.0" prefHeight="35.0" prefWidth="119.0" text="Trending" textFill="#4b54fa">
+                  <Label layoutX="87.0" layoutY="238.0" prefHeight="35.0" prefWidth="119.0" text="Latest" textFill="#4b54fa">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -80,7 +80,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
@@ -114,7 +114,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="-5.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" visible="false" />
@@ -148,7 +148,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" visible="false" />
@@ -182,7 +182,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="6.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" visible="false" />
@@ -216,7 +216,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" visible="false" />
@@ -250,7 +250,7 @@
                               </Label>
                               <ImageView fitHeight="180.0" fitWidth="270.0" layoutX="-7.0" layoutY="28.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../../../../images/blank_rectangle.png" />
+                                    <Image url="@../images/blank_rectangle.png" />
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" visible="false" />
@@ -275,7 +275,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="54.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToHomepage" prefHeight="31.0" prefWidth="35.0">
+                  <Button layoutX="55.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToHomepage" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -285,12 +285,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/homepage_button.png" />
+                              <Image url="@../images/homepage_button.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="forwardButton" layoutX="89.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0">
+                  <Button fx:id="forwardButton" layoutX="90.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -300,17 +300,17 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/arrow.png" />
+                              <Image url="@../images/arrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="searchBar" layoutX="136.0" layoutY="26.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="344.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <TextField fx:id="searchBar" layoutX="130.0" layoutY="27.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
+                  <Button fx:id="searchButton" layoutX="338.0" layoutY="26.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../../../../images/search.png" />
+                              <Image url="@../images/search.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -318,7 +318,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="19.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
+                  <Button fx:id="returnButton" layoutX="19.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -328,7 +328,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" rotate="180.0">
                            <image>
-                              <Image url="@../../../../images/arrow.png" />
+                              <Image url="@../images/arrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -337,7 +337,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../images/history.png" />
+                              <Image url="@../images/history.png" />
                            </image>
                         </ImageView>
                      </graphic>

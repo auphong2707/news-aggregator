@@ -1,8 +1,9 @@
-package com.newsaggregator.userinterface;
+package com.newsaggregator.userinterface.tools;
 
 import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
+import com.newsaggregator.userinterface.uienum.ArticleSize;
 
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -11,8 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-class PresenterTools {	
-	static void setArrayArticleViews(Group[] views, List<ArticleData> data, ArticleSize size) {
+public class PresenterTools {	
+	public static void setArrayArticleViews(Group[] views, List<ArticleData> data, ArticleSize size) {
 		for (int i = 0; i < views.length; i++) {
 			int index = i;
 			

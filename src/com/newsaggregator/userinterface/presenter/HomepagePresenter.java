@@ -1,4 +1,4 @@
-package com.newsaggregator.userinterface;
+package com.newsaggregator.userinterface.presenter;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -11,6 +11,11 @@ import java.util.Optional;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
+import com.newsaggregator.userinterface.HistoryWindow;
+import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.tools.PresenterTools;
+import com.newsaggregator.userinterface.uienum.ArticleSize;
+import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -280,7 +285,7 @@ public class HomepagePresenter extends Presenter {
 	    }
 	    
 	@Override
-	void sceneSwitchInitialize() {
+	public void sceneSwitchInitialize() {
 		searchBar.clear();
 		
 		scrollPane.setVvalue(0);
