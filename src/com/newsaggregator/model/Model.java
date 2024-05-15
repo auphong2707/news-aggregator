@@ -27,7 +27,7 @@ public class Model {
 	
 	private static Model instance;
     private Model() {
-    	//runLocalServer();
+    	runLocalServer();
     }
 
     public static Model getInstance() {
