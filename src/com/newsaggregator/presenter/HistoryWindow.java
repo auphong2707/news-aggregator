@@ -32,7 +32,6 @@ public class HistoryWindow {
     }
 	
 	public Stage historyWindow = new Stage();
-	private boolean isOpening = false;
     Queue<Pair<SceneType, Object>> webHistory = SceneManager.getInstance().webHistory;
     private VBox vbox = new VBox();
 	
@@ -59,8 +58,11 @@ public class HistoryWindow {
 			@SuppressWarnings("unchecked")
 			List<String > searchContent = (List<String>) currentWeb.getValue();
 			webContent = ": " + searchContent.get(0) + " (" + searchContent.get(1) + ", " + searchContent.get(2) + ")";
+		} else if (currentWeb.getKey()== SceneType.CATEGORYTAB) {
+			webContent = " : " + currentWeb.getValue();
 		} else {
 			webContent = "";
+			
 		}
 		
 		Label web = new Label("  <> " + currentWeb.getKey() + webContent);
