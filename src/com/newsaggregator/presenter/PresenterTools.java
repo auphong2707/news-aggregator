@@ -52,7 +52,8 @@ class PresenterTools {
 	}
 
 	private static void setSmallArticleView(Group view, ArticleData data) {
-		// TODO Auto-generated method stub
+		view.setVisible(data != null);
+		
 		List<Node> elements = view.getChildren();
 		
 		setWebsite(elements, data, 0);
@@ -61,7 +62,9 @@ class PresenterTools {
 	}
 
 	private static void setNotBigArticleView(Group view, ArticleData data) {
-		// TODO Auto-generated method stub
+		view.setVisible(data != null);
+		if(data == null) return;
+		
 		List<Node> elements = view.getChildren();
 		
 		setWebsite(elements, data, 0);
@@ -71,7 +74,9 @@ class PresenterTools {
 	}
 
 	private static void setMediumArticleView(Group view, ArticleData data) {
-		// TODO Auto-generated method stub
+		view.setVisible(data != null);
+		if(data == null) return;
+		
 		List<Node> elements = view.getChildren();
 		
 		setWebsite(elements, data, 0);
@@ -80,7 +85,9 @@ class PresenterTools {
 	}
 
 	private static void setBigArticleView(Group view, ArticleData data) {
-		// TODO Auto-generated method stub
+		view.setVisible(data != null);
+		if(data == null) return;
+		
 		List<Node> elements = view.getChildren();
 		
 		setWebsite(elements, data, 0);

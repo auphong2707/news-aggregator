@@ -2,6 +2,7 @@ package com.newsaggregator.presenter;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -24,7 +25,7 @@ public class SceneManager {
         return instance;
     }
 	
-    private String searchContent;
+    private List<String> searchContent;
     private String categoryName;
     private ArticleData selectedArticleData;
     
@@ -75,7 +76,7 @@ public class SceneManager {
 		return scenes[currentSceneType.ordinal()];
 	}
 	
-	public String getSearchContent() {
+	public List<String> getSearchContent() {
 		return searchContent;
 	}
 
@@ -83,14 +84,16 @@ public class SceneManager {
 		return selectedArticleData;
 	}
 	
+
 	public String getCategoryName() {
 		return categoryName;
 	}
 	
+  @SuppressWarnings("unchecked")    
 	private void updateSceneVariables(SceneType sceneType, Object information) {
 		currentSceneType = sceneType;
 		if (currentSceneType == SceneType.SEARCHTAB) {
-			searchContent = (String) information;
+			searchContent = (List<String>) information;
 		} else if (currentSceneType == SceneType.CATEGORYTAB) {
 			categoryName = (String) information;
 		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {

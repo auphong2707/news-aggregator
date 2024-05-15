@@ -27,7 +27,7 @@ public class Model {
 	
 	private static Model instance;
     private Model() {
-    	runLocalServer();
+    	//runLocalServer();
     }
 
     public static Model getInstance() {
@@ -46,14 +46,22 @@ public class Model {
 		combineData();
 	}
 	
-	public List<ArticleData> search(String inputContent)
+	public List<ArticleData> search(String inputContent, String category, String webSource) {
+		return search(inputContent, category, webSource, 50);
+	}
+	
+	public List<ArticleData> search(String inputContent, String category, String webSource,  int count)
 	{
 		HttpURLConnection conn = null;
         DataOutputStream os = null;
         
         try{
             URL url = new URL("http://127.0.0.1:5000/search/");
-            String input = "{\"content\": \"" + inputContent + "\"}";
+            String input = "{\"content\": \"" + inputContent + "\","
+			         	 + "\"category\": \"" + category + "\","
+			         	 + "\"web_source\": \"" + webSource + "\","
+			         	 + "\"num_relevant_results\": " + count + ""
+			         	 + "}";
             byte[] postData = input.getBytes(StandardCharsets.UTF_8);
             
             conn = (HttpURLConnection) url.openConnection();

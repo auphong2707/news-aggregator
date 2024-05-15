@@ -95,7 +95,7 @@ class SearchEngine:
         
         return math.log((num_documents - num_occurences + 0.5) / (num_occurences + 0.5) + 1)
 
-    def bm25_score(self, query: str) -> list:
+    def bm25_score(self, query_index: list, query: str) -> list:
         '''
         query: a word
         
@@ -108,7 +108,7 @@ class SearchEngine:
         query_tokens = StringProcessor.process(query).split()
         result = []
         word_idf = self.idf(query) 
-        for i in range(len(self.data)):
+        for i in query_index:
             word_frequencies = self.get_word_occurences(query, i)
             numerator = word_frequencies * (k1 + 1)
             denominator = word_frequencies + k1 * (1 - b + b * len(self.data) / average_document_length)
@@ -116,43 +116,49 @@ class SearchEngine:
             
         return result
 
-    def search(self, query: str, num_relevant_results: int) -> str:
+    def search(self, query) -> str:
         '''
         query: a string of words
         return: top 10 most relevant results, in form of dictionary
         '''
-        query_tokens = StringProcessor.process(query).split()
-        query_score = [0] * len(self.data) 
-        results = [0] * num_relevant_results
+        num_relevant_results = query['num_relevant_results']
+        content = query['content']
+        category = query['category']
+        web_source = query['web_source']
+
+        query_index = [i for i in range(len(self.data)) 
+                       if (self.data[i]['CATEGORY'] == category or category == 'All') 
+                       and (self.data[i]['WEBSITE_SOURCE'] == web_source or web_source == 'All')]
         
-        for i, word in enumerate(query_tokens):
-            word_bm25 = self.bm25_score(word)
+        content_tokens = StringProcessor.process(content).split()
+        query_score = [0] * len(query_index) 
+        results = [None] * num_relevant_results
+        
+        for i, word in enumerate(content_tokens):
+            word_bm25 = self.bm25_score(query_index, word)
             query_score = update_scores(query_score, word_bm25)
 
-        for i in range(len(self.data)):
-            query_score[i] = (i, query_score[i])
+        for i in range(len(query_index)):
+            query_score[i] = (query_index[i], query_score[i])
 
         query_score = sorted(query_score, key = lambda x: -x[1])
 
-        for i in range(num_relevant_results):
+        for i in range(min(len(query_index), num_relevant_results)):
             index = query_score[i][0]
             results[i] = self.data[index]
         
+        print(results)
         return_json_string = json.dumps(results)
         
         return return_json_string
 
 if __name__ == "__main__":
     '''
-    Loading data into the search engine
-    '''
-    
-    '''py
     search_engine = SearchEngine()
     search_engine.run()
     second_search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
     query = input()
-    result = second_search_engine.search(query, 50)
+    result = second_search_engine.search(content = query, num_relevant_results = 50, category = 'All', web_source = 'All')
     print(result[:2000])
     '''
     '''
