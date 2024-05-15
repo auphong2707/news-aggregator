@@ -22,7 +22,7 @@ public class Main extends Application {
 	    	});
 	        
 	        primaryStage.setTitle("News Alligator");
-	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/images/alligator.png"));
+	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/resources/images/alligator.png"));
 	        primaryStage.setScene(SceneManager.getInstance().getCurrentScene());
 	        primaryStage.setMaximized(true);
 	        primaryStage.show();
