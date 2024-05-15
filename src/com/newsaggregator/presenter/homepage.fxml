@@ -111,7 +111,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="   Crypto" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Crypto" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -177,7 +177,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="   Others" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Others" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
