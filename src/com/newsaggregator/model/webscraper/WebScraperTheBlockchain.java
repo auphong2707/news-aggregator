@@ -8,7 +8,6 @@ import com.newsaggregator.model.tools.WebConnector;
 
 import javafx.util.Pair;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.*;
 import java.time.LocalDate;
@@ -16,8 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-class WebScraperTheBlockchain extends WebScraper {
+final class WebScraperTheBlockchain extends WebScraper {
 	static int count = 0;
     WebScraperTheBlockchain()
     {

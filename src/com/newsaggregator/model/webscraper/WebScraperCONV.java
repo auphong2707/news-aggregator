@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScraperCONV extends WebScraper {
+final class WebScraperCONV extends WebScraper {
 	WebScraperCONV()
 	{
 		webSource = "The Conversation";

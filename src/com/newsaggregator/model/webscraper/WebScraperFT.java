@@ -15,7 +15,7 @@ import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-class WebScraperFT extends WebScraper {
+final class WebScraperFT extends WebScraper {
     WebScraperFT()
     {
     	webSource = "Financial Times";

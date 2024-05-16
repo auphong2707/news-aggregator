@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScraperTheFintech extends WebScraper {
+final class WebScraperTheFintech extends WebScraper {
 	WebScraperTheFintech()
     {
     	webSource = "The Fintech Times";

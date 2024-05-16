@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScraperExpress extends WebScraper {
+final class WebScraperExpress extends WebScraper {
 	WebScraperExpress()
     {
     	webSource = "Financial Express";

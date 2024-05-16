@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-class WebScraperAcademy extends WebScraper {
+final class WebScraperAcademy extends WebScraper {
 	WebScraperAcademy()
 	{
 		webSource = "Academy Moralis";

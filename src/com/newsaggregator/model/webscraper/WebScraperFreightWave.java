@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScraperFreightWave extends WebScraper {
+final class WebScraperFreightWave extends WebScraper {
 	WebScraperFreightWave()
     {
     	webSource = "Freight Wave";

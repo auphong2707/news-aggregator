@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-class WebScraperCoindesk extends WebScraper {
+final class WebScraperCoindesk extends WebScraper {
 	WebScraperCoindesk()
     {
     	webSource = "Coindesk";
