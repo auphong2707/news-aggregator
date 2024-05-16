@@ -27,32 +27,28 @@ final class WebScraperFreightWave extends WebScraper {
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	try {	
-            Document document = WebConnector.connectWeb("https://www.freightwaves.com/blockchain");
-            linkAndImage.addAll(getLinkAndImageInPage(document));
-            Elements nextElements = document.select(".fw-pagination");
+        Document document = WebConnector.connectWeb("https://www.freightwaves.com/blockchain");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        Elements nextElements = document.select(".fw-pagination");
 
-            while (nextElements != null) {
-            	Element linkElement = null;
-            	for (Element element : nextElements.select(".fw-pagination-item")) {
-                	if ("»".equals(element.text())) {
-                		linkElement = element;
-                	}
-                }
-            	if (linkElement == null) break;
-            	Element nextPageLink = linkElement.select("a").first();
-            	if (nextPageLink == null) break;
-            	String link = nextPageLink.attr("href");
-                if (link == null || link.isEmpty()) break;
-                
-                document = WebConnector.connectWeb(link);
-                linkAndImage.addAll(getLinkAndImageInPage(document));
-                
-                nextElements = document.select(".fw-pagination");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+        while (nextElements != null) {
+        	Element linkElement = null;
+        	for (Element element : nextElements.select(".fw-pagination-item")) {
+            	if ("»".equals(element.text())) {
+            		linkElement = element;
+            	}
+            }
+        	if (linkElement == null) break;
+        	Element nextPageLink = linkElement.select("a").first();
+        	if (nextPageLink == null) break;
+        	String link = nextPageLink.attr("href");
+            if (link == null || link.isEmpty()) break;
+            
+            document = WebConnector.connectWeb(link);
+            linkAndImage.addAll(getLinkAndImageInPage(document));
+            
+            nextElements = document.select(".fw-pagination");
+        }
     	return linkAndImage;
     }
     

@@ -27,24 +27,20 @@ final class WebScraperCONV extends WebScraper {
 	List<Pair<String, String>> getAllLinksAndImages(){
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
-    	try {	
-            Document document = WebConnector.connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
+        Document document = WebConnector.connectWeb("https://theconversation.com/us/topics/blockchain-11427/");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        Elements nextElements = document.select(".next");
+
+        while (!nextElements.isEmpty()) {
+            Element nextPageLink = nextElements.first();
+            String relativeLink = nextPageLink.getElementsByTag("a").first().attr("href");
+            if (relativeLink == null || relativeLink.isEmpty()) break;
+            String completeLink = "https://theconversation.com" + relativeLink;
+
+            document = WebConnector.connectWeb(completeLink);
             linkAndImage.addAll(getLinkAndImageInPage(document));
-            Elements nextElements = document.select(".next");
-
-            while (!nextElements.isEmpty()) {
-                Element nextPageLink = nextElements.first();
-                String relativeLink = nextPageLink.getElementsByTag("a").first().attr("href");
-                if (relativeLink == null || relativeLink.isEmpty()) break;
-                String completeLink = "https://theconversation.com" + relativeLink;
-
-                document = WebConnector.connectWeb(completeLink);
-                linkAndImage.addAll(getLinkAndImageInPage(document));
-                
-                nextElements = document.select(".next");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
+            
+            nextElements = document.select(".next");
         }
 
     	return linkAndImage;

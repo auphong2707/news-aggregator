@@ -28,25 +28,21 @@ final class WebScraperFT extends WebScraper {
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	try {	
-            Document document = WebConnector.connectWeb("https://www.ft.com/blockchain");
+        Document document = WebConnector.connectWeb("https://www.ft.com/blockchain");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
+
+        while (!nextElements.isEmpty()) {
+            Element nextPageLink = document.selectFirst("a.o-buttons.o-buttons--secondary.o-buttons-icon.o-buttons-icon--arrow-right.o-buttons-icon--icon-only");
+            String relativeLink = nextPageLink.attr("href");
+            if (relativeLink == null || relativeLink.isEmpty()) break;
+            String completeLink = "https://www.ft.com/blockchain" + relativeLink;
+
+            document = WebConnector.connectWeb(completeLink);
             linkAndImage.addAll(getLinkAndImageInPage(document));
-            Elements nextElements = document.select(".stream__pagination.o-buttons-pagination");
-
-            while (!nextElements.isEmpty()) {
-                Element nextPageLink = document.selectFirst("a.o-buttons.o-buttons--secondary.o-buttons-icon.o-buttons-icon--arrow-right.o-buttons-icon--icon-only");
-                String relativeLink = nextPageLink.attr("href");
-                if (relativeLink == null || relativeLink.isEmpty()) break;
-                String completeLink = "https://www.ft.com/blockchain" + relativeLink;
-
-                document = WebConnector.connectWeb(completeLink);
-                linkAndImage.addAll(getLinkAndImageInPage(document));
-                
-                nextElements = document.select(".stream__pagination.o-buttons-pagination");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+            
+            nextElements = document.select(".stream__pagination.o-buttons-pagination");
+        }
     	
     	return linkAndImage;
     }

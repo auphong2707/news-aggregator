@@ -27,22 +27,18 @@ final class WebScraperExpress extends WebScraper {
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	try {	
-    		Document document = WebConnector.connectWeb("https://www.financialexpress.com/about/blockchain/");
-            linkAndImage.addAll(getLinkAndImageInPage(document));
-            Elements nextElements = document.select(".pagination");
-            
-            while (!nextElements.isEmpty()) {
-            	Elements nextPageLink = document.select("a.next.page-numbers");
-            	String completeLink = nextPageLink.attr("href");
-                if (completeLink == null || completeLink.isEmpty()) break;
-                document = WebConnector.connectWeb(completeLink);
-                linkAndImage.addAll(getLinkAndImageInPage(document));   
-                nextElements = document.select(".pagination");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+		Document document = WebConnector.connectWeb("https://www.financialexpress.com/about/blockchain/");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        Elements nextElements = document.select(".pagination");
+        
+        while (!nextElements.isEmpty()) {
+        	Elements nextPageLink = document.select("a.next.page-numbers");
+        	String completeLink = nextPageLink.attr("href");
+            if (completeLink == null || completeLink.isEmpty()) break;
+            document = WebConnector.connectWeb(completeLink);
+            linkAndImage.addAll(getLinkAndImageInPage(document));   
+            nextElements = document.select(".pagination");
+        }
     	return linkAndImage;
     }
     

@@ -27,26 +27,22 @@ final class WebScraperCoindesk extends WebScraper {
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	try {	
-            Document document = WebConnector.connectWeb("https://www.coindesk.com/tag/blockchain-tech/");
-            linkAndImage.addAll(getLinkAndImageInPage(document));
-            Elements nextElements = document.select(".page-link");
+        Document document = WebConnector.connectWeb("https://www.coindesk.com/tag/blockchain-tech/");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        Elements nextElements = document.select(".page-link");
 
-            while (!nextElements.isEmpty()) {
-            	Element nextPageLink = nextElements.select("a[aria-label=Next page]").first();
-            	if (nextPageLink == null) break;
-            	String relativeLink = nextPageLink.attr("href");
-           
-                if (relativeLink == null || relativeLink.isEmpty()) break;
-                String completeLink = "https://www.coindesk.com/" + relativeLink;
-                document = WebConnector.connectWeb(completeLink);
-                linkAndImage.addAll(getLinkAndImageInPage(document));
-                
-                nextElements = document.select(".page-link");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+        while (!nextElements.isEmpty()) {
+        	Element nextPageLink = nextElements.select("a[aria-label=Next page]").first();
+        	if (nextPageLink == null) break;
+        	String relativeLink = nextPageLink.attr("href");
+       
+            if (relativeLink == null || relativeLink.isEmpty()) break;
+            String completeLink = "https://www.coindesk.com/" + relativeLink;
+            document = WebConnector.connectWeb(completeLink);
+            linkAndImage.addAll(getLinkAndImageInPage(document));
+            
+            nextElements = document.select(".page-link");
+        }
     	return linkAndImage;
     }
     

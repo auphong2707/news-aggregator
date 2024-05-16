@@ -28,23 +28,19 @@ final class WebScraperAcademy extends WebScraper {
 	List<Pair<String, String>> getAllLinksAndImages(){
 		List<Pair<String, String>> linkAndImage = new ArrayList<>();
 		
-    	try {	
-            Document document = WebConnector.connectWeb("https://academy.moralis.io/blog/blockchain");
-            Elements nextElements = document.select(".page-numbers.next");
-            linkAndImage.addAll(getLinkAndImageInPage(document));
-            
-            while (!nextElements.isEmpty()) {
-                Element nextPageLink = nextElements.first();
-                Element linkElement = nextPageLink.getElementsByTag("a").first();
-                if (linkElement == null || linkElement == null) break;
-                String relativeLink = linkElement.attr("href");
-                document = WebConnector.connectWeb(relativeLink);
-                linkAndImage.addAll(getLinkAndImageInPage(document));;
-                nextElements = document.select(".page-numbers.next");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Document document = WebConnector.connectWeb("https://academy.moralis.io/blog/blockchain");
+        Elements nextElements = document.select(".page-numbers.next");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        
+        while (!nextElements.isEmpty()) {
+            Element nextPageLink = nextElements.first();
+            Element linkElement = nextPageLink.getElementsByTag("a").first();
+            if (linkElement == null || linkElement == null) break;
+            String relativeLink = linkElement.attr("href");
+            document = WebConnector.connectWeb(relativeLink);
+            linkAndImage.addAll(getLinkAndImageInPage(document));;
+            nextElements = document.select(".page-numbers.next");
+        }   
     	
     	return linkAndImage;
     }

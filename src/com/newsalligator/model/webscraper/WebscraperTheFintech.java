@@ -27,24 +27,21 @@ final class WebScraperTheFintech extends WebScraper {
     List<Pair<String, String>> getAllLinksAndImages(){
     	List<Pair<String, String>> linkAndImage = new ArrayList<>();
     	
-    	try {	
-    		Document document = WebConnector.connectWeb("https://thefintechtimes.com/category/news/blockchain/");
-            linkAndImage.addAll(getLinkAndImageInPage(document));
-            Elements nextElements = document.select(".nav-links");
+		Document document = WebConnector.connectWeb("https://thefintechtimes.com/category/news/blockchain/");
+        linkAndImage.addAll(getLinkAndImageInPage(document));
+        Elements nextElements = document.select(".nav-links");
 
-            while (!nextElements.isEmpty()) {
-                Element nextPageLink = document.selectFirst("a.next.page-numbers");
-                if(nextPageLink == null) break;
-                	
-                 String completeLink = nextPageLink.attr("href");
-                if (completeLink == null || completeLink.isEmpty()) break;
-                document = WebConnector.connectWeb(completeLink);
-                linkAndImage.addAll(getLinkAndImageInPage(document));   
-                nextElements = document.select(".nav-links");
-            }   
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+        while (!nextElements.isEmpty()) {
+            Element nextPageLink = document.selectFirst("a.next.page-numbers");
+            if(nextPageLink == null) break;
+            	
+             String completeLink = nextPageLink.attr("href");
+            if (completeLink == null || completeLink.isEmpty()) break;
+            document = WebConnector.connectWeb(completeLink);
+            linkAndImage.addAll(getLinkAndImageInPage(document));   
+            nextElements = document.select(".nav-links");
+        }
+        
     	return linkAndImage;
     }
     
