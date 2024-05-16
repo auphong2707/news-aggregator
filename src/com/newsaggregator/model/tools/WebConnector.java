@@ -12,7 +12,7 @@ import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-public class WebConnector {
+public final class WebConnector {
 
 	private static final List<String> userAgent;
 	
