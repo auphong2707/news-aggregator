@@ -1,1 +1,9 @@
-com.newsaggregator.model
+unnamed package
+com.newsalligator.model
+com.newsalligator.model.tools
+com.newsalligator.model.webscraper
+com.newsalligator.userinterface
+com.newsalligator.userinterface.command
+com.newsalligator.userinterface.presenter
+com.newsalligator.userinterface.tools
+com.newsalligator.userinterface.uienum
