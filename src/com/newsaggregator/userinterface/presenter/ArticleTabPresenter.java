@@ -25,7 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
-public class ArticleViewPresenter extends Presenter {
+public class ArticleTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private Button historyButton;
@@ -165,7 +165,7 @@ public class ArticleViewPresenter extends Presenter {
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
 
-		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML

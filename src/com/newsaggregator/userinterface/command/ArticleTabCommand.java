@@ -3,11 +3,11 @@ package com.newsaggregator.userinterface.command;
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.userinterface.uienum.SceneType;
 
-public final class ArticleViewCommand extends Command {
+public final class ArticleTabCommand extends Command {
 	private ArticleData articleData;
 	
-	public ArticleViewCommand(ArticleData articleData) {
-		super(SceneType.ARTICLE_VIEW);
+	public ArticleTabCommand(ArticleData articleData) {
+		super(SceneType.ARTICLE_TAB);
 		this.articleData = articleData;
 	}
 

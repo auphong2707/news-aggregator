@@ -1,4 +1,3 @@
-import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.*;
 
 import javafx.application.Application;

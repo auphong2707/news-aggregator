@@ -7,7 +7,7 @@ public final class CategoryTabCommand extends Command {
 	String categoryName;
 	
 	public CategoryTabCommand(String categoryName) {
-		super(SceneType.CATEGORYTAB);
+		super(SceneType.CATEGORY_TAB);
 		this.categoryName = categoryName;
 	}
 

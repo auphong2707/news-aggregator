@@ -188,7 +188,7 @@ public class HomepagePresenter extends Presenter {
 			selectedList = trendingData;
 		
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
-		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML

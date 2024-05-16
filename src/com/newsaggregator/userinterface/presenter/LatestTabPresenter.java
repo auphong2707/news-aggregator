@@ -135,7 +135,7 @@ public class LatestTabPresenter extends Presenter {
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = latestData.get(index);
-		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML

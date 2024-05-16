@@ -22,7 +22,7 @@ class HistoryWindow {
     Queue<Command> webHistory;
     private VBox vbox;
 	
-	public void initialize(Queue<Command> historyQueue) {
+	void initialize(Queue<Command> historyQueue) {
 		webHistory = historyQueue;
 		
 		historyWindow = new Stage();

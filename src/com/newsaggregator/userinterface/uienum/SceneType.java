@@ -2,9 +2,9 @@ package com.newsaggregator.userinterface.uienum;
 
 public enum SceneType {
 	HOMEPAGE,
-	SEARCHTAB,
-	ARTICLE_VIEW,
-	TRENDINGTAB,
-	LATESTTAB,
-	CATEGORYTAB
+	SEARCH_TAB,
+	ARTICLE_TAB,
+	TRENDING_TAB,
+	LATEST_TAB,
+	CATEGORY_TAB
 }

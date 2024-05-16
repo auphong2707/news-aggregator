@@ -10,7 +10,7 @@ public final class SearchTabCommand extends Command{
 	private String content, webSource, category;
 	
 	public SearchTabCommand(String content, String category, String webSource) {
-		super(SceneType.SEARCHTAB);
+		super(SceneType.SEARCH_TAB);
 		
 		this.content = content;
 		this.category = category;

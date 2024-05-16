@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.UIManager;
-import com.newsaggregator.userinterface.command.ArticleViewCommand;
+import com.newsaggregator.userinterface.command.ArticleTabCommand;
 import com.newsaggregator.userinterface.command.HomepageCommand;
 import com.newsaggregator.userinterface.command.SearchTabCommand;
 import com.newsaggregator.userinterface.tools.ArticleSetter;
@@ -141,7 +141,7 @@ public class CategoryTabPresenter extends Presenter {
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = categoryData.get(index);
-		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML
