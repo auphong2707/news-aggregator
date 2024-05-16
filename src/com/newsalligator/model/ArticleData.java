@@ -8,6 +8,7 @@ import com.newsalligator.model.tools.WebConnector;
  * <h1> ArticleData </h1>
  * The {@code ArticleData} class is a class for storing and 
  * preprocessing data related to an article. 
+ * @author Phong Au, Quan Tran
  */
 public class ArticleData {
 	private final String LINK;
@@ -26,19 +27,19 @@ public class ArticleData {
 	
 	/**
 	 * Creates an {@code ArticleData} object with desired details from an article.
-	 * @param link
-	 * @param websiteSource
-	 * @param image
-	 * @param type
-	 * @param summary
-	 * @param title
-	 * @param intro
-	 * @param detailedContent
-	 * @param tags
-	 * @param authorName
-	 * @param category
-	 * @param creationDate
-	 * @param htmlContentLocation
+	 * @param link the link of the article
+	 * @param websiteSource the source web of the article
+	 * @param image the thumbnail of the article
+	 * @param type the type of the article (blogs, article news, tweets,...)
+	 * @param summary the summary of the article
+	 * @param title the title of the article
+	 * @param intro the introduction of the article
+	 * @param detailedContent the detail content of the article 
+	 * @param tags the tags of the article
+	 * @param authorName the name of the author of the article
+	 * @param category the category of the article
+	 * @param creationDate the create date of the article
+	 * @param htmlContentLocation the fetched HTML content location of the web
 	 */
 	public ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,

@@ -20,7 +20,6 @@ import javafx.util.Pair;
  * data from the news article/blog page. The derived class should implement the detailed process to get
  * specific data from a web page about blockchain.
  * @author Dat Dao, Phong Au
- * @since 2024-03-09
  */
 public abstract class WebScraper {
 	/**

@@ -14,6 +14,12 @@ import java.util.concurrent.TimeUnit;
 import com.newsalligator.model.tools.Converter;
 import com.newsalligator.model.webscraper.WebScraper;
 
+/**
+ * <h1> Model </h1>
+ * The {@code Model} class is a class to aggregate data, perform web scraping and 
+ * connect to a local server to manage data flow.
+ * @author Phong Au
+ */
 public class Model {
 	private final static String DIRECTORY = "data/";
 	private final static String RESULT_FILE_NAME = "newsAll.json";
@@ -22,11 +28,19 @@ public class Model {
 	private static long processPid = -1;
 	
 	private static Model instance;
+	
+	/**
+	 * Constructor to initialize the {@code Model} instance and run the local server.
+	 */
     private Model() {
     	runLocalServer();
     	scrapers = WebScraper.getAllInstances();
     }
-
+    
+    /**
+     * Gets the singleton instance of the {@code Model}
+     * @return the singleton instance of the {@code Model}
+     */
     public static Model getInstance() {
         if(instance == null) {
             instance = new Model();
@@ -34,6 +48,9 @@ public class Model {
         return instance;
     }
 
+    /**
+     * Scrapes article data by all webscrapers and combine the results to a file.
+     */
 	private void scrapeNewData()
 	{
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -52,10 +69,25 @@ public class Model {
 		combineData();
 	}
 	
+	/**
+	 * Searches articles by input content, category, web source with default count equals 50.
+	 * @param inputContent the search content
+	 * @param category the category of the article
+	 * @param webSource the web source of the article
+	 * @return a list of {@code ArticleData} fit the search criteria 
+	 */
 	public List<ArticleData> search(String inputContent, String category, String webSource) {
 		return search(inputContent, category, webSource, 50);
 	}
 	
+	/**
+	 * Searches articles by input content, category, web source and a count of result
+	 * @param inputContent the search content
+	 * @param category the category of the article
+	 * @param webSource the web source of the article
+	 * @param count the number of returned results
+	 * @return a list of {@code ArticleData} fit the search criteria 
+	 */
 	public List<ArticleData> search(String inputContent, String category, String webSource,  int count)
 	{
 		HttpURLConnection conn = null;
@@ -110,10 +142,21 @@ public class Model {
 		return null;
 	}
 	
+	/**
+	 * Gets a number of latest articles avaible with default category equals "All" 
+	 * @param count number of latest articles to return
+	 * @return a list of the lastest {@code ArticleData}
+	 */
 	public List<ArticleData> getLatest(int count) {
 		return getLatest(count, "All");
 	}
 	
+	/**
+	 * Gets a number of latest articles avaible within a category
+	 * @param count number of latest articles to return
+	 * @param category category of articles
+	 * @return a list of the lastest {@code ArticleData}
+	 */
 	public List<ArticleData> getLatest(int count, String category) {
 		try {
 			URL url = new URL("http://127.0.0.1:5000/latest?number=" + count + "&category=" + category);
@@ -127,6 +170,11 @@ public class Model {
 		return null;
 	}
 	
+	/**
+	 * Gets a number of random articles.
+	 * @param count  the number of random articles to return
+	 * @return a list of random {@code ArticleData}
+	 */
 	public List<ArticleData> getRandom(int count) {
 		try {
 			URL url = new URL("http://127.0.0.1:5000/random?number=" + count);
@@ -141,6 +189,11 @@ public class Model {
 		return null;
 	}
 	
+	/**
+	 * Gets a number of trending articles.
+	 * @param count the number of trending articles to return
+	 * @return a list of trending {@code ArticleData}
+	 */
 	public List<ArticleData> getTrending(int count) {
 		try {
 			URL url = new URL("http://127.0.0.1:5000/trending?number=" + count);
@@ -155,6 +208,9 @@ public class Model {
 		return null;
 	}
 	
+	/**
+	 * Scrapes article data and processes the scraped data.
+	 */
 	public void aggregateNewData() {
 		// Phase 1: Scrape new data to newsAll.json
 		scrapeNewData();
@@ -177,6 +233,11 @@ public class Model {
 		}
 	}
 	
+	/**
+	 * Connects to the server with GET request method
+	 * @param url the URL of the server to connect
+	 * @return the server response
+	 */
 	private String connectServerGET(URL url) {
 		HttpURLConnection conn = null;
 		try{
@@ -210,6 +271,9 @@ public class Model {
 		return null;
 	}
 	
+	/**
+	 * Combines the data from 8 sources to a single files and remove redundant files.
+	 */
 	private void combineData() {
 		String[] arrayOfFileNames = new String[] {
 			"newsFT.json", "newsCONV.json", "newsAcademy.json", "newsTheBlockchain.json"
@@ -245,6 +309,9 @@ public class Model {
 		}
 	}
 
+	/**
+	 * Runs local server by Python
+	 */
 	private void runLocalServer()
 	{
 		if (processPid == -1)
@@ -267,6 +334,9 @@ public class Model {
 		System.out.println("Local server started!");
 	}
 	
+	/**
+	 * Terminates the local server 
+	 */
 	public void terminateLocalServer()
 	{
 		System.out.println("Local server is terminated!");
