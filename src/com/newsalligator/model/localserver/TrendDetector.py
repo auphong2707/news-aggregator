@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/TrendDetection.py', '')
+CURRENT_WORKING_DIRECTORY = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/TrendDetection.py', '')
 
 class TrendDetector:
     def __init__(self):
@@ -16,7 +16,7 @@ class TrendDetector:
         self.number_clusters = 0
         self.trending_articles = None
         self.number_of_latest_articles = 100
-        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
     
     def load_data(self):
         '''
@@ -107,7 +107,7 @@ class TrendDetector:
          
 
 if __name__ == "__main__":
-    #print(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    #print(__file__.replace('\\', '/').replace('src/com/newsalligator/model/' + os.path.basename(__file__), ''))
     trend_detector= TrendDetector()
     trend_detector.run()
     print(trend_detector.number_clusters)

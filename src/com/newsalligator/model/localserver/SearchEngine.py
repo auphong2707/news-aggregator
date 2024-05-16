@@ -31,7 +31,7 @@ class SearchEngine:
         self.k1 = k1
         self.b = b
         
-        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
         self.data_path = self.file_path + 'data/searchEngineData.txt'
         self.vocab = []
         
@@ -49,7 +49,7 @@ class SearchEngine:
         with open(file_path + 'data/model/search_engine.pkl', 'rb') as f:
             loaded_search_engine = pickle.load(f)
         loaded_search_engine.data = data
-        loaded_search_engine.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
+        loaded_search_engine.file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
         return loaded_search_engine
         
     def run(self):
@@ -155,7 +155,7 @@ if __name__ == "__main__":
     '''
     search_engine = SearchEngine()
     search_engine.run()
-    second_search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsaggregator/model/' + os.path.basename(__file__), ''))
+    second_search_engine = SearchEngine.load_engine(__file__.replace('\\', '/').replace('src/com/newsalligator/model/' + os.path.basename(__file__), ''))
     query = input()
     result = second_search_engine.search(content = query, num_relevant_results = 50, category = 'All', web_source = 'All')
     print(result[:2000])

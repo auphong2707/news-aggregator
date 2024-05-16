@@ -316,7 +316,7 @@ public class Model {
 	{
 		if (processPid == -1)
 		{
-			String directory = System.getProperty("user.dir") + "\\src\\com\\newsaggregator\\model\\localserver\\LocalServer.py";
+			String directory = System.getProperty("user.dir") + "\\src\\com\\newsalligator\\model\\localserver\\LocalServer.py";
 			String command = "python " + directory;
 			
 			Process server = null;
