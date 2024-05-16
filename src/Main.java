@@ -1,4 +1,4 @@
-import com.newsaggregator.userinterface.*;
+import com.newsalligator.userinterface.*;
 
 import javafx.application.Application;
 import javafx.scene.image.Image;
