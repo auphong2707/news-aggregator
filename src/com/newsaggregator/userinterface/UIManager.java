@@ -2,11 +2,9 @@ package com.newsaggregator.userinterface;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.userinterface.command.Command;
 import com.newsaggregator.userinterface.command.HomepageCommand;
 import com.newsaggregator.userinterface.presenter.Presenter;
@@ -15,17 +13,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import java.io.File;
 
-public class SceneManager {
+public class UIManager {
 	private static final String VIEW_PATH = "resources/views/";
-	private static SceneManager instance;
-    private SceneManager() { }
+	private static UIManager instance;
+	private static HistoryWindow historyPresenter;
+    private UIManager() { }
 
-    public static SceneManager getInstance() {
+    public static UIManager getInstance() {
         if(instance == null) {
-            instance = new SceneManager();
+        	historyPresenter = new HistoryWindow();
+            instance = new UIManager();
         }
         return instance;
     }
@@ -43,7 +42,7 @@ public class SceneManager {
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
 		
-		HistoryWindow.getInstance().initialize();
+		historyPresenter.initialize(webHistory);
 
 		FXMLLoader searchtabLoader = new FXMLLoader((new File(VIEW_PATH + "searchtab.fxml").toURI().toURL()));
     	FXMLLoader homepageLoader = new FXMLLoader(new File(VIEW_PATH + "homepage.fxml").toURI().toURL());
@@ -102,7 +101,7 @@ public class SceneManager {
         
         nextPresenter.sceneSwitchInitialize();
         
-        HistoryWindow.getInstance().historyWindow.close();
+        historyPresenter.closeWindow();
 	}
 	
 	public void addCommand(Command command) {
@@ -134,6 +133,10 @@ public class SceneManager {
 			
 			switchScene(nextCommand);
 		}
+	}
+	
+	public void openHistoryWindow() {
+		historyPresenter.openWindow();
 	}
 	
 	private void addHistory(Stack<Command> history) {

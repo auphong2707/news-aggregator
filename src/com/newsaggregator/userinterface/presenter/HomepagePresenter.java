@@ -10,8 +10,7 @@ import java.util.Optional;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
-import com.newsaggregator.userinterface.HistoryWindow;
-import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.UIManager;
 import com.newsaggregator.userinterface.command.*;
 import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
@@ -136,18 +135,18 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML
 	private void switchToTrendingTab() {
-		SceneManager.getInstance().addCommand(new TrendingTabCommand());
+		UIManager.getInstance().addCommand(new TrendingTabCommand());
 	}
 	
 	@FXML
 	private void switchToLatestTab() {
-		SceneManager.getInstance().addCommand(new LatestTabCommand());
+		UIManager.getInstance().addCommand(new LatestTabCommand());
 	}
 	
 	@FXML
 	private void switchTCategoryTab(MouseEvent event) {
 		String category = ((Label) event.getSource()).getText();
-		SceneManager.getInstance().addCommand(new CategoryTabCommand(category));
+		UIManager.getInstance().addCommand(new CategoryTabCommand(category));
 	}
 	
 	@FXML
@@ -155,7 +154,7 @@ public class HomepagePresenter extends Presenter {
 		if (key.getCode() == KeyCode.ENTER) {
 			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 			
-			SceneManager.getInstance().addCommand(command);
+			UIManager.getInstance().addCommand(command);
 		}
 	}
 	
@@ -163,7 +162,7 @@ public class HomepagePresenter extends Presenter {
 	private void searchByButton() throws IOException {
 		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 		
-		SceneManager.getInstance().addCommand(command);
+		UIManager.getInstance().addCommand(command);
 	}
 	
 	@FXML
@@ -187,22 +186,22 @@ public class HomepagePresenter extends Presenter {
 			selectedList = trendingData;
 		
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
-		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnCommand();
+		UIManager.getInstance().returnCommand();
 	}
 	
 	@FXML
 	private void forwardScene() {
-		SceneManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardScene();
 	}
 	
 	@FXML 
 	private void openHistory() {
-		HistoryWindow.getInstance().switchWindow();
+		UIManager.getInstance().openHistoryWindow();
 	}
 	
 	@FXML

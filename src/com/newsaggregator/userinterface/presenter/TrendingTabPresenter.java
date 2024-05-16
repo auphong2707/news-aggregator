@@ -10,8 +10,7 @@ import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
-import com.newsaggregator.userinterface.HistoryWindow;
-import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.UIManager;
 import com.newsaggregator.userinterface.command.ArticleViewCommand;
 import com.newsaggregator.userinterface.command.HomepageCommand;
 import com.newsaggregator.userinterface.command.SearchTabCommand;
@@ -88,7 +87,7 @@ public class TrendingTabPresenter extends Presenter {
 		if (key.getCode() == KeyCode.ENTER) {
 			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 			
-			SceneManager.getInstance().addCommand(command);
+			UIManager.getInstance().addCommand(command);
 		}
 	}
 	
@@ -96,7 +95,7 @@ public class TrendingTabPresenter extends Presenter {
 	private void searchByButton() throws IOException {
 		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 		
-		SceneManager.getInstance().addCommand(command);
+		UIManager.getInstance().addCommand(command);
 	}
 	
 	@FXML
@@ -113,7 +112,7 @@ public class TrendingTabPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().addCommand(new HomepageCommand());
+		UIManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
 	private void updateArticles() {
@@ -139,22 +138,22 @@ public class TrendingTabPresenter extends Presenter {
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = trendingData.get(index);
-		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnCommand();
+		UIManager.getInstance().returnCommand();
 	}
 	
 	@FXML
 	private void forwardScene() {
-		SceneManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardScene();
 	}
 	
 	@FXML 
 	private void openHistory() {
-		HistoryWindow.getInstance().switchWindow();
+		UIManager.getInstance().openHistoryWindow();
 	}
 	
 	@FXML

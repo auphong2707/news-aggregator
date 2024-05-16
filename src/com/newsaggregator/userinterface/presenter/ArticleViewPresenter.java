@@ -9,8 +9,7 @@ import java.util.List;
 
 import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
-import com.newsaggregator.userinterface.HistoryWindow;
-import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.UIManager;
 import com.newsaggregator.userinterface.command.*;
 import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
@@ -102,7 +101,7 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		selectedArticle = (ArticleData) SceneManager.getInstance().getCurrentCommandValue();
+		selectedArticle = (ArticleData) UIManager.getInstance().getCurrentCommandValue();
 		
 		String title = selectedArticle.getTITLE();
 		String intro = selectedArticle.getINTRO();
@@ -143,12 +142,12 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().addCommand(new HomepageCommand());
+		UIManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
 	@FXML
 	private void switchToLatestTab() {
-		SceneManager.getInstance().addCommand(new LatestTabCommand());
+		UIManager.getInstance().addCommand(new LatestTabCommand());
 	}
 	
 	@FXML
@@ -166,22 +165,22 @@ public class ArticleViewPresenter extends Presenter {
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
 
-		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnCommand();
+		UIManager.getInstance().returnCommand();
 	}
 	
 	@FXML
 	private void forwardScene() {
-		SceneManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardScene();
 	}
 	
 	@FXML 
 	private void openHistory() {
-		HistoryWindow.getInstance().switchWindow();
+		UIManager.getInstance().openHistoryWindow();
 	}
 	
 	@FXML

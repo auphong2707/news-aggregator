@@ -17,22 +17,15 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class HistoryWindow {
-	private static HistoryWindow instance;
-    private HistoryWindow() { }
-
-    public static HistoryWindow getInstance() {
-        if(instance == null) {
-            instance = new HistoryWindow();
-        }
-        return instance;
-    }
+class HistoryWindow {
+	private Stage historyWindow;
+    Queue<Command> webHistory;
+    private VBox vbox;
 	
-	public Stage historyWindow = new Stage();
-    Queue<Command> webHistory = SceneManager.getInstance().webHistory;
-    private VBox vbox = new VBox();
-	
-	public void initialize() {
+	public void initialize(Queue<Command> historyQueue) {
+		webHistory = historyQueue;
+		
+		historyWindow = new Stage();
 		historyWindow.initStyle(StageStyle.UNDECORATED);
 	      
 		historyWindow.setX(Screen.getPrimary().getVisualBounds().getMaxX() - 400);
@@ -43,6 +36,8 @@ public class HistoryWindow {
                 historyWindow.close();
             }
         });
+        
+        vbox = new VBox();
 	}
 	
 	private Label visitedWeb() {
@@ -59,7 +54,7 @@ public class HistoryWindow {
 			web.setStyle("");
 		});
 		web.setOnMouseClicked(e -> {
-            SceneManager.getInstance().addCommand(currentWebCommand);
+            UIManager.getInstance().addCommand(currentWebCommand);
         });
 		
 		return web;
@@ -111,9 +106,13 @@ public class HistoryWindow {
         historyWindow.setScene(scene);
 	}
 	
-	public void switchWindow() {
+	public void openWindow() {
 		constructWindow();
 		
 		historyWindow.show();
+	}
+	
+	public void closeWindow() {
+		historyWindow.close();
 	}
 }

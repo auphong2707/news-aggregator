@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         // TODO  Auto-generated method stub
 	    try {
-	    	SceneManager.getInstance().initialize(primaryStage);
+	    	UIManager.getInstance().initialize(primaryStage);
 	    	Runtime.getRuntime().addShutdownHook(new Thread() {
 	    	    public void run() {
 	    	    	Model.getInstance().terminateLocalServer();
@@ -23,7 +23,7 @@ public class Main extends Application {
 	        
 	        primaryStage.setTitle("News Alligator");
 	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/resources/images/alligator.png"));
-	        primaryStage.setScene(SceneManager.getInstance().getCurrentScene());
+	        primaryStage.setScene(UIManager.getInstance().getCurrentScene());
 	        primaryStage.setMaximized(true);
 	        primaryStage.show();
 	    } catch (Exception e) {

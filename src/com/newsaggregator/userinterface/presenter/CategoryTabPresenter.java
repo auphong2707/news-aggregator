@@ -8,8 +8,7 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
 import com.newsaggregator.model.Model;
-import com.newsaggregator.userinterface.HistoryWindow;
-import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.UIManager;
 import com.newsaggregator.userinterface.command.ArticleViewCommand;
 import com.newsaggregator.userinterface.command.HomepageCommand;
 import com.newsaggregator.userinterface.command.SearchTabCommand;
@@ -90,7 +89,7 @@ public class CategoryTabPresenter extends Presenter {
 			String searchContent = searchBar.getText();
 			SearchTabCommand command = new SearchTabCommand(searchContent, "All", "All");
 			
-			SceneManager.getInstance().addCommand(command);
+			UIManager.getInstance().addCommand(command);
 		}
 	}
 	
@@ -99,7 +98,7 @@ public class CategoryTabPresenter extends Presenter {
 		String searchContent = searchBar.getText();
 		SearchTabCommand command = new SearchTabCommand(searchContent, "All", "All");
 		
-		SceneManager.getInstance().addCommand(command);
+		UIManager.getInstance().addCommand(command);
 	}
 	
 	@FXML
@@ -116,7 +115,7 @@ public class CategoryTabPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().addCommand(new HomepageCommand());
+		UIManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
 	private void updateArticles() {
@@ -142,22 +141,22 @@ public class CategoryTabPresenter extends Presenter {
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = categoryData.get(index);
-		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
+		UIManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnCommand();
+		UIManager.getInstance().returnCommand();
 	}
 	
 	@FXML
 	private void forwardScene() {
-		SceneManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardScene();
 	}
 	
 	@FXML 
 	private void openHistory() {
-		HistoryWindow.getInstance().switchWindow();
+		UIManager.getInstance().openHistoryWindow();
 	}
 	
 	@FXML
@@ -194,7 +193,7 @@ public class CategoryTabPresenter extends Presenter {
 	public void sceneSwitchInitialize() {
 		scrollPane.setVvalue(0);
 		
-		category = (String) SceneManager.getInstance().getCurrentCommandValue();
+		category = (String) UIManager.getInstance().getCurrentCommandValue();
 		
 		categoryLabel.setText("Category: " + category);
 		categoryData = Model.getInstance().getLatest(60, category);
