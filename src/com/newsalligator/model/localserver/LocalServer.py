@@ -8,7 +8,7 @@ from SearchEngine import SearchEngine
 from flask import Flask, request
 from Utilities import *
 
-file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
+file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
 
 server = Flask(__name__)
 process = None
@@ -19,7 +19,7 @@ search_engine = SearchEngine.load_engine(file_path)
 def process_new_data():
     global process
     if process is None:
-        process = subprocess.Popen(['python', file_path + 'src/com/newsaggregator/model/localserver/DataProcessor.py'])
+        process = subprocess.Popen(['python', file_path + 'src/com/newsalligator/model/localserver/DataProcessor.py'])
         return "Start processing data"
     elif process.poll() is not None:
         return "Data is already updated"

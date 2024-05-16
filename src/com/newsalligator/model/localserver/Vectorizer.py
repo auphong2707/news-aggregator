@@ -11,7 +11,7 @@ class Vectorizer:
         self.hidden_size = hidden_size
         self.model = Word2Vec(vector_size = hidden_size, window = 3, min_count = 3)
         self.vectorized_data = 0
-        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
     
     def fit(self):
         '''

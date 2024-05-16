@@ -13,7 +13,7 @@ class CategoryDistributor:
         self.vectorized_document = None
         self.number_clusters = number_clusters
         self.index_to_category = {0: 'Others', 1: 'Blockchain', 2: 'Crypto', 3: 'something', 4:'something 2', 5: 'something 3'}
-        self.file_path = __file__.replace('\\', '/').replace('src/com/newsaggregator/model/localserver/' + os.path.basename(__file__), '')
+        self.file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
     
     def load_data(self):
         '''
