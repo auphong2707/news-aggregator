@@ -4,7 +4,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import com.newsalligator.model.tools.WebConnector;
-
+/**
+ * <h1> ArticleData </h1>
+ * The {@code ArticleData} class is a class for storing and 
+ * preprocessing data related to an article. 
+ */
 public class ArticleData {
 	private final String LINK;
 	private final String WEBSITE_SOURCE;
@@ -20,6 +24,22 @@ public class ArticleData {
 	private final String CREATION_DATE;
 	private final String HTML_CONTENT_LOCATION;
 	
+	/**
+	 * Creates an {@code ArticleData} object with desired details from an article.
+	 * @param link
+	 * @param websiteSource
+	 * @param image
+	 * @param type
+	 * @param summary
+	 * @param title
+	 * @param intro
+	 * @param detailedContent
+	 * @param tags
+	 * @param authorName
+	 * @param category
+	 * @param creationDate
+	 * @param htmlContentLocation
+	 */
 	public ArticleData(String link, String websiteSource, String image,
 			String type, String summary, String title, String intro,
 			String detailedContent, String tags,
@@ -40,54 +60,106 @@ public class ArticleData {
 		HTML_CONTENT_LOCATION = htmlContentLocation;
 	}
 	
+	/**
+	 * Extracts the link (URL) of the article.
+	 * @return the link of the article
+	 */
 	public String getLINK() {
 		return LINK;
 	}
-
+	
+	/**
+	 * Extracts the source web of the article.
+	 * @return the source web of the article
+	 */
 	public String getWEBSITE_SOURCE() {
 		return WEBSITE_SOURCE;
 	}
-
+	
+	/**
+	 * Extracts the thumbnail image of the article.
+	 * @return the thumbnail image of the article
+	 */
 	public String getIMAGE() {
 		return IMAGE;
 	}
-
+	
+	/**
+	 * Extracts the type (article, blog, tweets,...) of the article.
+	 * @return the type of the article
+	 */
 	public String getTYPE() {
 		return TYPE;
 	}
-
+	
+	/**
+	 * Extracts the summary the article.
+	 * @return the summary of the article
+	 */
 	public String getSUMMARY() {
 		return SUMMARY;
 	}
-
+	
+	/**
+	 * Extracts the title of the article.
+	 * @return the title of the article
+	 */
 	public String getTITLE() {
 		return TITLE;
 	}
-
+	
+	/**
+	 * Extracts the introduction of the article.
+	 * @return the introduction of the article
+	 */
 	public String getINTRO() {
 		return INTRO;
 	}
-
+	
+	/**
+	 * Extracts the detailed content of the article.
+	 * @return the detailed content of the article
+	 */
 	public String getDETAILED_CONTENT() {
 		return DETAILED_CONTENT;
 	}
-
+	
+	/**
+	 * Extracts the tags of the article.
+	 * @return the tags of the article
+	 */
 	public String getTAGS() {
 		return TAGS;
 	}
-
+	
+	/**
+	 * Extracts the author name of the article.
+	 * @return the author name of the article
+	 */
 	public String getAUTHOR_NAME() {
 		return AUTHOR_NAME;
 	}
-
+	
+	/**
+	 * Extracts the category of the article.
+	 * @return the category of the article
+	 */
 	public String getCATEGORY() {
 		return CATEGORY;
 	}
-
+	
+	/**
+	 * Extracts the creation date of the article.
+	 * @return the creation date of the article
+	 */
 	public String getCREATION_DATE() {
 		return CREATION_DATE;
 	}
 	
+	/**
+	 * Extracts the HTML of the article. The HTML is processed to meet required conditions. 
+	 * @return the processed HTML of the article
+	 */
 	public String getHTML_CONTENT() {
 		Document document = null;
 		try {

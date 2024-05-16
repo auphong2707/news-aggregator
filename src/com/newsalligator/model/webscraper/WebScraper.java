@@ -15,8 +15,8 @@ import com.newsalligator.model.tools.WebConnector;
 import javafx.util.Pair;
 
 /**
- * <h1> WebScrapper </h1>
- * The WebScrapper class is an abstract class which represents a web scraper that extracts useful
+ * <h1> WebScraper </h1>
+ * The {@code WebScraper} class is an abstract class which represents a web scraper that extracts useful
  * data from the news article/blog page. The derived class should implement the detailed process to get
  * specific data from a web page about blockchain.
  * @author Dat Dao, Phong Au
