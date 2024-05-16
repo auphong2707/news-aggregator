@@ -17,7 +17,7 @@ public class Main extends Application {
 	    	UIManager.getInstance().initialize(primaryStage);
 	    	Runtime.getRuntime().addShutdownHook(new Thread() {
 	    	    public void run() {
-	    	    	Model.getInstance().terminateLocalServer();
+	    	    	UIManager.getInstance().onApplicationShutdown();
 	    	    }
 	    	});
 	        

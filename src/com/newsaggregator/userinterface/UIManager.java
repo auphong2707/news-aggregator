@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.command.Command;
 import com.newsaggregator.userinterface.command.HomepageCommand;
 import com.newsaggregator.userinterface.presenter.Presenter;
@@ -133,6 +134,10 @@ public class UIManager {
 			
 			switchScene(nextCommand);
 		}
+	}
+	
+	public void onApplicationShutdown() {
+		Model.getInstance().terminateLocalServer();
 	}
 	
 	public void openHistoryWindow() {
