@@ -1,11 +1,8 @@
 package com.newsaggregator.userinterface;
 
-import java.util.List;
 import java.util.Queue;
 
-import com.newsaggregator.model.ArticleData;
-import com.newsaggregator.userinterface.uienum.SceneType;
-
+import com.newsaggregator.userinterface.command.Command;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Pair;
 
 public class HistoryWindow {
 	private static HistoryWindow instance;
@@ -33,7 +29,7 @@ public class HistoryWindow {
     }
 	
 	public Stage historyWindow = new Stage();
-    Queue<Pair<SceneType, Object>> webHistory = SceneManager.getInstance().webHistory;
+    Queue<Command> webHistory = SceneManager.getInstance().webHistory;
     private VBox vbox = new VBox();
 	
 	public void initialize() {
@@ -50,23 +46,10 @@ public class HistoryWindow {
 	}
 	
 	private Label visitedWeb() {
-		Pair<SceneType, Object> currentWeb = webHistory.poll();
-		String webContent = new String();
-		if (currentWeb.getKey()== SceneType.ARTICLE_VIEW) {
-			ArticleData information = (ArticleData) currentWeb.getValue();
-			webContent = ": " + information.getTITLE();  
-		} else if (currentWeb.getKey()== SceneType.SEARCHTAB) {
-			@SuppressWarnings("unchecked")
-			List<String > searchContent = (List<String>) currentWeb.getValue();
-			webContent = ": " + searchContent.get(0) + " (" + searchContent.get(1) + ", " + searchContent.get(2) + ")";
-		} else if (currentWeb.getKey()== SceneType.CATEGORYTAB) {
-			webContent = " : " + currentWeb.getValue();
-		} else {
-			webContent = "";
-			
-		}
+		Command currentWebCommand = webHistory.poll();
 		
-		Label web = new Label("  <> " + currentWeb.getKey() + webContent);
+		
+		Label web = new Label("  <> " + currentWebCommand.getName());
 		web.setCursor(Cursor.HAND);
 		web.setWrapText(true);
 		web.setOnMouseEntered(e -> {
@@ -76,7 +59,7 @@ public class HistoryWindow {
 			web.setStyle("");
 		});
 		web.setOnMouseClicked(e -> {
-            SceneManager.getInstance().moveScene(currentWeb.getKey(), currentWeb.getValue());
+            SceneManager.getInstance().addCommand(currentWebCommand);
         });
 		
 		return web;

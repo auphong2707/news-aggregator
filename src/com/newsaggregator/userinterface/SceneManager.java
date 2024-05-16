@@ -7,8 +7,9 @@ import java.util.Queue;
 import java.util.Stack;
 
 import com.newsaggregator.model.ArticleData;
+import com.newsaggregator.userinterface.command.Command;
+import com.newsaggregator.userinterface.command.HomepageCommand;
 import com.newsaggregator.userinterface.presenter.Presenter;
-import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,19 +29,16 @@ public class SceneManager {
         }
         return instance;
     }
-	
-    private List<String> searchContent;
-    private String categoryName;
-    private ArticleData selectedArticleData;
+    
+    private Command currentCommand;
     
 	private Stage window;
 	private Scene[] scenes;
 	private Presenter[] presenters;
-	private SceneType currentSceneType;
 
-	Stack<Pair<SceneType, Object>> backHistory = new Stack<Pair<SceneType, Object>>();
-	Stack<Pair<SceneType, Object>> forwardHistory = new Stack<Pair<SceneType, Object>>();
-	Queue<Pair<SceneType, Object>> webHistory = new LinkedList<Pair<SceneType, Object>>();
+	Stack<Command> backHistory = new Stack<Command>();
+	Stack<Command> forwardHistory = new Stack<Command>();
+	Queue<Command> webHistory = new LinkedList<Command>();
 	
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
@@ -71,47 +69,30 @@ public class SceneManager {
         	categoryLoader.<Presenter>getController()
         };
         
-        currentSceneType = SceneType.HOMEPAGE;
+        currentCommand = new HomepageCommand();
         
         addHistory(webHistory);
 	}
 	
 	public Scene getCurrentScene() {
-		return scenes[currentSceneType.ordinal()];
+		return scenes[currentCommand.getKey().ordinal()];
 	}
 	
-	public List<String> getSearchContent() {
-		return searchContent;
-	}
-
-	public ArticleData getSelectedArticleData() {
-		return selectedArticleData;
+	public Object getCurrentCommandValue() {
+		return currentCommand.getValue();
 	}
 	
-
-	public String getCategoryName() {
-		return categoryName;
-	}
-	
-  @SuppressWarnings("unchecked")    
-	private void updateSceneVariables(SceneType sceneType, Object information) {
-		currentSceneType = sceneType;
-		if (currentSceneType == SceneType.SEARCHTAB) {
-			searchContent = (List<String>) information;
-		} else if (currentSceneType == SceneType.CATEGORYTAB) {
-			categoryName = (String) information;
-		} else if (currentSceneType == SceneType.ARTICLE_VIEW) {
-			selectedArticleData = (ArticleData) information;
-		}
+	private void updateSceneVariables(Command newCommand) {
+		currentCommand = newCommand;
 	}
 
-	private void switchScene(SceneType nextSceneType) {
+	private void switchScene(Command nextCommand) {
 		System.gc();
 		
-		Scene nextScene = scenes[nextSceneType.ordinal()];
-		Presenter nextPresenter = presenters[nextSceneType.ordinal()];
+		Scene nextScene = scenes[nextCommand.getKey().ordinal()];
+		Presenter nextPresenter = presenters[nextCommand.getKey().ordinal()];
 		
-		currentSceneType = nextSceneType;
+		currentCommand = nextCommand;
 		
 		addHistory(webHistory);
 		
@@ -124,58 +105,42 @@ public class SceneManager {
         HistoryWindow.getInstance().historyWindow.close();
 	}
 	
-	public void moveScene(SceneType nextSceneType, Object information) {
+	public void addCommand(Command command) {
 		addHistory(backHistory);
 		forwardHistory.clear();
 
-		updateSceneVariables(nextSceneType, information);
+		updateSceneVariables(command);
 		
-		switchScene(currentSceneType);
+		switchScene(command);
 	}
 		
-	public void returnScene() {
+	public void returnCommand() {
 		if (backHistory.size() > 0) {
 			addHistory(forwardHistory);
-			Pair<SceneType, Object> lastPage = backHistory.pop();
+			Command lastCommand = backHistory.pop();
 			
-			updateSceneVariables(lastPage.getKey(), lastPage.getValue());
+			updateSceneVariables(lastCommand);
 			
-			switchScene(currentSceneType);
+			switchScene(lastCommand);
 		}
 	}
 	
 	public void forwardScene() {
 		if (forwardHistory.size() > 0) {
-			Pair<SceneType, Object> nextPage = forwardHistory.pop();
+			Command nextCommand = forwardHistory.pop();
 			addHistory(backHistory);
 			
-			updateSceneVariables(nextPage.getKey(), nextPage.getValue());
+			updateSceneVariables(nextCommand);
 			
-			switchScene(currentSceneType);
+			switchScene(nextCommand);
 		}
 	}
 	
-	private void addHistory(Stack<Pair<SceneType, Object>> history) {
-		history.push(new Pair<SceneType, Object>(
-			    currentSceneType,
-			    switch (currentSceneType) {
-			        case SEARCHTAB -> searchContent;
-			        case CATEGORYTAB -> categoryName;
-			        case ARTICLE_VIEW -> selectedArticleData;
-			        default -> null; 
-			    }
-			));
+	private void addHistory(Stack<Command> history) {
+		history.push(currentCommand);
 	}
 	
-	private void addHistory(Queue<Pair<SceneType, Object>> history) {
-		history.offer(new Pair<SceneType, Object>(
-			    currentSceneType,
-			    switch (currentSceneType) {
-			        case SEARCHTAB -> searchContent;
-			        case CATEGORYTAB -> categoryName;
-			        case ARTICLE_VIEW -> selectedArticleData;
-			        default -> null; 
-			    }
-			));
+	private void addHistory(Queue<Command> history) {
+		history.offer(currentCommand);
 	}
 }

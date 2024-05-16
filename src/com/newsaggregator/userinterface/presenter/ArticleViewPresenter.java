@@ -11,9 +11,9 @@ import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.command.*;
 import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
-import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -63,6 +63,7 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML private Label newspaper7;
 	@FXML private Label newspaper8;
 	
+	ArticleData selectedArticle;
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
 	
@@ -101,14 +102,14 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
+		selectedArticle = (ArticleData) SceneManager.getInstance().getCurrentCommandValue();
 		
-		String title = selected.getTITLE();
-		String intro = selected.getINTRO();
-		String author = selected.getAUTHOR_NAME();
-		String htmlContent = selected.getHTML_CONTENT();
-		String publishDate = selected.getCREATION_DATE();
-		String website = selected.getWEBSITE_SOURCE();
+		String title = selectedArticle.getTITLE();
+		String intro = selectedArticle.getINTRO();
+		String author = selectedArticle.getAUTHOR_NAME();
+		String htmlContent = selectedArticle.getHTML_CONTENT();
+		String publishDate = selectedArticle.getCREATION_DATE();
+		String website = selectedArticle.getWEBSITE_SOURCE();
 
 		titleLabel.autosize();
 		introLabel.autosize();
@@ -142,12 +143,12 @@ public class ArticleViewPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
+		SceneManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
 	@FXML
 	private void switchToLatestTab() {
-		SceneManager.getInstance().moveScene(SceneType.LATESTTAB, null);
+		SceneManager.getInstance().addCommand(new LatestTabCommand());
 	}
 	
 	@FXML
@@ -165,12 +166,12 @@ public class ArticleViewPresenter extends Presenter {
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
 
-		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
+		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnScene();
+		SceneManager.getInstance().returnCommand();
 	}
 	
 	@FXML
@@ -216,16 +217,14 @@ public class ArticleViewPresenter extends Presenter {
 	@FXML
 	private void openSummary() {
 		contentToggleButton.setSelected(false);
-		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
-		String summary = selected.getSUMMARY();
+		String summary = selectedArticle.getSUMMARY();
 		webView.getEngine().loadContent(CSS + summary);
 	}
 	
 	@FXML
 	private void openContent() {
 		summaryToggleButton.setSelected(false);
-		ArticleData selected = SceneManager.getInstance().getSelectedArticleData();
-		String content = selected.getHTML_CONTENT();
+		String content = selectedArticle.getHTML_CONTENT();
 		webView.getEngine().loadContent(CSS + content);
 	}
 }

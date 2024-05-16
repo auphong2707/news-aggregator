@@ -6,21 +6,19 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.command.*;
 import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
-import com.newsaggregator.userinterface.uienum.SceneType;
 import com.newsaggregator.model.ArticleData;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -85,15 +83,17 @@ public class LatestTabPresenter extends Presenter {
 	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
-			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+			
+			SceneManager.getInstance().addCommand(command);
 		}
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
-		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+		
+		SceneManager.getInstance().addCommand(command);
 	}
 	
 	@FXML
@@ -110,7 +110,7 @@ public class LatestTabPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() throws IOException {
-		SceneManager.getInstance().moveScene(SceneType.HOMEPAGE, null);
+		SceneManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
 	private void updateArticles() {
@@ -136,12 +136,12 @@ public class LatestTabPresenter extends Presenter {
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = latestData.get(index);
-		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
+		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnScene();
+		SceneManager.getInstance().returnCommand();
 	}
 	
 	@FXML

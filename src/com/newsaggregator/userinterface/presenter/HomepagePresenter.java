@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +12,9 @@ import com.newsaggregator.model.ArticleData;
 import com.newsaggregator.model.Model;
 import com.newsaggregator.userinterface.HistoryWindow;
 import com.newsaggregator.userinterface.SceneManager;
+import com.newsaggregator.userinterface.command.*;
 import com.newsaggregator.userinterface.tools.ArticleSetter;
 import com.newsaggregator.userinterface.uienum.ArticleSize;
-import com.newsaggregator.userinterface.uienum.SceneType;
 
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -33,7 +32,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -138,32 +136,34 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML
 	private void switchToTrendingTab() {
-		SceneManager.getInstance().moveScene(SceneType.TRENDINGTAB, null);
+		SceneManager.getInstance().addCommand(new TrendingTabCommand());
 	}
 	
 	@FXML
 	private void switchToLatestTab() {
-		SceneManager.getInstance().moveScene(SceneType.LATESTTAB, null);
+		SceneManager.getInstance().addCommand(new LatestTabCommand());
 	}
 	
 	@FXML
 	private void switchTCategoryTab(MouseEvent event) {
 		String category = ((Label) event.getSource()).getText();
-		SceneManager.getInstance().moveScene(SceneType.CATEGORYTAB, category);
+		SceneManager.getInstance().addCommand(new CategoryTabCommand(category));
 	}
 	
 	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
-			SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+			
+			SceneManager.getInstance().addCommand(command);
 		}
 	}
 	
 	@FXML
 	private void searchByButton() throws IOException {
-		List<String> searchContent = Arrays.asList(searchBar.getText(), "All", "All");
-		SceneManager.getInstance().moveScene(SceneType.SEARCHTAB, searchContent);
+		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+		
+		SceneManager.getInstance().addCommand(command);
 	}
 	
 	@FXML
@@ -187,12 +187,12 @@ public class HomepagePresenter extends Presenter {
 			selectedList = trendingData;
 		
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
-		SceneManager.getInstance().moveScene(SceneType.ARTICLE_VIEW, selectedData);
+		SceneManager.getInstance().addCommand(new ArticleViewCommand(selectedData));
     }
 	
 	@FXML
 	private void returnScene() {
-		SceneManager.getInstance().returnScene();
+		SceneManager.getInstance().returnCommand();
 	}
 	
 	@FXML
