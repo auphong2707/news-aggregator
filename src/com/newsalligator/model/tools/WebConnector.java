@@ -34,7 +34,7 @@ public class WebConnector {
     	}
     }
 	
-	public static Document connectWeb(String url) throws IOException, HttpStatusException {
+	public static Document connectWeb(String url) {
     	Document document = null;
     	
     	for(int tryTime = 1; tryTime <= 20; ++tryTime) {
