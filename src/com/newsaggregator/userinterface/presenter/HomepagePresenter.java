@@ -1,6 +1,7 @@
 package com.newsaggregator.userinterface.presenter;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,6 +26,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -266,22 +268,25 @@ public class HomepagePresenter extends Presenter {
 	    }
 	}
 	
-	  private void showLoadingScreen() {
-	        try {
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource("loadingscreen.fxml"));
-	            Parent root = loader.load();
-	            Stage stage = new Stage();
-	            stage.initModality(Modality.APPLICATION_MODAL);
-	            stage.setScene(new Scene(root));
-	            stage.show();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }
+	private void showLoadingScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader((new File("resources/views/loadingscreen.fxml").toURI().toURL()));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            
+            stage.setTitle("Aggregating data...");
+            stage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/resources/images/alligator.png"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	    private void hideLoadingScreen() {
-	    	System.exit(0);
-	    }
+    private void hideLoadingScreen() {
+    	System.exit(0);
+    }
 	    
 	@Override
 	public void sceneSwitchInitialize() {
