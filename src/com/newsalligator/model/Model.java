@@ -14,8 +14,6 @@ import java.util.concurrent.TimeUnit;
 import com.newsalligator.model.tools.Converter;
 import com.newsalligator.model.webscraper.WebScraper;
 
-import javafx.util.Pair;;
-
 public class Model {
 	private final static String DIRECTORY = "data/";
 	private final static String RESULT_FILE_NAME = "newsAll.json";
