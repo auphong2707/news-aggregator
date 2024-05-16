@@ -18,7 +18,7 @@ import org.jsoup.nodes.Document;
 import com.google.gson.Gson;
 import com.newsaggregator.model.ArticleData;
 
-public final class Converter {
+public class Converter {
 	private static Gson gson = new Gson();
 	
 	public static List<ArticleData> convertJsonFileToData(String directory) {
