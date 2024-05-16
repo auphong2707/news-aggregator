@@ -121,8 +121,7 @@ public class ArticleSetter {
 	private static void setImage(List<Node> elements, ArticleData data, int index) {
 		ImageView imageView = (ImageView) elements.get(index);
 		
-		//String imgURL = data.getIMAGE();
-		String imgURL = null;
+		String imgURL = data.getIMAGE();
 		if (imgURL != null && !imgURL.equals("")) {
 			imageView.setImage(new Image(imgURL, 300, 200, false, false));
 		}
