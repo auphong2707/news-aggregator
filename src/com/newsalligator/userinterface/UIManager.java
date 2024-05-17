@@ -16,12 +16,22 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.File;
 
+/**
+ * <h1> UIMangager </h1>
+ * The {@code UIManager} class is a class to manage to user interface,
+ *  including switching scenes, maintaining history, and initializing the UI components.
+ *  @author Khanh Nguyen, Phong Au
+ */
 public class UIManager {
 	private static final String VIEW_PATH = "resources/views/";
 	private static UIManager instance;
 	private static HistoryWindow historyPresenter;
     private UIManager() { }
-
+    
+    /**
+     * Returns the singleton instance of {@code UIManager}.
+     * @return the singleton instance 
+     */
     public static UIManager getInstance() {
         if(instance == null) {
         	historyPresenter = new HistoryWindow();
@@ -40,6 +50,11 @@ public class UIManager {
 	Stack<Command> forwardHistory = new Stack<Command>();
 	Queue<Command> webHistory = new LinkedList<Command>();
 	
+	/**
+	 * Initializes the UIManager with primary stage and loaded scenes.
+	 * @param window the primary stage 
+	 * @throws IOException if fail to load FXML files
+	 */
 	public void initialize(Stage window) throws IOException {
 		this.window = window;
 		
@@ -74,18 +89,34 @@ public class UIManager {
         webHistory.offer(currentCommand);
 	}
 	
+	/**
+	 * Returns the current scene being displayed
+	 * @return the current scene being displayed
+	 */
 	public Scene getCurrentScene() {
 		return scenes[currentCommand.getKey().ordinal()];
 	}
 	
+	/**
+	 * Returns the current value of command
+	 * @return the current value of command
+	 */
 	public Object getCurrentCommandValue() {
 		return currentCommand.getValue();
 	}
 	
+	/**
+	 * Updates the current command to a new command.
+	 * @param newCommand the new command to be updated
+	 */
 	private void updateSceneVariables(Command newCommand) {
 		currentCommand = newCommand;
 	}
 
+	/**
+	 * Switches the scene to the scene related to the next command.
+	 * @param nextCommand the command that includes the next scene to display
+	 */
 	private void switchScene(Command nextCommand) {
 		System.gc();
 		
@@ -105,6 +136,10 @@ public class UIManager {
         historyPresenter.closeWindow();
 	}
 	
+	/**
+	 * Executes the command, updating the scene and command history.
+	 * @param command the command to execute
+	 */
 	public void executeCommand(Command command) {
 		backHistory.push(currentCommand);
 		forwardHistory.clear();
@@ -113,7 +148,10 @@ public class UIManager {
 		
 		switchScene(command);
 	}
-		
+	
+	/**
+	 * Returns to the previous command, updating the scene and command history.
+	 */
 	public void returnCommand() {
 		if (backHistory.size() > 0) {
 			forwardHistory.push(currentCommand);
@@ -125,6 +163,9 @@ public class UIManager {
 		}
 	}
 	
+	/**
+	 * Forwards to the next command, updating the scene and command history.
+	 */
 	public void forwardCommand() {
 		if (forwardHistory.size() > 0) {
 			Command nextCommand = forwardHistory.pop();
@@ -136,10 +177,16 @@ public class UIManager {
 		}
 	}
 	
+	/**
+	 *  Shuts down the application, terminates local servers.
+	 */
 	public void onApplicationShutdown() {
 		Model.getInstance().terminateLocalServer();
 	}
 	
+	/**
+	 * Opens the history window.
+	 */
 	public void openHistoryWindow() {
 		historyPresenter.openWindow();
 	}

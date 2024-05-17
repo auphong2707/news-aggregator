@@ -22,6 +22,7 @@ import javafx.stage.StageStyle;
  * <h1> HistoryWindow </h1>
  * The {@code HistoryWindow} class is a class to represent a window to display 
  * the web browsing history. 
+ * @author Khanh Nguyen
  */
 class HistoryWindow {
 	private Stage historyWindow;
