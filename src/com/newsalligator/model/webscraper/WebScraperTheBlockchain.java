@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 final class WebScraperTheBlockchain extends WebScraper {
-	static int count = 0;
     WebScraperTheBlockchain()
     {
     	webSource = "The Blockchain";
