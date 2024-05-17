@@ -1,9 +1,8 @@
-package com.newsalligator.userinterface.tools;
+package com.newsalligator.userinterface.presenter;
 
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.userinterface.presenter.ArticleSize;
 
 import javafx.application.Platform;
 import javafx.scene.Group;

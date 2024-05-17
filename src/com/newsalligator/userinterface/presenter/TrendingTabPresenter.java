@@ -14,7 +14,6 @@ import com.newsalligator.userinterface.UIManager;
 import com.newsalligator.userinterface.command.ArticleTabCommand;
 import com.newsalligator.userinterface.command.HomepageCommand;
 import com.newsalligator.userinterface.command.SearchTabCommand;
-import com.newsalligator.userinterface.tools.ArticleSetter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

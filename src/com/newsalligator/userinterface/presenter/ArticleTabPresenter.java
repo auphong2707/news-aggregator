@@ -11,7 +11,6 @@ import com.newsalligator.model.ArticleData;
 import com.newsalligator.model.Model;
 import com.newsalligator.userinterface.UIManager;
 import com.newsalligator.userinterface.command.*;
-import com.newsalligator.userinterface.tools.ArticleSetter;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
