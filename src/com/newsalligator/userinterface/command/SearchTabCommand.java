@@ -6,9 +6,19 @@ import java.util.List;
 
 import com.newsalligator.userinterface.uienum.SceneType;
 
+/**
+ * The {@code SearchTabCommand} class represents a command to switch to the search tab scene.
+ */
 public final class SearchTabCommand extends Command{
 	private String content, webSource, category;
 	
+    /**
+     * Constructs a new {@code SearchTabCommand} with the search content, category, and web source.
+     *
+     * @param content   the search content
+     * @param category  the category to search
+     * @param webSource the web source to search
+     */
 	public SearchTabCommand(String content, String category, String webSource) {
 		super(SceneType.SEARCH_TAB);
 		
