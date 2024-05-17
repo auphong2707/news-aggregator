@@ -12,7 +12,6 @@ import com.newsalligator.model.Model;
 import com.newsalligator.userinterface.UIManager;
 import com.newsalligator.userinterface.command.*;
 import com.newsalligator.userinterface.tools.ArticleSetter;
-import com.newsalligator.userinterface.uienum.ArticleSize;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;

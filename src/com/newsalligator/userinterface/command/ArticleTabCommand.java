@@ -1,7 +1,6 @@
 package com.newsalligator.userinterface.command;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.userinterface.uienum.SceneType;
 
 /**
  * The {@code ArticleTabCommand} class represents a command to switch to the article tab scene.

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.newsalligator.userinterface.uienum.SceneType;
-
 /**
  * The {@code SearchTabCommand} class represents a command to switch to the search tab scene.
  * @author Phong Au

@@ -3,7 +3,7 @@ package com.newsalligator.userinterface.tools;
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.userinterface.uienum.ArticleSize;
+import com.newsalligator.userinterface.presenter.ArticleSize;
 
 import javafx.application.Platform;
 import javafx.scene.Group;

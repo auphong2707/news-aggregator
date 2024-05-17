@@ -1,7 +1,5 @@
 package com.newsalligator.userinterface.command;
 
-import com.newsalligator.userinterface.uienum.SceneType;
-
 /**
  * The {@code CategoryTabCommand} class represents a command to switch to the category tab scene.
  * @author Phong Au

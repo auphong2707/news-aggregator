@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.uienum;
+package com.newsalligator.userinterface.presenter;
 
 public enum ArticleSize {
 	BIG,

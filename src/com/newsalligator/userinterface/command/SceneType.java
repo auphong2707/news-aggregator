@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.uienum;
+package com.newsalligator.userinterface.command;
 
 public enum SceneType {
 	HOMEPAGE,

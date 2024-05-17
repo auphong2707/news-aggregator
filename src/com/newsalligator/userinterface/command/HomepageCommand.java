@@ -1,7 +1,5 @@
 package com.newsalligator.userinterface.command;
 
-import com.newsalligator.userinterface.uienum.SceneType;
-
 /**
  * The {@code HomepageCommand} class represents a command to switch to the homepage scene.
  * It extends the {@code NullCommand} class.

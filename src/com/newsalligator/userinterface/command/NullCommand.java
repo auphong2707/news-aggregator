@@ -1,6 +1,5 @@
 package com.newsalligator.userinterface.command;
 
-import com.newsalligator.userinterface.uienum.SceneType;
 /**
  * The {@code NullCommand} class is an abstract implementation of the {@code Command} class
  * that represents a command with no specific value.
