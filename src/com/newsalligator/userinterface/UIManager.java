@@ -71,7 +71,7 @@ public class UIManager {
         
         currentCommand = new HomepageCommand();
         
-        addHistory(webHistory);
+        webHistory.offer(currentCommand);
 	}
 	
 	public Scene getCurrentScene() {
@@ -94,7 +94,7 @@ public class UIManager {
 		
 		currentCommand = nextCommand;
 		
-		addHistory(webHistory);
+		webHistory.offer(currentCommand);
 		
 		window.setScene(nextScene);
         window.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
@@ -106,7 +106,7 @@ public class UIManager {
 	}
 	
 	public void addCommand(Command command) {
-		addHistory(backHistory);
+		backHistory.push(currentCommand);
 		forwardHistory.clear();
 
 		updateSceneVariables(command);
@@ -116,7 +116,7 @@ public class UIManager {
 		
 	public void returnCommand() {
 		if (backHistory.size() > 0) {
-			addHistory(forwardHistory);
+			forwardHistory.push(currentCommand);
 			Command lastCommand = backHistory.pop();
 			
 			updateSceneVariables(lastCommand);
@@ -128,7 +128,7 @@ public class UIManager {
 	public void forwardScene() {
 		if (forwardHistory.size() > 0) {
 			Command nextCommand = forwardHistory.pop();
-			addHistory(backHistory);
+			backHistory.push(currentCommand);
 			
 			updateSceneVariables(nextCommand);
 			
@@ -142,13 +142,5 @@ public class UIManager {
 	
 	public void openHistoryWindow() {
 		historyPresenter.openWindow();
-	}
-	
-	private void addHistory(Stack<Command> history) {
-		history.push(currentCommand);
-	}
-	
-	private void addHistory(Queue<Command> history) {
-		history.offer(currentCommand);
 	}
 }
