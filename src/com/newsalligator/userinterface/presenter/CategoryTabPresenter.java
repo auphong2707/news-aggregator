@@ -30,7 +30,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
+/**
+ * The {@code CategoryTabPresenter} to display category tab view.
+ */
 public class CategoryTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
@@ -60,12 +62,18 @@ public class CategoryTabPresenter extends Presenter {
 	private Group[] articles;
 	private String category;
 
+    /**
+     * Initializes the category tab view.
+     */
 	@FXML
 	void initialize() {
 		setDate();
 		articles = new Group[] {article1, article2, article3, article4, article5, article6};
 	}
 	
+    /**
+     * Sets the current date in the date label.
+     */
 	private void setDate() {
 		LocalDate currentDate = LocalDate.now();
 		int day = currentDate.getDayOfMonth();
@@ -75,6 +83,12 @@ public class CategoryTabPresenter extends Presenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
+    /**
+     * Performs a search when the Enter key is pressed.
+     * 
+     * @param key the key event
+     * @throws IOException if there is an error processing the search
+     */
 	@FXML
 	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
@@ -85,6 +99,9 @@ public class CategoryTabPresenter extends Presenter {
 		}
 	}
 	
+    /**
+     * Initiates a search when the search button is clicked.
+     */
 	@FXML
 	private void searchByButton() {
 		String searchContent = searchBar.getText();
@@ -93,6 +110,11 @@ public class CategoryTabPresenter extends Presenter {
 		UIManager.getInstance().executeCommand(command);
 	}
 	
+    /**
+     * Switches the current page of articles.
+     * 
+     * @param event the action event
+     */
 	@FXML
 	private void switchPage(ActionEvent event){
 		if (event.getSource() == nextPage && page < 10) {
@@ -105,11 +127,17 @@ public class CategoryTabPresenter extends Presenter {
 		updateArticles();
 	} 
 	
+    /**
+     * Switches to the homepage.
+     */
 	@FXML
 	private void switchToHomepage() {
 		UIManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
+    /**
+     * Updates the articles displayed on the current page.
+     */
 	private void updateArticles() {
 		scrollPane.setVvalue(0);
 		
@@ -119,11 +147,21 @@ public class CategoryTabPresenter extends Presenter {
 		ArticleSetter.setArrayArticleViews(articles, categoryData.subList(first, last), ArticleSize.BIG);
 	}
 	
+    /**
+     * Sets the current page number.
+     * 
+     * @param newPage the new page number
+     */
 	private void setPage(int newPage) {
 		page = newPage;
 		pageLabel.setText("Page " + page);
 	}
 	
+    /**
+     * Switches to the article view for the selected article.
+     * 
+     * @param event the mouse click event
+     */
 	@FXML
 	private void switchToArticle(MouseEvent event) {
 		Node clickedObject = (Node) event.getSource();
@@ -138,21 +176,35 @@ public class CategoryTabPresenter extends Presenter {
 		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
+    /**
+     * Returns to the previous scene.
+     */
 	@FXML
 	private void returnScene() {
 		UIManager.getInstance().returnCommand();
 	}
 	
+    /**
+     * Forwards to the next scene.
+     */
 	@FXML
 	private void forwardScene() {
 		UIManager.getInstance().forwardCommand();
 	}
 	
+    /**
+     * Opens the history window.
+     */
 	@FXML 
 	private void openHistory() {
 		UIManager.getInstance().openHistoryWindow();
 	}
 	
+    /**
+     * Opens the website for the clicked link in the web browser.
+     * 
+     * @param event the mouse click event
+     */
 	@FXML
 	private void openWebsite(MouseEvent event) {
 		Label clickedObject = (Label) event.getSource();
