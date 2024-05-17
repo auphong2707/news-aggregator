@@ -18,11 +18,20 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * <h1> HistoryWindow </h1>
+ * The {@code HistoryWindow} class is a class to represent a window to display 
+ * the web browsing history. 
+ */
 class HistoryWindow {
 	private Stage historyWindow;
     Queue<Command> webHistory;
     private VBox vbox;
 	
+    /**
+     * Initializes the history window with given properties.
+     * @param historyQueue the queue of {@code Command} objects to visualize the window
+     */
 	void initialize(Queue<Command> historyQueue) {
 		webHistory = historyQueue;
 		
@@ -41,6 +50,10 @@ class HistoryWindow {
         vbox = new VBox();
 	}
 	
+	/**
+	 * Creates a label representing a visited page from history.
+	 * @return the {@code Label} of visited page
+	 */
 	private Label visitedWeb() {
 		Command currentWebCommand = webHistory.poll();
 		
@@ -61,6 +74,9 @@ class HistoryWindow {
 		return web;
 	}
 	
+	/**
+	 * Constructs history window layout.
+	 */
 	private void constructWindow() {
 		BorderPane root = new BorderPane();
         root.setPrefSize(300, 400);
@@ -107,12 +123,18 @@ class HistoryWindow {
         historyWindow.setScene(scene);
 	}
 	
+	/**
+	 * Opens the history window.
+	 */
 	void openWindow() {
 		constructWindow();
 		
 		historyWindow.show();
 	}
 	
+	/**
+	 * Closes the history window.
+	 */
 	void closeWindow() {
 		historyWindow.close();
 	}
