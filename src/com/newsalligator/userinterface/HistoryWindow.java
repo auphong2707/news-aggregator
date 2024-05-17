@@ -107,13 +107,13 @@ class HistoryWindow {
         historyWindow.setScene(scene);
 	}
 	
-	public void openWindow() {
+	void openWindow() {
 		constructWindow();
 		
 		historyWindow.show();
 	}
 	
-	public void closeWindow() {
+	void closeWindow() {
 		historyWindow.close();
 	}
 }
