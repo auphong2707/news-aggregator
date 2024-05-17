@@ -56,7 +56,7 @@ public class ArticleTabPresenter extends Presenter {
 	@FXML private Group bigArticle2;
 	@FXML private Group bigArticle3;
 	
-	ArticleData selectedArticle;
+	private ArticleData selectedArticle;
 	private List<ArticleData> latestData;
 	private List<ArticleData> randomData;
 	
