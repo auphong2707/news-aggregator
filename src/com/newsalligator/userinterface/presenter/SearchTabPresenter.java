@@ -130,6 +130,8 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
+		scrollPane.setVvalue(0);
+		
 		int first = (page - 1) * 5;
 		int last = (page - 1) * 5 + 5;
 		
@@ -184,8 +186,6 @@ public class SearchTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		scrollPane.setVvalue(0);
-		
 		@SuppressWarnings("unchecked")
 		List<String> searchContent = (List<String>) UIManager.getInstance().getCurrentCommandValue();
 		

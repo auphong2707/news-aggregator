@@ -107,6 +107,8 @@ public class TrendingTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
+		scrollPane.setVvalue(0);
+		
 		int first = (page - 1) * 6;
 		int last = (page - 1) * 6 + 6;
 		
@@ -161,8 +163,6 @@ public class TrendingTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		scrollPane.setVvalue(0);
-		
 		trendingData = Model.getInstance().getTrending(60);
 		
 		searchBar.clear();

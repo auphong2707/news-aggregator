@@ -105,6 +105,8 @@ public class LatestTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
+		scrollPane.setVvalue(0);
+		
 		int first = (page - 1) * 6;
 		int last = (page - 1) * 6 + 6;
 		
@@ -159,8 +161,6 @@ public class LatestTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		scrollPane.setVvalue(0);
-		
 		latestData = Model.getInstance().getLatest(60);
 		
 		searchBar.clear();

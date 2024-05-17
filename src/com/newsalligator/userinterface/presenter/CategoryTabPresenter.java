@@ -111,6 +111,8 @@ public class CategoryTabPresenter extends Presenter {
 	}
 	
 	private void updateArticles() {
+		scrollPane.setVvalue(0);
+		
 		int first = (page - 1) * 6;
 		int last = (page - 1) * 6 + 6;
 		
@@ -165,8 +167,6 @@ public class CategoryTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		scrollPane.setVvalue(0);
-		
 		category = (String) UIManager.getInstance().getCurrentCommandValue();
 		
 		categoryLabel.setText("Category: " + category);
