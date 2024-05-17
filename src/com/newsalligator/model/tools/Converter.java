@@ -16,6 +16,7 @@ import com.newsalligator.model.ArticleData;
  * <h1> Converter </h1>
  * The {@code Converter} class is a class to convert JSON data file to 
  * {@code ArticleData} object and vice versa.
+ * @author Phong Au
  */
 public class Converter {
 	private static Gson gson = new Gson();
