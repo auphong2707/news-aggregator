@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 /**
  * <h1> ArticleSetter </h1>
  * The {@code ArticleSetter} class is a class to provide set up article view in user interface.
+ * @author Quan Tran
  */
 public class ArticleSetter {	
 	/**
