@@ -56,8 +56,19 @@ public class ArticleTabPresenter extends Presenter {
 	@FXML private Group bigArticle2;
 	@FXML private Group bigArticle3;
 	
+	/**
+	 * The {@code ArticleData} object of an selected article
+	 */
 	private ArticleData selectedArticle;
+	
+	/**
+	 * List of {@code ArticleData} objects representing latest articles.
+	 */
 	private List<ArticleData> latestData;
+	
+	/**
+	 * List of {@code ArticleData} objects representing random articles.
+	 */
 	private List<ArticleData> randomData;
 	
 	private final String CSS = "<style>"
