@@ -38,6 +38,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * The {@code HomepagePresenter} to display Homepage tab view.
+ */
 public class HomepagePresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
@@ -75,11 +78,22 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Button forwardButton;
 	@FXML private Button historyButton;
 	
+	/**
+	 * List of {@code ArticleData} objects representing latest articles.
+	 */
 	private List<ArticleData> latestData;
+	/**
+	 * List of {@code ArticleData} objects representing random articles.
+	 */
 	private List<ArticleData> randomData;
+	/**
+	 * List of {@code ArticleData} objects representing trending articles.
+	 */
 	private List<ArticleData> trendingData;
 	
-	
+    /**
+     * Initializes the Homepage view by setting the date and loading articles.
+     */
 	@FXML
 	public void initialize() {
 		setDate();
@@ -88,6 +102,9 @@ public class HomepagePresenter extends Presenter {
 		setTrendingArticle();
 	}
 	
+    /**
+     * Sets the current date in the date label.
+     */
 	private void setDate() {
 		LocalDate currentDate = LocalDate.now();
 		int day = currentDate.getDayOfMonth();
@@ -97,6 +114,9 @@ public class HomepagePresenter extends Presenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
+    /**
+     * Loads and sets the latest articles in the view.
+     */
 	private void setLatestArticle() {
 		latestData = Model.getInstance().getLatest(6);
 		
@@ -106,6 +126,9 @@ public class HomepagePresenter extends Presenter {
 		ArticleSetter.setArrayArticleViews(latestSmallArticle, latestData, ArticleSize.SMALL);
 	} 
 	
+    /**
+     * Loads and sets random articles in the view.
+     */
 	private void setRandomArticle() {
 		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
 											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
@@ -115,6 +138,9 @@ public class HomepagePresenter extends Presenter {
 		ArticleSetter.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
 	}
 	
+    /**
+     * Loads and sets trending articles in the view.
+     */
 	private void setTrendingArticle() {
 		Group[] trendingBigArticle = new Group[] {bigArticle1, bigArticle2};
 		Group[] trendingNotSoBigArticle = new Group[] {notSoBigArticle1t, notSoBigArticle2t,
@@ -126,22 +152,36 @@ public class HomepagePresenter extends Presenter {
 		ArticleSetter.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
 	}
 	
+    /**
+     * Switches to the Trending tab view.
+     */
 	@FXML
 	private void switchToTrendingTab() {
 		UIManager.getInstance().executeCommand(new TrendingTabCommand());
 	}
 	
+    /**
+     * Switches to the Latest tab view.
+     */
 	@FXML
 	private void switchToLatestTab() {
 		UIManager.getInstance().executeCommand(new LatestTabCommand());
 	}
 	
+    /**
+     * Switches to the Category tab view.
+     */
 	@FXML
 	private void switchTCategoryTab(MouseEvent event) {
 		String category = ((Label) event.getSource()).getText();
 		UIManager.getInstance().executeCommand(new CategoryTabCommand(category));
 	}
 	
+    /**
+     * Performs a search when the Enter key is pressed.
+     * 
+     * @param key the key event
+     */
 	@FXML
 	private void searchByKey(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
@@ -151,6 +191,9 @@ public class HomepagePresenter extends Presenter {
 		}
 	}
 	
+    /**
+     * Performs a search when the search button is clicked.
+     */
 	@FXML
 	private void searchByButton() {
 		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
@@ -158,6 +201,11 @@ public class HomepagePresenter extends Presenter {
 		UIManager.getInstance().executeCommand(command);
 	}
 	
+    /**
+     * Switches to the article view for the selected article.
+     * 
+     * @param event the mouse click event
+     */
 	@FXML
 	private void switchToArticle(MouseEvent event) {
 		Node clickedObject = (Node) event.getSource();
@@ -182,21 +230,35 @@ public class HomepagePresenter extends Presenter {
 		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
+    /**
+     * Returns to the previous scene.
+     */
 	@FXML
 	private void returnScene() {
 		UIManager.getInstance().returnCommand();
 	}
 	
+    /**
+     *  Forwards to the next scene.
+     */
 	@FXML
 	private void forwardScene() {
 		UIManager.getInstance().forwardCommand();
 	}
 	
+    /**
+     * Opens the history window.
+     */
 	@FXML 
 	private void openHistory() {
 		UIManager.getInstance().openHistoryWindow();
 	}
 	
+    /**
+     * Opens the website for the clicked link in the web browser.
+     * 
+     * @param event the mouse click event
+     */
 	@FXML
 	private void openWebsite(MouseEvent event) {
 		Label clickedObject = (Label) event.getSource();
@@ -209,12 +271,20 @@ public class HomepagePresenter extends Presenter {
 	    }
 	}
 	
+    /**
+     * Refreshes the homepage content by reloading random and trending articles.
+     */
 	@FXML
 	private void refreshHomepage() {
 		setRandomArticle();
 		setTrendingArticle();
 	}
 	
+    /**
+     * Shows a warning dialog before resetting all data.
+     * 
+     * @param event the action event
+     */
 	@FXML
 	private void showWarningDialog(ActionEvent event) {
 	    Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -241,6 +311,9 @@ public class HomepagePresenter extends Presenter {
 	    }
 	}
 	
+    /**
+     * Shows a loading screen while aggregating new data.
+     */
 	private void showLoadingScreen() {
         try {
             FXMLLoader loader = new FXMLLoader((new File("resources/views/loadingscreen.fxml").toURI().toURL()));
@@ -257,6 +330,9 @@ public class HomepagePresenter extends Presenter {
         }
     }
 
+	/**
+	 * Hides the loading screen by exiting the system.
+	 */
     private void hideLoadingScreen() {
     	System.exit(0);
     }
