@@ -1,8 +1,21 @@
 package com.newsalligator.userinterface.presenter;
 
+/**
+ * <h1> Presenter </h1>
+ * The {@code Presenter} is an abstract class to initialize scenes when switching and map
+ * news title to their corresponding links.
+ */
 public abstract class Presenter {
+	/**
+	 * Handles initialization when the scene is switched.
+	 */
 	public abstract void sceneSwitchInitialize();
 	
+	/**
+	 * Maps a news title to its corresponding links.
+	 * @param newsTitle the title of the news
+	 * @return the URL of the news, or null if the title is not detected.
+	 */
 	String newsToLink(String newsTitle) {
 		switch(newsTitle) {
 		case "Academy Moralis": 
