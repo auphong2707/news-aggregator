@@ -111,7 +111,7 @@ public class SearchTabPresenter extends Presenter {
 			
 			SearchTabCommand command = new SearchTabCommand(content, category, webSource);
 			
-			UIManager.getInstance().addCommand(command);
+			UIManager.getInstance().executeCommand(command);
 		} 	
 	}
 	
@@ -123,7 +123,7 @@ public class SearchTabPresenter extends Presenter {
 		
 		SearchTabCommand command = new SearchTabCommand(content, category, webSource);
 		
-		UIManager.getInstance().addCommand(command);
+		UIManager.getInstance().executeCommand(command);
 	}
 	
 	@FXML
@@ -135,7 +135,7 @@ public class SearchTabPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() {
-		UIManager.getInstance().addCommand(new HomepageCommand());
+		UIManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
 	private void updateArticles() {
@@ -161,7 +161,7 @@ public class SearchTabPresenter extends Presenter {
 		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = searchData.get(index);
-		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
+		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML
@@ -171,7 +171,7 @@ public class SearchTabPresenter extends Presenter {
 	
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardCommand();
 	}
 	
 	@FXML 

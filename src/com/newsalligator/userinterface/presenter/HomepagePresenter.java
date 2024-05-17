@@ -137,18 +137,18 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML
 	private void switchToTrendingTab() {
-		UIManager.getInstance().addCommand(new TrendingTabCommand());
+		UIManager.getInstance().executeCommand(new TrendingTabCommand());
 	}
 	
 	@FXML
 	private void switchToLatestTab() {
-		UIManager.getInstance().addCommand(new LatestTabCommand());
+		UIManager.getInstance().executeCommand(new LatestTabCommand());
 	}
 	
 	@FXML
 	private void switchTCategoryTab(MouseEvent event) {
 		String category = ((Label) event.getSource()).getText();
-		UIManager.getInstance().addCommand(new CategoryTabCommand(category));
+		UIManager.getInstance().executeCommand(new CategoryTabCommand(category));
 	}
 	
 	@FXML
@@ -156,7 +156,7 @@ public class HomepagePresenter extends Presenter {
 		if (key.getCode() == KeyCode.ENTER) {
 			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 			
-			UIManager.getInstance().addCommand(command);
+			UIManager.getInstance().executeCommand(command);
 		}
 	}
 	
@@ -164,7 +164,7 @@ public class HomepagePresenter extends Presenter {
 	private void searchByButton() {
 		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 		
-		UIManager.getInstance().addCommand(command);
+		UIManager.getInstance().executeCommand(command);
 	}
 	
 	@FXML
@@ -188,7 +188,7 @@ public class HomepagePresenter extends Presenter {
 			selectedList = trendingData;
 		
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
-		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
+		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML
@@ -198,7 +198,7 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardCommand();
 	}
 	
 	@FXML 

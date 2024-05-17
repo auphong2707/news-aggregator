@@ -105,7 +105,7 @@ public class UIManager {
         historyPresenter.closeWindow();
 	}
 	
-	public void addCommand(Command command) {
+	public void executeCommand(Command command) {
 		backHistory.push(currentCommand);
 		forwardHistory.clear();
 
@@ -125,7 +125,7 @@ public class UIManager {
 		}
 	}
 	
-	public void forwardScene() {
+	public void forwardCommand() {
 		if (forwardHistory.size() > 0) {
 			Command nextCommand = forwardHistory.pop();
 			backHistory.push(currentCommand);

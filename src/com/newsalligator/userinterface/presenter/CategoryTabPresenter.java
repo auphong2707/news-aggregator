@@ -90,7 +90,7 @@ public class CategoryTabPresenter extends Presenter {
 			String searchContent = searchBar.getText();
 			SearchTabCommand command = new SearchTabCommand(searchContent, "All", "All");
 			
-			UIManager.getInstance().addCommand(command);
+			UIManager.getInstance().executeCommand(command);
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class CategoryTabPresenter extends Presenter {
 		String searchContent = searchBar.getText();
 		SearchTabCommand command = new SearchTabCommand(searchContent, "All", "All");
 		
-		UIManager.getInstance().addCommand(command);
+		UIManager.getInstance().executeCommand(command);
 	}
 	
 	@FXML
@@ -116,7 +116,7 @@ public class CategoryTabPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() {
-		UIManager.getInstance().addCommand(new HomepageCommand());
+		UIManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
 	private void updateArticles() {
@@ -142,7 +142,7 @@ public class CategoryTabPresenter extends Presenter {
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
 		ArticleData selectedData = categoryData.get(index);
-		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
+		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML
@@ -152,7 +152,7 @@ public class CategoryTabPresenter extends Presenter {
 	
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardCommand();
 	}
 	
 	@FXML 

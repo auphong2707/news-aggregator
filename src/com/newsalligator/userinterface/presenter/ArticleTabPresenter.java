@@ -142,12 +142,12 @@ public class ArticleTabPresenter extends Presenter {
 	
 	@FXML
 	private void switchToHomepage() {
-		UIManager.getInstance().addCommand(new HomepageCommand());
+		UIManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
 	@FXML
 	private void switchToLatestTab() {
-		UIManager.getInstance().addCommand(new LatestTabCommand());
+		UIManager.getInstance().executeCommand(new LatestTabCommand());
 	}
 	
 	@FXML
@@ -165,7 +165,7 @@ public class ArticleTabPresenter extends Presenter {
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
 
-		UIManager.getInstance().addCommand(new ArticleTabCommand(selectedData));
+		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
 	@FXML
@@ -175,7 +175,7 @@ public class ArticleTabPresenter extends Presenter {
 	
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardScene();
+		UIManager.getInstance().forwardCommand();
 	}
 	
 	@FXML 

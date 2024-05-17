@@ -55,7 +55,7 @@ class HistoryWindow {
 			web.setStyle("");
 		});
 		web.setOnMouseClicked(e -> {
-            UIManager.getInstance().addCommand(currentWebCommand);
+            UIManager.getInstance().executeCommand(currentWebCommand);
         });
 		
 		return web;
