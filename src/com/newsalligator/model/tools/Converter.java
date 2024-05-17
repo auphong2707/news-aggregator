@@ -12,9 +12,19 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 import com.newsalligator.model.ArticleData;
 
+/**
+ * <h1> Converter </h1>
+ * The {@code Converter} class is a class to convert JSON data file to 
+ * {@code ArticleData} object and vice versa.
+ */
 public class Converter {
 	private static Gson gson = new Gson();
 	
+	/**
+	 * Converts JSON file in a directory into a list of {@code ArticleData} objects.
+	 * @param directory the directory of the JSON file
+	 * @return a list of {@code ArticleData} objects
+	 */
 	public static List<ArticleData> convertJsonFileToData(String directory) {
 		try {
 		      File jsonFile = new File(directory);
@@ -37,6 +47,11 @@ public class Converter {
 		return null;
 	}
 	
+	/**
+	 * Converts JSON string to a list of {@code ArticleData} objects.
+	 * @param jsonInput the JSON string to convert
+	 * @return a list of {@code ArticleData} objects 
+	 */
 	public static List<ArticleData> convertJsonStringToData(String jsonInput)
 	{
 		ArticleData[] arrayOfResult = gson.fromJson(jsonInput, ArticleData[].class);
@@ -45,6 +60,11 @@ public class Converter {
         return listOfResult;
 	}
 	
+	/**
+	 * Converts a list of {@code ArticleData} objects to JSON file.
+	 * @param inputData the list of {@code ArticleData} objects to convert
+	 * @param fileDirectory the directory the JSON file is saved
+	 */
 	public static void convertDataToJson(List<ArticleData> inputData, String fileDirectory)
 	{
 		FileWriter fileWriter = null;
