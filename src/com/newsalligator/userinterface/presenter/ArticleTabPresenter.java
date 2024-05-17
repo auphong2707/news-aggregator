@@ -141,7 +141,7 @@ public class ArticleTabPresenter extends Presenter {
 	}
 	
 	@FXML
-	private void switchToHomepage() throws IOException {
+	private void switchToHomepage() {
 		UIManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
@@ -151,7 +151,7 @@ public class ArticleTabPresenter extends Presenter {
 	}
 	
 	@FXML
-	private void switchToArticle(MouseEvent event) throws IOException {
+	private void switchToArticle(MouseEvent event) {
 		Node clickedObject = (Node) event.getSource();
 		Group selectedGroup;
 		if (clickedObject.getClass() == Group.class) {

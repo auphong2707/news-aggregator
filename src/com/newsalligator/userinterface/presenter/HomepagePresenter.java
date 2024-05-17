@@ -90,7 +90,7 @@ public class HomepagePresenter extends Presenter {
 	
 	
 	@FXML
-	public void initialize() throws IOException, InterruptedException {
+	public void initialize() {
 		setDate();
 		setLatestArticle();
 		setRandomArticle();
@@ -152,7 +152,7 @@ public class HomepagePresenter extends Presenter {
 	}
 	
 	@FXML
-	private void searchByKey(KeyEvent key) throws IOException {
+	private void searchByKey(KeyEvent key) {
 		if (key.getCode() == KeyCode.ENTER) {
 			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 			
@@ -161,14 +161,14 @@ public class HomepagePresenter extends Presenter {
 	}
 	
 	@FXML
-	private void searchByButton() throws IOException {
+	private void searchByButton() {
 		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 		
 		UIManager.getInstance().addCommand(command);
 	}
 	
 	@FXML
-	private void switchToArticle(MouseEvent event) throws IOException {
+	private void switchToArticle(MouseEvent event) {
 		Node clickedObject = (Node) event.getSource();
 		Group selectedGroup;
 		if (clickedObject.getClass() == Group.class) {

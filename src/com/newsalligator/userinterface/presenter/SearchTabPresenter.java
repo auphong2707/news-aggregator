@@ -69,7 +69,7 @@ public class SearchTabPresenter extends Presenter {
 	private Group[] articles;
 
 	@FXML
-	void initialize() throws IOException, InterruptedException {
+	void initialize() {
 		setDate();
 		articles = new Group[] {article1, article2, article3, article4, article5};
 		
@@ -116,7 +116,7 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	@FXML
-	private void searchByButton() throws IOException {
+	private void searchByButton() {
 		String content = searchBar.getText();
 		String category = categoryBox.getValue();
 		String webSource = webBox.getValue();
@@ -134,7 +134,7 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	@FXML
-	private void switchToHomepage() throws IOException {
+	private void switchToHomepage() {
 		UIManager.getInstance().addCommand(new HomepageCommand());
 	}
 	
@@ -151,7 +151,7 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
 	@FXML
-	private void switchToArticle(MouseEvent event) throws IOException {
+	private void switchToArticle(MouseEvent event) {
 		Node clickedObject = (Node) event.getSource();
 		Group selectedGroup;
 		if (clickedObject.getClass() == Group.class) {
