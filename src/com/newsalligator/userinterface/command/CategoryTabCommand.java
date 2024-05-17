@@ -4,7 +4,7 @@ import com.newsalligator.userinterface.uienum.SceneType;
 
 public final class CategoryTabCommand extends Command {
 
-	String categoryName;
+	private String categoryName;
 	
 	public CategoryTabCommand(String categoryName) {
 		super(SceneType.CATEGORY_TAB);
