@@ -25,6 +25,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
+/**
+ * The {@code ArticleTabPresenter} to display article tab view.
+ */
 public class ArticleTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
@@ -75,12 +78,19 @@ public class ArticleTabPresenter extends Presenter {
 			+ "a { text-decoration: none; color: inherit; cursor: text; pointer-events: none;}"
 			+ "</style>";
 	
+	/**
+	 * Initializes the article tab view.
+	 * @throws IOException if there is error loading data
+	 * @throws InterruptedException if the process is interrupted
+	 */
 	@FXML
 	void initialize() throws IOException, InterruptedException {
 		setDate();
 		setLatestArticle();
 	}
-	
+	/**
+	 * Sets the current date in the date label.
+	 */
 	private void setDate() {
 		LocalDate currentDate = LocalDate.now();
 		int day = currentDate.getDayOfMonth();
@@ -90,6 +100,7 @@ public class ArticleTabPresenter extends Presenter {
 		dateLabel.setText(dateAbbreviation + ", " + day + "/" + month + "/" + year);
 	}
 	
+
 	@Override
 	public void sceneSwitchInitialize() {
 		selectedArticle = (ArticleData) UIManager.getInstance().getCurrentCommandValue();
@@ -114,6 +125,9 @@ public class ArticleTabPresenter extends Presenter {
 		setReadNextArticle();
 	}
 	
+    /**
+     * Sets the latest articles in the small article views.
+     */
 	private void setLatestArticle() {
 		Group[] latestArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3, 
 											 smallArticle4, smallArticle5};
@@ -123,6 +137,9 @@ public class ArticleTabPresenter extends Presenter {
 		ArticleSetter.setArrayArticleViews(latestArticle, latestData, ArticleSize.SMALL);
 	}
 	
+    /**
+     * Sets the "Read Next" articles in the big article views.
+     */
 	private void setReadNextArticle() {
 		Group[] reedNextArticle = new Group[] {bigArticle1, bigArticle2, bigArticle3};
 		
@@ -131,16 +148,27 @@ public class ArticleTabPresenter extends Presenter {
 		ArticleSetter.setArrayArticleViews(reedNextArticle, randomData, ArticleSize.BIG);
 	}
 	
+    /**
+     * Switches to the homepage.
+     */
 	@FXML
 	private void switchToHomepage() {
 		UIManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
+    /**
+     * Switches to the latest articles tab.
+     */
 	@FXML
 	private void switchToLatestTab() {
 		UIManager.getInstance().executeCommand(new LatestTabCommand());
 	}
 	
+    /**
+     * Switches to the selected article view based on click.
+     * 
+     * @param event the mouse click event
+     */
 	@FXML
 	private void switchToArticle(MouseEvent event) {
 		Node clickedObject = (Node) event.getSource();
@@ -159,21 +187,35 @@ public class ArticleTabPresenter extends Presenter {
 		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
+    /**
+     * Returns to the previous scene.
+     */
 	@FXML
 	private void returnScene() {
 		UIManager.getInstance().returnCommand();
 	}
 	
+    /**
+     * Forwards to the next scene.
+     */
 	@FXML
 	private void forwardScene() {
 		UIManager.getInstance().forwardCommand();
 	}
 	
+    /**
+     * Opens the history window.
+     */
 	@FXML 
 	private void openHistory() {
 		UIManager.getInstance().openHistoryWindow();
 	}
 	
+    /**
+     * Opens the website.
+     * 
+     * @param event the mouse click event
+     */
 	@FXML
 	private void openWebsite(MouseEvent event) {
 		Label clickedObject = (Label) event.getSource();
@@ -186,6 +228,9 @@ public class ArticleTabPresenter extends Presenter {
 	    }
 	}
 	
+    /**
+     * Displays the summary of the article in the WebView.
+     */
 	@FXML
 	private void openSummary() {
 		contentToggleButton.setSelected(false);
@@ -193,6 +238,9 @@ public class ArticleTabPresenter extends Presenter {
 		webView.getEngine().loadContent(CSS + summary);
 	}
 	
+    /**
+     * Displays the full content of the article in the WebView.
+     */
 	@FXML
 	private void openContent() {
 		summaryToggleButton.setSelected(false);
