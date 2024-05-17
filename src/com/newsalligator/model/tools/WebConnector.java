@@ -10,6 +10,12 @@ import java.util.Scanner;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+/**
+ * <h1> WebConnector </h1>
+ * The {@code WebConnector} class is a class to connect to article websites 
+ * to get their content via randomly generated user agents.
+ * @author Phong Au, Dat Dao
+ */
 public class WebConnector {
 
 	private static final List<String> userAgent;
@@ -32,6 +38,11 @@ public class WebConnector {
     	}
     }
 	
+	/**
+	 * Connects to a website URL using a randomly generated user agent.
+	 * @param url the URL of the website to scrape data
+	 * @return the {@code Document} object in Jsoup containing HTML content of a website
+	 */
 	public static Document connectWeb(String url) {
     	Document document = null;
     	
