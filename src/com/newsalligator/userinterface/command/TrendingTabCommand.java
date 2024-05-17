@@ -2,6 +2,10 @@ package com.newsalligator.userinterface.command;
 
 import com.newsalligator.userinterface.uienum.SceneType;
 
+/**
+ * The {@code TrendingTabCommand} class represents a command to switch to the trending tab scene.
+ * It extends the {@code NullCommand} class.
+ */
 public final class TrendingTabCommand extends NullCommand {
 
 	public TrendingTabCommand() {
