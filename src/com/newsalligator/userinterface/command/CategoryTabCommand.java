@@ -4,6 +4,7 @@ import com.newsalligator.userinterface.uienum.SceneType;
 
 /**
  * The {@code CategoryTabCommand} class represents a command to switch to the category tab scene.
+ * @author Phong Au
  */
 public final class CategoryTabCommand extends Command {
 

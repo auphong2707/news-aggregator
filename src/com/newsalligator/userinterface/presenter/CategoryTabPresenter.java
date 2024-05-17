@@ -32,6 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 /**
  * The {@code CategoryTabPresenter} to display category tab view.
+ * @author Khanh Nguyen, Quan Tran, Phong Au
  */
 public class CategoryTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;

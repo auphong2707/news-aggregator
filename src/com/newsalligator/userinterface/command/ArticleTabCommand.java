@@ -5,6 +5,7 @@ import com.newsalligator.userinterface.uienum.SceneType;
 
 /**
  * The {@code ArticleTabCommand} class represents a command to switch to the article tab scene.
+ * @author Phong Au
  */
 public final class ArticleTabCommand extends Command {
 	private ArticleData articleData;

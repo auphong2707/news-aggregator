@@ -27,6 +27,7 @@ import javafx.scene.web.WebView;
 
 /**
  * The {@code ArticleTabPresenter} to display article tab view.
+ * @author Khanh Nguyen, Quan Tran, Phong Au
  */
 public class ArticleTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;

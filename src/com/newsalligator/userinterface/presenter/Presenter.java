@@ -4,6 +4,7 @@ package com.newsalligator.userinterface.presenter;
  * <h1> Presenter </h1>
  * The {@code Presenter} is an abstract class to initialize scenes when switching and map
  * news title to their corresponding links.
+ * @author Phong Au
  */
 public abstract class Presenter {
 	/**

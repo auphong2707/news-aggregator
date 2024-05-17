@@ -40,6 +40,7 @@ import javafx.scene.Scene;
 
 /**
  * The {@code HomepagePresenter} to display Homepage tab view.
+ * @author Khanh Nguyen, Quan Tran, Phong Au
  */
 public class HomepagePresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;

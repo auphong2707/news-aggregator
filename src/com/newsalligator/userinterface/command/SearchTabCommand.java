@@ -8,6 +8,7 @@ import com.newsalligator.userinterface.uienum.SceneType;
 
 /**
  * The {@code SearchTabCommand} class represents a command to switch to the search tab scene.
+ * @author Phong Au
  */
 public final class SearchTabCommand extends Command{
 	private String content, webSource, category;

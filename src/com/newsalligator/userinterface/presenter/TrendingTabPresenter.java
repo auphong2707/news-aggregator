@@ -32,6 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 /**
  * The {@code TrendingTabPresenter} class is a class to manage the trending tab view.
+ * @author Khanh Nguyen, Quan Tran, Phong Au
  */
 public class TrendingTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;

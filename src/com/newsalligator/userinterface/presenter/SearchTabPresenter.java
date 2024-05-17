@@ -32,6 +32,7 @@ import javafx.scene.text.Text;
 
 /**
  * The {@code SearchTabPresenter} class is a class to manage the search tab view.
+ * @author Khanh Nguyen, Quan Tran, Phong Au
  */
 public class SearchTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;

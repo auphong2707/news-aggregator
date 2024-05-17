@@ -6,7 +6,7 @@ import com.newsalligator.userinterface.uienum.SceneType;
  * <h1> Command </h1>
  * The {@code Command} is an abstract class for commands that can be used to change UI state. 
  * Each command is associated with a scene type
- * @author Khanh Nguyen
+ * @author Phong Au
  */
 public abstract class Command {
 	private SceneType key;

@@ -31,6 +31,7 @@ import javafx.scene.text.Text;
 
 /**
  * The {@code LatestTabPresenter} class is a class to manage the latest tab view.
+ * @author Khanh Nguyen, Quan Tran, Phong Au
  */
 public class LatestTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
