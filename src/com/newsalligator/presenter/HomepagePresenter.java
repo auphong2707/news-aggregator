@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -73,6 +74,9 @@ public class HomepagePresenter extends Presenter {
 	
 	@FXML private TextField searchBar;
 	
+	private ArticleData blockchainData;
+	private ArticleData cryptoData;
+	private ArticleData othersData;
 	/**
 	 * List of {@code ArticleData} objects representing latest articles.
 	 */
@@ -85,18 +89,6 @@ public class HomepagePresenter extends Presenter {
 	 * List of {@code ArticleData} objects representing trending articles.
 	 */
 	private List<ArticleData> trendingData;
-	/**
-	 * List of {@code ArticleData} objects representing blockchain articles.
-	 */
-	private List<ArticleData> blockchainData;
-	/**
-	 * List of {@code ArticleData} objects representing crypto articles.
-	 */
-	private List<ArticleData> cryptoData;
-	/**
-	 * List of {@code ArticleData} objects representing others articles.
-	 */
-	private List<ArticleData> othersData;
 	/**
 	 * List of {@code ArticleData} objects representing category articles.
 	 */
@@ -168,11 +160,15 @@ public class HomepagePresenter extends Presenter {
      * Loads and sets the category articles in the view.
      */
 	private void setCategoryArticle() {
-		blockchainData = model.getLatest(1, "Blockchain");
-		cryptoData = model.getLatest(1, "Crypto");
-		othersData = model.getLatest(1, "Others");
+		categoryData = new ArrayList<>();
 		
-		categoryData = Stream.of(blockchainData, cryptoData, othersData).flatMap(Collection::stream).toList();
+		blockchainData = model.getLatest(1, "Blockchain").get(0);
+		cryptoData = model.getLatest(1, "Crypto").get(0);
+		othersData = model.getLatest(1, "Others").get(0);
+		
+		categoryData.add(blockchainData);
+		categoryData.add(cryptoData);
+		categoryData.add(othersData);
 	
 		Group[] categoryMediumArticle = new Group[] {notSoBigArticle1c, notSoBigArticle2c, notSoBigArticle3c};
 		
