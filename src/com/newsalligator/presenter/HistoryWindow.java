@@ -1,8 +1,8 @@
-package com.newsalligator.userinterface;
+package com.newsalligator.presenter;
 
 import java.util.Queue;
 
-import com.newsalligator.userinterface.command.Command;
+import com.newsalligator.presenter.command.Command;
 
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -69,7 +69,7 @@ class HistoryWindow {
 			web.setStyle("");
 		});
 		web.setOnMouseClicked(e -> {
-            UIManager.getInstance().executeCommand(currentWebCommand);
+            PresenterManager.getInstance().executeCommand(currentWebCommand);
         });
 		
 		return web;

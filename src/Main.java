@@ -1,4 +1,4 @@
-import com.newsalligator.userinterface.*;
+import com.newsalligator.presenter.*;
 
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -13,16 +13,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         // TODO  Auto-generated method stub
 	    try {
-	    	UIManager.getInstance().initialize(primaryStage);
+	    	PresenterManager.getInstance().initialize(primaryStage);
 	    	Runtime.getRuntime().addShutdownHook(new Thread() {
 	    	    public void run() {
-	    	    	UIManager.getInstance().onApplicationShutdown();
+	    	    	PresenterManager.getInstance().onApplicationShutdown();
 	    	    }
 	    	});
 	        
 	        primaryStage.setTitle("News Alligator");
 	        primaryStage.getIcons().add(new Image("file:///" + System.getProperty("user.dir") + "/resources/images/alligator.png"));
-	        primaryStage.setScene(UIManager.getInstance().getCurrentScene());
+	        primaryStage.setScene(PresenterManager.getInstance().getCurrentScene());
 	        primaryStage.setMaximized(true);
 	        primaryStage.show();
 	    } catch (Exception e) {

@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.command;
+package com.newsalligator.presenter.command;
 
 /**
  * The {@code LatestTabCommand} class represents a command to switch to the latest tab scene.

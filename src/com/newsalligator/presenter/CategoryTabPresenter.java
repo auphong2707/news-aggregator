@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.presenter;
+package com.newsalligator.presenter;
 
 
 import java.awt.Desktop;
@@ -10,8 +10,11 @@ import java.util.List;
 
 import com.newsalligator.model.ArticleData;
 import com.newsalligator.model.Model;
-import com.newsalligator.userinterface.UIManager;
-import com.newsalligator.userinterface.command.*;
+import com.newsalligator.presenter.command.ArticleTabCommand;
+import com.newsalligator.presenter.command.HomepageCommand;
+import com.newsalligator.presenter.command.SearchTabCommand;
+import com.newsalligator.presenter.tools.ArticleSetter;
+import com.newsalligator.presenter.tools.ArticleSize;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,14 +28,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 /**
- * The {@code LatestTabPresenter} class is a class to manage the latest tab view.
+ * The {@code CategoryTabPresenter} to display category tab view.
  * @author Khanh Nguyen, Quan Tran, Phong Au
  */
-public class LatestTabPresenter extends Presenter {
+public class CategoryTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	@FXML private Label dateLabel;
+	@FXML private Label categoryLabel;
 	
 	@FXML private TextField searchBar;
 	@FXML private Label pageLabel;
@@ -46,23 +49,13 @@ public class LatestTabPresenter extends Presenter {
 	@FXML private Group article5;
 	@FXML private Group article6;
 	
-	/**
-	 * List of {@code ArticleData} objects representing latest articles.
-	 */
-	private List<ArticleData> latestData;
-	
-	/**
-	 * Page number.
-	 */
+	private List<ArticleData> categoryData;
 	private int page;
-	
-	/**
-	 * Group of articles.
-	 */
 	private Group[] articles;
+	private String category;
 
     /**
-     * Initializes the latest tab view.
+     * Initializes the category tab view.
      */
 	@FXML
 	void initialize() {
@@ -86,28 +79,31 @@ public class LatestTabPresenter extends Presenter {
      * Performs a search when the Enter key is pressed.
      * 
      * @param key the key event
+     * @throws IOException if there is an error processing the search
      */
 	@FXML
-	private void searchByKey(KeyEvent key) {
+	private void searchByKey(KeyEvent key) throws IOException {
 		if (key.getCode() == KeyCode.ENTER) {
-			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+			String searchContent = searchBar.getText();
+			SearchTabCommand command = new SearchTabCommand(searchContent, "All", "All");
 			
-			UIManager.getInstance().executeCommand(command);
+			PresenterManager.getInstance().executeCommand(command);
 		}
 	}
 	
     /**
-     * Performs a search when the search button is clicked.
+     * Initiates a search when the search button is clicked.
      */
 	@FXML
 	private void searchByButton() {
-		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+		String searchContent = searchBar.getText();
+		SearchTabCommand command = new SearchTabCommand(searchContent, "All", "All");
 		
-		UIManager.getInstance().executeCommand(command);
+		PresenterManager.getInstance().executeCommand(command);
 	}
 	
     /**
-     * Switches to the next or previous page of articles.
+     * Switches the current page of articles.
      * 
      * @param event the action event
      */
@@ -124,15 +120,15 @@ public class LatestTabPresenter extends Presenter {
 	} 
 	
     /**
-     * Switches to the Homepage tab.
+     * Switches to the homepage.
      */
 	@FXML
 	private void switchToHomepage() {
-		UIManager.getInstance().executeCommand(new HomepageCommand());
+		PresenterManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
     /**
-     * Updates the displayed articles based on the current page.
+     * Updates the articles displayed on the current page.
      */
 	private void updateArticles() {
 		scrollPane.setVvalue(0);
@@ -140,11 +136,11 @@ public class LatestTabPresenter extends Presenter {
 		int first = (page - 1) * 6;
 		int last = (page - 1) * 6 + 6;
 		
-		ArticleSetter.setArrayArticleViews(articles, latestData.subList(first, last), ArticleSize.BIG);
+		ArticleSetter.setArrayArticleViews(articles, categoryData.subList(first, last), ArticleSize.BIG);
 	}
 	
     /**
-     * Sets the current page and updates the page label.
+     * Sets the current page number.
      * 
      * @param newPage the new page number
      */
@@ -168,8 +164,8 @@ public class LatestTabPresenter extends Presenter {
 		else selectedGroup = (Group) clickedObject.getParent();
 		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
-		ArticleData selectedData = latestData.get(index);
-		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
+		ArticleData selectedData = categoryData.get(index);
+		PresenterManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
     /**
@@ -177,7 +173,7 @@ public class LatestTabPresenter extends Presenter {
      */
 	@FXML
 	private void returnScene() {
-		UIManager.getInstance().returnCommand();
+		PresenterManager.getInstance().returnCommand();
 	}
 	
     /**
@@ -185,7 +181,7 @@ public class LatestTabPresenter extends Presenter {
      */
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardCommand();
+		PresenterManager.getInstance().forwardCommand();
 	}
 	
     /**
@@ -193,7 +189,7 @@ public class LatestTabPresenter extends Presenter {
      */
 	@FXML 
 	private void openHistory() {
-		UIManager.getInstance().openHistoryWindow();
+		PresenterManager.getInstance().openHistoryWindow();
 	}
 	
     /**
@@ -215,7 +211,10 @@ public class LatestTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		latestData = Model.getInstance().getLatest(60);
+		category = (String) PresenterManager.getInstance().getCurrentCommandValue();
+		
+		categoryLabel.setText("Category: " + category);
+		categoryData = Model.getInstance().getLatest(60, category);
 		
 		searchBar.clear();
 		

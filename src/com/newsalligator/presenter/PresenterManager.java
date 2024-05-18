@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface;
+package com.newsalligator.presenter;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -6,9 +6,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 import com.newsalligator.model.Model;
-import com.newsalligator.userinterface.command.Command;
-import com.newsalligator.userinterface.command.HomepageCommand;
-import com.newsalligator.userinterface.presenter.Presenter;
+import com.newsalligator.presenter.command.Command;
+import com.newsalligator.presenter.command.HomepageCommand;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,20 +21,20 @@ import java.io.File;
  *  including switching scenes, maintaining history, and initializing the UI components.
  *  @author Khanh Nguyen, Phong Au
  */
-public class UIManager {
+public class PresenterManager {
 	private static final String VIEW_PATH = "resources/views/";
-	private static UIManager instance;
+	private static PresenterManager instance;
 	private static HistoryWindow historyPresenter;
-    private UIManager() { }
+    private PresenterManager() { }
     
     /**
      * Returns the singleton instance of {@code UIManager}.
      * @return the singleton instance 
      */
-    public static UIManager getInstance() {
+    public static PresenterManager getInstance() {
         if(instance == null) {
         	historyPresenter = new HistoryWindow();
-            instance = new UIManager();
+            instance = new PresenterManager();
         }
         return instance;
     }

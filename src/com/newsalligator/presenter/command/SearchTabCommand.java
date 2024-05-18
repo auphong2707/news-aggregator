@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.command;
+package com.newsalligator.presenter.command;
 
 import java.util.ArrayList;
 import java.util.Arrays;

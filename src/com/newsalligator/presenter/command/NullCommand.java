@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.command;
+package com.newsalligator.presenter.command;
 
 /**
  * The {@code NullCommand} class is an abstract implementation of the {@code Command} class

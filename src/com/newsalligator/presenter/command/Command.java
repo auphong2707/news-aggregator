@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.command;
+package com.newsalligator.presenter.command;
 
 /**
  * <h1> Command </h1>

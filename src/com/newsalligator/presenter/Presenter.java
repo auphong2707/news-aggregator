@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.presenter;
+package com.newsalligator.presenter;
 
 /**
  * <h1> Presenter </h1>

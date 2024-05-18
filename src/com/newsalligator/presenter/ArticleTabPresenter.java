@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.presenter;
+package com.newsalligator.presenter;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -9,8 +9,9 @@ import java.util.List;
 
 import com.newsalligator.model.ArticleData;
 import com.newsalligator.model.Model;
-import com.newsalligator.userinterface.UIManager;
-import com.newsalligator.userinterface.command.*;
+import com.newsalligator.presenter.command.*;
+import com.newsalligator.presenter.tools.ArticleSetter;
+import com.newsalligator.presenter.tools.ArticleSize;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -109,7 +110,7 @@ public class ArticleTabPresenter extends Presenter {
 
 	@Override
 	public void sceneSwitchInitialize() {
-		selectedArticle = (ArticleData) UIManager.getInstance().getCurrentCommandValue();
+		selectedArticle = (ArticleData) PresenterManager.getInstance().getCurrentCommandValue();
 		
 		String title = selectedArticle.getTITLE();
 		String intro = selectedArticle.getINTRO();
@@ -159,7 +160,7 @@ public class ArticleTabPresenter extends Presenter {
      */
 	@FXML
 	private void switchToHomepage() {
-		UIManager.getInstance().executeCommand(new HomepageCommand());
+		PresenterManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
     /**
@@ -167,7 +168,7 @@ public class ArticleTabPresenter extends Presenter {
      */
 	@FXML
 	private void switchToLatestTab() {
-		UIManager.getInstance().executeCommand(new LatestTabCommand());
+		PresenterManager.getInstance().executeCommand(new LatestTabCommand());
 	}
 	
     /**
@@ -190,7 +191,7 @@ public class ArticleTabPresenter extends Presenter {
 		List<ArticleData> selectedList = (indexCode.charAt(0) == 'L') ? latestData : randomData;
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
 
-		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
+		PresenterManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
     /**
@@ -198,7 +199,7 @@ public class ArticleTabPresenter extends Presenter {
      */
 	@FXML
 	private void returnScene() {
-		UIManager.getInstance().returnCommand();
+		PresenterManager.getInstance().returnCommand();
 	}
 	
     /**
@@ -206,7 +207,7 @@ public class ArticleTabPresenter extends Presenter {
      */
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardCommand();
+		PresenterManager.getInstance().forwardCommand();
 	}
 	
     /**
@@ -214,7 +215,7 @@ public class ArticleTabPresenter extends Presenter {
      */
 	@FXML 
 	private void openHistory() {
-		UIManager.getInstance().openHistoryWindow();
+		PresenterManager.getInstance().openHistoryWindow();
 	}
 	
     /**

@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.presenter;
+package com.newsalligator.presenter;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -11,8 +11,9 @@ import java.util.Optional;
 
 import com.newsalligator.model.ArticleData;
 import com.newsalligator.model.Model;
-import com.newsalligator.userinterface.UIManager;
-import com.newsalligator.userinterface.command.*;
+import com.newsalligator.presenter.command.*;
+import com.newsalligator.presenter.tools.ArticleSetter;
+import com.newsalligator.presenter.tools.ArticleSize;
 
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -149,7 +150,7 @@ public class HomepagePresenter extends Presenter {
      */
 	@FXML
 	private void switchToTrendingTab() {
-		UIManager.getInstance().executeCommand(new TrendingTabCommand());
+		PresenterManager.getInstance().executeCommand(new TrendingTabCommand());
 	}
 	
     /**
@@ -157,7 +158,7 @@ public class HomepagePresenter extends Presenter {
      */
 	@FXML
 	private void switchToLatestTab() {
-		UIManager.getInstance().executeCommand(new LatestTabCommand());
+		PresenterManager.getInstance().executeCommand(new LatestTabCommand());
 	}
 	
     /**
@@ -166,7 +167,7 @@ public class HomepagePresenter extends Presenter {
 	@FXML
 	private void switchTCategoryTab(MouseEvent event) {
 		String category = ((Label) event.getSource()).getText();
-		UIManager.getInstance().executeCommand(new CategoryTabCommand(category));
+		PresenterManager.getInstance().executeCommand(new CategoryTabCommand(category));
 	}
 	
     /**
@@ -179,7 +180,7 @@ public class HomepagePresenter extends Presenter {
 		if (key.getCode() == KeyCode.ENTER) {
 			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 			
-			UIManager.getInstance().executeCommand(command);
+			PresenterManager.getInstance().executeCommand(command);
 		}
 	}
 	
@@ -190,7 +191,7 @@ public class HomepagePresenter extends Presenter {
 	private void searchByButton() {
 		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
 		
-		UIManager.getInstance().executeCommand(command);
+		PresenterManager.getInstance().executeCommand(command);
 	}
 	
     /**
@@ -219,7 +220,7 @@ public class HomepagePresenter extends Presenter {
 			selectedList = trendingData;
 		
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
-		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
+		PresenterManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
     /**
@@ -227,7 +228,7 @@ public class HomepagePresenter extends Presenter {
      */
 	@FXML
 	private void returnScene() {
-		UIManager.getInstance().returnCommand();
+		PresenterManager.getInstance().returnCommand();
 	}
 	
     /**
@@ -235,7 +236,7 @@ public class HomepagePresenter extends Presenter {
      */
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardCommand();
+		PresenterManager.getInstance().forwardCommand();
 	}
 	
     /**
@@ -243,7 +244,7 @@ public class HomepagePresenter extends Presenter {
      */
 	@FXML 
 	private void openHistory() {
-		UIManager.getInstance().openHistoryWindow();
+		PresenterManager.getInstance().openHistoryWindow();
 	}
 	
     /**

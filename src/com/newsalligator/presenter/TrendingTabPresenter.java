@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.presenter;
+package com.newsalligator.presenter;
 
 
 import java.awt.Desktop;
@@ -10,15 +10,17 @@ import java.util.List;
 
 import com.newsalligator.model.ArticleData;
 import com.newsalligator.model.Model;
-import com.newsalligator.userinterface.UIManager;
-import com.newsalligator.userinterface.command.*;
+import com.newsalligator.presenter.command.ArticleTabCommand;
+import com.newsalligator.presenter.command.HomepageCommand;
+import com.newsalligator.presenter.command.SearchTabCommand;
+import com.newsalligator.presenter.tools.ArticleSetter;
+import com.newsalligator.presenter.tools.ArticleSize;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -26,34 +28,30 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 /**
- * The {@code SearchTabPresenter} class is a class to manage the search tab view.
+ * The {@code TrendingTabPresenter} class is a class to manage the trending tab view.
  * @author Khanh Nguyen, Quan Tran, Phong Au
  */
-public class SearchTabPresenter extends Presenter {
+public class TrendingTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	@FXML private Label dateLabel;
 	
-	@FXML private ComboBox<String> categoryBox;
-	@FXML private ComboBox<String> webBox;
-	
+	@FXML private TextField searchBar;
 	@FXML private Label pageLabel;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
-	
-	@FXML private TextField searchBar;
 	
 	@FXML private Group article1;
 	@FXML private Group article2;
 	@FXML private Group article3;
 	@FXML private Group article4;
 	@FXML private Group article5;
+	@FXML private Group article6;
 	
 	/**
-	 * List of {@code ArticleData} objects representing searched articles.
+	 * List of {@code ArticleData} objects representing trending articles.
 	 */
-	private List<ArticleData> searchData;
+	private List<ArticleData> trendingData;
 	/**
 	 * Page number.
 	 */
@@ -64,16 +62,12 @@ public class SearchTabPresenter extends Presenter {
 	private Group[] articles;
 
     /**
-     * Initializes the search tab view.
+     * Initializes the Trending tab view.
      */
 	@FXML
 	void initialize() {
 		setDate();
-		articles = new Group[] {article1, article2, article3, article4, article5};
-		
-		categoryBox.getItems().addAll("All", "Blockchain", "Crypto", "Others");
-		webBox.getItems().addAll("All", "Academy Moralis", "Coindesk", "The Conversation", 
-				"Financial Express", "Freight Wave", "Financial Times", "The Blockchain", "The Fintech Times");
+		articles = new Group[] {article1, article2, article3, article4, article5, article6};
 	}
 	
     /**
@@ -89,7 +83,31 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
     /**
-     * Switches to the next or previous page of articles.
+     * Performs a search when the Enter key is pressed.
+     * 
+     * @param key the key event
+     */
+	@FXML
+	private void searchByKey(KeyEvent key) {
+		if (key.getCode() == KeyCode.ENTER) {
+			SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+			
+			PresenterManager.getInstance().executeCommand(command);
+		}
+	}
+	
+    /**
+     * Initiates a search when the search button is clicked.
+     */
+	@FXML
+	private void searchByButton() {
+		SearchTabCommand command = new SearchTabCommand(searchBar.getText(), "All", "All");
+		
+		PresenterManager.getInstance().executeCommand(command);
+	}
+	
+    /**
+     * Switches to the next or previous page of trending articles.
      * 
      * @param event the action event
      */
@@ -102,71 +120,27 @@ public class SearchTabPresenter extends Presenter {
 			setPage(page - 1);
 		}
 		
-		scrollPane.setVvalue(0);
-		
 		updateArticles();
 	} 
-	
-    /**
-     * Performs a search when the Enter key is pressed.
-     * 
-     * @param key the key event
-     */
-	@FXML
-	private void search(KeyEvent key) {
-		if (key.getCode() == KeyCode.ENTER) {
-			String content = searchBar.getText();
-			String category = categoryBox.getValue();
-			String webSource = webBox.getValue();
-			
-			SearchTabCommand command = new SearchTabCommand(content, category, webSource);
-			
-			UIManager.getInstance().executeCommand(command);
-		} 	
-	}
-	
-    /**
-     * Performs a search when the search button is clicked.
-     */
-	@FXML
-	private void searchByButton() {
-		String content = searchBar.getText();
-		String category = categoryBox.getValue();
-		String webSource = webBox.getValue();
-		
-		SearchTabCommand command = new SearchTabCommand(content, category, webSource);
-		
-		UIManager.getInstance().executeCommand(command);
-	}
-	
-    /**
-     * Clears the search.
-     */
-	@FXML
-	private void clearSearch() {
-		searchBar.clear();
-		categoryBox.setValue("All");
-		webBox.setValue("All");	
-	}
 	
     /**
      * Switches to the Homepage tab.
      */
 	@FXML
 	private void switchToHomepage() {
-		UIManager.getInstance().executeCommand(new HomepageCommand());
+		PresenterManager.getInstance().executeCommand(new HomepageCommand());
 	}
 	
     /**
-     * Updates the displayed articles based on the current page.
+     * Updates the displayed trending articles based on the current page.
      */
 	private void updateArticles() {
 		scrollPane.setVvalue(0);
 		
-		int first = (page - 1) * 5;
-		int last = (page - 1) * 5 + 5;
+		int first = (page - 1) * 6;
+		int last = (page - 1) * 6 + 6;
 		
-		ArticleSetter.setArrayArticleViews(articles, searchData.subList(first, last), ArticleSize.BIG);
+		ArticleSetter.setArrayArticleViews(articles, trendingData.subList(first, last), ArticleSize.BIG);
 	}
 	
     /**
@@ -180,7 +154,7 @@ public class SearchTabPresenter extends Presenter {
 	}
 	
     /**
-     * Switches to the article view for the article.
+     * Switches to the article view for the selected trending article.
      * 
      * @param event the mouse click event
      */
@@ -192,10 +166,10 @@ public class SearchTabPresenter extends Presenter {
 			selectedGroup = (Group) clickedObject;
 		}
 		else selectedGroup = (Group) clickedObject.getParent();
-		int index = (page - 1)*5 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
+		int index = (page - 1)*6 + Integer.parseInt(((Text)(selectedGroup.getChildren().get(5))).getText());
 		
-		ArticleData selectedData = searchData.get(index);
-		UIManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
+		ArticleData selectedData = trendingData.get(index);
+		PresenterManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
     }
 	
     /**
@@ -203,7 +177,7 @@ public class SearchTabPresenter extends Presenter {
      */
 	@FXML
 	private void returnScene() {
-		UIManager.getInstance().returnCommand();
+		PresenterManager.getInstance().returnCommand();
 	}
 	
     /**
@@ -211,7 +185,7 @@ public class SearchTabPresenter extends Presenter {
      */
 	@FXML
 	private void forwardScene() {
-		UIManager.getInstance().forwardCommand();
+		PresenterManager.getInstance().forwardCommand();
 	}
 	
     /**
@@ -219,7 +193,7 @@ public class SearchTabPresenter extends Presenter {
      */
 	@FXML 
 	private void openHistory() {
-		UIManager.getInstance().openHistoryWindow();
+		PresenterManager.getInstance().openHistoryWindow();
 	}
 	
     /**
@@ -229,7 +203,7 @@ public class SearchTabPresenter extends Presenter {
      */
 	@FXML
 	private void openWebsite(MouseEvent event) {
-	    Label clickedObject = (Label) event.getSource();
+		Label clickedObject = (Label) event.getSource();
 		String link = newsToLink(clickedObject.getText());
 		
 		try {
@@ -241,14 +215,9 @@ public class SearchTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		@SuppressWarnings("unchecked")
-		List<String> searchContent = (List<String>) UIManager.getInstance().getCurrentCommandValue();
+		trendingData = Model.getInstance().getTrending(60);
 		
-		searchBar.setText(searchContent.get(0));
-		categoryBox.setValue(searchContent.get(1));
-		webBox.setValue(searchContent.get(2));
-		
-		searchData = Model.getInstance().search(searchContent.get(0), searchContent.get(1), searchContent.get(2));
+		searchBar.clear();
 		
 		setPage(1);
 

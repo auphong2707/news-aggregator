@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.command;
+package com.newsalligator.presenter.command;
 
 /**
  * The {@code CategoryTabCommand} class represents a command to switch to the category tab scene.

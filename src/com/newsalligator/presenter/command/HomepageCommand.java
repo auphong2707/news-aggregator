@@ -1,4 +1,4 @@
-package com.newsalligator.userinterface.command;
+package com.newsalligator.presenter.command;
 
 /**
  * The {@code HomepageCommand} class represents a command to switch to the homepage scene.
