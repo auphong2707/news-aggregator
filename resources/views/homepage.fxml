@@ -26,7 +26,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2350.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <VBox layoutX="565.0" layoutY="1205.0" prefHeight="200.0" prefWidth="100.0" spacing="37.0">
+                  <VBox layoutX="565.0" layoutY="1205.0" prefHeight="200.0" prefWidth="100.0" spacing="35.0">
                      <children>
                         <Group>
                            <children>
@@ -58,19 +58,19 @@
                               </Line>
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle1c">
+                        <Group fx:id="mediumArticle1c" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="250.0" layoutY="205.0" prefHeight="33.0" prefWidth="321.0" text="Website">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="93.0" prefHeight="44.0" prefWidth="321.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="93.0" prefHeight="56.0" prefWidth="320.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="133.0" prefHeight="24.0" prefWidth="321.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="149.0" prefHeight="24.0" prefWidth="321.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -80,7 +80,7 @@
                                     <Image url="@../images/alligator.png" />
                                  </image>
                               </ImageView>
-                              <Text layoutX="9.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
+                              <Text layoutX="9.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C0" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -117,19 +117,19 @@
                               </Line>
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle2c" layoutX="19.0" layoutY="2.0">
+                        <Group fx:id="mediumArticle2c" layoutX="19.0" layoutY="2.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="250.0" layoutY="200.0" prefHeight="33.0" prefWidth="320.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="95.0" prefHeight="44.0" prefWidth="320.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="95.0" prefHeight="56.0" prefWidth="320.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="135.0" prefHeight="24.0" prefWidth="317.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="149.0" prefHeight="24.0" prefWidth="317.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -139,7 +139,7 @@
                                     <Image url="@../images/alligator.png" />
                                  </image>
                               </ImageView>
-                              <Text layoutX="9.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" visible="false" />
+                              <Text layoutX="9.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C1" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -176,19 +176,19 @@
                               </Line>
                            </children>
                         </Group>
-                        <Group fx:id="notSoBigArticle3c" layoutX="19.0" layoutY="352.0">
+                        <Group fx:id="mediumArticle3c" layoutX="19.0" layoutY="352.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="250.0" layoutY="200.0" prefHeight="33.0" prefWidth="331.0" text="Website" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="95.0" prefHeight="44.0" prefWidth="331.0" text="Article Title">
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="95.0" prefHeight="56.0" prefWidth="320.0" text="Article Title" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="135.0" prefHeight="24.0" prefWidth="331.0" text="Brief summary">
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="149.0" prefHeight="24.0" prefWidth="331.0" text="Brief summary">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -198,7 +198,7 @@
                                     <Image url="@../images/alligator.png" />
                                  </image>
                               </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" visible="false" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C2" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -243,9 +243,9 @@
                   <Line endX="585.0" layoutX="85.0" layoutY="1165.0" />
                   <Line layoutX="1115.0" layoutY="1165.0" startX="-375.0" />
                   <Line endX="585.0" layoutX="85.0" layoutY="526.5" stroke="#a19797" />
-                  <VBox layoutX="102.0" layoutY="1179.0" prefHeight="1031.0" prefWidth="432.0" spacing="19.0">
+                  <VBox layoutX="102.0" layoutY="1179.0" prefHeight="912.0" prefWidth="432.0" spacing="19.0">
                      <children>
-                        <Group fx:id="notSoBigArticle1" layoutX="17.0" layoutY="10.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle1" layoutX="17.0" layoutY="10.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -274,7 +274,7 @@
                            </cursor>
                         </Group>
                         <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
-                        <Group fx:id="notSoBigArticle2" layoutX="17.0" layoutY="41.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle2" layoutX="17.0" layoutY="41.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -303,7 +303,7 @@
                            </cursor>
                         </Group>
                         <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
-                        <Group fx:id="notSoBigArticle3" layoutX="17.0" layoutY="214.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle3" layoutX="17.0" layoutY="214.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -332,7 +332,7 @@
                            </cursor>
                         </Group>
                         <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
-                        <Group fx:id="notSoBigArticle4" layoutX="17.0" layoutY="387.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle4" layoutX="17.0" layoutY="387.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -361,7 +361,7 @@
                            </cursor>
                         </Group>
                         <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
-                        <Group fx:id="notSoBigArticle5" layoutX="17.0" layoutY="560.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle5" layoutX="17.0" layoutY="560.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -702,7 +702,7 @@
                   </Label>
                   <HBox layoutX="75.0" layoutY="790.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                      <children>
-                        <Group fx:id="notSoBigArticle1t" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle1t" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="167.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -730,7 +730,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Group fx:id="notSoBigArticle2t" layoutX="6.0" layoutY="41.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle2t" layoutX="6.0" layoutY="41.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="167.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -763,7 +763,7 @@
                   <Line endX="585.0" layoutX="85.0" layoutY="770.0" stroke="#a19797" />
                   <HBox layoutX="75.0" layoutY="990.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                      <children>
-                        <Group fx:id="notSoBigArticle3t" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle3t" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="167.0" text="Website" textAlignment="CENTER">
                                  <font>
@@ -791,7 +791,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Group fx:id="notSoBigArticle4t" layoutX="6.0" layoutY="41.0" onMouseClicked="#switchToArticle">
+                        <Group fx:id="mediumArticle4t" layoutX="6.0" layoutY="41.0" onMouseClicked="#switchToArticle">
                            <children>
                               <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="167.0" text="Website" textAlignment="CENTER">
                                  <font>
