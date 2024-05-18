@@ -1,3 +1,4 @@
+package main;
 import com.newsalligator.presenter.*;
 
 import javafx.application.Application;
