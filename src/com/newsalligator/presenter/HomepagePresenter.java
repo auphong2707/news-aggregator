@@ -54,20 +54,20 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Group smallArticle5;
 	@FXML private Group smallArticle6;
 	
-	@FXML private Group notSoBigArticle1;
-	@FXML private Group notSoBigArticle2;
-	@FXML private Group notSoBigArticle3;
-	@FXML private Group notSoBigArticle4;
-	@FXML private Group notSoBigArticle5;
+	@FXML private Group mediumArticle1;
+	@FXML private Group mediumArticle2;
+	@FXML private Group mediumArticle3;
+	@FXML private Group mediumArticle4;
+	@FXML private Group mediumArticle5;
 	
-	@FXML private Group notSoBigArticle1t;
-	@FXML private Group notSoBigArticle2t;
-	@FXML private Group notSoBigArticle3t;
-	@FXML private Group notSoBigArticle4t;
+	@FXML private Group mediumArticle1t;
+	@FXML private Group mediumArticle2t;
+	@FXML private Group mediumArticle3t;
+	@FXML private Group mediumArticle4t;
 	
-	@FXML private Group notSoBigArticle1c;
-	@FXML private Group notSoBigArticle2c;
-	@FXML private Group notSoBigArticle3c;
+	@FXML private Group mediumArticle1c;
+	@FXML private Group mediumArticle2c;
+	@FXML private Group mediumArticle3c;
 	
 	@FXML private Group bigArticle1;
 	@FXML private Group bigArticle2;
@@ -134,12 +134,12 @@ public class HomepagePresenter extends Presenter {
      * Loads and sets random articles in the view.
      */
 	private void setRandomArticle() {
-		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
-											 notSoBigArticle4, notSoBigArticle5};
+		Group[] randomArticle = new Group[] {mediumArticle1, mediumArticle2, mediumArticle3,
+											 mediumArticle4, mediumArticle5};
 		
 		randomData = model.getRandom(randomArticle.length);
 		
-		ArticleSetter.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
+		ArticleSetter.setArrayArticleViews(randomArticle, randomData, ArticleSize.MEDIUM);
 	}
 	
     /**
@@ -147,13 +147,13 @@ public class HomepagePresenter extends Presenter {
      */
 	private void setTrendingArticle() {
 		Group[] trendingBigArticle = new Group[] {bigArticle1, bigArticle2};
-		Group[] trendingNotSoBigArticle = new Group[] {notSoBigArticle1t, notSoBigArticle2t,
-													   notSoBigArticle3t, notSoBigArticle4t};
+		Group[] trendingmediumArticle = new Group[] {mediumArticle1t, mediumArticle2t,
+													   mediumArticle3t, mediumArticle4t};
 		
 		trendingData = model.getTrending(6);
 		
 		ArticleSetter.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
-		ArticleSetter.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
+		ArticleSetter.setArrayArticleViews(trendingmediumArticle, trendingData.subList(2, 6), ArticleSize.MEDIUM);
 	}
 	
 	/**
@@ -170,9 +170,9 @@ public class HomepagePresenter extends Presenter {
 		categoryData.add(cryptoData);
 		categoryData.add(othersData);
 	
-		Group[] categoryMediumArticle = new Group[] {notSoBigArticle1c, notSoBigArticle2c, notSoBigArticle3c};
+		Group[] categoryArticle = new Group[] {mediumArticle1c, mediumArticle2c, mediumArticle3c};
 		
-		ArticleSetter.setArrayArticleViews(categoryMediumArticle, categoryData, ArticleSize.NOT_SO_BIG);
+		ArticleSetter.setArrayArticleViews(categoryArticle, categoryData, ArticleSize.MEDIUM);
 	}
 	
     /**
@@ -248,6 +248,8 @@ public class HomepagePresenter extends Presenter {
 			selectedList = randomData;
 		else if (indexCode.charAt(0) == 'T')
 			selectedList = trendingData;
+		else if (indexCode.charAt(0) == 'C')
+			selectedList = categoryData;
 		
 		ArticleData selectedData = selectedList.get(indexCode.charAt(1) - '0');
 		PresenterManager.getInstance().executeCommand(new ArticleTabCommand(selectedData));
