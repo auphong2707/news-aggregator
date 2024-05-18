@@ -6,8 +6,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import com.newsalligator.model.ArticleData;
 import com.newsalligator.presenter.command.*;
@@ -56,20 +59,24 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Group notSoBigArticle3;
 	@FXML private Group notSoBigArticle4;
 	@FXML private Group notSoBigArticle5;
-	@FXML private Group notSoBigArticle6;
 	
 	@FXML private Group notSoBigArticle1t;
 	@FXML private Group notSoBigArticle2t;
 	@FXML private Group notSoBigArticle3t;
 	@FXML private Group notSoBigArticle4t;
 	
-	@FXML private Group mediumArticle1;
+	@FXML private Group notSoBigArticle1c;
+	@FXML private Group notSoBigArticle2c;
+	@FXML private Group notSoBigArticle3c;
 	
 	@FXML private Group bigArticle1;
 	@FXML private Group bigArticle2;
 	
 	@FXML private TextField searchBar;
 	
+	private ArticleData blockchainData;
+	private ArticleData cryptoData;
+	private ArticleData othersData;
 	/**
 	 * List of {@code ArticleData} objects representing latest articles.
 	 */
@@ -82,6 +89,10 @@ public class HomepagePresenter extends Presenter {
 	 * List of {@code ArticleData} objects representing trending articles.
 	 */
 	private List<ArticleData> trendingData;
+	/**
+	 * List of {@code ArticleData} objects representing category articles.
+	 */
+	private List<ArticleData> categoryData;
 	
     /**
      * Initializes the Homepage view by setting the date and loading articles.
@@ -92,6 +103,7 @@ public class HomepagePresenter extends Presenter {
 		setLatestArticle();
 		setRandomArticle();
 		setTrendingArticle();
+		setCategoryArticle();
 	}
 	
     /**
@@ -123,7 +135,7 @@ public class HomepagePresenter extends Presenter {
      */
 	private void setRandomArticle() {
 		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
-											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
+											 notSoBigArticle4, notSoBigArticle5};
 		
 		randomData = model.getRandom(randomArticle.length);
 		
@@ -142,6 +154,25 @@ public class HomepagePresenter extends Presenter {
 		
 		ArticleSetter.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
 		ArticleSetter.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
+	}
+	
+	/**
+     * Loads and sets the category articles in the view.
+     */
+	private void setCategoryArticle() {
+		categoryData = new ArrayList<>();
+		
+		blockchainData = model.getLatest(1, "Blockchain").get(0);
+		cryptoData = model.getLatest(1, "Crypto").get(0);
+		othersData = model.getLatest(1, "Others").get(0);
+		
+		categoryData.add(blockchainData);
+		categoryData.add(cryptoData);
+		categoryData.add(othersData);
+	
+		Group[] categoryMediumArticle = new Group[] {notSoBigArticle1c, notSoBigArticle2c, notSoBigArticle3c};
+		
+		ArticleSetter.setArrayArticleViews(categoryMediumArticle, categoryData, ArticleSize.NOT_SO_BIG);
 	}
 	
     /**
