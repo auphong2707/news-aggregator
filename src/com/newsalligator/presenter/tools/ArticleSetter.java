@@ -1,6 +1,8 @@
 package com.newsalligator.presenter.tools;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.newsalligator.model.ArticleData;
 
@@ -23,23 +25,28 @@ public class ArticleSetter {
 	 * @param size the size of article view
 	 */
 	public static void setArrayArticleViews(Group[] views, List<ArticleData> data, ArticleSize size) {
-		for (int i = 0; i < views.length; i++) {
-			int index = i;
-			
-			Thread thread = new Thread(() -> {
-				try {
-					Thread.sleep(500);
-						Platform.runLater(() -> {
-							ArticleSetter.setArticleView(views[index], data.get(index), size);
-						});
-				} catch (InterruptedException ex) {
-	                ex.printStackTrace();
-	            }
-			});
-			
-			thread.setDaemon(true);
-			thread.start();
-		}
+		ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+
+        for (int i = 0; i < views.length; i++) {
+            int index = i;
+
+            executorService.submit(() -> {
+                try {
+                    // Simulating delay if necessary
+                    Thread.sleep(0);
+                    
+                    Platform.runLater(() -> {
+                        ArticleSetter.setArticleView(views[index], data.get(index), size);
+                    });
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                    Thread.currentThread().interrupt(); // Restore interrupt status
+                }
+            });
+        }
+
+        // Optionally shut down the executor service if you don't need it for other tasks
+        executorService.shutdown();
 	}
 
     /**
@@ -198,7 +205,9 @@ public class ArticleSetter {
 		
 		String imgURL = data.getIMAGE();
 		if (imgURL != null && !imgURL.equals("")) {
-			imageView.setImage(new Image(imgURL, 300, 200, false, false));
+			Image image = new Image(imgURL, 150, 100, false, true);
+			System.out.println("Finish");
+			imageView.setImage(image);
 		}
 		else {
 			String blankDirectory = "file:///" + System.getProperty("user.dir") + "/images/blank_rectangle.png";
