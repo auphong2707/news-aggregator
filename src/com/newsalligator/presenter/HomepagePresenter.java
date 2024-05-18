@@ -7,11 +7,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-
 import com.newsalligator.model.ArticleData;
 import com.newsalligator.presenter.command.*;
 import com.newsalligator.presenter.tools.ArticleSetter;
@@ -73,10 +70,6 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Group bigArticle2;
 	
 	@FXML private TextField searchBar;
-	
-	private ArticleData blockchainData;
-	private ArticleData cryptoData;
-	private ArticleData othersData;
 	/**
 	 * List of {@code ArticleData} objects representing latest articles.
 	 */
@@ -162,9 +155,9 @@ public class HomepagePresenter extends Presenter {
 	private void setCategoryArticle() {
 		categoryData = new ArrayList<>();
 		
-		blockchainData = model.getLatest(1, "Blockchain").get(0);
-		cryptoData = model.getLatest(1, "Crypto").get(0);
-		othersData = model.getLatest(1, "Others").get(0);
+		ArticleData blockchainData = model.getLatest(1, "Blockchain").get(0);
+		ArticleData cryptoData = model.getLatest(1, "Crypto").get(0);
+		ArticleData othersData = model.getLatest(1, "Others").get(0);
 		
 		categoryData.add(blockchainData);
 		categoryData.add(cryptoData);
