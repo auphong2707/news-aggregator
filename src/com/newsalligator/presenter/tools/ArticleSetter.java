@@ -61,9 +61,6 @@ public class ArticleSetter {
 		case BIG:
 			setBigArticleView(view, data);
 			return;
-		case NOT_SO_BIG:
-			setNotBigArticleView(view, data);
-			return;
 		case MEDIUM:
 			setMediumArticleView(view, data);
 			return;
@@ -97,24 +94,6 @@ public class ArticleSetter {
      * @param view the group representing the article
      * @param data the {@code ArticleData} object
      */
-	private static void setNotBigArticleView(Group view, ArticleData data) {
-		view.setVisible(data != null);
-		if(data == null) return;
-		
-		List<Node> elements = view.getChildren();
-		
-		setWebsite(elements, data, 0);
-		setTitle(elements, data, 1);
-		setIntro(elements, data, 2);
-		setImage(elements, data, 3);
-	}
-	
-    /**
-     * Sets up a medium size article view.
-     * 
-     * @param view the group representing the article
-     * @param data the {@code ArticleData} object
-     */
 	private static void setMediumArticleView(Group view, ArticleData data) {
 		view.setVisible(data != null);
 		if(data == null) return;
@@ -124,6 +103,7 @@ public class ArticleSetter {
 		setWebsite(elements, data, 0);
 		setTitle(elements, data, 1);
 		setIntro(elements, data, 2);
+		setImage(elements, data, 3);
 	}
 
     /**
