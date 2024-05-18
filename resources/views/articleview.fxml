@@ -414,7 +414,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="forwardButton" layoutX="105.0" layoutY="27.0" mnemonicParsing="false" onAction="#forwardScene">
+                  <Button layoutX="105.0" layoutY="27.0" mnemonicParsing="false" onAction="#forwardScene">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -429,7 +429,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="20.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnScene">
+                  <Button layoutX="20.0" layoutY="27.0" mnemonicParsing="false" onAction="#returnScene">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -444,7 +444,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="historyButton" layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
+                  <Button layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

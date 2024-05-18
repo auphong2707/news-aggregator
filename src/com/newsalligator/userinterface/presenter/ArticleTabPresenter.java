@@ -29,10 +29,6 @@ import javafx.scene.web.WebView;
  */
 public class ArticleTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
-	
-	@FXML private Button historyButton;
-	@FXML private Button returnButton;
-	@FXML private Button forwardButton;
 	@FXML private Label dateLabel;
 	
 	@FXML private ToggleButton contentToggleButton;

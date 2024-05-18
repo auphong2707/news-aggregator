@@ -25,12 +25,12 @@
                <children>
                   <Group layoutX="298.0" layoutY="85.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="280.0">
                      <children>
-                        <Label fx:id="newsAlligator" alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="13.0" onMouseClicked="#switchToHomepage" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="13.0" onMouseClicked="#switchToHomepage" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
                            <font>
                               <Font name="Lucida Sans Demibold Italic" size="68.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="logo" fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" onMouseClicked="#switchToHomepage" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" onMouseClicked="#switchToHomepage" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/alligator.png" />
                            </image>
@@ -290,7 +290,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="forwardButton" layoutX="89.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0">
+                  <Button layoutX="89.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -306,7 +306,7 @@
                      </graphic>
                   </Button>
                   <TextField fx:id="searchBar" layoutX="136.0" layoutY="26.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="344.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <Button layoutX="344.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
@@ -318,7 +318,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="returnButton" layoutX="19.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
+                  <Button layoutX="19.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -333,7 +333,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="historyButton" layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
+                  <Button layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -19,7 +19,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -44,8 +43,6 @@ public class HomepagePresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
 	
 	@FXML private Label dateLabel;
-	@FXML private Label trendingLabel;
-	@FXML private Label latestLabel;
 	
 	@FXML private Group smallArticle1;
 	@FXML private Group smallArticle2;
@@ -72,10 +69,6 @@ public class HomepagePresenter extends Presenter {
 	@FXML private Group bigArticle2;
 	
 	@FXML private TextField searchBar;
-	@FXML private Button searchButton;
-	@FXML private Button returnButton;
-	@FXML private Button forwardButton;
-	@FXML private Button historyButton;
 	
 	/**
 	 * List of {@code ArticleData} objects representing latest articles.

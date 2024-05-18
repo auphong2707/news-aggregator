@@ -22,7 +22,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -34,18 +33,12 @@ import javafx.scene.text.Text;
  */
 public class SearchTabPresenter extends Presenter {
 	@FXML private ScrollPane scrollPane;
-	
-	@FXML private ImageView logo;
-	@FXML private Label newsAlligatorLabel;
 	@FXML private Label dateLabel;
 	
 	@FXML private ComboBox<String> categoryBox;
 	@FXML private ComboBox<String> webBox;
 	
 	@FXML private Label pageLabel;
-	@FXML private Button historyButton;
-	@FXML private Button returnButton;
-	@FXML private Button forwardButton;
 	@FXML private Button nextPage;
 	@FXML private Button previousPage;
 	

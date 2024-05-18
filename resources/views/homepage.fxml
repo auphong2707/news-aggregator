@@ -730,7 +730,7 @@
                      </font>
                   </Text>
                   <TextField fx:id="searchBar" layoutX="106.0" layoutY="28.0" onKeyPressed="#searchByKey" prefHeight="30.0" prefWidth="211.0" promptText="Type article here" />
-                  <Button fx:id="searchButton" layoutX="317.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
+                  <Button layoutX="317.0" layoutY="28.0" mnemonicParsing="false" onAction="#searchByButton" prefHeight="31.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true">
                            <image>
@@ -873,7 +873,7 @@
                   </HBox>
                   <Line endX="280.0" layoutX="82.0" layoutY="970.0" stroke="#a19797" />
                   <Line endX="285.0" layoutX="392.0" layoutY="970.0" stroke="#a19797" />
-                  <Button fx:id="returnButton" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
+                  <Button layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#returnScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" rotate="180.0">
                            <image>
@@ -884,7 +884,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="forwardButton" layoutX="67.0" layoutY="28.0" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
+                  <Button layoutX="67.0" layoutY="28.0" mnemonicParsing="false" onAction="#forwardScene" prefHeight="31.0" prefWidth="35.0" snapToPixel="false">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true">
                            <image>
@@ -896,7 +896,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="historyButton" layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
+                  <Button layoutX="1105.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openHistory" prefHeight="50.0" prefWidth="50.0">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
