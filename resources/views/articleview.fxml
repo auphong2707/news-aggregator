@@ -305,6 +305,9 @@
                                  <font>
                                     <Font name="Berlin Sans FB" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
                               </Label>
                               <Line endX="-45.33331298828125" endY="0.20001220703125" layoutX="542.0" layoutY="-103.0" startX="-124.0" startY="0.20001220703125" stroke="#c10e0ead" strokeMiterLimit="20.0" />
                               <HBox alignment="CENTER" layoutX="-383.0" layoutY="1370.0" prefHeight="35.0" prefWidth="1043.0" spacing="20.0">
