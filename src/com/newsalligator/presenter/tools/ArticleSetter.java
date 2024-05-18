@@ -205,7 +205,7 @@ public class ArticleSetter {
 		
 		String imgURL = data.getIMAGE();
 		if (imgURL != null && !imgURL.equals("")) {
-			Image image = new Image(imgURL, 300, 200, false, false);
+			Image image = new Image(imgURL, 300, 200, false, false, true);
 			imageView.setImage(image);
 		}
 		else {
