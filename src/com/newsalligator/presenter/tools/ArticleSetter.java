@@ -56,7 +56,7 @@ public class ArticleSetter {
      * @param data the {@code ArticleData} object
      * @param size the size of the article view
      */
-	static void setArticleView(Group view, ArticleData data, ArticleSize size) {
+	private static void setArticleView(Group view, ArticleData data, ArticleSize size) {
 		switch(size) {
 		case BIG:
 			setBigArticleView(view, data);
