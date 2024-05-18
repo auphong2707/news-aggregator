@@ -1,5 +1,7 @@
 package com.newsalligator.presenter;
 
+import com.newsalligator.model.Model;
+
 /**
  * <h1> Presenter </h1>
  * The {@code Presenter} is an abstract class to initialize scenes when switching and map
@@ -7,6 +9,8 @@ package com.newsalligator.presenter;
  * @author Phong Au
  */
 public abstract class Presenter {
+	static Model model = new Model();
+	
 	/**
 	 * Handles initialization when the scene is switched.
 	 */

@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.ArticleTabCommand;
 import com.newsalligator.presenter.command.HomepageCommand;
 import com.newsalligator.presenter.command.SearchTabCommand;
@@ -215,7 +214,7 @@ public class TrendingTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		trendingData = Model.getInstance().getTrending(60);
+		trendingData = model.getTrending(60);
 		
 		searchBar.clear();
 		

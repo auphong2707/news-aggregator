@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.*;
 import com.newsalligator.presenter.tools.ArticleSetter;
 import com.newsalligator.presenter.tools.ArticleSize;
@@ -111,7 +110,7 @@ public class HomepagePresenter extends Presenter {
      * Loads and sets the latest articles in the view.
      */
 	private void setLatestArticle() {
-		latestData = Model.getInstance().getLatest(6);
+		latestData = model.getLatest(6);
 		
 		Group[] latestSmallArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3,
 				 								  smallArticle4, smallArticle5, smallArticle6};
@@ -126,7 +125,7 @@ public class HomepagePresenter extends Presenter {
 		Group[] randomArticle = new Group[] {notSoBigArticle1, notSoBigArticle2, notSoBigArticle3,
 											 notSoBigArticle4, notSoBigArticle5, notSoBigArticle6};
 		
-		randomData = Model.getInstance().getRandom(randomArticle.length);
+		randomData = model.getRandom(randomArticle.length);
 		
 		ArticleSetter.setArrayArticleViews(randomArticle, randomData, ArticleSize.NOT_SO_BIG);
 	}
@@ -139,7 +138,7 @@ public class HomepagePresenter extends Presenter {
 		Group[] trendingNotSoBigArticle = new Group[] {notSoBigArticle1t, notSoBigArticle2t,
 													   notSoBigArticle3t, notSoBigArticle4t};
 		
-		trendingData = Model.getInstance().getTrending(6);
+		trendingData = model.getTrending(6);
 		
 		ArticleSetter.setArrayArticleViews(trendingBigArticle, trendingData.subList(0, 2), ArticleSize.BIG);
 		ArticleSetter.setArrayArticleViews(trendingNotSoBigArticle, trendingData.subList(2, 6), ArticleSize.NOT_SO_BIG);
@@ -293,7 +292,7 @@ public class HomepagePresenter extends Presenter {
 	        Task<Void> task = new Task<Void>() {
 	            @Override
 	            protected Void call() throws Exception {
-	                Model.getInstance().aggregateNewData();
+	                model.aggregateNewData();
 	            	return null;
 	            }
 	        };

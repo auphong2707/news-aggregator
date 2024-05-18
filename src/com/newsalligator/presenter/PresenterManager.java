@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.Command;
 import com.newsalligator.presenter.command.HomepageCommand;
 
@@ -180,7 +179,7 @@ public class PresenterManager {
 	 *  Shuts down the application, terminates local servers.
 	 */
 	public void onApplicationShutdown() {
-		Model.getInstance().terminateLocalServer();
+		Presenter.model.terminateLocalServer();
 	}
 	
 	/**

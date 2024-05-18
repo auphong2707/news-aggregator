@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.*;
 import com.newsalligator.presenter.tools.ArticleSetter;
 import com.newsalligator.presenter.tools.ArticleSize;
@@ -16,7 +15,6 @@ import com.newsalligator.presenter.tools.ArticleSize;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
@@ -139,7 +137,7 @@ public class ArticleTabPresenter extends Presenter {
 		Group[] latestArticle = new Group[] {smallArticle1, smallArticle2, smallArticle3, 
 											 smallArticle4, smallArticle5};
 		
-		latestData = Model.getInstance().getLatest(latestArticle.length);
+		latestData = model.getLatest(latestArticle.length);
 		
 		ArticleSetter.setArrayArticleViews(latestArticle, latestData, ArticleSize.SMALL);
 	}
@@ -150,7 +148,7 @@ public class ArticleTabPresenter extends Presenter {
 	private void setReadNextArticle() {
 		Group[] reedNextArticle = new Group[] {bigArticle1, bigArticle2, bigArticle3};
 		
-		randomData = Model.getInstance().getRandom(reedNextArticle.length);
+		randomData = model.getRandom(reedNextArticle.length);
 		
 		ArticleSetter.setArrayArticleViews(reedNextArticle, randomData, ArticleSize.BIG);
 	}

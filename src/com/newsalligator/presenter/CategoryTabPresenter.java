@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.ArticleTabCommand;
 import com.newsalligator.presenter.command.HomepageCommand;
 import com.newsalligator.presenter.command.SearchTabCommand;
@@ -214,7 +213,7 @@ public class CategoryTabPresenter extends Presenter {
 		category = (String) PresenterManager.getInstance().getCurrentCommandValue();
 		
 		categoryLabel.setText("Category: " + category);
-		categoryData = Model.getInstance().getLatest(60, category);
+		categoryData = model.getLatest(60, category);
 		
 		searchBar.clear();
 		

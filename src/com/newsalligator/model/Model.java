@@ -27,25 +27,13 @@ public class Model {
 	
 	private static long processPid = -1;
 	
-	private static Model instance;
-	
 	/**
 	 * Constructor to initialize the {@code Model} instance and run the local server.
 	 */
-    private Model() {
+    public Model() {
+    	System.out.println(this);
     	runLocalServer();
     	scrapers = WebScraper.getAllInstances();
-    }
-    
-    /**
-     * Gets the singleton instance of the {@code Model}
-     * @return the singleton instance of the {@code Model}
-     */
-    public static Model getInstance() {
-        if(instance == null) {
-            instance = new Model();
-        }
-        return instance;
     }
 
     /**

@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.*;
 import com.newsalligator.presenter.tools.ArticleSetter;
 import com.newsalligator.presenter.tools.ArticleSize;
@@ -216,7 +215,7 @@ public class LatestTabPresenter extends Presenter {
 	
 	@Override
 	public void sceneSwitchInitialize() {
-		latestData = Model.getInstance().getLatest(60);
+		latestData = model.getLatest(60);
 		
 		searchBar.clear();
 		

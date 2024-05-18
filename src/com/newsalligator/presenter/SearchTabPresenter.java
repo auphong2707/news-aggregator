@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.newsalligator.model.ArticleData;
-import com.newsalligator.model.Model;
 import com.newsalligator.presenter.command.*;
 import com.newsalligator.presenter.tools.ArticleSetter;
 import com.newsalligator.presenter.tools.ArticleSize;
@@ -249,7 +248,7 @@ public class SearchTabPresenter extends Presenter {
 		categoryBox.setValue(searchContent.get(1));
 		webBox.setValue(searchContent.get(2));
 		
-		searchData = Model.getInstance().search(searchContent.get(0), searchContent.get(1), searchContent.get(2));
+		searchData = model.search(searchContent.get(0), searchContent.get(1), searchContent.get(2));
 		
 		setPage(1);
 
