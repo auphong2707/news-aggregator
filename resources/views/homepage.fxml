@@ -24,53 +24,21 @@
    <center>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" BorderPane.alignment="TOP_CENTER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2500.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2350.0" prefWidth="1200.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <VBox layoutX="565.0" layoutY="1205.0" prefHeight="200.0" prefWidth="100.0" spacing="37.0">
                      <children>
                         <Group>
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="210.0" layoutY="95.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="210.0" layoutY="135.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Blockchain" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-181.0" onMouseClicked="#switchTCategoryTab" text="Blockchain" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
                               </Label>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/alligator.png" />
-                                 </image>
-                              </ImageView>
-                              <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
+                              <Line endX="2.05859375" layoutY="55.0" startX="-181.0">
                                  <stroke>
                                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
                                        <stops>
@@ -88,55 +56,48 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
-                              <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
+                           </children>
+                        </Group>
+                        <Group fx:id="notSoBigArticle1c">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="250.0" layoutY="205.0" prefHeight="33.0" prefWidth="321.0" text="Website">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="93.0" prefHeight="44.0" prefWidth="321.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="133.0" prefHeight="24.0" prefWidth="321.0" text="Brief summary">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alligator.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="9.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Group layoutX="19.0" layoutY="2.0">
+                        <Line endX="427.0" endY="-70.0" startX="-107.0" startY="-70.0" />
+                        <Group>
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="210.0" layoutY="95.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="210.0" layoutY="135.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Crypto" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-181.0" onMouseClicked="#switchTCategoryTab" text="Crypto" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
                               </Label>
-                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/alligator.png" />
-                                 </image>
-                              </ImageView>
-                              <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
+                              <Line endX="-66.70320129394531" layoutY="55.0" startX="-181.0">
                                  <stroke>
                                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
                                        <stops>
@@ -154,55 +115,48 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
-                              <Line endX="427.0" endY="-70.0" layoutX="106.0" layoutY="391.0" startX="-107.0" startY="-70.0" />
+                           </children>
+                        </Group>
+                        <Group fx:id="notSoBigArticle2c" layoutX="19.0" layoutY="2.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="250.0" layoutY="200.0" prefHeight="33.0" prefWidth="320.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="95.0" prefHeight="44.0" prefWidth="320.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="135.0" prefHeight="24.0" prefWidth="317.0" text="Brief summary">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alligator.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="9.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Group>
-                        <Group layoutX="19.0" layoutY="352.0">
+                        <Line endX="427.0" endY="-70.0" startX="-107.0" startY="-70.0" />
+                        <Group>
                            <children>
-                              <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="210.0" layoutY="200.0" prefHeight="33.0" prefWidth="79.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="210.0" layoutY="95.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="210.0" layoutY="135.0" prefHeight="24.0" prefWidth="114.0" text="Brief summary">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="-9.0" layoutY="8.0" onMouseClicked="#switchTCategoryTab" text="Others" textFill="#4b54fa">
+                              <Label alignment="CENTER" layoutX="-181.0" onMouseClicked="#switchTCategoryTab" text="Others" textFill="#4b54fa">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
                               </Label>
-                              <Label alignment="CENTER" layoutX="16.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="229.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" layoutX="413.0" layoutY="254.0" prefHeight="44.0" prefWidth="120.0" text="Article Title">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/alligator.png" />
-                                 </image>
-                              </ImageView>
-                              <Line endX="-40.0" layoutX="190.0" layoutY="67.0" startX="-181.0">
+                              <Line endX="-68.58406066894531" layoutY="55.0" startX="-181.0">
                                  <stroke>
                                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.5719696987758982" startX="0.5340908783854861" startY="0.6363636715845628">
                                        <stops>
@@ -220,6 +174,31 @@
                                     </LinearGradient>
                                  </stroke>
                               </Line>
+                           </children>
+                        </Group>
+                        <Group fx:id="notSoBigArticle3c" layoutX="19.0" layoutY="352.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="250.0" layoutY="200.0" prefHeight="33.0" prefWidth="331.0" text="Website" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="95.0" prefHeight="44.0" prefWidth="331.0" text="Article Title">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_LEFT" layoutX="250.0" layoutY="135.0" prefHeight="24.0" prefWidth="331.0" text="Brief summary">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/alligator.png" />
+                                 </image>
+                              </ImageView>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -405,35 +384,6 @@
                                  </image>
                               </ImageView>
                               <Text layoutX="7.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R4" visible="false" />
-                           </children>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Group>
-                        <Line endX="410.0" endY="145.0" startX="-6.0" startY="145.0" stroke="#a19797" />
-                        <Group fx:id="notSoBigArticle6" layoutX="17.0" layoutY="733.0" onMouseClicked="#switchToArticle">
-                           <children>
-                              <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="137.0" layoutY="89.0" prefHeight="20.0" prefWidth="263.0" text="Website" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="-31.0" prefHeight="61.0" prefWidth="396.0" text="Article title" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_LEFT" layoutX="137.0" layoutY="32.0" prefHeight="56.0" prefWidth="268.0" text="Short description" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="80.0" fitWidth="120.0" layoutX="7.0" layoutY="30.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../images/blank_rectangle.png" />
-                                 </image>
-                              </ImageView>
-                              <Text layoutX="7.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R5" visible="false" />
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -654,9 +604,9 @@
                         </Group>
                      </children>
                   </VBox>
-                  <Line endX="130.0" endY="990.0" layoutX="410.0" layoutY="1229.0" startX="130.0" startY="-48.0" />
-                  <Line endX="1130.0" endY="1892.0" layoutY="352.0" startX="70.0" startY="1892.0" />
-                  <HBox alignment="CENTER" layoutX="79.0" layoutY="2245.0" prefHeight="35.0" prefWidth="1043.0" spacing="20.0">
+                  <Line endX="130.0" endY="850.0" layoutX="410.0" layoutY="1229.0" startX="130.0" startY="-48.0" />
+                  <Line endX="1130.0" endY="1752.0" layoutY="352.0" startX="70.0" startY="1752.0" />
+                  <HBox alignment="CENTER" layoutX="79.0" layoutY="2105.0" prefHeight="35.0" prefWidth="1043.0" spacing="20.0">
                      <children>
                         <Label onMouseClicked="#openWebsite" text="Academy Moralis">
                            <font>
@@ -724,7 +674,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Text layoutX="447.7" layoutY="2295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED" AnchorPane.leftAnchor="447.7" AnchorPane.rightAnchor="447.9306640625">
+                  <Text layoutX="447.7" layoutY="2155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2024 NEWS ALLIGATOR ALL RIGHTS RESERVED" AnchorPane.leftAnchor="447.7" AnchorPane.rightAnchor="447.9306640625">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
