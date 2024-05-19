@@ -1,7 +1,6 @@
 import json 
 import os
 import random
-import psutil
 import subprocess
 
 from SearchEngine import SearchEngine
