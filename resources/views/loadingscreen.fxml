@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="584.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Group layoutX="-57.0" layoutY="15.0" scaleX="0.75" scaleY="0.75">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="17.0" prefHeight="100.0" prefWidth="525.0" text="News Alligator">
+               <font>
+                  <Font name="Lucida Sans Demibold Italic" size="68.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="113.0" fitWidth="121.0" layoutX="22.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/alligator.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Group>
+      <ImageView fitHeight="114.0" fitWidth="118.0" layoutX="237.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="234.5">
+         <image>
+            <Image url="@../images/loading.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

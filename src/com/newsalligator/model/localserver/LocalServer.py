@@ -1,0 +1,92 @@
+import json 
+import os
+import random
+import subprocess
+
+from SearchEngine import SearchEngine
+from flask import Flask, request
+from Utilities import *
+
+file_path = __file__.replace('\\', '/').replace('src/com/newsalligator/model/localserver/' + os.path.basename(__file__), '')
+
+server = Flask(__name__)
+process = None
+
+search_engine = SearchEngine.load_engine(file_path)
+
+@server.route('/update', methods=['GET'])
+def process_new_data():
+    global process
+    if process is None:
+        process = subprocess.Popen(['python', file_path + 'src/com/newsalligator/model/localserver/DataProcessor.py'])
+        return "Start processing data"
+    elif process.poll() is not None:
+        return "Data is already updated"
+    else:
+        return "Data is in the process"
+
+@server.route('/random', methods=['GET'])
+def get_random() -> str:
+    '''
+    Get a random number of articles from the json files
+    '''
+    number_of_articles = request.args.get('number', type=int)
+    
+    f = open(file_path + 'data/newsAll.json', encoding = "utf8")
+    data = json.load(f)
+    f.close()
+    
+    selected_articles = []
+    randomIndex = random.sample(range(len(data)), number_of_articles)
+    for idx in randomIndex:
+        selected_articles.append(data[idx])
+    
+    return json.dumps(selected_articles)
+    
+@server.route('/latest', methods=['GET'])
+def get_latest() -> str:
+    '''
+    Get the latest number of articles from the json files
+    '''
+    number_of_articles = request.args.get('number', type=int)
+    category = request.args.get('category', type=str)
+
+    f = open(file_path + 'data/newsAll.json', encoding = "utf8")
+    data = json.load(f)
+    f.close()
+
+    result_data = list()
+    for i in range(len(data)):
+        if category == 'All' or data[i]['CATEGORY'] == category:
+            result_data.append(data[i])
+
+        if len(result_data) == number_of_articles:
+            break
+    
+    return json.dumps(result_data)
+
+@server.route('/search/', methods = ['POST'])
+def search():
+    if request.method == 'POST':
+        decoded_request = request.data.decode('utf-8')
+        
+        params = json.loads(decoded_request)
+        return search_engine.search(params)
+    
+@server.route('/trending', methods=['GET'])
+def get_trending():
+    f = open(file_path + 'data/trendings.json', encoding = "utf8")
+    data = json.load(f)
+    f.close()
+
+    number_of_articles = request.args.get('number', type=int)
+
+    selected_articles = []
+    randomIndex = random.sample(range(len(data)), number_of_articles)
+    for idx in randomIndex:
+        selected_articles.append(data[idx])
+
+    return json.dumps(selected_articles)
+
+if __name__ == "__main__":
+    server.run()
